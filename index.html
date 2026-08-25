@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GTube Marketplace</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .hero {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      margin-top: 0;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .primary {
+      background: #111;
+      color: white;
+    }
+
+    .secondary {
+      background: #ddd;
+      color: #111;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+    }
+
+    .product {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .product-image {
+      height: 150px;
+      background: #ddd;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 45px;
+    }
+
+    .product h3 {
+      margin-bottom: 5px;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>GTube Marketplace</h1>
+    <p>Compra e venda de produtos online</p>
+  </header>
+
+  <div class="container">
+
+    <section class="hero">
+      <h2>Bem-vindo ao GTube Marketplace</h2>
+      <p>Encontre produtos, venda os seus e faça negócios online.</p>
+
+      <div class="buttons">
+        <button class="primary">Criar conta</button>
+        <button class="secondary">Entrar</button>
+        <button class="secondary">Vender produto</button>
+      </div>
+    </section>
+
+    <h2>Produtos em destaque</h2>
+
+    <section class="products">
+
+      <div class="product">
+        <div class="product-image">📱</div>
+        <h3>Smartphone</h3>
+        <p>Smartphone em excelente estado.</p>
+        <p class="price">150.000 Kz</p>
+        <button class="primary">Comprar</button>
+      </div>
+
+      <div class="product">
+        <div class="product-image">👟</div>
+        <h3>Ténis</h3>
+        <p>Ténis modernos e confortáveis.</p>
+        <p class="price">35.000 Kz</p>
+        <button class="primary">Comprar</button>
+      </div>
+
+      <div class="product">
+        <div class="product-image">💻</div>
+        <h3>Computador</h3>
+        <p>Computador para trabalho e estudos.</p>
+        <p class="price">250.000 Kz</p>
+        <button class="primary">Comprar</button>
+      </div>
+
+    </section>
+
+  </div>
+
+</body>
+  </html>
