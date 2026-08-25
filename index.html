@@ -3,381 +3,385 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>GTube Marketplace</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
-  margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f3f5f7;
-  color:#222;
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f4f6f8;
+color:#222;
 }
 
-/* TOPO */
 header{
-  background:linear-gradient(135deg,#111827,#2563eb);
-  color:white;
-  padding:18px 20px;
-  position:sticky;
-  top:0;
-  z-index:100;
-  box-shadow:0 3px 15px rgba(0,0,0,.15);
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white;
+padding:15px;
+position:sticky;
+top:0;
+z-index:100;
+box-shadow:0 3px 15px rgba(0,0,0,.18);
 }
 
 .top{
-  max-width:1150px;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
+max-width:1150px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:12px;
 }
 
 .logo{
-  font-size:26px;
-  font-weight:bold;
+font-size:27px;
+font-weight:bold;
 }
 
 .logo span{
-  color:#38bdf8;
+color:#38bdf8;
 }
 
 .top-buttons{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.top button{
-  border:none;
-  padding:9px 14px;
-  border-radius:20px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-/* CONTAINER */
-.container{
-  max-width:1150px;
-  margin:auto;
-  padding:20px;
-}
-
-/* HERO */
-.hero{
-  background:linear-gradient(135deg,#2563eb,#7c3aed);
-  color:white;
-  border-radius:22px;
-  padding:45px 25px;
-  margin-bottom:25px;
-  text-align:center;
-  box-shadow:0 8px 30px rgba(37,99,235,.25);
-}
-
-.hero h1{
-  font-size:38px;
-  margin:0 0 12px;
-}
-
-.hero p{
-  font-size:17px;
-  opacity:.95;
-}
-
-.hero-buttons{
-  margin-top:25px;
+display:flex;
+gap:8px;
 }
 
 button{
-  border:none;
-  padding:12px 18px;
-  border-radius:10px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:bold;
+border:0;
+padding:12px 17px;
+border-radius:10px;
+cursor:pointer;
+font-size:15px;
+font-weight:bold;
 }
 
 .primary{
-  background:#2563eb;
-  color:white;
+background:#2563eb;
+color:white;
 }
 
 .primary:hover{
-  background:#1d4ed8;
+background:#1d4ed8;
 }
 
 .white-btn{
-  background:white;
-  color:#2563eb;
+background:white;
+color:#2563eb;
 }
 
 .secondary{
-  background:#e5e7eb;
-  color:#222;
+background:#e5e7eb;
+color:#222;
 }
 
 .danger{
-  background:#dc2626;
-  color:white;
+background:#dc2626;
+color:white;
 }
 
-/* PESQUISA */
-.search-box{
-  background:white;
-  padding:15px;
-  border-radius:15px;
-  margin-bottom:25px;
-  box-shadow:0 3px 15px rgba(0,0,0,.06);
+.hero{
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+border-radius:22px;
+padding:45px 25px;
+margin-bottom:25px;
+text-align:center;
+box-shadow:0 8px 30px rgba(37,99,235,.25);
 }
 
-.search{
-  width:100%;
-  padding:15px;
-  border:1px solid #ddd;
-  border-radius:12px;
-  font-size:16px;
-  outline:none;
+.hero h1{
+font-size:38px;
+margin:0 0 12px;
 }
 
-.search:focus{
-  border-color:#2563eb;
+.hero p{
+font-size:17px;
 }
 
-/* CATEGORIAS */
-.categories{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-  padding-bottom:12px;
-  margin-bottom:20px;
+.container{
+max-width:1150px;
+margin:auto;
+padding:20px;
 }
 
-.category{
-  background:white;
-  border:1px solid #ddd;
-  padding:10px 16px;
-  border-radius:25px;
-  white-space:nowrap;
-  cursor:pointer;
-}
-
-.category:hover{
-  background:#2563eb;
-  color:white;
-}
-
-/* PRODUTOS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
-}
-
-.product{
-  background:white;
-  border-radius:17px;
-  overflow:hidden;
-  box-shadow:0 4px 15px rgba(0,0,0,.08);
-  transition:.2s;
-}
-
-.product:hover{
-  transform:translateY(-4px);
-  box-shadow:0 8px 25px rgba(0,0,0,.13);
-}
-
-.product-image{
-  height:190px;
-  background:linear-gradient(135deg,#e0f2fe,#ddd6fe);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
-}
-
-.product-content{
-  padding:17px;
-}
-
-.product h3{
-  margin:0 0 8px;
-  font-size:19px;
-}
-
-.description{
-  color:#666;
-  min-height:40px;
-}
-
-.price{
-  color:#2563eb;
-  font-size:21px;
-  font-weight:bold;
-  margin:12px 0;
-}
-
-.seller{
-  color:#777;
-  font-size:13px;
-}
-
-/* FORMULÁRIOS */
 .form-box,
 .account-box,
-.sell-box{
-  display:none;
-  background:white;
-  padding:25px;
-  border-radius:18px;
-  margin-bottom:25px;
-  box-shadow:0 4px 18px rgba(0,0,0,.08);
-}
-
-.form-box h2,
-.account-box h2,
-.sell-box h2{
-  margin-top:0;
+.sell-box,
+.detail-box{
+display:none;
+background:white;
+padding:25px;
+border-radius:18px;
+margin-bottom:25px;
+box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
 
 input,
 textarea,
 select{
-  width:100%;
-  padding:14px;
-  margin:7px 0;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:16px;
+width:100%;
+padding:14px;
+margin:7px 0;
+border:1px solid #ddd;
+border-radius:10px;
+font-size:16px;
 }
 
 textarea{
-  min-height:100px;
-  resize:vertical;
+min-height:100px;
+resize:vertical;
 }
 
 .message{
-  margin-top:12px;
-  font-weight:bold;
+margin-top:12px;
+font-weight:bold;
 }
 
-/* PAINEL */
-.welcome{
-  background:linear-gradient(135deg,#eff6ff,#f5f3ff);
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:20px;
+.search-box{
+background:white;
+padding:15px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 3px 15px rgba(0,0,0,.06);
 }
 
-.welcome h2{
-  margin:0 0 5px;
+.search{
+width:100%;
+padding:15px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px;
+}
+
+.categories{
+display:flex;
+gap:10px;
+overflow-x:auto;
+padding-bottom:12px;
+margin-bottom:20px;
+}
+
+.category{
+background:white;
+border:1px solid #ddd;
+padding:10px 16px;
+border-radius:25px;
+white-space:nowrap;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+}
+
+.product{
+background:white;
+border-radius:17px;
+overflow:hidden;
+box-shadow:0 4px 15px rgba(0,0,0,.08);
+transition:.2s;
+}
+
+.product:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 25px rgba(0,0,0,.13);
+}
+
+.product-image{
+width:100%;
+height:200px;
+background:linear-gradient(135deg,#e0f2fe,#ddd6fe);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:70px;
+overflow:hidden;
+}
+
+.product-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.product-content{
+padding:16px;
+}
+
+.product h3{
+margin:0 0 8px;
+font-size:18px;
+}
+
+.description{
+color:#666;
+min-height:40px;
+}
+
+.price{
+color:#2563eb;
+font-size:21px;
+font-weight:bold;
+margin:12px 0;
+}
+
+.seller{
+color:#777;
+font-size:13px;
+}
+
+.product-actions{
+display:flex;
+gap:7px;
+}
+
+.product-actions .primary{
+flex:1;
+}
+
+.favorite{
+background:#fee2e2;
+color:#dc2626;
+width:48px;
 }
 
 .account-menu{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-  gap:14px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:14px;
 }
 
 .account-card{
-  background:#f8fafc;
-  border:1px solid #e5e7eb;
-  padding:22px;
-  border-radius:15px;
-  text-align:center;
-  cursor:pointer;
-  font-size:17px;
-  transition:.2s;
+background:#f8fafc;
+border:1px solid #e5e7eb;
+padding:22px;
+border-radius:15px;
+text-align:center;
+cursor:pointer;
+transition:.2s;
 }
 
 .account-card:hover{
-  background:#eff6ff;
-  transform:translateY(-2px);
+background:#eff6ff;
+transform:translateY(-2px);
 }
 
 .account-icon{
-  font-size:35px;
-  margin-bottom:8px;
+font-size:35px;
+margin-bottom:8px;
 }
 
-/* PRODUTOS DO UTILIZADOR */
-.my-product{
-  background:#f8fafc;
-  border-radius:14px;
-  padding:15px;
-  margin-bottom:12px;
-  border:1px solid #eee;
+.detail-layout{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
 }
 
-/* RODAPÉ */
+.detail-image{
+height:400px;
+background:#eef2ff;
+border-radius:16px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:100px;
+}
+
+.detail-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.detail-info h2{
+font-size:30px;
+margin-top:0;
+}
+
+.detail-price{
+color:#2563eb;
+font-size:30px;
+font-weight:bold;
+}
+
+.contact{
+background:#16a34a;
+color:white;
+margin-top:10px;
+}
+
 footer{
-  margin-top:40px;
-  background:#111827;
-  color:white;
-  text-align:center;
-  padding:30px 20px;
+margin-top:40px;
+background:#111827;
+color:white;
+text-align:center;
+padding:30px 20px;
 }
 
 footer p{
-  color:#aaa;
+color:#aaa;
 }
 
-/* MOBILE */
-@media(max-width:600px){
+@media(max-width:650px){
 
-  .top{
-    align-items:flex-start;
-    flex-direction:column;
-  }
+.top{
+flex-direction:column;
+align-items:flex-start;
+}
 
-  .top-buttons{
-    width:100%;
-  }
+.top-buttons{
+width:100%;
+}
 
-  .top button{
-    flex:1;
-  }
+.top-buttons button{
+flex:1;
+}
 
-  .hero{
-    padding:35px 18px;
-  }
+.hero h1{
+font-size:30px;
+}
 
-  .hero h1{
-    font-size:30px;
-  }
+.products{
+grid-template-columns:1fr 1fr;
+gap:10px;
+}
 
-  .products{
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-  }
+.product-image{
+height:140px;
+}
 
-  .product-image{
-    height:135px;
-    font-size:55px;
-  }
+.product-content{
+padding:11px;
+}
 
-  .product-content{
-    padding:12px;
-  }
+.product h3{
+font-size:16px;
+}
 
-  .product h3{
-    font-size:16px;
-  }
+.price{
+font-size:17px;
+}
 
-  .price{
-    font-size:17px;
-  }
+.detail-layout{
+grid-template-columns:1fr;
+}
+
+.detail-image{
+height:280px;
+}
+
 }
 
 @media(max-width:420px){
 
-  .products{
-    grid-template-columns:1fr;
-  }
+.products{
+grid-template-columns:1fr;
+}
+
 }
 </style>
 </head>
@@ -386,346 +390,296 @@ footer p{
 
 <header>
 
-  <div class="top">
+<div class="top">
 
-    <div class="logo">
-      G<span>Tube</span> Marketplace
-    </div>
+<div class="logo">
+G<span>Tube</span> Marketplace
+</div>
 
-    <div class="top-buttons">
+<div class="top-buttons">
 
-      <button class="white-btn" onclick="mostrarInicio()">
-        🏠 Início
-      </button>
+<button class="white-btn" onclick="mostrarInicio()">
+🏠 Início
+</button>
 
-      <button class="white-btn" onclick="abrirLoginOuConta()">
-        👤 Minha conta
-      </button>
+<button class="white-btn" onclick="abrirConta()">
+👤 Minha conta
+</button>
 
-    </div>
+</div>
 
-  </div>
+</div>
 
 </header>
 
 
 <div class="container">
 
-<!-- HERO -->
 
 <section id="hero" class="hero">
 
-  <h1>Compra. Venda. Negocia. 🚀</h1>
+<h1>Compra. Venda. Negocia. 🚀</h1>
 
-  <p>
-    O teu marketplace para encontrar produtos
-    e fazer negócios online.
-  </p>
+<p>
+Encontra produtos, publica os teus anúncios
+e faz negócios no GTube.
+</p>
 
-  <div class="hero-buttons">
+<br>
 
-    <button class="white-btn" onclick="mostrarCadastro()">
-      ✨ Criar conta
-    </button>
+<button class="white-btn" onclick="mostrarCadastro()">
+✨ Criar conta
+</button>
 
-    <button class="primary" onclick="mostrarLogin()">
-      🔐 Entrar
-    </button>
-
-  </div>
+<button class="primary" onclick="mostrarLogin()">
+🔐 Entrar
+</button>
 
 </section>
 
-
-<!-- FORMULÁRIO DE CADASTRO -->
 
 <section id="cadastro" class="form-box">
 
-  <h2>✨ Criar a tua conta</h2>
+<h2>✨ Criar conta</h2>
 
-  <input
-    id="nome"
-    type="text"
-    placeholder="Nome completo"
-  >
+<input id="nome" type="text" placeholder="Nome completo">
 
-  <input
-    id="email"
-    type="email"
-    placeholder="E-mail"
-  >
+<input id="email" type="email" placeholder="E-mail">
 
-  <input
-    id="senha"
-    type="password"
-    placeholder="Palavra-passe"
-  >
+<input id="senha" type="password" placeholder="Palavra-passe">
 
-  <button class="primary" onclick="criarConta()">
-    Criar minha conta
-  </button>
+<button class="primary" onclick="criarConta()">
+Criar minha conta
+</button>
 
-  <button class="secondary" onclick="mostrarInicio()">
-    Cancelar
-  </button>
+<button class="secondary" onclick="mostrarInicio()">
+Cancelar
+</button>
 
-  <div id="mensagemCadastro" class="message"></div>
+<div id="mensagemCadastro" class="message"></div>
 
 </section>
 
-
-<!-- LOGIN -->
 
 <section id="login" class="form-box">
 
-  <h2>🔐 Entrar no GTube</h2>
+<h2>🔐 Entrar no GTube</h2>
 
-  <input
-    id="loginEmail"
-    type="email"
-    placeholder="E-mail"
-  >
+<input id="loginEmail" type="email" placeholder="E-mail">
 
-  <input
-    id="loginSenha"
-    type="password"
-    placeholder="Palavra-passe"
-  >
+<input id="loginSenha" type="password" placeholder="Palavra-passe">
 
-  <button class="primary" onclick="entrar()">
-    Entrar
-  </button>
+<button class="primary" onclick="entrar()">
+Entrar
+</button>
 
-  <button class="secondary" onclick="mostrarInicio()">
-    Cancelar
-  </button>
+<button class="secondary" onclick="mostrarInicio()">
+Cancelar
+</button>
 
-  <div id="mensagemLogin" class="message"></div>
+<div id="mensagemLogin" class="message"></div>
 
 </section>
 
-
-<!-- PAINEL -->
 
 <section id="conta" class="account-box">
 
-  <div class="welcome">
+<h2>
+👋 Olá, <span id="nomeBemVindo"></span>!
+</h2>
 
-    <h2>
-      👋 Olá, <span id="nomeBemVindo"></span>!
-    </h2>
+<p>Estás conectado à tua conta GTube.</p>
 
-    <p>
-      Bem-vindo ao teu painel do GTube Marketplace.
-    </p>
+<div class="account-menu">
 
-  </div>
+<div class="account-card" onclick="mostrarPerfil()">
+<div class="account-icon">👤</div>
+<strong>Meu perfil</strong>
+<p>Ver os meus dados</p>
+</div>
 
-  <div class="account-menu">
+<div class="account-card" onclick="mostrarVenda()">
+<div class="account-icon">🏪</div>
+<strong>Vender produto</strong>
+<p>Publicar anúncio</p>
+</div>
 
-    <div class="account-card" onclick="mostrarPerfil()">
+<div class="account-card" onclick="mostrarMeusProdutos()">
+<div class="account-icon">📦</div>
+<strong>Meus produtos</strong>
+<p>Ver meus anúncios</p>
+</div>
 
-      <div class="account-icon">👤</div>
+<div class="account-card" onclick="mostrarFavoritos()">
+<div class="account-icon">❤️</div>
+<strong>Favoritos</strong>
+<p>Produtos guardados</p>
+</div>
 
-      <strong>Meu perfil</strong>
+</div>
 
-      <p>Ver os meus dados</p>
+<br>
 
-    </div>
-
-
-    <div class="account-card" onclick="mostrarVenda()">
-
-      <div class="account-icon">🏪</div>
-
-      <strong>Vender produto</strong>
-
-      <p>Publicar um produto</p>
-
-    </div>
-
-
-    <div class="account-card" onclick="mostrarMeusProdutos()">
-
-      <div class="account-icon">📦</div>
-
-      <strong>Meus produtos</strong>
-
-      <p>Ver os meus anúncios</p>
-
-    </div>
-
-  </div>
-
-  <br>
-
-  <button class="danger" onclick="terminarSessao()">
-    🚪 Terminar sessão
-  </button>
+<button class="danger" onclick="terminarSessao()">
+🚪 Terminar sessão
+</button>
 
 </section>
 
-
-<!-- PERFIL -->
 
 <section id="perfil" class="account-box">
 
-  <h2>👤 Meu perfil</h2>
+<h2>👤 Meu perfil</h2>
 
-  <p>
-    <strong>Nome:</strong>
-    <span id="perfilNome"></span>
-  </p>
+<p>
+<strong>Nome:</strong>
+<span id="perfilNome"></span>
+</p>
 
-  <p>
-    <strong>E-mail:</strong>
-    <span id="perfilEmail"></span>
-  </p>
+<p>
+<strong>E-mail:</strong>
+<span id="perfilEmail"></span>
+</p>
 
-  <button class="secondary" onclick="mostrarPainel()">
-    ← Voltar
-  </button>
+<button class="secondary" onclick="mostrarPainel()">
+← Voltar
+</button>
 
 </section>
 
-
-<!-- VENDER -->
 
 <section id="venda" class="sell-box">
 
-  <h2>🏪 Publicar produto</h2>
+<h2>🏪 Publicar produto</h2>
 
-  <input
-    id="produtoNome"
-    type="text"
-    placeholder="Nome do produto"
-  >
+<input id="produtoNome" type="text" placeholder="Nome do produto">
 
-  <textarea
-    id="produtoDescricao"
-    placeholder="Descrição do produto"
-  ></textarea>
+<textarea id="produtoDescricao"
+placeholder="Descrição do produto"></textarea>
 
-  <input
-    id="produtoPreco"
-    type="number"
-    placeholder="Preço em Kz"
-  >
+<input id="produtoPreco"
+type="number"
+placeholder="Preço em Kz">
 
-  <select id="produtoCategoria">
+<select id="produtoCategoria">
 
-    <option value="">
-      Escolha uma categoria
-    </option>
+<option value="">Escolha uma categoria</option>
 
-    <option value="Telefones">
-      📱 Telefones
-    </option>
+<option value="Telefones">📱 Telefones</option>
+<option value="Computadores">💻 Computadores</option>
+<option value="Moda">👟 Moda</option>
+<option value="Carros">🚗 Carros</option>
+<option value="Casa">🏠 Casa</option>
+<option value="Outros">📦 Outros</option>
 
-    <option value="Computadores">
-      💻 Computadores
-    </option>
+</select>
 
-    <option value="Moda">
-      👟 Moda
-    </option>
+<select id="produtoEmoji">
 
-    <option value="Carros">
-      🚗 Carros
-    </option>
+<option value="📦">📦 Produto</option>
+<option value="📱">📱 Smartphone</option>
+<option value="💻">💻 Computador</option>
+<option value="👟">👟 Ténis</option>
+<option value="👕">👕 Roupa</option>
+<option value="🚗">🚗 Carro</option>
+<option value="🏠">🏠 Casa</option>
 
-    <option value="Casa">
-      🏠 Casa
-    </option>
+</select>
 
-    <option value="Outros">
-      📦 Outros
-    </option>
+<label>
+<strong>📸 Foto do produto</strong>
+</label>
 
-  </select>
+<input id="produtoFoto" type="file" accept="image/*">
 
-  <select id="produtoEmoji">
+<button class="primary" onclick="publicarProduto()">
+🚀 Publicar produto
+</button>
 
-    <option value="📦">📦 Produto</option>
-    <option value="📱">📱 Smartphone</option>
-    <option value="💻">💻 Computador</option>
-    <option value="👟">👟 Ténis</option>
-    <option value="👕">👕 Roupa</option>
-    <option value="🚗">🚗 Carro</option>
-    <option value="🏠">🏠 Casa</option>
+<button class="secondary" onclick="mostrarPainel()">
+← Voltar
+</button>
 
-  </select>
-
-  <button class="primary" onclick="publicarProduto()">
-    🚀 Publicar produto
-  </button>
-
-  <button class="secondary" onclick="mostrarPainel()">
-    ← Voltar
-  </button>
-
-  <div id="mensagemVenda" class="message"></div>
+<div id="mensagemVenda" class="message"></div>
 
 </section>
 
-
-<!-- MEUS PRODUTOS -->
 
 <section id="meusProdutos" class="account-box">
 
-  <h2>📦 Meus produtos</h2>
+<h2>📦 Meus produtos</h2>
 
-  <div id="listaMeusProdutos"></div>
+<div id="listaMeusProdutos" class="products"></div>
 
-  <button class="secondary" onclick="mostrarPainel()">
-    ← Voltar
-  </button>
+<br>
+
+<button class="secondary" onclick="mostrarPainel()">
+← Voltar
+</button>
 
 </section>
 
 
-<!-- PESQUISA -->
+<section id="favoritos" class="account-box">
+
+<h2>❤️ Meus favoritos</h2>
+
+<div id="listaFavoritos" class="products"></div>
+
+<br>
+
+<button class="secondary" onclick="mostrarPainel()">
+← Voltar
+</button>
+
+</section>
+
+
+<section id="detalhe" class="detail-box">
+
+<div id="detalheConteudo"></div>
+
+</section>
+
 
 <div class="search-box">
 
-  <input
-    id="pesquisa"
-    class="search"
-    type="text"
-    placeholder="🔎 O que estás à procura?"
-    oninput="mostrarProdutos()"
-  >
+<input
+id="pesquisa"
+class="search"
+type="text"
+placeholder="🔎 Procurar smartphone, ténis, computador..."
+oninput="mostrarProdutos()"
+>
 
 </div>
 
 
-<!-- CATEGORIAS -->
-
 <div class="categories">
 
-  <button class="category" onclick="filtrarCategoria('')">
-    🔥 Todos
-  </button>
+<button class="category" onclick="filtrarCategoria('')">
+🔥 Todos
+</button>
 
-  <button class="category" onclick="filtrarCategoria('Telefones')">
-    📱 Telefones
-  </button>
+<button class="category" onclick="filtrarCategoria('Telefones')">
+📱 Telefones
+</button>
 
-  <button class="category" onclick="filtrarCategoria('Computadores')">
-    💻 Computadores
-  </button>
+<button class="category" onclick="filtrarCategoria('Computadores')">
+💻 Computadores
+</button>
 
-  <button class="category" onclick="filtrarCategoria('Moda')">
-    👟 Moda
-  </button>
+<button class="category" onclick="filtrarCategoria('Moda')">
+👟 Moda
+</button>
 
-  <button class="category" onclick="filtrarCategoria('Carros')">
-    🚗 Carros
-  </button>
+<button class="category" onclick="filtrarCategoria('Carros')">
+🚗 Carros
+</button>
 
-  <button class="category" onclick="filtrarCategoria('Casa')">
-    🏠 Casa
-  </button>
+<button class="category" onclick="filtrarCategoria('Casa')">
+🏠 Casa
+</button>
 
 </div>
 
@@ -739,738 +693,866 @@ footer p{
 
 <footer>
 
-  <h2>GTube Marketplace</h2>
+<h2>GTube Marketplace</h2>
 
-  <p>
-    Compra e venda de produtos online.
-  </p>
+<p>Compra e venda de produtos online.</p>
 
-  <p>
-    © 2026 GTube Marketplace
-  </p>
+<p>© 2026 GTube Marketplace</p>
 
 </footer>
 
 
 <script>
 
-/* =========================
-   CONTAS
-========================= */
-
 function obterConta(){
 
-  const dados =
-    localStorage.getItem("gtubeUtilizador");
+const dados=localStorage.getItem("gtubeUtilizador");
 
-  return dados ? JSON.parse(dados) : null;
+return dados ? JSON.parse(dados) : null;
 
 }
 
 
 function obterSessao(){
 
-  const dados =
-    localStorage.getItem("gtubeSessao");
+const dados=localStorage.getItem("gtubeSessao");
 
-  return dados ? JSON.parse(dados) : null;
+return dados ? JSON.parse(dados) : null;
 
 }
 
 
-/* =========================
-   NAVEGAÇÃO
-========================= */
-
 function esconderTudo(){
 
-  document.getElementById("cadastro").style.display="none";
+[
+"hero",
+"cadastro",
+"login",
+"conta",
+"perfil",
+"venda",
+"meusProdutos",
+"favoritos",
+"detalhe"
+].forEach(function(id){
 
-  document.getElementById("login").style.display="none";
+document.getElementById(id).style.display="none";
 
-  document.getElementById("conta").style.display="none";
-
-  document.getElementById("perfil").style.display="none";
-
-  document.getElementById("venda").style.display="none";
-
-  document.getElementById("meusProdutos").style.display="none";
-
-  document.getElementById("hero").style.display="none";
+});
 
 }
 
 
 function mostrarInicio(){
 
-  esconderTudo();
+esconderTudo();
 
-  document.getElementById("hero").style.display="block";
+document.getElementById("hero").style.display="block";
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({top:0,behavior:"smooth"});
 
 }
 
 
 function mostrarCadastro(){
 
-  esconderTudo();
+esconderTudo();
 
-  document.getElementById("cadastro").style.display="block";
+document.getElementById("cadastro").style.display="block";
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({top:0,behavior:"smooth"});
 
 }
 
 
 function mostrarLogin(){
 
-  esconderTudo();
+esconderTudo();
 
-  document.getElementById("login").style.display="block";
+document.getElementById("login").style.display="block";
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+window.scrollTo({top:0,behavior:"smooth"});
 
 }
 
 
-function abrirLoginOuConta(){
+function abrirConta(){
 
-  const sessao=obterSessao();
+if(obterSessao()){
 
-  if(sessao){
+mostrarPainel();
 
-    mostrarPainel();
+}else{
 
-  }else{
-
-    mostrarLogin();
-
-  }
+mostrarLogin();
 
 }
 
+}
 
-/* =========================
-   CRIAR CONTA
-========================= */
 
 function criarConta(){
 
-  const nome =
-    document.getElementById("nome").value.trim();
+const nome=document.getElementById("nome").value.trim();
 
-  const email =
-    document.getElementById("email").value.trim().toLowerCase();
+const email=document.getElementById("email").value.trim().toLowerCase();
 
-  const senha =
-    document.getElementById("senha").value;
+const senha=document.getElementById("senha").value;
 
-  const mensagem =
-    document.getElementById("mensagemCadastro");
+const mensagem=document.getElementById("mensagemCadastro");
 
 
-  if(!nome || !email || !senha){
+if(!nome || !email || !senha){
 
-    mensagem.textContent=
-      "⚠️ Preenche todos os campos.";
+mensagem.textContent="⚠️ Preenche todos os campos.";
 
-    return;
+return;
 
-  }
+}
 
+if(senha.length<6){
 
-  if(senha.length < 6){
+mensagem.textContent="⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
 
-    mensagem.textContent=
-      "⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
-
-    return;
-
-  }
-
-
-  const utilizador={
-    nome:nome,
-    email:email,
-    senha:senha
-  };
-
-
-  localStorage.setItem(
-    "gtubeUtilizador",
-    JSON.stringify(utilizador)
-  );
-
-
-  localStorage.setItem(
-    "gtubeSessao",
-    JSON.stringify(utilizador)
-  );
-
-
-  mensagem.textContent=
-    "✅ Conta criada com sucesso!";
-
-
-  setTimeout(function(){
-
-    mostrarPainel();
-
-  },700);
+return;
 
 }
 
 
-/* =========================
-   LOGIN
-========================= */
+const utilizador={
+nome:nome,
+email:email,
+senha:senha
+};
+
+
+localStorage.setItem(
+"gtubeUtilizador",
+JSON.stringify(utilizador)
+);
+
+localStorage.setItem(
+"gtubeSessao",
+JSON.stringify(utilizador)
+);
+
+
+mensagem.textContent="✅ Conta criada com sucesso!";
+
+
+setTimeout(function(){
+
+mostrarPainel();
+
+},700);
+
+}
+
 
 function entrar(){
 
-  const email =
-    document.getElementById("loginEmail").value.trim().toLowerCase();
+const email=document.getElementById("loginEmail").value.trim().toLowerCase();
 
-  const senha =
-    document.getElementById("loginSenha").value;
+const senha=document.getElementById("loginSenha").value;
 
-  const mensagem =
-    document.getElementById("mensagemLogin");
+const mensagem=document.getElementById("mensagemLogin");
 
-  const utilizador =
-    obterConta();
+const utilizador=obterConta();
 
 
-  if(!utilizador){
+if(!utilizador){
 
-    mensagem.textContent=
-      "⚠️ Ainda não existe uma conta.";
+mensagem.textContent="⚠️ Ainda não existe uma conta.";
 
-    return;
-
-  }
-
-
-  if(
-    email === utilizador.email &&
-    senha === utilizador.senha
-  ){
-
-    localStorage.setItem(
-      "gtubeSessao",
-      JSON.stringify(utilizador)
-    );
-
-
-    mensagem.textContent=
-      "✅ Login realizado com sucesso!";
-
-
-    setTimeout(function(){
-
-      mostrarPainel();
-
-    },600);
-
-
-  }else{
-
-    mensagem.textContent=
-      "❌ E-mail ou palavra-passe incorretos.";
-
-  }
+return;
 
 }
 
 
-/* =========================
-   PAINEL
-========================= */
+if(email===utilizador.email && senha===utilizador.senha){
+
+localStorage.setItem(
+"gtubeSessao",
+JSON.stringify(utilizador)
+);
+
+mensagem.textContent="✅ Login realizado com sucesso!";
+
+
+setTimeout(function(){
+
+mostrarPainel();
+
+},600);
+
+}else{
+
+mensagem.textContent="❌ E-mail ou palavra-passe incorretos.";
+
+}
+
+}
+
 
 function mostrarPainel(){
 
-  esconderTudo();
+esconderTudo();
 
-  document.getElementById("conta").style.display="block";
+document.getElementById("conta").style.display="block";
 
-  atualizarConta();
+const utilizador=obterSessao();
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+if(utilizador){
 
-}
-
-
-function atualizarConta(){
-
-  const utilizador =
-    obterSessao();
-
-  if(!utilizador) return;
-
-  document.getElementById("nomeBemVindo")
-    .textContent=utilizador.nome;
+document.getElementById("nomeBemVindo").textContent=utilizador.nome;
 
 }
 
+window.scrollTo({top:0,behavior:"smooth"});
 
-/* =========================
-   PERFIL
-========================= */
+}
+
 
 function mostrarPerfil(){
 
-  const utilizador =
-    obterSessao();
+const utilizador=obterSessao();
 
-  if(!utilizador){
+if(!utilizador){
 
-    mostrarLogin();
+mostrarLogin();
 
-    return;
-
-  }
-
-
-  esconderTudo();
-
-  document.getElementById("perfil").style.display="block";
-
-  document.getElementById("perfilNome")
-    .textContent=utilizador.nome;
-
-  document.getElementById("perfilEmail")
-    .textContent=utilizador.email;
+return;
 
 }
 
 
-/* =========================
-   TERMINAR SESSÃO
-========================= */
+esconderTudo();
+
+document.getElementById("perfil").style.display="block";
+
+document.getElementById("perfilNome").textContent=utilizador.nome;
+
+document.getElementById("perfilEmail").textContent=utilizador.email;
+
+}
+
 
 function terminarSessao(){
 
-  localStorage.removeItem("gtubeSessao");
+localStorage.removeItem("gtubeSessao");
 
-  mostrarInicio();
+mostrarInicio();
 
-  alert(
-    "Sessão terminada com sucesso. 👋"
-  );
+alert("Sessão terminada com sucesso. 👋");
 
 }
 
-
-/* =========================
-   PRODUTOS
-========================= */
 
 function obterProdutos(){
 
-  const dados =
-    localStorage.getItem("gtubeProdutos");
+const dados=localStorage.getItem("gtubeProdutos");
 
 
-  if(!dados){
+if(!dados){
 
-    const iniciais=[
+const iniciais=[
 
-      {
-        nome:"Smartphone",
-        descricao:"Smartphone em excelente estado.",
-        preco:150000,
-        categoria:"Telefones",
-        emoji:"📱",
-        vendedor:"GTube"
-      },
+{
+nome:"Smartphone",
+descricao:"Smartphone em excelente estado.",
+preco:150000,
+categoria:"Telefones",
+emoji:"📱",
+foto:"",
+vendedor:"GTube"
+},
 
-      {
-        nome:"Ténis",
-        descricao:"Ténis modernos e confortáveis.",
-        preco:35000,
-        categoria:"Moda",
-        emoji:"👟",
-        vendedor:"GTube"
-      },
+{
+nome:"Ténis",
+descricao:"Ténis modernos e confortáveis.",
+preco:35000,
+categoria:"Moda",
+emoji:"👟",
+foto:"",
+vendedor:"GTube"
+},
 
-      {
-        nome:"Computador",
-        descricao:"Computador para trabalho e estudos.",
-        preco:250000,
-        categoria:"Computadores",
-        emoji:"💻",
-        vendedor:"GTube"
-      }
+{
+nome:"Computador",
+descricao:"Computador para trabalho e estudos.",
+preco:250000,
+categoria:"Computadores",
+emoji:"💻",
+foto:"",
+vendedor:"GTube"
+}
 
-    ];
-
-
-    localStorage.setItem(
-      "gtubeProdutos",
-      JSON.stringify(iniciais)
-    );
+];
 
 
-    return iniciais;
+localStorage.setItem(
+"gtubeProdutos",
+JSON.stringify(iniciais)
+);
 
-  }
-
-
-  return JSON.parse(dados);
+return iniciais;
 
 }
 
 
-/* =========================
-   PUBLICAR
-========================= */
+return JSON.parse(dados);
+
+}
+
+
+function lerImagem(file,callback){
+
+if(!file){
+
+callback("");
+
+return;
+
+}
+
+
+const reader=new FileReader();
+
+reader.onload=function(e){
+
+callback(e.target.result);
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
 
 function publicarProduto(){
 
-  const utilizador =
-    obterSessao();
+const utilizador=obterSessao();
 
-  if(!utilizador){
+if(!utilizador){
 
-    mostrarLogin();
+mostrarLogin();
 
-    return;
-
-  }
-
-
-  const nome =
-    document.getElementById("produtoNome").value.trim();
-
-  const descricao =
-    document.getElementById("produtoDescricao").value.trim();
-
-  const preco =
-    Number(document.getElementById("produtoPreco").value);
-
-  const categoria =
-    document.getElementById("produtoCategoria").value;
-
-  const emoji =
-    document.getElementById("produtoEmoji").value;
-
-  const mensagem =
-    document.getElementById("mensagemVenda");
-
-
-  if(
-    !nome ||
-    !descricao ||
-    !preco ||
-    !categoria
-  ){
-
-    mensagem.textContent=
-      "⚠️ Preenche todos os campos.";
-
-    return;
-
-  }
-
-
-  const produtos =
-    obterProdutos();
-
-
-  produtos.push({
-
-    nome:nome,
-    descricao:descricao,
-    preco:preco,
-    categoria:categoria,
-    emoji:emoji,
-    vendedor:utilizador.nome
-
-  });
-
-
-  localStorage.setItem(
-    "gtubeProdutos",
-    JSON.stringify(produtos)
-  );
-
-
-  mensagem.textContent=
-    "✅ Produto publicado com sucesso!";
-
-
-  document.getElementById("produtoNome").value="";
-
-  document.getElementById("produtoDescricao").value="";
-
-  document.getElementById("produtoPreco").value="";
-
-  document.getElementById("produtoCategoria").value="";
-
-  mostrarProdutos();
+return;
 
 }
 
 
-/* =========================
-   VENDER
-========================= */
+const nome=document.getElementById("produtoNome").value.trim();
+
+const descricao=document.getElementById("produtoDescricao").value.trim();
+
+const preco=Number(document.getElementById("produtoPreco").value);
+
+const categoria=document.getElementById("produtoCategoria").value;
+
+const emoji=document.getElementById("produtoEmoji").value;
+
+const file=document.getElementById("produtoFoto").files[0];
+
+const mensagem=document.getElementById("mensagemVenda");
+
+
+if(!nome || !descricao || !preco || !categoria){
+
+mensagem.textContent="⚠️ Preenche todos os campos.";
+
+return;
+
+}
+
+
+lerImagem(file,function(foto){
+
+const produtos=obterProdutos();
+
+
+produtos.push({
+
+nome:nome,
+descricao:descricao,
+preco:preco,
+categoria:categoria,
+emoji:emoji,
+foto:foto,
+vendedor:utilizador.nome
+
+});
+
+
+try{
+
+localStorage.setItem(
+"gtubeProdutos",
+JSON.stringify(produtos)
+);
+
+}catch(e){
+
+mensagem.textContent=
+"⚠️ A imagem é muito grande. Escolhe uma foto menor.";
+
+return;
+
+}
+
+
+mensagem.textContent="✅ Produto publicado com sucesso!";
+
+
+document.getElementById("produtoNome").value="";
+
+document.getElementById("produtoDescricao").value="";
+
+document.getElementById("produtoPreco").value="";
+
+document.getElementById("produtoCategoria").value="";
+
+document.getElementById("produtoFoto").value="";
+
+
+mostrarProdutos();
+
+});
+
+}
+
 
 function mostrarVenda(){
 
-  esconderTudo();
+esconderTudo();
 
-  document.getElementById("venda").style.display="block";
+document.getElementById("venda").style.display="block";
+
+window.scrollTo({top:0,behavior:"smooth"});
 
 }
 
-
-/* =========================
-   MEUS PRODUTOS
-========================= */
 
 function mostrarMeusProdutos(){
 
-  const utilizador =
-    obterSessao();
+const utilizador=obterSessao();
 
-  if(!utilizador){
+if(!utilizador){
 
-    mostrarLogin();
+mostrarLogin();
 
-    return;
-
-  }
-
-
-  esconderTudo();
-
-  document.getElementById("meusProdutos").style.display="block";
-
-
-  const produtos =
-    obterProdutos();
-
-
-  const meus =
-    produtos.filter(function(produto){
-
-      return produto.vendedor === utilizador.nome;
-
-    });
-
-
-  const lista =
-    document.getElementById("listaMeusProdutos");
-
-
-  if(meus.length===0){
-
-    lista.innerHTML=
-      "<p>Ainda não publicaste nenhum produto.</p>";
-
-    return;
-
-  }
-
-
-  lista.innerHTML="";
-
-
-  meus.forEach(function(produto){
-
-    lista.innerHTML += `
-
-      <div class="my-product">
-
-        <div class="product-image">
-          ${produto.emoji}
-        </div>
-
-        <h3>${produto.nome}</h3>
-
-        <p>${produto.descricao}</p>
-
-        <p class="price">
-          ${produto.preco.toLocaleString("pt-AO")} Kz
-        </p>
-
-      </div>
-
-    `;
-
-  });
+return;
 
 }
 
 
-/* =========================
-   PESQUISA
-========================= */
+esconderTudo();
+
+document.getElementById("meusProdutos").style.display="block";
+
+
+const produtos=obterProdutos();
+
+const meus=produtos.filter(function(produto){
+
+return produto.vendedor===utilizador.nome;
+
+});
+
+
+const lista=document.getElementById("listaMeusProdutos");
+
+
+if(meus.length===0){
+
+lista.innerHTML="<p>Ainda não publicaste nenhum produto.</p>";
+
+return;
+
+}
+
+
+lista.innerHTML="";
+
+
+meus.forEach(function(produto){
+
+lista.innerHTML+=criarCard(produto);
+
+});
+
+}
+
+
+function obterFavoritos(){
+
+const dados=localStorage.getItem("gtubeFavoritos");
+
+return dados ? JSON.parse(dados) : [];
+
+}
+
+
+function guardarFavoritos(lista){
+
+localStorage.setItem(
+"gtubeFavoritos",
+JSON.stringify(lista)
+);
+
+}
+
+
+function alternarFavorito(nome){
+
+const favoritos=obterFavoritos();
+
+const indice=favoritos.indexOf(nome);
+
+
+if(indice>=0){
+
+favoritos.splice(indice,1);
+
+}else{
+
+favoritos.push(nome);
+
+}
+
+
+guardarFavoritos(favoritos);
+
+mostrarProdutos();
+
+}
+
+
+function mostrarFavoritos(){
+
+if(!obterSessao()){
+
+mostrarLogin();
+
+return;
+
+}
+
+
+esconderTudo();
+
+document.getElementById("favoritos").style.display="block";
+
+
+const favoritos=obterFavoritos();
+
+const produtos=obterProdutos();
+
+
+const lista=document.getElementById("listaFavoritos");
+
+
+const meus=produtos.filter(function(produto){
+
+return favoritos.includes(produto.nome);
+
+});
+
+
+if(meus.length===0){
+
+lista.innerHTML="<p>❤️ Ainda não tens produtos favoritos.</p>";
+
+return;
+
+}
+
+
+lista.innerHTML="";
+
+
+meus.forEach(function(produto){
+
+lista.innerHTML+=criarCard(produto);
+
+});
+
+}
+
+
+function criarCard(produto){
+
+const favoritos=obterFavoritos();
+
+const favorito=favoritos.includes(produto.nome);
+
+
+let imagem=produto.emoji;
+
+if(produto.foto){
+
+imagem='<img src="'+produto.foto+'" alt="Produto">';
+
+}
+
+
+return `
+
+<div class="product">
+
+<div class="product-image">
+
+${imagem}
+
+</div>
+
+<div class="product-content">
+
+<h3>${produto.nome}</h3>
+
+<p class="description">
+${produto.descricao}
+</p>
+
+<p class="seller">
+👤 Vendedor: ${produto.vendedor}
+</p>
+
+<p class="price">
+${Number(produto.preco).toLocaleString("pt-AO")} Kz
+</p>
+
+<div class="product-actions">
+
+<button
+class="primary"
+onclick="abrirProduto(${JSON.stringify(produto.nome)})"
+>
+Ver produto
+</button>
+
+<button
+class="favorite"
+onclick="alternarFavorito(${JSON.stringify(produto.nome)})"
+>
+${favorito ? "❤️" : "♡"}
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+}
+
 
 let categoriaAtual="";
 
 
 function filtrarCategoria(categoria){
 
-  categoriaAtual=categoria;
+categoriaAtual=categoria;
 
-  mostrarProdutos();
+mostrarProdutos();
 
 }
 
 
 function mostrarProdutos(){
 
-  const lista =
-    document.getElementById("produtos");
+const lista=document.getElementById("produtos");
 
-  const pesquisa =
-    document.getElementById("pesquisa")
-      .value
-      .toLowerCase();
+const campo=document.getElementById("pesquisa");
 
-  const produtos =
-    obterProdutos();
+const pesquisa=campo ? campo.value.toLowerCase() : "";
+
+const produtos=obterProdutos();
 
 
-  const filtrados =
-    produtos.filter(function(produto){
+const filtrados=produtos.filter(function(produto){
 
-      const correspondePesquisa =
-        produto.nome.toLowerCase().includes(pesquisa) ||
-        produto.categoria.toLowerCase().includes(pesquisa) ||
-        produto.descricao.toLowerCase().includes(pesquisa);
+const texto=
 
-      const correspondeCategoria =
-        !categoriaAtual ||
-        produto.categoria === categoriaAtual;
+produto.nome.toLowerCase().includes(pesquisa) ||
 
-      return correspondePesquisa &&
-             correspondeCategoria;
+produto.categoria.toLowerCase().includes(pesquisa) ||
 
-    });
+produto.descricao.toLowerCase().includes(pesquisa);
 
 
-  lista.innerHTML="";
+const categoria=
+!categoriaAtual ||
+produto.categoria===categoriaAtual;
 
 
-  if(filtrados.length===0){
+return texto && categoria;
 
-    lista.innerHTML=
-      "<p>Nenhum produto encontrado.</p>";
-
-    return;
-
-  }
+});
 
 
-  filtrados.forEach(function(produto){
+lista.innerHTML="";
 
-    lista.innerHTML += `
 
-      <div class="product">
+if(filtrados.length===0){
 
-        <div class="product-image">
-          ${produto.emoji}
-        </div>
+lista.innerHTML="<p>Nenhum produto encontrado.</p>";
 
-        <div class="product-content">
-
-          <h3>${produto.nome}</h3>
-
-          <p class="description">
-            ${produto.descricao}
-          </p>
-
-          <p class="seller">
-            👤 Vendedor: ${produto.vendedor}
-          </p>
-
-          <p class="price">
-            ${produto.preco.toLocaleString("pt-AO")} Kz
-          </p>
-
-          <button
-            class="primary"
-            onclick="comprar('${produto.nome.replace(/'/g,"\\'")}')"
-          >
-            🛒 Comprar
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  });
+return;
 
 }
 
 
-/* =========================
-   COMPRAR
-========================= */
+filtrados.forEach(function(produto){
+
+lista.innerHTML+=criarCard(produto);
+
+});
+
+}
+
+
+function abrirProduto(nome){
+
+const produtos=obterProdutos();
+
+const produto=produtos.find(function(p){
+
+return p.nome===nome;
+
+});
+
+
+if(!produto)return;
+
+
+esconderTudo();
+
+document.getElementById("detalhe").style.display="block";
+
+
+let imagem=produto.emoji;
+
+if(produto.foto){
+
+imagem='<img src="'+produto.foto+'" alt="Produto">';
+
+}
+
+
+document.getElementById("detalheConteudo").innerHTML=`
+
+<div class="detail-layout">
+
+<div class="detail-image">
+
+${imagem}
+
+</div>
+
+<div class="detail-info">
+
+<h2>${produto.nome}</h2>
+
+<p>${produto.descricao}</p>
+
+<p>
+<strong>Categoria:</strong>
+${produto.categoria}
+</p>
+
+<p>
+<strong>Vendedor:</strong>
+${produto.vendedor}
+</p>
+
+<div class="detail-price">
+
+${Number(produto.preco).toLocaleString("pt-AO")} Kz
+
+</div>
+
+<br>
+
+<button
+class="primary"
+onclick="comprar(${JSON.stringify(produto.nome)})"
+>
+🛒 Comprar
+</button>
+
+<button
+class="contact"
+onclick="contactarVendedor(${JSON.stringify(produto.vendedor)})"
+>
+📞 Contactar vendedor
+</button>
+
+<br><br>
+
+<button
+class="secondary"
+onclick="mostrarInicio()"
+>
+← Voltar
+</button>
+
+</div>
+
+</div>
+
+`;
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+}
+
+
+function contactarVendedor(nome){
+
+alert(
+"📞 Vendedor: "+nome+
+"\n\nO sistema de mensagens será conectado numa próxima fase."
+);
+
+}
+
 
 function comprar(produto){
 
-  const utilizador =
-    obterSessao();
+if(!obterSessao()){
 
+alert(
+"🔐 Para comprar, primeiro entra na tua conta."
+);
 
-  if(!utilizador){
+mostrarLogin();
 
-    alert(
-      "🔐 Para comprar, primeiro entra na tua conta."
-    );
-
-    mostrarLogin();
-
-    return;
-
-  }
-
-
-  alert(
-    "🛒 Selecionaste: " +
-    produto +
-    "\n\nO sistema de pagamento será adicionado numa próxima fase."
-  );
+return;
 
 }
 
 
-/* =========================
-   INICIAR
-========================= */
+alert(
+"🛒 Selecionaste: "+produto+
+"\n\nO sistema de pagamento será adicionado numa próxima fase."
+);
+
+}
+
 
 mostrarProdutos();
 
 
-const sessao =
-  obterSessao();
+if(obterSessao()){
 
-
-if(sessao){
-
-  mostrarPainel();
+mostrarPainel();
 
 }else{
 
-  mostrarInicio();
+mostrarInicio();
 
 }
 
