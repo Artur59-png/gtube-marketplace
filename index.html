@@ -61,6 +61,11 @@ button{
   font-weight:bold;
 }
 
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
+}
+
 .primary{
   background:#2563eb;
   color:white;
@@ -251,6 +256,7 @@ textarea{
 .product-actions{
   display:flex;
   gap:7px;
+  flex-wrap:wrap;
 }
 
 .product-actions .primary{
@@ -362,6 +368,7 @@ textarea{
   align-items:center;
   gap:8px;
   margin-top:8px;
+  flex-wrap:wrap;
 }
 
 .quantity button{
@@ -645,37 +652,84 @@ Cancelar
 
 <h2>🏪 Publicar produto</h2>
 
-<input id="produtoNome" type="text" placeholder="Nome do produto">
+<input
+id="produtoNome"
+type="text"
+placeholder="Nome do produto"
+>
 
-<textarea id="produtoDescricao"
-placeholder="Descrição do produto"></textarea>
+<textarea
+id="produtoDescricao"
+placeholder="Descrição do produto"
+></textarea>
 
-<input id="produtoPreco"
+<input
+id="produtoPreco"
 type="number"
-placeholder="Preço em Kz">
+placeholder="Preço em Kz"
+>
 
 <select id="produtoCategoria">
 
-<option value="">Escolha uma categoria</option>
+<option value="">
+Escolha uma categoria
+</option>
 
-<option value="Telefones">📱 Telefones</option>
-<option value="Computadores">💻 Computadores</option>
-<option value="Moda">👟 Moda</option>
-<option value="Carros">🚗 Carros</option>
-<option value="Casa">🏠 Casa</option>
-<option value="Outros">📦 Outros</option>
+<option value="Telefones">
+📱 Telefones
+</option>
+
+<option value="Computadores">
+💻 Computadores
+</option>
+
+<option value="Moda">
+👟 Moda
+</option>
+
+<option value="Carros">
+🚗 Carros
+</option>
+
+<option value="Casa">
+🏠 Casa
+</option>
+
+<option value="Outros">
+📦 Outros
+</option>
 
 </select>
 
 <select id="produtoEmoji">
 
-<option value="📦">📦 Produto</option>
-<option value="📱">📱 Smartphone</option>
-<option value="💻">💻 Computador</option>
-<option value="👟">👟 Ténis</option>
-<option value="👕">👕 Roupa</option>
-<option value="🚗">🚗 Carro</option>
-<option value="🏠">🏠 Casa</option>
+<option value="📦">
+📦 Produto
+</option>
+
+<option value="📱">
+📱 Smartphone
+</option>
+
+<option value="💻">
+💻 Computador
+</option>
+
+<option value="👟">
+👟 Ténis
+</option>
+
+<option value="👕">
+👕 Roupa
+</option>
+
+<option value="🚗">
+🚗 Carro
+</option>
+
+<option value="🏠">
+🏠 Casa
+</option>
 
 </select>
 
@@ -683,7 +737,11 @@ placeholder="Preço em Kz">
 <strong>📸 Foto do produto</strong>
 </label>
 
-<input id="produtoFoto" type="file" accept="image/*">
+<input
+id="produtoFoto"
+type="file"
+accept="image/*"
+>
 
 <button class="primary" onclick="publicarProduto()">
 🚀 Publicar produto
@@ -753,11 +811,18 @@ placeholder="Preço em Kz">
 
 <br>
 
-<button class="primary" onclick="irParaCheckout()">
+<button
+id="btnFinalizar"
+class="primary"
+onclick="irParaCheckout()"
+>
 📦 Finalizar compra
 </button>
 
-<button class="secondary" onclick="mostrarInicio()">
+<button
+class="secondary"
+onclick="mostrarInicio()"
+>
 ← Continuar a comprar
 </button>
 
@@ -807,11 +872,17 @@ id="clienteEndereco"
 placeholder="📍 Endereço de entrega"
 ></textarea>
 
-<button class="primary" onclick="confirmarPedido()">
+<button
+class="primary"
+onclick="confirmarPedido()"
+>
 ✅ Confirmar encomenda
 </button>
 
-<button class="secondary" onclick="mostrarCarrinho()">
+<button
+class="secondary"
+onclick="mostrarCarrinho()"
+>
 ← Voltar ao carrinho
 </button>
 
@@ -826,7 +897,9 @@ placeholder="📍 Endereço de entrega"
 🎉
 </div>
 
-<h2>Encomenda recebida!</h2>
+<h2>
+Encomenda recebida!
+</h2>
 
 <p>
 A tua encomenda foi registada com sucesso.
@@ -836,7 +909,10 @@ A tua encomenda foi registada com sucesso.
 
 <br>
 
-<button class="primary" onclick="mostrarInicio()">
+<button
+class="primary"
+onclick="mostrarInicio()"
+>
 🏠 Voltar ao início
 </button>
 
@@ -858,47 +934,76 @@ oninput="mostrarProdutos()"
 
 <div class="categories">
 
-<button class="category" onclick="filtrarCategoria('')">
+<button
+class="category"
+onclick="filtrarCategoria('')"
+>
 🔥 Todos
 </button>
 
-<button class="category" onclick="filtrarCategoria('Telefones')">
+<button
+class="category"
+onclick="filtrarCategoria('Telefones')"
+>
 📱 Telefones
 </button>
 
-<button class="category" onclick="filtrarCategoria('Computadores')">
+<button
+class="category"
+onclick="filtrarCategoria('Computadores')"
+>
 💻 Computadores
 </button>
 
-<button class="category" onclick="filtrarCategoria('Moda')">
+<button
+class="category"
+onclick="filtrarCategoria('Moda')"
+>
 👟 Moda
 </button>
 
-<button class="category" onclick="filtrarCategoria('Carros')">
+<button
+class="category"
+onclick="filtrarCategoria('Carros')"
+>
 🚗 Carros
 </button>
 
-<button class="category" onclick="filtrarCategoria('Casa')">
+<button
+class="category"
+onclick="filtrarCategoria('Casa')"
+>
 🏠 Casa
 </button>
 
 </div>
 
 
-<h2>🔥 Produtos em destaque</h2>
+<h2>
+🔥 Produtos em destaque
+</h2>
 
-<section id="produtos" class="products"></section>
+<section
+id="produtos"
+class="products"
+></section>
 
 </div>
 
 
 <footer>
 
-<h2>GTube Marketplace</h2>
+<h2>
+GTube Marketplace
+</h2>
 
-<p>Compra e venda de produtos online.</p>
+<p>
+Compra e venda de produtos online.
+</p>
 
-<p>© 2026 GTube Marketplace</p>
+<p>
+© 2026 GTube Marketplace
+</p>
 
 </footer>
 
@@ -911,18 +1016,24 @@ oninput="mostrarProdutos()"
 
 function obterConta(){
 
-const dados=localStorage.getItem("gtubeUtilizador");
+const dados =
+localStorage.getItem("gtubeUtilizador");
 
-return dados ? JSON.parse(dados) : null;
+return dados
+? JSON.parse(dados)
+: null;
 
 }
 
 
 function obterSessao(){
 
-const dados=localStorage.getItem("gtubeSessao");
+const dados =
+localStorage.getItem("gtubeSessao");
 
-return dados ? JSON.parse(dados) : null;
+return dados
+? JSON.parse(dados)
+: null;
 
 }
 
@@ -933,11 +1044,12 @@ return dados ? JSON.parse(dados) : null;
 
 function obterProdutos(){
 
-const dados=localStorage.getItem("gtubeProdutos");
+const dados =
+localStorage.getItem("gtubeProdutos");
 
 if(!dados){
 
-const iniciais=[
+const iniciais = [
 
 {
 nome:"Smartphone",
@@ -980,7 +1092,20 @@ return iniciais;
 
 }
 
-return JSON.parse(dados);
+try{
+
+const produtos =
+JSON.parse(dados);
+
+return Array.isArray(produtos)
+? produtos
+: [];
+
+}catch(e){
+
+return [];
+
+}
 
 }
 
@@ -1006,10 +1131,13 @@ function esconderTudo(){
 "sucesso"
 ].forEach(function(id){
 
-const elemento=document.getElementById(id);
+const elemento =
+document.getElementById(id);
 
 if(elemento){
+
 elemento.style.display="none";
+
 }
 
 });
@@ -1021,7 +1149,8 @@ function mostrarInicio(){
 
 esconderTudo();
 
-document.getElementById("hero").style.display="block";
+document.getElementById("hero")
+.style.display="block";
 
 window.scrollTo({
 top:0,
@@ -1035,7 +1164,8 @@ function mostrarCadastro(){
 
 esconderTudo();
 
-document.getElementById("cadastro").style.display="block";
+document.getElementById("cadastro")
+.style.display="block";
 
 }
 
@@ -1044,7 +1174,8 @@ function mostrarLogin(){
 
 esconderTudo();
 
-document.getElementById("login").style.display="block";
+document.getElementById("login")
+.style.display="block";
 
 }
 
@@ -1070,28 +1201,38 @@ mostrarLogin();
 
 function criarConta(){
 
-const nome=document.getElementById("nome").value.trim();
+const nome =
+document.getElementById("nome")
+.value
+.trim();
 
-const email=document.getElementById("email")
-.value.trim()
+const email =
+document.getElementById("email")
+.value
+.trim()
 .toLowerCase();
 
-const senha=document.getElementById("senha").value;
+const senha =
+document.getElementById("senha")
+.value;
 
-const mensagem=document.getElementById("mensagemCadastro");
+const mensagem =
+document.getElementById("mensagemCadastro");
 
 
 if(!nome || !email || !senha){
 
-mensagem.textContent="⚠️ Preenche todos os campos.";
+mensagem.textContent =
+"⚠️ Preenche todos os campos.";
 
 return;
 
 }
 
-if(senha.length<6){
 
-mensagem.textContent=
+if(senha.length < 6){
+
+mensagem.textContent =
 "⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
 
 return;
@@ -1099,10 +1240,12 @@ return;
 }
 
 
-const utilizador={
+const utilizador = {
+
 nome:nome,
 email:email,
 senha:senha
+
 };
 
 
@@ -1117,7 +1260,7 @@ JSON.stringify(utilizador)
 );
 
 
-mensagem.textContent=
+mensagem.textContent =
 "✅ Conta criada com sucesso!";
 
 
@@ -1136,20 +1279,26 @@ mostrarPainel();
 
 function entrar(){
 
-const email=document.getElementById("loginEmail")
-.value.trim()
+const email =
+document.getElementById("loginEmail")
+.value
+.trim()
 .toLowerCase();
 
-const senha=document.getElementById("loginSenha").value;
+const senha =
+document.getElementById("loginSenha")
+.value;
 
-const mensagem=document.getElementById("mensagemLogin");
+const mensagem =
+document.getElementById("mensagemLogin");
 
-const utilizador=obterConta();
+const utilizador =
+obterConta();
 
 
 if(!utilizador){
 
-mensagem.textContent=
+mensagem.textContent =
 "⚠️ Ainda não existe uma conta.";
 
 return;
@@ -1158,8 +1307,8 @@ return;
 
 
 if(
-email===utilizador.email &&
-senha===utilizador.senha
+email === utilizador.email &&
+senha === utilizador.senha
 ){
 
 localStorage.setItem(
@@ -1167,7 +1316,7 @@ localStorage.setItem(
 JSON.stringify(utilizador)
 );
 
-mensagem.textContent=
+mensagem.textContent =
 "✅ Login realizado com sucesso!";
 
 
@@ -1179,7 +1328,7 @@ mostrarPainel();
 
 }else{
 
-mensagem.textContent=
+mensagem.textContent =
 "❌ E-mail ou palavra-passe incorretos.";
 
 }
@@ -1195,14 +1344,17 @@ function mostrarPainel(){
 
 esconderTudo();
 
-document.getElementById("conta").style.display="block";
+document.getElementById("conta")
+.style.display="block";
 
-const utilizador=obterSessao();
+const utilizador =
+obterSessao();
 
 if(utilizador){
 
 document.getElementById("nomeBemVindo")
-.textContent=utilizador.nome;
+.textContent =
+utilizador.nome;
 
 }
 
@@ -1215,7 +1367,8 @@ document.getElementById("nomeBemVindo")
 
 function mostrarPerfil(){
 
-const utilizador=obterSessao();
+const utilizador =
+obterSessao();
 
 if(!utilizador){
 
@@ -1225,15 +1378,19 @@ return;
 
 }
 
+
 esconderTudo();
 
-document.getElementById("perfil").style.display="block";
+document.getElementById("perfil")
+.style.display="block";
 
 document.getElementById("perfilNome")
-.textContent=utilizador.nome;
+.textContent =
+utilizador.nome;
 
 document.getElementById("perfilEmail")
-.textContent=utilizador.email;
+.textContent =
+utilizador.email;
 
 }
 
@@ -1244,11 +1401,15 @@ document.getElementById("perfilEmail")
 
 function terminarSessao(){
 
-localStorage.removeItem("gtubeSessao");
+localStorage.removeItem(
+"gtubeSessao"
+);
 
 mostrarInicio();
 
-alert("Sessão terminada com sucesso. 👋");
+alert(
+"Sessão terminada com sucesso. 👋"
+);
 
 }
 
@@ -1267,9 +1428,11 @@ return;
 
 }
 
-const reader=new FileReader();
+const reader =
+new FileReader();
 
-reader.onload=function(e){
+reader.onload =
+function(e){
 
 callback(e.target.result);
 
@@ -1282,7 +1445,8 @@ reader.readAsDataURL(file);
 
 function publicarProduto(){
 
-const utilizador=obterSessao();
+const utilizador =
+obterSessao();
 
 if(!utilizador){
 
@@ -1293,32 +1457,46 @@ return;
 }
 
 
-const nome=document.getElementById("produtoNome")
-.value.trim();
+const nome =
+document.getElementById("produtoNome")
+.value
+.trim();
 
-const descricao=document.getElementById("produtoDescricao")
-.value.trim();
+const descricao =
+document.getElementById("produtoDescricao")
+.value
+.trim();
 
-const preco=Number(
-document.getElementById("produtoPreco").value
+const preco =
+Number(
+document.getElementById("produtoPreco")
+.value
 );
 
-const categoria=
-document.getElementById("produtoCategoria").value;
+const categoria =
+document.getElementById("produtoCategoria")
+.value;
 
-const emoji=
-document.getElementById("produtoEmoji").value;
+const emoji =
+document.getElementById("produtoEmoji")
+.value;
 
-const file=
-document.getElementById("produtoFoto").files[0];
+const file =
+document.getElementById("produtoFoto")
+.files[0];
 
-const mensagem=
+const mensagem =
 document.getElementById("mensagemVenda");
 
 
-if(!nome || !descricao || !preco || !categoria){
+if(
+!nome ||
+!descricao ||
+!preco ||
+!categoria
+){
 
-mensagem.textContent=
+mensagem.textContent =
 "⚠️ Preenche todos os campos.";
 
 return;
@@ -1326,9 +1504,12 @@ return;
 }
 
 
-lerImagem(file,function(foto){
+lerImagem(
+file,
+function(foto){
 
-const produtos=obterProdutos();
+const produtos =
+obterProdutos();
 
 
 produtos.push({
@@ -1353,7 +1534,7 @@ JSON.stringify(produtos)
 
 }catch(e){
 
-mensagem.textContent=
+mensagem.textContent =
 "⚠️ A imagem é muito grande. Escolhe uma foto menor.";
 
 return;
@@ -1361,19 +1542,24 @@ return;
 }
 
 
-mensagem.textContent=
+mensagem.textContent =
 "✅ Produto publicado com sucesso!";
 
 
-document.getElementById("produtoNome").value="";
+document.getElementById("produtoNome")
+.value="";
 
-document.getElementById("produtoDescricao").value="";
+document.getElementById("produtoDescricao")
+.value="";
 
-document.getElementById("produtoPreco").value="";
+document.getElementById("produtoPreco")
+.value="";
 
-document.getElementById("produtoCategoria").value="";
+document.getElementById("produtoCategoria")
+.value="";
 
-document.getElementById("produtoFoto").value="";
+document.getElementById("produtoFoto")
+.value="";
 
 
 mostrarProdutos();
@@ -1387,7 +1573,8 @@ function mostrarVenda(){
 
 esconderTudo();
 
-document.getElementById("venda").style.display="block";
+document.getElementById("venda")
+.style.display="block";
 
 }
 
@@ -1398,7 +1585,8 @@ document.getElementById("venda").style.display="block";
 
 function mostrarMeusProdutos(){
 
-const utilizador=obterSessao();
+const utilizador =
+obterSessao();
 
 if(!utilizador){
 
@@ -1415,22 +1603,27 @@ document.getElementById("meusProdutos")
 .style.display="block";
 
 
-const produtos=obterProdutos();
+const produtos =
+obterProdutos();
 
-const meus=produtos.filter(function(produto){
+const meus =
+produtos.filter(function(produto){
 
-return produto.vendedor===utilizador.nome;
+return produto.vendedor ===
+utilizador.nome;
 
 });
 
 
-const lista=
-document.getElementById("listaMeusProdutos");
+const lista =
+document.getElementById(
+"listaMeusProdutos"
+);
 
 
-if(meus.length===0){
+if(meus.length === 0){
 
-lista.innerHTML=
+lista.innerHTML =
 "<p>Ainda não publicaste nenhum produto.</p>";
 
 return;
@@ -1443,7 +1636,8 @@ lista.innerHTML="";
 
 meus.forEach(function(produto){
 
-lista.innerHTML+=criarCard(produto);
+lista.innerHTML +=
+criarCard(produto);
 
 });
 
@@ -1456,10 +1650,26 @@ lista.innerHTML+=criarCard(produto);
 
 function obterFavoritos(){
 
-const dados=
-localStorage.getItem("gtubeFavoritos");
+const dados =
+localStorage.getItem(
+"gtubeFavoritos"
+);
 
-return dados ? JSON.parse(dados) : [];
+if(!dados){
+
+return [];
+
+}
+
+try{
+
+return JSON.parse(dados);
+
+}catch(e){
+
+return [];
+
+}
 
 }
 
@@ -1476,12 +1686,14 @@ JSON.stringify(lista)
 
 function alternarFavorito(nome){
 
-const favoritos=obterFavoritos();
+const favoritos =
+obterFavoritos();
 
-const indice=favoritos.indexOf(nome);
+const indice =
+favoritos.indexOf(nome);
 
 
-if(indice>=0){
+if(indice >= 0){
 
 favoritos.splice(indice,1);
 
@@ -1516,25 +1728,32 @@ document.getElementById("favoritos")
 .style.display="block";
 
 
-const favoritos=obterFavoritos();
+const favoritos =
+obterFavoritos();
 
-const produtos=obterProdutos();
-
-
-const lista=
-document.getElementById("listaFavoritos");
+const produtos =
+obterProdutos();
 
 
-const meus=produtos.filter(function(produto){
+const lista =
+document.getElementById(
+"listaFavoritos"
+);
 
-return favoritos.includes(produto.nome);
+
+const meus =
+produtos.filter(function(produto){
+
+return favoritos.includes(
+produto.nome
+);
 
 });
 
 
-if(meus.length===0){
+if(meus.length === 0){
 
-lista.innerHTML=
+lista.innerHTML =
 "<p>❤️ Ainda não tens produtos favoritos.</p>";
 
 return;
@@ -1547,7 +1766,8 @@ lista.innerHTML="";
 
 meus.forEach(function(produto){
 
-lista.innerHTML+=criarCard(produto);
+lista.innerHTML +=
+criarCard(produto);
 
 });
 
@@ -1555,22 +1775,29 @@ lista.innerHTML+=criarCard(produto);
 
 
 /* =========================
-   CARDS
+   CARDS DOS PRODUTOS
 ========================= */
 
 function criarCard(produto){
 
-const favoritos=obterFavoritos();
+const favoritos =
+obterFavoritos();
 
-const favorito=favoritos.includes(produto.nome);
+const favorito =
+favoritos.includes(
+produto.nome
+);
 
 
-let imagem=produto.emoji;
+let imagem =
+produto.emoji;
 
 if(produto.foto){
 
-imagem=
-'<img src="'+produto.foto+'" alt="Produto">';
+imagem =
+'<img src="' +
+produto.foto +
+'" alt="Produto">';
 
 }
 
@@ -1587,14 +1814,17 @@ ${imagem}
 
 <div class="product-content">
 
-<h3>${produto.nome}</h3>
+<h3>
+${produto.nome}
+</h3>
 
 <p class="description">
 ${produto.descricao}
 </p>
 
 <p class="seller">
-👤 Vendedor: ${produto.vendedor}
+👤 Vendedor:
+${produto.vendedor}
 </p>
 
 <p class="price">
@@ -1606,9 +1836,16 @@ ${Number(produto.preco)
 
 <button
 class="primary"
+onclick='adicionarAoCarrinho(${JSON.stringify(produto.nome)})'
+>
+🛒 Adicionar
+</button>
+
+<button
+class="secondary"
 onclick='abrirProduto(${JSON.stringify(produto.nome)})'
 >
-Ver produto
+Ver
 </button>
 
 <button
@@ -1638,7 +1875,8 @@ let categoriaAtual="";
 
 function filtrarCategoria(categoria){
 
-categoriaAtual=categoria;
+categoriaAtual =
+categoria;
 
 mostrarProdutos();
 
@@ -1647,37 +1885,54 @@ mostrarProdutos();
 
 function mostrarProdutos(){
 
-const lista=document.getElementById("produtos");
+const lista =
+document.getElementById(
+"produtos"
+);
 
-const campo=document.getElementById("pesquisa");
+const campo =
+document.getElementById(
+"pesquisa"
+);
 
-const pesquisa=
-campo ? campo.value.toLowerCase() : "";
+const pesquisa =
+campo
+? campo.value.toLowerCase()
+: "";
 
-const produtos=obterProdutos();
+
+const produtos =
+obterProdutos();
 
 
-const filtrados=produtos.filter(function(produto){
+const filtrados =
+produtos.filter(function(produto){
 
-const texto=
+const texto =
 
-produto.nome.toLowerCase()
+String(produto.nome)
+.toLowerCase()
 .includes(pesquisa)
 
 ||
 
-produto.categoria.toLowerCase()
+String(produto.categoria)
+.toLowerCase()
 .includes(pesquisa)
 
 ||
 
-produto.descricao.toLowerCase()
+String(produto.descricao)
+.toLowerCase()
 .includes(pesquisa);
 
 
-const categoria=
+const categoria =
+
 !categoriaAtual ||
-produto.categoria===categoriaAtual;
+
+produto.categoria ===
+categoriaAtual;
 
 
 return texto && categoria;
@@ -1688,9 +1943,9 @@ return texto && categoria;
 lista.innerHTML="";
 
 
-if(filtrados.length===0){
+if(filtrados.length === 0){
 
-lista.innerHTML=
+lista.innerHTML =
 "<p>Nenhum produto encontrado.</p>";
 
 return;
@@ -1698,9 +1953,11 @@ return;
 }
 
 
-filtrados.forEach(function(produto){
+filtrados.forEach(
+function(produto){
 
-lista.innerHTML+=criarCard(produto);
+lista.innerHTML +=
+criarCard(produto);
 
 });
 
@@ -1713,11 +1970,13 @@ lista.innerHTML+=criarCard(produto);
 
 function abrirProduto(nome){
 
-const produtos=obterProdutos();
+const produtos =
+obterProdutos();
 
-const produto=produtos.find(function(p){
+const produto =
+produtos.find(function(p){
 
-return p.nome===nome;
+return p.nome === nome;
 
 });
 
@@ -1727,22 +1986,29 @@ if(!produto)return;
 
 esconderTudo();
 
-document.getElementById("detalhe")
+document.getElementById(
+"detalhe"
+)
 .style.display="block";
 
 
-let imagem=produto.emoji;
+let imagem =
+produto.emoji;
 
 if(produto.foto){
 
-imagem=
-'<img src="'+produto.foto+'" alt="Produto">';
+imagem =
+'<img src="' +
+produto.foto +
+'" alt="Produto">';
 
 }
 
 
-document.getElementById("detalheConteudo")
-.innerHTML=`
+document.getElementById(
+"detalheConteudo"
+)
+.innerHTML = `
 
 <div class="detail-layout">
 
@@ -1754,9 +2020,13 @@ ${imagem}
 
 <div class="detail-info">
 
-<h2>${produto.nome}</h2>
+<h2>
+${produto.nome}
+</h2>
 
-<p>${produto.descricao}</p>
+<p>
+${produto.descricao}
+</p>
 
 <p>
 <strong>Categoria:</strong>
@@ -1784,7 +2054,7 @@ onclick='adicionarAoCarrinho(${JSON.stringify(produto.nome)})'
 🛒 Adicionar ao carrinho
 </button>
 
-<br>
+<br><br>
 
 <button
 class="contact"
@@ -1818,7 +2088,8 @@ onclick="mostrarInicio()"
 function contactarVendedor(nome){
 
 alert(
-"📞 Vendedor: "+nome+
+"📞 Vendedor: " +
+nome +
 "\n\nO sistema de mensagens será conectado numa próxima fase."
 );
 
@@ -1831,20 +2102,57 @@ alert(
 
 function obterCarrinho(){
 
-const dados=
-localStorage.getItem("gtubeCarrinho");
+const dados =
+localStorage.getItem(
+"gtubeCarrinho"
+);
 
-return dados ? JSON.parse(dados) : [];
+if(!dados){
+
+return [];
+
+}
+
+try{
+
+const carrinho =
+JSON.parse(dados);
+
+if(!Array.isArray(carrinho)){
+
+return [];
+
+}
+
+return carrinho;
+
+}catch(e){
+
+return [];
+
+}
 
 }
 
 
 function guardarCarrinho(carrinho){
 
+try{
+
 localStorage.setItem(
 "gtubeCarrinho",
 JSON.stringify(carrinho)
 );
+
+}catch(e){
+
+alert(
+"❌ Não foi possível guardar o carrinho neste dispositivo."
+);
+
+return;
+
+}
 
 atualizarContadorCarrinho();
 
@@ -1853,61 +2161,101 @@ atualizarContadorCarrinho();
 
 function atualizarContadorCarrinho(){
 
-const carrinho=obterCarrinho();
+const carrinho =
+obterCarrinho();
 
-let total=0;
+let total = 0;
+
 
 carrinho.forEach(function(item){
 
-total+=item.quantidade;
+total +=
+Number(item.quantidade || 0);
 
 });
 
 
-document.getElementById("cartCount")
-.textContent=total;
+const contador =
+document.getElementById(
+"cartCount"
+);
+
+if(contador){
+
+contador.textContent =
+total;
+
+}
 
 }
 
 
+/*
+=================================
+ FUNÇÃO CORRIGIDA
+ ADICIONAR PRODUTO AO CARRINHO
+=================================
+*/
+
 function adicionarAoCarrinho(nome){
 
-const produtos=obterProdutos();
+const produtos =
+obterProdutos();
 
-const produto=produtos.find(function(p){
+const produto =
+produtos.find(function(p){
 
-return p.nome===nome;
+return p.nome === nome;
 
 });
 
 
-if(!produto)return;
+if(!produto){
+
+alert(
+"❌ Produto não encontrado."
+);
+
+return;
+
+}
 
 
-const carrinho=obterCarrinho();
+let carrinho =
+obterCarrinho();
 
-const existente=carrinho.find(function(item){
 
-return item.nome===nome;
+const existente =
+carrinho.find(function(item){
+
+return item.nome === nome;
 
 });
 
 
 if(existente){
 
-existente.quantidade++;
+existente.quantidade =
+Number(existente.quantidade || 0) + 1;
 
 }else{
 
 carrinho.push({
 
 nome:produto.nome,
+
 descricao:produto.descricao,
-preco:produto.preco,
+
+preco:Number(produto.preco),
+
 categoria:produto.categoria,
+
 emoji:produto.emoji,
-foto:produto.foto,
+
+foto:produto.foto || "",
+
 vendedor:produto.vendedor,
+
 quantidade:1
 
 });
@@ -1915,42 +2263,90 @@ quantidade:1
 }
 
 
-guardarCarrinho(carrinho);
+/*
+ GUARDA O PRODUTO NO LOCALSTORAGE
+*/
+
+try{
+
+localStorage.setItem(
+"gtubeCarrinho",
+JSON.stringify(carrinho)
+);
+
+}catch(e){
+
+alert(
+"❌ Não foi possível guardar o produto no carrinho."
+);
+
+return;
+
+}
+
+
+/*
+ ATUALIZA O NÚMERO DO CARRINHO
+*/
+
+atualizarContadorCarrinho();
 
 
 alert(
-"🛒 "+produto.nome+
+"🛒 " +
+produto.nome +
 " foi adicionado ao carrinho!"
 );
 
 
+/*
+ ABRE O CARRINHO PARA CONFIRMAR
+*/
+
 mostrarCarrinho();
 
 }
 
+
+/* =========================
+   ALTERAR QUANTIDADE
+========================= */
 
 function alterarQuantidade(nome,valor){
 
-const carrinho=obterCarrinho();
+const carrinho =
+obterCarrinho();
 
-const item=carrinho.find(function(i){
 
-return i.nome===nome;
+const item =
+carrinho.find(function(i){
+
+return i.nome === nome;
 
 });
 
 
-if(!item)return;
+if(!item){
+
+return;
+
+}
 
 
-item.quantidade+=valor;
+item.quantidade =
+Number(item.quantidade || 0) +
+valor;
 
 
-if(item.quantidade<=0){
+if(item.quantidade <= 0){
 
-const indice=carrinho.indexOf(item);
+const indice =
+carrinho.indexOf(item);
 
-carrinho.splice(indice,1);
+carrinho.splice(
+indice,
+1
+);
 
 }
 
@@ -1961,14 +2357,21 @@ mostrarCarrinho();
 
 }
 
+
+/* =========================
+   REMOVER DO CARRINHO
+========================= */
 
 function removerDoCarrinho(nome){
 
-let carrinho=obterCarrinho();
+let carrinho =
+obterCarrinho();
 
-carrinho=carrinho.filter(function(item){
 
-return item.nome!==nome;
+carrinho =
+carrinho.filter(function(item){
+
+return item.nome !== nome;
 
 });
 
@@ -1980,15 +2383,23 @@ mostrarCarrinho();
 }
 
 
+/* =========================
+   CALCULAR TOTAL
+========================= */
+
 function calcularTotal(){
 
-const carrinho=obterCarrinho();
+const carrinho =
+obterCarrinho();
 
-let total=0;
+let total = 0;
+
 
 carrinho.forEach(function(item){
 
-total+=Number(item.preco)*item.quantidade;
+total +=
+Number(item.preco || 0) *
+Number(item.quantidade || 0);
 
 });
 
@@ -1998,35 +2409,79 @@ return total;
 }
 
 
+/* =========================
+   MOSTRAR CARRINHO
+========================= */
+
 function mostrarCarrinho(){
 
 esconderTudo();
 
-document.getElementById("carrinho")
+document.getElementById(
+"carrinho"
+)
 .style.display="block";
 
 
-const lista=
-document.getElementById("listaCarrinho");
+const lista =
+document.getElementById(
+"listaCarrinho"
+);
 
-const vazio=
-document.getElementById("carrinhoVazio");
+const vazio =
+document.getElementById(
+"carrinhoVazio"
+);
 
-const carrinho=obterCarrinho();
+const botaoFinalizar =
+document.getElementById(
+"btnFinalizar"
+);
+
+
+const carrinho =
+obterCarrinho();
 
 
 lista.innerHTML="";
 
 
-if(carrinho.length===0){
+/*
+ CARRINHO VAZIO
+*/
 
-vazio.innerHTML=
+if(carrinho.length === 0){
+
+vazio.innerHTML =
 "<p>🛒 O teu carrinho está vazio.</p>";
 
-document.getElementById("subtotalCarrinho")
-.textContent="0 Kz";
+document.getElementById(
+"subtotalCarrinho"
+)
+.textContent =
+"0 Kz";
+
+
+if(botaoFinalizar){
+
+botaoFinalizar.disabled =
+true;
+
+}
 
 return;
+
+}
+
+
+/*
+ CARRINHO COM PRODUTOS
+*/
+
+if(botaoFinalizar){
+
+botaoFinalizar.disabled =
+false;
 
 }
 
@@ -2036,17 +2491,21 @@ vazio.innerHTML="";
 
 carrinho.forEach(function(item){
 
-let imagem=item.emoji;
+let imagem =
+item.emoji;
+
 
 if(item.foto){
 
-imagem=
-'<img src="'+item.foto+'" alt="Produto">';
+imagem =
+'<img src="' +
+item.foto +
+'" alt="Produto">';
 
 }
 
 
-lista.innerHTML+=`
+lista.innerHTML += `
 
 <div class="cart-item">
 
@@ -2058,7 +2517,9 @@ ${imagem}
 
 <div class="cart-item-info">
 
-<h3>${item.nome}</h3>
+<h3>
+${item.nome}
+</h3>
 
 <p>
 ${Number(item.preco)
@@ -2074,7 +2535,9 @@ onclick='alterarQuantidade(${JSON.stringify(item.nome)},-1)'
 −
 </button>
 
-<strong>${item.quantidade}</strong>
+<strong>
+${item.quantidade}
+</strong>
 
 <button
 class="primary"
@@ -2101,9 +2564,13 @@ onclick='removerDoCarrinho(${JSON.stringify(item.nome)})'
 });
 
 
-document.getElementById("subtotalCarrinho")
-.textContent=
-calcularTotal().toLocaleString("pt-AO")+" Kz";
+document.getElementById(
+"subtotalCarrinho"
+)
+.textContent =
+calcularTotal()
+.toLocaleString("pt-AO") +
+" Kz";
 
 }
 
@@ -2114,11 +2581,17 @@ calcularTotal().toLocaleString("pt-AO")+" Kz";
 
 function irParaCheckout(){
 
-const carrinho=obterCarrinho();
+const carrinho =
+obterCarrinho();
 
-if(carrinho.length===0){
 
-alert("🛒 O carrinho está vazio.");
+if(carrinho.length === 0){
+
+alert(
+"🛒 O carrinho está vazio. Primeiro adiciona um produto."
+);
+
+mostrarCarrinho();
 
 return;
 
@@ -2140,7 +2613,9 @@ return;
 
 esconderTudo();
 
-document.getElementById("checkout")
+document.getElementById(
+"checkout"
+)
 .style.display="block";
 
 
@@ -2149,29 +2624,48 @@ mostrarResumoCheckout();
 }
 
 
+/* =========================
+   RESUMO CHECKOUT
+========================= */
+
 function mostrarResumoCheckout(){
 
-const carrinho=obterCarrinho();
+const carrinho =
+obterCarrinho();
 
-const resumo=
-document.getElementById("resumoCheckout");
+const resumo =
+document.getElementById(
+"resumoCheckout"
+);
+
 
 resumo.innerHTML="";
 
 
 carrinho.forEach(function(item){
 
-resumo.innerHTML+=`
+resumo.innerHTML += `
 
 <p>
+
 ${item.nome}
+
 × ${item.quantidade}
+
 —
+
 <strong>
+
 ${(
-Number(item.preco)*item.quantidade
-).toLocaleString("pt-AO")} Kz
+Number(item.preco) *
+Number(item.quantidade)
+)
+.toLocaleString("pt-AO")}
+
+Kz
+
 </strong>
+
 </p>
 
 `;
@@ -2179,45 +2673,73 @@ Number(item.preco)*item.quantidade
 });
 
 
-document.getElementById("totalCheckout")
-.textContent=
+document.getElementById(
+"totalCheckout"
+)
+.textContent =
 calcularTotal()
-.toLocaleString("pt-AO")+" Kz";
+.toLocaleString("pt-AO") +
+" Kz";
 
 
-const utilizador=obterSessao();
+const utilizador =
+obterSessao();
+
 
 if(utilizador){
 
-document.getElementById("clienteNome")
-.value=utilizador.nome;
+document.getElementById(
+"clienteNome"
+)
+.value =
+utilizador.nome;
 
 }
 
 }
 
+
+/* =========================
+   CONFIRMAR PEDIDO
+========================= */
 
 function confirmarPedido(){
 
-const nome=
-document.getElementById("clienteNome")
-.value.trim();
+const nome =
+document.getElementById(
+"clienteNome"
+)
+.value
+.trim();
 
-const telefone=
-document.getElementById("clienteTelefone")
-.value.trim();
+const telefone =
+document.getElementById(
+"clienteTelefone"
+)
+.value
+.trim();
 
-const endereco=
-document.getElementById("clienteEndereco")
-.value.trim();
+const endereco =
+document.getElementById(
+"clienteEndereco"
+)
+.value
+.trim();
 
-const mensagem=
-document.getElementById("mensagemCheckout");
+
+const mensagem =
+document.getElementById(
+"mensagemCheckout"
+);
 
 
-if(!nome || !telefone || !endereco){
+if(
+!nome ||
+!telefone ||
+!endereco
+){
 
-mensagem.textContent=
+mensagem.textContent =
 "⚠️ Preenche o nome, telefone e endereço de entrega.";
 
 return;
@@ -2225,11 +2747,13 @@ return;
 }
 
 
-const carrinho=obterCarrinho();
+const carrinho =
+obterCarrinho();
 
-if(carrinho.length===0){
 
-mensagem.textContent=
+if(carrinho.length === 0){
+
+mensagem.textContent =
 "⚠️ O carrinho está vazio.";
 
 return;
@@ -2237,22 +2761,30 @@ return;
 }
 
 
-const pedido={
+const pedido = {
 
 numero:
-"GT-"+Date.now(),
+"GT-" +
+Date.now(),
 
-cliente:nome,
+cliente:
+nome,
 
-telefone:telefone,
+telefone:
+telefone,
 
-endereco:endereco,
+endereco:
+endereco,
 
-produtos:carrinho,
+produtos:
+carrinho,
 
-total:calcularTotal(),
+total:
+calcularTotal(),
 
-data:new Date().toLocaleString("pt-AO")
+data:
+new Date()
+.toLocaleString("pt-AO")
 
 };
 
@@ -2263,30 +2795,52 @@ JSON.stringify(pedido)
 );
 
 
-localStorage.removeItem("gtubeCarrinho");
+/*
+ LIMPA O CARRINHO
+*/
+
+localStorage.removeItem(
+"gtubeCarrinho"
+);
+
 
 atualizarContadorCarrinho();
 
 
-document.getElementById("numeroPedido")
-.innerHTML=`
+document.getElementById(
+"numeroPedido"
+)
+.innerHTML = `
 
 <p>
-<strong>Número da encomenda:</strong>
+
+<strong>
+Número da encomenda:
+</strong>
+
 ${pedido.numero}
+
 </p>
 
 <p>
-<strong>Total:</strong>
-${pedido.total.toLocaleString("pt-AO")} Kz
+
+<strong>
+Total:
+</strong>
+
+${pedido.total
+.toLocaleString("pt-AO")} Kz
+
 </p>
 
 <p>
-📞 Telefone: ${pedido.telefone}
+📞 Telefone:
+${pedido.telefone}
 </p>
 
 <p>
-📍 Entrega: ${pedido.endereco}
+📍 Entrega:
+${pedido.endereco}
 </p>
 
 `;
@@ -2294,14 +2848,20 @@ ${pedido.total.toLocaleString("pt-AO")} Kz
 
 esconderTudo();
 
-document.getElementById("sucesso")
+
+document.getElementById(
+"sucesso"
+)
 .style.display="block";
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
 
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
 
 }
 
@@ -2312,13 +2872,15 @@ behavior:"smooth"
 
 function comprar(produto){
 
-adicionarAoCarrinho(produto);
+adicionarAoCarrinho(
+produto
+);
 
 }
 
 
 /* =========================
-   INICIAR
+   INICIAR SISTEMA
 ========================= */
 
 mostrarProdutos();
