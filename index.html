@@ -46,6 +46,7 @@ color:#38bdf8;
 .top-buttons{
 display:flex;
 gap:8px;
+flex-wrap:wrap;
 }
 
 button{
@@ -81,6 +82,11 @@ background:#dc2626;
 color:white;
 }
 
+.cart-btn{
+background:#f59e0b;
+color:white;
+}
+
 .hero{
 background:linear-gradient(135deg,#2563eb,#7c3aed);
 color:white;
@@ -109,7 +115,8 @@ padding:20px;
 .form-box,
 .account-box,
 .sell-box,
-.detail-box{
+.detail-box,
+.cart-box{
 display:none;
 background:white;
 padding:25px;
@@ -236,6 +243,7 @@ font-size:13px;
 .product-actions{
 display:flex;
 gap:7px;
+flex-wrap:wrap;
 }
 
 .product-actions .primary{
@@ -246,6 +254,12 @@ flex:1;
 background:#fee2e2;
 color:#dc2626;
 width:48px;
+}
+
+.add-cart{
+background:#f59e0b;
+color:white;
+width:100%;
 }
 
 .account-menu{
@@ -314,6 +328,73 @@ color:white;
 margin-top:10px;
 }
 
+.cart-item{
+display:flex;
+align-items:center;
+gap:15px;
+padding:15px 0;
+border-bottom:1px solid #eee;
+}
+
+.cart-item-image{
+width:80px;
+height:80px;
+background:#eef2ff;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:35px;
+overflow:hidden;
+flex-shrink:0;
+}
+
+.cart-item-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.cart-item-info{
+flex:1;
+}
+
+.cart-item-info h3{
+margin:0 0 5px;
+}
+
+.quantity{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:8px;
+}
+
+.quantity button{
+padding:7px 11px;
+}
+
+.cart-total{
+font-size:25px;
+font-weight:bold;
+color:#2563eb;
+margin:20px 0;
+text-align:right;
+}
+
+.empty-cart{
+text-align:center;
+padding:35px 10px;
+color:#777;
+}
+
+.checkout{
+background:#16a34a;
+color:white;
+width:100%;
+font-size:17px;
+}
+
 footer{
 margin-top:40px;
 background:#111827;
@@ -374,6 +455,15 @@ grid-template-columns:1fr;
 height:280px;
 }
 
+.cart-item{
+align-items:flex-start;
+}
+
+.cart-item-image{
+width:65px;
+height:65px;
+}
+
 }
 
 @media(max-width:420px){
@@ -400,6 +490,11 @@ G<span>Tube</span> Marketplace
 
 <button class="white-btn" onclick="mostrarInicio()">
 🏠 Início
+</button>
+
+<button class="cart-btn" onclick="mostrarCarrinho()">
+🛒 Carrinho
+<span id="contadorCarrinho">0</span>
 </button>
 
 <button class="white-btn" onclick="abrirConta()">
@@ -514,6 +609,12 @@ Cancelar
 <div class="account-icon">❤️</div>
 <strong>Favoritos</strong>
 <p>Produtos guardados</p>
+</div>
+
+<div class="account-card" onclick="mostrarCarrinho()">
+<div class="account-icon">🛒</div>
+<strong>Meu carrinho</strong>
+<p>Ver produtos escolhidos</p>
 </div>
 
 </div>
@@ -635,6 +736,29 @@ placeholder="Preço em Kz">
 </section>
 
 
+<section id="carrinho" class="cart-box">
+
+<h2>🛒 Meu carrinho</h2>
+
+<div id="listaCarrinho"></div>
+
+<div id="totalCarrinho" class="cart-total">
+Total: 0 Kz
+</div>
+
+<button class="checkout" onclick="finalizarPedido()">
+✅ Finalizar pedido
+</button>
+
+<br><br>
+
+<button class="secondary" onclick="mostrarInicio()">
+← Continuar a comprar
+</button>
+
+</section>
+
+
 <section id="detalhe" class="detail-box">
 
 <div id="detalheConteudo"></div>
@@ -722,6 +846,383 @@ return dados ? JSON.parse(dados) : null;
 }
 
 
+/* =========================
+   CARRINHO
+========================= */
+
+function obterCarrinho(){
+
+const dados=localStorage.getItem("gtubeCarrinho");
+
+return dados ? JSON.parse(dados) : [];
+
+}
+
+
+function guardarCarrinho(carrinho){
+
+localStorage.setItem(
+"gtubeCarrinho",
+JSON.stringify(carrinho)
+);
+
+atualizarContadorCarrinho();
+
+}
+
+
+function atualizarContadorCarrinho(){
+
+const carrinho=obterCarrinho();
+
+let total=0;
+
+carrinho.forEach(function(item){
+
+total+=item.quantidade;
+
+});
+
+document.getElementById("contadorCarrinho")
+.textContent=total;
+
+}
+
+
+function adicionarCarrinho(nome){
+
+const produtos=obterProdutos();
+
+const produto=produtos.find(function(p){
+
+return p.nome===nome;
+
+});
+
+
+if(!produto){
+
+return;
+
+}
+
+
+const carrinho=obterCarrinho();
+
+const existente=carrinho.find(function(item){
+
+return item.nome===nome;
+
+});
+
+
+if(existente){
+
+existente.quantidade++;
+
+}else{
+
+carrinho.push({
+
+nome:produto.nome,
+preco:produto.preco,
+emoji:produto.emoji,
+foto:produto.foto,
+vendedor:produto.vendedor,
+quantidade:1
+
+});
+
+}
+
+
+guardarCarrinho(carrinho);
+
+
+alert(
+"🛒 "+produto.nome+
+" foi adicionado ao carrinho!"
+);
+
+}
+
+
+function alterarQuantidade(nome,valor){
+
+const carrinho=obterCarrinho();
+
+const item=carrinho.find(function(produto){
+
+return produto.nome===nome;
+
+});
+
+
+if(!item){
+
+return;
+
+}
+
+
+item.quantidade+=valor;
+
+
+if(item.quantidade<=0){
+
+const indice=carrinho.indexOf(item);
+
+carrinho.splice(indice,1);
+
+}
+
+
+guardarCarrinho(carrinho);
+
+mostrarCarrinho();
+
+}
+
+
+function removerCarrinho(nome){
+
+const carrinho=obterCarrinho();
+
+const novo=carrinho.filter(function(item){
+
+return item.nome!==nome;
+
+});
+
+
+guardarCarrinho(novo);
+
+mostrarCarrinho();
+
+}
+
+
+function mostrarCarrinho(){
+
+esconderTudo();
+
+document.getElementById("carrinho")
+.style.display="block";
+
+
+const lista=document.getElementById("listaCarrinho");
+
+const totalElemento=document.getElementById("totalCarrinho");
+
+const carrinho=obterCarrinho();
+
+
+if(carrinho.length===0){
+
+lista.innerHTML=`
+
+<div class="empty-cart">
+
+<h2>🛒</h2>
+
+<h3>O teu carrinho está vazio</h3>
+
+<p>Adiciona produtos para começar a comprar.</p>
+
+<button
+class="primary"
+onclick="mostrarInicio()"
+>
+🔥 Ver produtos
+</button>
+
+</div>
+
+`;
+
+totalElemento.textContent="Total: 0 Kz";
+
+return;
+
+}
+
+
+let total=0;
+
+lista.innerHTML="";
+
+
+carrinho.forEach(function(item){
+
+const subtotal=item.preco*item.quantidade;
+
+total+=subtotal;
+
+
+let imagem=item.emoji;
+
+if(item.foto){
+
+imagem='<img src="'+item.foto+'" alt="Produto">';
+
+}
+
+
+lista.innerHTML+=`
+
+<div class="cart-item">
+
+<div class="cart-item-image">
+
+${imagem}
+
+</div>
+
+<div class="cart-item-info">
+
+<h3>${item.nome}</h3>
+
+<p>
+${Number(item.preco)
+.toLocaleString("pt-AO")} Kz
+</p>
+
+<div class="quantity">
+
+<button
+class="secondary"
+onclick="alterarQuantidade(${JSON.stringify(item.nome)},-1)"
+>
+−
+</button>
+
+<strong>${item.quantidade}</strong>
+
+<button
+class="primary"
+onclick="alterarQuantidade(${JSON.stringify(item.nome)},1)"
+>
++
+</button>
+
+<button
+class="danger"
+onclick="removerCarrinho(${JSON.stringify(item.nome)})"
+>
+🗑️
+</button>
+
+</div>
+
+<p>
+<strong>
+Subtotal:
+${Number(subtotal)
+.toLocaleString("pt-AO")} Kz
+</strong>
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+totalElemento.textContent=
+"Total: "+
+Number(total).toLocaleString("pt-AO")+
+" Kz";
+
+}
+
+
+function finalizarPedido(){
+
+const carrinho=obterCarrinho();
+
+if(carrinho.length===0){
+
+alert("🛒 O carrinho está vazio.");
+
+return;
+
+}
+
+
+if(!obterSessao()){
+
+alert(
+"🔐 Para finalizar o pedido, primeiro entra na tua conta."
+);
+
+mostrarLogin();
+
+return;
+
+}
+
+
+let total=0;
+
+carrinho.forEach(function(item){
+
+total+=item.preco*item.quantidade;
+
+});
+
+
+const confirmar=confirm(
+
+"Confirmar pedido?\n\n"+
+"Total: "+
+Number(total).toLocaleString("pt-AO")+
+" Kz"
+
+);
+
+
+if(!confirmar){
+
+return;
+
+}
+
+
+localStorage.setItem(
+"gtubeUltimoPedido",
+JSON.stringify({
+
+data:new Date().toISOString(),
+produtos:carrinho,
+total:total,
+cliente:obterSessao().nome
+
+})
+);
+
+
+localStorage.removeItem("gtubeCarrinho");
+
+atualizarContadorCarrinho();
+
+alert(
+"🎉 Pedido criado com sucesso!\n\n"+
+"O sistema de pagamento e entrega será conectado numa próxima fase."
+);
+
+
+mostrarInicio();
+
+}
+
+
+/* =========================
+   NAVEGAÇÃO
+========================= */
+
 function esconderTudo(){
 
 [
@@ -733,6 +1234,7 @@ function esconderTudo(){
 "venda",
 "meusProdutos",
 "favoritos",
+"carrinho",
 "detalhe"
 ].forEach(function(id){
 
@@ -747,9 +1249,13 @@ function mostrarInicio(){
 
 esconderTudo();
 
-document.getElementById("hero").style.display="block";
+document.getElementById("hero")
+.style.display="block";
 
-window.scrollTo({top:0,behavior:"smooth"});
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -758,9 +1264,13 @@ function mostrarCadastro(){
 
 esconderTudo();
 
-document.getElementById("cadastro").style.display="block";
+document.getElementById("cadastro")
+.style.display="block";
 
-window.scrollTo({top:0,behavior:"smooth"});
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -769,9 +1279,13 @@ function mostrarLogin(){
 
 esconderTudo();
 
-document.getElementById("login").style.display="block";
+document.getElementById("login")
+.style.display="block";
 
-window.scrollTo({top:0,behavior:"smooth"});
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -791,28 +1305,39 @@ mostrarLogin();
 }
 
 
+/* =========================
+   CONTAS
+========================= */
+
 function criarConta(){
 
-const nome=document.getElementById("nome").value.trim();
+const nome=document.getElementById("nome")
+.value.trim();
 
-const email=document.getElementById("email").value.trim().toLowerCase();
+const email=document.getElementById("email")
+.value.trim()
+.toLowerCase();
 
-const senha=document.getElementById("senha").value;
+const senha=document.getElementById("senha")
+.value;
 
 const mensagem=document.getElementById("mensagemCadastro");
 
 
 if(!nome || !email || !senha){
 
-mensagem.textContent="⚠️ Preenche todos os campos.";
+mensagem.textContent=
+"⚠️ Preenche todos os campos.";
 
 return;
 
 }
 
+
 if(senha.length<6){
 
-mensagem.textContent="⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
+mensagem.textContent=
+"⚠️ A palavra-passe deve ter pelo menos 6 caracteres.";
 
 return;
 
@@ -837,7 +1362,8 @@ JSON.stringify(utilizador)
 );
 
 
-mensagem.textContent="✅ Conta criada com sucesso!";
+mensagem.textContent=
+"✅ Conta criada com sucesso!";
 
 
 setTimeout(function(){
@@ -851,9 +1377,12 @@ mostrarPainel();
 
 function entrar(){
 
-const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+const email=document.getElementById("loginEmail")
+.value.trim()
+.toLowerCase();
 
-const senha=document.getElementById("loginSenha").value;
+const senha=document.getElementById("loginSenha")
+.value;
 
 const mensagem=document.getElementById("mensagemLogin");
 
@@ -862,21 +1391,26 @@ const utilizador=obterConta();
 
 if(!utilizador){
 
-mensagem.textContent="⚠️ Ainda não existe uma conta.";
+mensagem.textContent=
+"⚠️ Ainda não existe uma conta.";
 
 return;
 
 }
 
 
-if(email===utilizador.email && senha===utilizador.senha){
+if(
+email===utilizador.email &&
+senha===utilizador.senha
+){
 
 localStorage.setItem(
 "gtubeSessao",
 JSON.stringify(utilizador)
 );
 
-mensagem.textContent="✅ Login realizado com sucesso!";
+mensagem.textContent=
+"✅ Login realizado com sucesso!";
 
 
 setTimeout(function(){
@@ -887,7 +1421,8 @@ mostrarPainel();
 
 }else{
 
-mensagem.textContent="❌ E-mail ou palavra-passe incorretos.";
+mensagem.textContent=
+"❌ E-mail ou palavra-passe incorretos.";
 
 }
 
@@ -898,17 +1433,24 @@ function mostrarPainel(){
 
 esconderTudo();
 
-document.getElementById("conta").style.display="block";
+document.getElementById("conta")
+.style.display="block";
+
 
 const utilizador=obterSessao();
 
 if(utilizador){
 
-document.getElementById("nomeBemVindo").textContent=utilizador.nome;
+document.getElementById("nomeBemVindo")
+.textContent=utilizador.nome;
 
 }
 
-window.scrollTo({top:0,behavior:"smooth"});
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -916,6 +1458,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 function mostrarPerfil(){
 
 const utilizador=obterSessao();
+
 
 if(!utilizador){
 
@@ -928,11 +1471,14 @@ return;
 
 esconderTudo();
 
-document.getElementById("perfil").style.display="block";
+document.getElementById("perfil")
+.style.display="block";
 
-document.getElementById("perfilNome").textContent=utilizador.nome;
+document.getElementById("perfilNome")
+.textContent=utilizador.nome;
 
-document.getElementById("perfilEmail").textContent=utilizador.email;
+document.getElementById("perfilEmail")
+.textContent=utilizador.email;
 
 }
 
@@ -943,14 +1489,21 @@ localStorage.removeItem("gtubeSessao");
 
 mostrarInicio();
 
-alert("Sessão terminada com sucesso. 👋");
+alert(
+"Sessão terminada com sucesso. 👋"
+);
 
 }
 
 
+/* =========================
+   PRODUTOS
+========================= */
+
 function obterProdutos(){
 
-const dados=localStorage.getItem("gtubeProdutos");
+const dados=
+localStorage.getItem("gtubeProdutos");
 
 
 if(!dados){
@@ -1018,11 +1571,13 @@ return;
 
 const reader=new FileReader();
 
+
 reader.onload=function(e){
 
 callback(e.target.result);
 
 };
+
 
 reader.readAsDataURL(file);
 
@@ -1033,6 +1588,7 @@ function publicarProduto(){
 
 const utilizador=obterSessao();
 
+
 if(!utilizador){
 
 mostrarLogin();
@@ -1042,24 +1598,37 @@ return;
 }
 
 
-const nome=document.getElementById("produtoNome").value.trim();
+const nome=document.getElementById("produtoNome")
+.value.trim();
 
-const descricao=document.getElementById("produtoDescricao").value.trim();
+const descricao=document.getElementById("produtoDescricao")
+.value.trim();
 
-const preco=Number(document.getElementById("produtoPreco").value);
+const preco=Number(
+document.getElementById("produtoPreco").value
+);
 
-const categoria=document.getElementById("produtoCategoria").value;
+const categoria=document.getElementById("produtoCategoria")
+.value;
 
-const emoji=document.getElementById("produtoEmoji").value;
+const emoji=document.getElementById("produtoEmoji")
+.value;
 
-const file=document.getElementById("produtoFoto").files[0];
+const file=document.getElementById("produtoFoto")
+.files[0];
 
 const mensagem=document.getElementById("mensagemVenda");
 
 
-if(!nome || !descricao || !preco || !categoria){
+if(
+!nome ||
+!descricao ||
+!preco ||
+!categoria
+){
 
-mensagem.textContent="⚠️ Preenche todos os campos.";
+mensagem.textContent=
+"⚠️ Preenche todos os campos.";
 
 return;
 
@@ -1101,7 +1670,8 @@ return;
 }
 
 
-mensagem.textContent="✅ Produto publicado com sucesso!";
+mensagem.textContent=
+"✅ Produto publicado com sucesso!";
 
 
 document.getElementById("produtoNome").value="";
@@ -1126,9 +1696,13 @@ function mostrarVenda(){
 
 esconderTudo();
 
-document.getElementById("venda").style.display="block";
+document.getElementById("venda")
+.style.display="block";
 
-window.scrollTo({top:0,behavior:"smooth"});
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -1136,6 +1710,7 @@ window.scrollTo({top:0,behavior:"smooth"});
 function mostrarMeusProdutos(){
 
 const utilizador=obterSessao();
+
 
 if(!utilizador){
 
@@ -1148,10 +1723,12 @@ return;
 
 esconderTudo();
 
-document.getElementById("meusProdutos").style.display="block";
+document.getElementById("meusProdutos")
+.style.display="block";
 
 
 const produtos=obterProdutos();
+
 
 const meus=produtos.filter(function(produto){
 
@@ -1160,12 +1737,14 @@ return produto.vendedor===utilizador.nome;
 });
 
 
-const lista=document.getElementById("listaMeusProdutos");
+const lista=
+document.getElementById("listaMeusProdutos");
 
 
 if(meus.length===0){
 
-lista.innerHTML="<p>Ainda não publicaste nenhum produto.</p>";
+lista.innerHTML=
+"<p>Ainda não publicaste nenhum produto.</p>";
 
 return;
 
@@ -1184,9 +1763,14 @@ lista.innerHTML+=criarCard(produto);
 }
 
 
+/* =========================
+   FAVORITOS
+========================= */
+
 function obterFavoritos(){
 
-const dados=localStorage.getItem("gtubeFavoritos");
+const dados=
+localStorage.getItem("gtubeFavoritos");
 
 return dados ? JSON.parse(dados) : [];
 
@@ -1241,15 +1825,16 @@ return;
 
 esconderTudo();
 
-document.getElementById("favoritos").style.display="block";
+document.getElementById("favoritos")
+.style.display="block";
 
 
 const favoritos=obterFavoritos();
 
 const produtos=obterProdutos();
 
-
-const lista=document.getElementById("listaFavoritos");
+const lista=
+document.getElementById("listaFavoritos");
 
 
 const meus=produtos.filter(function(produto){
@@ -1261,7 +1846,8 @@ return favoritos.includes(produto.nome);
 
 if(meus.length===0){
 
-lista.innerHTML="<p>❤️ Ainda não tens produtos favoritos.</p>";
+lista.innerHTML=
+"<p>❤️ Ainda não tens produtos favoritos.</p>";
 
 return;
 
@@ -1280,6 +1866,10 @@ lista.innerHTML+=criarCard(produto);
 }
 
 
+/* =========================
+   CARD
+========================= */
+
 function criarCard(produto){
 
 const favoritos=obterFavoritos();
@@ -1289,9 +1879,12 @@ const favorito=favoritos.includes(produto.nome);
 
 let imagem=produto.emoji;
 
+
 if(produto.foto){
 
-imagem='<img src="'+produto.foto+'" alt="Produto">';
+imagem=
+'<img src="'+produto.foto+
+'" alt="Produto">';
 
 }
 
@@ -1319,7 +1912,8 @@ ${produto.descricao}
 </p>
 
 <p class="price">
-${Number(produto.preco).toLocaleString("pt-AO")} Kz
+${Number(produto.preco)
+.toLocaleString("pt-AO")} Kz
 </p>
 
 <div class="product-actions">
@@ -1340,6 +1934,13 @@ ${favorito ? "❤️" : "♡"}
 
 </div>
 
+<button
+class="add-cart"
+onclick="adicionarCarrinho(${JSON.stringify(produto.nome)})"
+>
+🛒 Adicionar ao carrinho
+</button>
+
 </div>
 
 </div>
@@ -1348,6 +1949,10 @@ ${favorito ? "❤️" : "♡"}
 
 }
 
+
+/* =========================
+   PESQUISA
+========================= */
 
 let categoriaAtual="";
 
@@ -1363,24 +1968,42 @@ mostrarProdutos();
 
 function mostrarProdutos(){
 
-const lista=document.getElementById("produtos");
+const lista=
+document.getElementById("produtos");
 
-const campo=document.getElementById("pesquisa");
+const campo=
+document.getElementById("pesquisa");
 
-const pesquisa=campo ? campo.value.toLowerCase() : "";
+const pesquisa=
+campo ?
+campo.value.toLowerCase() :
+"";
 
-const produtos=obterProdutos();
+
+const produtos=
+obterProdutos();
 
 
-const filtrados=produtos.filter(function(produto){
+const filtrados=
+produtos.filter(function(produto){
 
 const texto=
 
-produto.nome.toLowerCase().includes(pesquisa) ||
+produto.nome
+.toLowerCase()
+.includes(pesquisa)
 
-produto.categoria.toLowerCase().includes(pesquisa) ||
+||
 
-produto.descricao.toLowerCase().includes(pesquisa);
+produto.categoria
+.toLowerCase()
+.includes(pesquisa)
+
+||
+
+produto.descricao
+.toLowerCase()
+.includes(pesquisa);
 
 
 const categoria=
@@ -1398,7 +2021,8 @@ lista.innerHTML="";
 
 if(filtrados.length===0){
 
-lista.innerHTML="<p>Nenhum produto encontrado.</p>";
+lista.innerHTML=
+"<p>Nenhum produto encontrado.</p>";
 
 return;
 
@@ -1414,11 +2038,18 @@ lista.innerHTML+=criarCard(produto);
 }
 
 
+/* =========================
+   DETALHES
+========================= */
+
 function abrirProduto(nome){
 
-const produtos=obterProdutos();
+const produtos=
+obterProdutos();
 
-const produto=produtos.find(function(p){
+
+const produto=
+produtos.find(function(p){
 
 return p.nome===nome;
 
@@ -1430,19 +2061,24 @@ if(!produto)return;
 
 esconderTudo();
 
-document.getElementById("detalhe").style.display="block";
+document.getElementById("detalhe")
+.style.display="block";
 
 
 let imagem=produto.emoji;
 
+
 if(produto.foto){
 
-imagem='<img src="'+produto.foto+'" alt="Produto">';
+imagem=
+'<img src="'+produto.foto+
+'" alt="Produto">';
 
 }
 
 
-document.getElementById("detalheConteudo").innerHTML=`
+document.getElementById("detalheConteudo")
+.innerHTML=`
 
 <div class="detail-layout">
 
@@ -1470,7 +2106,8 @@ ${produto.vendedor}
 
 <div class="detail-price">
 
-${Number(produto.preco).toLocaleString("pt-AO")} Kz
+${Number(produto.preco)
+.toLocaleString("pt-AO")} Kz
 
 </div>
 
@@ -1478,9 +2115,9 @@ ${Number(produto.preco).toLocaleString("pt-AO")} Kz
 
 <button
 class="primary"
-onclick="comprar(${JSON.stringify(produto.nome)})"
+onclick="adicionarCarrinho(${JSON.stringify(produto.nome)})"
 >
-🛒 Comprar
+🛒 Adicionar ao carrinho
 </button>
 
 <button
@@ -1505,7 +2142,11 @@ onclick="mostrarInicio()"
 
 `;
 
-window.scrollTo({top:0,behavior:"smooth"});
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -1520,30 +2161,20 @@ alert(
 }
 
 
+/* =========================
+   COMPRAR
+========================= */
+
 function comprar(produto){
 
-if(!obterSessao()){
-
-alert(
-"🔐 Para comprar, primeiro entra na tua conta."
-);
-
-mostrarLogin();
-
-return;
-
-}
-
-
-alert(
-"🛒 Selecionaste: "+produto+
-"\n\nO sistema de pagamento será adicionado numa próxima fase."
-);
+adicionarCarrinho(produto);
 
 }
 
 
 mostrarProdutos();
+
+atualizarContadorCarrinho();
 
 
 if(obterSessao()){
