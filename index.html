@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GTube Marketplace</title>
+
   <style>
     body {
       margin: 0;
@@ -98,6 +99,29 @@
       font-weight: bold;
       font-size: 20px;
     }
+
+    .form-box {
+      display: none;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+    }
+
+    .form-box input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .message {
+      margin-top: 12px;
+      font-weight: bold;
+    }
   </style>
 </head>
 
@@ -115,10 +139,56 @@
       <p>Encontre produtos, venda os seus e faça negócios online.</p>
 
       <div class="buttons">
-        <button class="primary">Criar conta</button>
-        <button class="secondary">Entrar</button>
-        <button class="secondary">Vender produto</button>
+        <button class="primary" onclick="mostrarCadastro()">
+          Criar conta
+        </button>
+
+        <button class="secondary" onclick="mostrarLogin()">
+          Entrar
+        </button>
+
+        <button class="secondary" onclick="alert('A área de venda será adicionada no próximo passo.')">
+          Vender produto
+        </button>
       </div>
+    </section>
+
+    <section id="cadastro" class="form-box">
+      <h2>Criar conta</h2>
+
+      <input id="nome" type="text" placeholder="Seu nome">
+
+      <input id="email" type="email" placeholder="Seu e-mail">
+
+      <input id="senha" type="password" placeholder="Crie uma palavra-passe">
+
+      <button class="primary" onclick="criarConta()">
+        Criar minha conta
+      </button>
+
+      <button class="secondary" onclick="fecharFormularios()">
+        Cancelar
+      </button>
+
+      <div id="mensagemCadastro" class="message"></div>
+    </section>
+
+    <section id="login" class="form-box">
+      <h2>Entrar</h2>
+
+      <input id="loginEmail" type="email" placeholder="Seu e-mail">
+
+      <input id="loginSenha" type="password" placeholder="Sua palavra-passe">
+
+      <button class="primary" onclick="entrar()">
+        Entrar
+      </button>
+
+      <button class="secondary" onclick="fecharFormularios()">
+        Cancelar
+      </button>
+
+      <div id="mensagemLogin" class="message"></div>
     </section>
 
     <h2>Produtos em destaque</h2>
@@ -130,7 +200,9 @@
         <h3>Smartphone</h3>
         <p>Smartphone em excelente estado.</p>
         <p class="price">150.000 Kz</p>
-        <button class="primary">Comprar</button>
+        <button class="primary" onclick="comprar('Smartphone')">
+          Comprar
+        </button>
       </div>
 
       <div class="product">
@@ -138,7 +210,9 @@
         <h3>Ténis</h3>
         <p>Ténis modernos e confortáveis.</p>
         <p class="price">35.000 Kz</p>
-        <button class="primary">Comprar</button>
+        <button class="primary" onclick="comprar('Ténis')">
+          Comprar
+        </button>
       </div>
 
       <div class="product">
@@ -146,12 +220,84 @@
         <h3>Computador</h3>
         <p>Computador para trabalho e estudos.</p>
         <p class="price">250.000 Kz</p>
-        <button class="primary">Comprar</button>
+        <button class="primary" onclick="comprar('Computador')">
+          Comprar
+        </button>
       </div>
 
     </section>
 
   </div>
+
+  <script>
+    function mostrarCadastro() {
+      document.getElementById("cadastro").style.display = "block";
+      document.getElementById("login").style.display = "none";
+      window.scrollTo(0, 0);
+    }
+
+    function mostrarLogin() {
+      document.getElementById("login").style.display = "block";
+      document.getElementById("cadastro").style.display = "none";
+      window.scrollTo(0, 0);
+    }
+
+    function fecharFormularios() {
+      document.getElementById("cadastro").style.display = "none";
+      document.getElementById("login").style.display = "none";
+    }
+
+    function criarConta() {
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const senha = document.getElementById("senha").value;
+      const mensagem = document.getElementById("mensagemCadastro");
+
+      if (!nome || !email || !senha) {
+        mensagem.textContent = "Preencha todos os campos.";
+        return;
+      }
+
+      const utilizador = {
+        nome: nome,
+        email: email,
+        senha: senha
+      };
+
+      localStorage.setItem("gtubeUtilizador", JSON.stringify(utilizador));
+
+      mensagem.textContent = "Conta criada com sucesso! 🎉";
+
+      document.getElementById("nome").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("senha").value = "";
+    }
+
+    function entrar() {
+      const email = document.getElementById("loginEmail").value;
+      const senha = document.getElementById("loginSenha").value;
+      const mensagem = document.getElementById("mensagemLogin");
+
+      const dados = localStorage.getItem("gtubeUtilizador");
+
+      if (!dados) {
+        mensagem.textContent = "Ainda não existe uma conta neste aparelho.";
+        return;
+      }
+
+      const utilizador = JSON.parse(dados);
+
+      if (email === utilizador.email && senha === utilizador.senha) {
+        mensagem.textContent = "Login realizado com sucesso! 🎉";
+      } else {
+        mensagem.textContent = "E-mail ou palavra-passe incorretos.";
+      }
+    }
+
+    function comprar(produto) {
+      alert("Selecionaste: " + produto + ". A compra online será adicionada no próximo passo.");
+    }
+  </script>
 
 </body>
   </html>
