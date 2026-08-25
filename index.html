@@ -3,465 +3,457 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GTube Marketplace</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
-margin:0;
-font-family:Arial,Helvetica,sans-serif;
-background:#f4f6f8;
-color:#222;
+  margin:0;
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f6f8;
+  color:#222;
 }
 
 header{
-background:linear-gradient(135deg,#111827,#2563eb);
-color:white;
-padding:15px;
-position:sticky;
-top:0;
-z-index:100;
-box-shadow:0 3px 15px rgba(0,0,0,.18);
+  background:linear-gradient(135deg,#111827,#2563eb);
+  color:white;
+  padding:15px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 3px 15px rgba(0,0,0,.18);
 }
 
 .top{
-max-width:1150px;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
+  max-width:1150px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
 }
 
 .logo{
-font-size:27px;
-font-weight:bold;
+  font-size:27px;
+  font-weight:bold;
 }
 
 .logo span{
-color:#38bdf8;
+  color:#38bdf8;
 }
 
 .top-buttons{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
 }
 
 button{
-border:0;
-padding:12px 17px;
-border-radius:10px;
-cursor:pointer;
-font-size:15px;
-font-weight:bold;
+  border:0;
+  padding:12px 17px;
+  border-radius:10px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:bold;
 }
 
 .primary{
-background:#2563eb;
-color:white;
+  background:#2563eb;
+  color:white;
 }
 
 .primary:hover{
-background:#1d4ed8;
+  background:#1d4ed8;
 }
 
 .white-btn{
-background:white;
-color:#2563eb;
+  background:white;
+  color:#2563eb;
 }
 
 .secondary{
-background:#e5e7eb;
-color:#222;
+  background:#e5e7eb;
+  color:#222;
 }
 
 .danger{
-background:#dc2626;
-color:white;
+  background:#dc2626;
+  color:white;
 }
 
 .cart-btn{
-background:#f59e0b;
-color:white;
+  background:#f59e0b;
+  color:white;
 }
 
-.hero{
-background:linear-gradient(135deg,#2563eb,#7c3aed);
-color:white;
-border-radius:22px;
-padding:45px 25px;
-margin-bottom:25px;
-text-align:center;
-box-shadow:0 8px 30px rgba(37,99,235,.25);
-}
-
-.hero h1{
-font-size:38px;
-margin:0 0 12px;
-}
-
-.hero p{
-font-size:17px;
+.cart-count{
+  background:#dc2626;
+  color:white;
+  border-radius:50%;
+  padding:3px 7px;
+  font-size:12px;
+  margin-left:4px;
 }
 
 .container{
-max-width:1150px;
-margin:auto;
-padding:20px;
+  max-width:1150px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:white;
+  border-radius:22px;
+  padding:45px 25px;
+  margin-bottom:25px;
+  text-align:center;
+  box-shadow:0 8px 30px rgba(37,99,235,.25);
+}
+
+.hero h1{
+  font-size:38px;
+  margin:0 0 12px;
+}
+
+.hero p{
+  font-size:17px;
 }
 
 .form-box,
 .account-box,
 .sell-box,
 .detail-box,
-.cart-box{
-display:none;
-background:white;
-padding:25px;
-border-radius:18px;
-margin-bottom:25px;
-box-shadow:0 4px 18px rgba(0,0,0,.08);
+.cart-box,
+.checkout-box,
+.success-box{
+  display:none;
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  margin-bottom:25px;
+  box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
 
 input,
 textarea,
 select{
-width:100%;
-padding:14px;
-margin:7px 0;
-border:1px solid #ddd;
-border-radius:10px;
-font-size:16px;
+  width:100%;
+  padding:14px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
 }
 
 textarea{
-min-height:100px;
-resize:vertical;
+  min-height:100px;
+  resize:vertical;
 }
 
 .message{
-margin-top:12px;
-font-weight:bold;
+  margin-top:12px;
+  font-weight:bold;
 }
 
 .search-box{
-background:white;
-padding:15px;
-border-radius:15px;
-margin-bottom:20px;
-box-shadow:0 3px 15px rgba(0,0,0,.06);
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  margin-bottom:20px;
+  box-shadow:0 3px 15px rgba(0,0,0,.06);
 }
 
 .search{
-width:100%;
-padding:15px;
-border:1px solid #ddd;
-border-radius:12px;
-font-size:16px;
+  width:100%;
+  padding:15px;
+  border:1px solid #ddd;
+  border-radius:12px;
+  font-size:16px;
 }
 
 .categories{
-display:flex;
-gap:10px;
-overflow-x:auto;
-padding-bottom:12px;
-margin-bottom:20px;
+  display:flex;
+  gap:10px;
+  overflow-x:auto;
+  padding-bottom:12px;
+  margin-bottom:20px;
 }
 
 .category{
-background:white;
-border:1px solid #ddd;
-padding:10px 16px;
-border-radius:25px;
-white-space:nowrap;
+  background:white;
+  border:1px solid #ddd;
+  padding:10px 16px;
+  border-radius:25px;
+  white-space:nowrap;
 }
 
 .products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:18px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
 }
 
 .product{
-background:white;
-border-radius:17px;
-overflow:hidden;
-box-shadow:0 4px 15px rgba(0,0,0,.08);
-transition:.2s;
-}
-
-.product:hover{
-transform:translateY(-4px);
-box-shadow:0 8px 25px rgba(0,0,0,.13);
+  background:white;
+  border-radius:17px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 .product-image{
-width:100%;
-height:200px;
-background:linear-gradient(135deg,#e0f2fe,#ddd6fe);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:70px;
-overflow:hidden;
+  width:100%;
+  height:200px;
+  background:linear-gradient(135deg,#e0f2fe,#ddd6fe);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:70px;
+  overflow:hidden;
 }
 
 .product-image img{
-width:100%;
-height:100%;
-object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .product-content{
-padding:16px;
+  padding:16px;
 }
 
 .product h3{
-margin:0 0 8px;
-font-size:18px;
+  margin:0 0 8px;
+  font-size:18px;
 }
 
 .description{
-color:#666;
-min-height:40px;
+  color:#666;
+  min-height:40px;
 }
 
 .price{
-color:#2563eb;
-font-size:21px;
-font-weight:bold;
-margin:12px 0;
+  color:#2563eb;
+  font-size:21px;
+  font-weight:bold;
+  margin:12px 0;
 }
 
 .seller{
-color:#777;
-font-size:13px;
+  color:#777;
+  font-size:13px;
 }
 
 .product-actions{
-display:flex;
-gap:7px;
-flex-wrap:wrap;
+  display:flex;
+  gap:7px;
 }
 
 .product-actions .primary{
-flex:1;
+  flex:1;
 }
 
 .favorite{
-background:#fee2e2;
-color:#dc2626;
-width:48px;
-}
-
-.add-cart{
-background:#f59e0b;
-color:white;
-width:100%;
+  background:#fee2e2;
+  color:#dc2626;
+  width:48px;
 }
 
 .account-menu{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
-gap:14px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+  gap:14px;
 }
 
 .account-card{
-background:#f8fafc;
-border:1px solid #e5e7eb;
-padding:22px;
-border-radius:15px;
-text-align:center;
-cursor:pointer;
-transition:.2s;
-}
-
-.account-card:hover{
-background:#eff6ff;
-transform:translateY(-2px);
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  padding:22px;
+  border-radius:15px;
+  text-align:center;
+  cursor:pointer;
 }
 
 .account-icon{
-font-size:35px;
-margin-bottom:8px;
+  font-size:35px;
+  margin-bottom:8px;
 }
 
 .detail-layout{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:25px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
 }
 
 .detail-image{
-height:400px;
-background:#eef2ff;
-border-radius:16px;
-overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:100px;
+  height:400px;
+  background:#eef2ff;
+  border-radius:16px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:100px;
 }
 
 .detail-image img{
-width:100%;
-height:100%;
-object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .detail-info h2{
-font-size:30px;
-margin-top:0;
+  font-size:30px;
+  margin-top:0;
 }
 
 .detail-price{
-color:#2563eb;
-font-size:30px;
-font-weight:bold;
+  color:#2563eb;
+  font-size:30px;
+  font-weight:bold;
 }
 
 .contact{
-background:#16a34a;
-color:white;
-margin-top:10px;
+  background:#16a34a;
+  color:white;
 }
 
 .cart-item{
-display:flex;
-align-items:center;
-gap:15px;
-padding:15px 0;
-border-bottom:1px solid #eee;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
 }
 
 .cart-item-image{
-width:80px;
-height:80px;
-background:#eef2ff;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:35px;
-overflow:hidden;
-flex-shrink:0;
+  width:85px;
+  height:85px;
+  border-radius:12px;
+  background:#eef2ff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:35px;
+  overflow:hidden;
+  flex-shrink:0;
 }
 
 .cart-item-image img{
-width:100%;
-height:100%;
-object-fit:cover;
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .cart-item-info{
-flex:1;
+  flex:1;
 }
 
 .cart-item-info h3{
-margin:0 0 5px;
+  margin:0 0 5px;
 }
 
 .quantity{
-display:flex;
-align-items:center;
-gap:8px;
-margin-top:8px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
 }
 
 .quantity button{
-padding:7px 11px;
+  padding:6px 11px;
 }
 
 .cart-total{
-font-size:25px;
-font-weight:bold;
-color:#2563eb;
-margin:20px 0;
-text-align:right;
+  background:#f8fafc;
+  padding:18px;
+  border-radius:12px;
+  margin-top:20px;
 }
 
-.empty-cart{
-text-align:center;
-padding:35px 10px;
-color:#777;
+.total-price{
+  color:#2563eb;
+  font-size:26px;
+  font-weight:bold;
 }
 
-.checkout{
-background:#16a34a;
-color:white;
-width:100%;
-font-size:17px;
+.checkout-summary{
+  background:#f8fafc;
+  padding:15px;
+  border-radius:12px;
+  margin-bottom:20px;
+}
+
+.success-icon{
+  font-size:65px;
 }
 
 footer{
-margin-top:40px;
-background:#111827;
-color:white;
-text-align:center;
-padding:30px 20px;
+  margin-top:40px;
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:30px 20px;
 }
 
 footer p{
-color:#aaa;
+  color:#aaa;
 }
 
 @media(max-width:650px){
 
 .top{
-flex-direction:column;
-align-items:flex-start;
+  flex-direction:column;
+  align-items:flex-start;
 }
 
 .top-buttons{
-width:100%;
+  width:100%;
 }
 
 .top-buttons button{
-flex:1;
+  flex:1;
 }
 
 .hero h1{
-font-size:30px;
+  font-size:30px;
 }
 
 .products{
-grid-template-columns:1fr 1fr;
-gap:10px;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
 }
 
 .product-image{
-height:140px;
+  height:140px;
 }
 
 .product-content{
-padding:11px;
+  padding:11px;
 }
 
 .product h3{
-font-size:16px;
+  font-size:16px;
 }
 
 .price{
-font-size:17px;
+  font-size:17px;
 }
 
 .detail-layout{
-grid-template-columns:1fr;
+  grid-template-columns:1fr;
 }
 
 .detail-image{
-height:280px;
+  height:280px;
 }
 
 .cart-item{
-align-items:flex-start;
-}
-
-.cart-item-image{
-width:65px;
-height:65px;
+  align-items:flex-start;
 }
 
 }
@@ -469,7 +461,11 @@ height:65px;
 @media(max-width:420px){
 
 .products{
-grid-template-columns:1fr;
+  grid-template-columns:1fr;
+}
+
+.cart-item{
+  flex-wrap:wrap;
 }
 
 }
@@ -494,7 +490,7 @@ G<span>Tube</span> Marketplace
 
 <button class="cart-btn" onclick="mostrarCarrinho()">
 🛒 Carrinho
-<span id="contadorCarrinho">0</span>
+<span id="cartCount" class="cart-count">0</span>
 </button>
 
 <button class="white-btn" onclick="abrirConta()">
@@ -507,9 +503,7 @@ G<span>Tube</span> Marketplace
 
 </header>
 
-
 <div class="container">
-
 
 <section id="hero" class="hero">
 
@@ -611,15 +605,13 @@ Cancelar
 <p>Produtos guardados</p>
 </div>
 
-<div class="account-card" onclick="mostrarCarrinho()">
-<div class="account-icon">🛒</div>
-<strong>Meu carrinho</strong>
-<p>Ver produtos escolhidos</p>
-</div>
-
 </div>
 
 <br>
+
+<button class="cart-btn" onclick="mostrarCarrinho()">
+🛒 Abrir carrinho
+</button>
 
 <button class="danger" onclick="terminarSessao()">
 🚪 Terminar sessão
@@ -736,32 +728,117 @@ placeholder="Preço em Kz">
 </section>
 
 
+<section id="detalhe" class="detail-box">
+
+<div id="detalheConteudo"></div>
+
+</section>
+
+
 <section id="carrinho" class="cart-box">
 
 <h2>🛒 Meu carrinho</h2>
 
 <div id="listaCarrinho"></div>
 
-<div id="totalCarrinho" class="cart-total">
-Total: 0 Kz
+<div id="carrinhoVazio"></div>
+
+<div class="cart-total">
+
+<p>Subtotal:</p>
+
+<div id="subtotalCarrinho" class="total-price">
+0 Kz
 </div>
 
-<button class="checkout" onclick="finalizarPedido()">
-✅ Finalizar pedido
-</button>
+<br>
 
-<br><br>
+<button class="primary" onclick="irParaCheckout()">
+📦 Finalizar compra
+</button>
 
 <button class="secondary" onclick="mostrarInicio()">
 ← Continuar a comprar
 </button>
 
+</div>
+
 </section>
 
 
-<section id="detalhe" class="detail-box">
+<section id="checkout" class="checkout-box">
 
-<div id="detalheConteudo"></div>
+<h2>📦 Dados de entrega</h2>
+
+<p>
+Preenche os dados para receber a tua encomenda.
+</p>
+
+<div class="checkout-summary">
+
+<strong>Resumo da encomenda</strong>
+
+<div id="resumoCheckout"></div>
+
+<hr>
+
+<strong>Total:</strong>
+
+<div id="totalCheckout" class="total-price">
+0 Kz
+</div>
+
+</div>
+
+<input
+id="clienteNome"
+type="text"
+placeholder="👤 Nome completo"
+>
+
+<input
+id="clienteTelefone"
+type="tel"
+placeholder="📞 Número de telefone"
+>
+
+<textarea
+id="clienteEndereco"
+placeholder="📍 Endereço de entrega"
+></textarea>
+
+<button class="primary" onclick="confirmarPedido()">
+✅ Confirmar encomenda
+</button>
+
+<button class="secondary" onclick="mostrarCarrinho()">
+← Voltar ao carrinho
+</button>
+
+<div id="mensagemCheckout" class="message"></div>
+
+</section>
+
+
+<section id="sucesso" class="success-box">
+
+<div class="success-icon">
+🎉
+</div>
+
+<h2>Encomenda recebida!</h2>
+
+<p>
+A tua encomenda foi registada com sucesso.
+</p>
+
+<div id="numeroPedido"></div>
+
+<br>
+
+<button class="primary" onclick="mostrarInicio()">
+🏠 Voltar ao início
+</button>
 
 </section>
 
@@ -828,6 +905,10 @@ oninput="mostrarProdutos()"
 
 <script>
 
+/* =========================
+   CONTAS
+========================= */
+
 function obterConta(){
 
 const dados=localStorage.getItem("gtubeUtilizador");
@@ -847,374 +928,59 @@ return dados ? JSON.parse(dados) : null;
 
 
 /* =========================
-   CARRINHO
+   PRODUTOS
 ========================= */
 
-function obterCarrinho(){
+function obterProdutos(){
 
-const dados=localStorage.getItem("gtubeCarrinho");
+const dados=localStorage.getItem("gtubeProdutos");
 
-return dados ? JSON.parse(dados) : [];
+if(!dados){
 
+const iniciais=[
+
+{
+nome:"Smartphone",
+descricao:"Smartphone em excelente estado.",
+preco:150000,
+categoria:"Telefones",
+emoji:"📱",
+foto:"",
+vendedor:"GTube"
+},
+
+{
+nome:"Ténis",
+descricao:"Ténis modernos e confortáveis.",
+preco:35000,
+categoria:"Moda",
+emoji:"👟",
+foto:"",
+vendedor:"GTube"
+},
+
+{
+nome:"Computador",
+descricao:"Computador para trabalho e estudos.",
+preco:250000,
+categoria:"Computadores",
+emoji:"💻",
+foto:"",
+vendedor:"GTube"
 }
 
-
-function guardarCarrinho(carrinho){
+];
 
 localStorage.setItem(
-"gtubeCarrinho",
-JSON.stringify(carrinho)
+"gtubeProdutos",
+JSON.stringify(iniciais)
 );
 
-atualizarContadorCarrinho();
+return iniciais;
 
 }
 
-
-function atualizarContadorCarrinho(){
-
-const carrinho=obterCarrinho();
-
-let total=0;
-
-carrinho.forEach(function(item){
-
-total+=item.quantidade;
-
-});
-
-document.getElementById("contadorCarrinho")
-.textContent=total;
-
-}
-
-
-function adicionarCarrinho(nome){
-
-const produtos=obterProdutos();
-
-const produto=produtos.find(function(p){
-
-return p.nome===nome;
-
-});
-
-
-if(!produto){
-
-return;
-
-}
-
-
-const carrinho=obterCarrinho();
-
-const existente=carrinho.find(function(item){
-
-return item.nome===nome;
-
-});
-
-
-if(existente){
-
-existente.quantidade++;
-
-}else{
-
-carrinho.push({
-
-nome:produto.nome,
-preco:produto.preco,
-emoji:produto.emoji,
-foto:produto.foto,
-vendedor:produto.vendedor,
-quantidade:1
-
-});
-
-}
-
-
-guardarCarrinho(carrinho);
-
-
-alert(
-"🛒 "+produto.nome+
-" foi adicionado ao carrinho!"
-);
-
-}
-
-
-function alterarQuantidade(nome,valor){
-
-const carrinho=obterCarrinho();
-
-const item=carrinho.find(function(produto){
-
-return produto.nome===nome;
-
-});
-
-
-if(!item){
-
-return;
-
-}
-
-
-item.quantidade+=valor;
-
-
-if(item.quantidade<=0){
-
-const indice=carrinho.indexOf(item);
-
-carrinho.splice(indice,1);
-
-}
-
-
-guardarCarrinho(carrinho);
-
-mostrarCarrinho();
-
-}
-
-
-function removerCarrinho(nome){
-
-const carrinho=obterCarrinho();
-
-const novo=carrinho.filter(function(item){
-
-return item.nome!==nome;
-
-});
-
-
-guardarCarrinho(novo);
-
-mostrarCarrinho();
-
-}
-
-
-function mostrarCarrinho(){
-
-esconderTudo();
-
-document.getElementById("carrinho")
-.style.display="block";
-
-
-const lista=document.getElementById("listaCarrinho");
-
-const totalElemento=document.getElementById("totalCarrinho");
-
-const carrinho=obterCarrinho();
-
-
-if(carrinho.length===0){
-
-lista.innerHTML=`
-
-<div class="empty-cart">
-
-<h2>🛒</h2>
-
-<h3>O teu carrinho está vazio</h3>
-
-<p>Adiciona produtos para começar a comprar.</p>
-
-<button
-class="primary"
-onclick="mostrarInicio()"
->
-🔥 Ver produtos
-</button>
-
-</div>
-
-`;
-
-totalElemento.textContent="Total: 0 Kz";
-
-return;
-
-}
-
-
-let total=0;
-
-lista.innerHTML="";
-
-
-carrinho.forEach(function(item){
-
-const subtotal=item.preco*item.quantidade;
-
-total+=subtotal;
-
-
-let imagem=item.emoji;
-
-if(item.foto){
-
-imagem='<img src="'+item.foto+'" alt="Produto">';
-
-}
-
-
-lista.innerHTML+=`
-
-<div class="cart-item">
-
-<div class="cart-item-image">
-
-${imagem}
-
-</div>
-
-<div class="cart-item-info">
-
-<h3>${item.nome}</h3>
-
-<p>
-${Number(item.preco)
-.toLocaleString("pt-AO")} Kz
-</p>
-
-<div class="quantity">
-
-<button
-class="secondary"
-onclick="alterarQuantidade(${JSON.stringify(item.nome)},-1)"
->
-−
-</button>
-
-<strong>${item.quantidade}</strong>
-
-<button
-class="primary"
-onclick="alterarQuantidade(${JSON.stringify(item.nome)},1)"
->
-+
-</button>
-
-<button
-class="danger"
-onclick="removerCarrinho(${JSON.stringify(item.nome)})"
->
-🗑️
-</button>
-
-</div>
-
-<p>
-<strong>
-Subtotal:
-${Number(subtotal)
-.toLocaleString("pt-AO")} Kz
-</strong>
-</p>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-
-totalElemento.textContent=
-"Total: "+
-Number(total).toLocaleString("pt-AO")+
-" Kz";
-
-}
-
-
-function finalizarPedido(){
-
-const carrinho=obterCarrinho();
-
-if(carrinho.length===0){
-
-alert("🛒 O carrinho está vazio.");
-
-return;
-
-}
-
-
-if(!obterSessao()){
-
-alert(
-"🔐 Para finalizar o pedido, primeiro entra na tua conta."
-);
-
-mostrarLogin();
-
-return;
-
-}
-
-
-let total=0;
-
-carrinho.forEach(function(item){
-
-total+=item.preco*item.quantidade;
-
-});
-
-
-const confirmar=confirm(
-
-"Confirmar pedido?\n\n"+
-"Total: "+
-Number(total).toLocaleString("pt-AO")+
-" Kz"
-
-);
-
-
-if(!confirmar){
-
-return;
-
-}
-
-
-localStorage.setItem(
-"gtubeUltimoPedido",
-JSON.stringify({
-
-data:new Date().toISOString(),
-produtos:carrinho,
-total:total,
-cliente:obterSessao().nome
-
-})
-);
-
-
-localStorage.removeItem("gtubeCarrinho");
-
-atualizarContadorCarrinho();
-
-alert(
-"🎉 Pedido criado com sucesso!\n\n"+
-"O sistema de pagamento e entrega será conectado numa próxima fase."
-);
-
-
-mostrarInicio();
+return JSON.parse(dados);
 
 }
 
@@ -1234,11 +1000,17 @@ function esconderTudo(){
 "venda",
 "meusProdutos",
 "favoritos",
+"detalhe",
 "carrinho",
-"detalhe"
+"checkout",
+"sucesso"
 ].forEach(function(id){
 
-document.getElementById(id).style.display="none";
+const elemento=document.getElementById(id);
+
+if(elemento){
+elemento.style.display="none";
+}
 
 });
 
@@ -1249,8 +1021,7 @@ function mostrarInicio(){
 
 esconderTudo();
 
-document.getElementById("hero")
-.style.display="block";
+document.getElementById("hero").style.display="block";
 
 window.scrollTo({
 top:0,
@@ -1264,13 +1035,7 @@ function mostrarCadastro(){
 
 esconderTudo();
 
-document.getElementById("cadastro")
-.style.display="block";
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+document.getElementById("cadastro").style.display="block";
 
 }
 
@@ -1279,13 +1044,7 @@ function mostrarLogin(){
 
 esconderTudo();
 
-document.getElementById("login")
-.style.display="block";
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+document.getElementById("login").style.display="block";
 
 }
 
@@ -1306,33 +1065,29 @@ mostrarLogin();
 
 
 /* =========================
-   CONTAS
+   CADASTRO
 ========================= */
 
 function criarConta(){
 
-const nome=document.getElementById("nome")
-.value.trim();
+const nome=document.getElementById("nome").value.trim();
 
 const email=document.getElementById("email")
 .value.trim()
 .toLowerCase();
 
-const senha=document.getElementById("senha")
-.value;
+const senha=document.getElementById("senha").value;
 
 const mensagem=document.getElementById("mensagemCadastro");
 
 
 if(!nome || !email || !senha){
 
-mensagem.textContent=
-"⚠️ Preenche todos os campos.";
+mensagem.textContent="⚠️ Preenche todos os campos.";
 
 return;
 
 }
-
 
 if(senha.length<6){
 
@@ -1375,14 +1130,17 @@ mostrarPainel();
 }
 
 
+/* =========================
+   LOGIN
+========================= */
+
 function entrar(){
 
 const email=document.getElementById("loginEmail")
 .value.trim()
 .toLowerCase();
 
-const senha=document.getElementById("loginSenha")
-.value;
+const senha=document.getElementById("loginSenha").value;
 
 const mensagem=document.getElementById("mensagemLogin");
 
@@ -1429,13 +1187,15 @@ mensagem.textContent=
 }
 
 
+/* =========================
+   PAINEL
+========================= */
+
 function mostrarPainel(){
 
 esconderTudo();
 
-document.getElementById("conta")
-.style.display="block";
-
+document.getElementById("conta").style.display="block";
 
 const utilizador=obterSessao();
 
@@ -1446,19 +1206,16 @@ document.getElementById("nomeBemVindo")
 
 }
 
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
 }
 
+
+/* =========================
+   PERFIL
+========================= */
 
 function mostrarPerfil(){
 
 const utilizador=obterSessao();
-
 
 if(!utilizador){
 
@@ -1468,11 +1225,9 @@ return;
 
 }
 
-
 esconderTudo();
 
-document.getElementById("perfil")
-.style.display="block";
+document.getElementById("perfil").style.display="block";
 
 document.getElementById("perfilNome")
 .textContent=utilizador.nome;
@@ -1483,80 +1238,24 @@ document.getElementById("perfilEmail")
 }
 
 
+/* =========================
+   SESSÃO
+========================= */
+
 function terminarSessao(){
 
 localStorage.removeItem("gtubeSessao");
 
 mostrarInicio();
 
-alert(
-"Sessão terminada com sucesso. 👋"
-);
+alert("Sessão terminada com sucesso. 👋");
 
 }
 
 
 /* =========================
-   PRODUTOS
+   PUBLICAR
 ========================= */
-
-function obterProdutos(){
-
-const dados=
-localStorage.getItem("gtubeProdutos");
-
-
-if(!dados){
-
-const iniciais=[
-
-{
-nome:"Smartphone",
-descricao:"Smartphone em excelente estado.",
-preco:150000,
-categoria:"Telefones",
-emoji:"📱",
-foto:"",
-vendedor:"GTube"
-},
-
-{
-nome:"Ténis",
-descricao:"Ténis modernos e confortáveis.",
-preco:35000,
-categoria:"Moda",
-emoji:"👟",
-foto:"",
-vendedor:"GTube"
-},
-
-{
-nome:"Computador",
-descricao:"Computador para trabalho e estudos.",
-preco:250000,
-categoria:"Computadores",
-emoji:"💻",
-foto:"",
-vendedor:"GTube"
-}
-
-];
-
-
-localStorage.setItem(
-"gtubeProdutos",
-JSON.stringify(iniciais)
-);
-
-return iniciais;
-
-}
-
-
-return JSON.parse(dados);
-
-}
-
 
 function lerImagem(file,callback){
 
@@ -1568,16 +1267,13 @@ return;
 
 }
 
-
 const reader=new FileReader();
-
 
 reader.onload=function(e){
 
 callback(e.target.result);
 
 };
-
 
 reader.readAsDataURL(file);
 
@@ -1587,7 +1283,6 @@ reader.readAsDataURL(file);
 function publicarProduto(){
 
 const utilizador=obterSessao();
-
 
 if(!utilizador){
 
@@ -1608,24 +1303,20 @@ const preco=Number(
 document.getElementById("produtoPreco").value
 );
 
-const categoria=document.getElementById("produtoCategoria")
-.value;
+const categoria=
+document.getElementById("produtoCategoria").value;
 
-const emoji=document.getElementById("produtoEmoji")
-.value;
+const emoji=
+document.getElementById("produtoEmoji").value;
 
-const file=document.getElementById("produtoFoto")
-.files[0];
+const file=
+document.getElementById("produtoFoto").files[0];
 
-const mensagem=document.getElementById("mensagemVenda");
+const mensagem=
+document.getElementById("mensagemVenda");
 
 
-if(
-!nome ||
-!descricao ||
-!preco ||
-!categoria
-){
+if(!nome || !descricao || !preco || !categoria){
 
 mensagem.textContent=
 "⚠️ Preenche todos os campos.";
@@ -1696,21 +1387,18 @@ function mostrarVenda(){
 
 esconderTudo();
 
-document.getElementById("venda")
-.style.display="block";
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
+document.getElementById("venda").style.display="block";
 
 }
 
 
+/* =========================
+   MEUS PRODUTOS
+========================= */
+
 function mostrarMeusProdutos(){
 
 const utilizador=obterSessao();
-
 
 if(!utilizador){
 
@@ -1728,7 +1416,6 @@ document.getElementById("meusProdutos")
 
 
 const produtos=obterProdutos();
-
 
 const meus=produtos.filter(function(produto){
 
@@ -1833,6 +1520,7 @@ const favoritos=obterFavoritos();
 
 const produtos=obterProdutos();
 
+
 const lista=
 document.getElementById("listaFavoritos");
 
@@ -1867,7 +1555,7 @@ lista.innerHTML+=criarCard(produto);
 
 
 /* =========================
-   CARD
+   CARDS
 ========================= */
 
 function criarCard(produto){
@@ -1879,12 +1567,10 @@ const favorito=favoritos.includes(produto.nome);
 
 let imagem=produto.emoji;
 
-
 if(produto.foto){
 
 imagem=
-'<img src="'+produto.foto+
-'" alt="Produto">';
+'<img src="'+produto.foto+'" alt="Produto">';
 
 }
 
@@ -1920,26 +1606,19 @@ ${Number(produto.preco)
 
 <button
 class="primary"
-onclick="abrirProduto(${JSON.stringify(produto.nome)})"
+onclick='abrirProduto(${JSON.stringify(produto.nome)})'
 >
 Ver produto
 </button>
 
 <button
 class="favorite"
-onclick="alternarFavorito(${JSON.stringify(produto.nome)})"
+onclick='alternarFavorito(${JSON.stringify(produto.nome)})'
 >
 ${favorito ? "❤️" : "♡"}
 </button>
 
 </div>
-
-<button
-class="add-cart"
-onclick="adicionarCarrinho(${JSON.stringify(produto.nome)})"
->
-🛒 Adicionar ao carrinho
-</button>
 
 </div>
 
@@ -1968,41 +1647,31 @@ mostrarProdutos();
 
 function mostrarProdutos(){
 
-const lista=
-document.getElementById("produtos");
+const lista=document.getElementById("produtos");
 
-const campo=
-document.getElementById("pesquisa");
+const campo=document.getElementById("pesquisa");
 
 const pesquisa=
-campo ?
-campo.value.toLowerCase() :
-"";
+campo ? campo.value.toLowerCase() : "";
+
+const produtos=obterProdutos();
 
 
-const produtos=
-obterProdutos();
-
-
-const filtrados=
-produtos.filter(function(produto){
+const filtrados=produtos.filter(function(produto){
 
 const texto=
 
-produto.nome
-.toLowerCase()
+produto.nome.toLowerCase()
 .includes(pesquisa)
 
 ||
 
-produto.categoria
-.toLowerCase()
+produto.categoria.toLowerCase()
 .includes(pesquisa)
 
 ||
 
-produto.descricao
-.toLowerCase()
+produto.descricao.toLowerCase()
 .includes(pesquisa);
 
 
@@ -2044,12 +1713,9 @@ lista.innerHTML+=criarCard(produto);
 
 function abrirProduto(nome){
 
-const produtos=
-obterProdutos();
+const produtos=obterProdutos();
 
-
-const produto=
-produtos.find(function(p){
+const produto=produtos.find(function(p){
 
 return p.nome===nome;
 
@@ -2067,12 +1733,10 @@ document.getElementById("detalhe")
 
 let imagem=produto.emoji;
 
-
 if(produto.foto){
 
 imagem=
-'<img src="'+produto.foto+
-'" alt="Produto">';
+'<img src="'+produto.foto+'" alt="Produto">';
 
 }
 
@@ -2115,14 +1779,16 @@ ${Number(produto.preco)
 
 <button
 class="primary"
-onclick="adicionarCarrinho(${JSON.stringify(produto.nome)})"
+onclick='adicionarAoCarrinho(${JSON.stringify(produto.nome)})'
 >
 🛒 Adicionar ao carrinho
 </button>
 
+<br>
+
 <button
 class="contact"
-onclick="contactarVendedor(${JSON.stringify(produto.vendedor)})"
+onclick='contactarVendedor(${JSON.stringify(produto.vendedor)})'
 >
 📞 Contactar vendedor
 </button>
@@ -2142,14 +1808,12 @@ onclick="mostrarInicio()"
 
 `;
 
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
 }
 
+
+/* =========================
+   CONTACTAR
+========================= */
 
 function contactarVendedor(nome){
 
@@ -2162,15 +1826,500 @@ alert(
 
 
 /* =========================
+   CARRINHO
+========================= */
+
+function obterCarrinho(){
+
+const dados=
+localStorage.getItem("gtubeCarrinho");
+
+return dados ? JSON.parse(dados) : [];
+
+}
+
+
+function guardarCarrinho(carrinho){
+
+localStorage.setItem(
+"gtubeCarrinho",
+JSON.stringify(carrinho)
+);
+
+atualizarContadorCarrinho();
+
+}
+
+
+function atualizarContadorCarrinho(){
+
+const carrinho=obterCarrinho();
+
+let total=0;
+
+carrinho.forEach(function(item){
+
+total+=item.quantidade;
+
+});
+
+
+document.getElementById("cartCount")
+.textContent=total;
+
+}
+
+
+function adicionarAoCarrinho(nome){
+
+const produtos=obterProdutos();
+
+const produto=produtos.find(function(p){
+
+return p.nome===nome;
+
+});
+
+
+if(!produto)return;
+
+
+const carrinho=obterCarrinho();
+
+const existente=carrinho.find(function(item){
+
+return item.nome===nome;
+
+});
+
+
+if(existente){
+
+existente.quantidade++;
+
+}else{
+
+carrinho.push({
+
+nome:produto.nome,
+descricao:produto.descricao,
+preco:produto.preco,
+categoria:produto.categoria,
+emoji:produto.emoji,
+foto:produto.foto,
+vendedor:produto.vendedor,
+quantidade:1
+
+});
+
+}
+
+
+guardarCarrinho(carrinho);
+
+
+alert(
+"🛒 "+produto.nome+
+" foi adicionado ao carrinho!"
+);
+
+
+mostrarCarrinho();
+
+}
+
+
+function alterarQuantidade(nome,valor){
+
+const carrinho=obterCarrinho();
+
+const item=carrinho.find(function(i){
+
+return i.nome===nome;
+
+});
+
+
+if(!item)return;
+
+
+item.quantidade+=valor;
+
+
+if(item.quantidade<=0){
+
+const indice=carrinho.indexOf(item);
+
+carrinho.splice(indice,1);
+
+}
+
+
+guardarCarrinho(carrinho);
+
+mostrarCarrinho();
+
+}
+
+
+function removerDoCarrinho(nome){
+
+let carrinho=obterCarrinho();
+
+carrinho=carrinho.filter(function(item){
+
+return item.nome!==nome;
+
+});
+
+
+guardarCarrinho(carrinho);
+
+mostrarCarrinho();
+
+}
+
+
+function calcularTotal(){
+
+const carrinho=obterCarrinho();
+
+let total=0;
+
+carrinho.forEach(function(item){
+
+total+=Number(item.preco)*item.quantidade;
+
+});
+
+
+return total;
+
+}
+
+
+function mostrarCarrinho(){
+
+esconderTudo();
+
+document.getElementById("carrinho")
+.style.display="block";
+
+
+const lista=
+document.getElementById("listaCarrinho");
+
+const vazio=
+document.getElementById("carrinhoVazio");
+
+const carrinho=obterCarrinho();
+
+
+lista.innerHTML="";
+
+
+if(carrinho.length===0){
+
+vazio.innerHTML=
+"<p>🛒 O teu carrinho está vazio.</p>";
+
+document.getElementById("subtotalCarrinho")
+.textContent="0 Kz";
+
+return;
+
+}
+
+
+vazio.innerHTML="";
+
+
+carrinho.forEach(function(item){
+
+let imagem=item.emoji;
+
+if(item.foto){
+
+imagem=
+'<img src="'+item.foto+'" alt="Produto">';
+
+}
+
+
+lista.innerHTML+=`
+
+<div class="cart-item">
+
+<div class="cart-item-image">
+
+${imagem}
+
+</div>
+
+<div class="cart-item-info">
+
+<h3>${item.nome}</h3>
+
+<p>
+${Number(item.preco)
+.toLocaleString("pt-AO")} Kz
+</p>
+
+<div class="quantity">
+
+<button
+class="secondary"
+onclick='alterarQuantidade(${JSON.stringify(item.nome)},-1)'
+>
+−
+</button>
+
+<strong>${item.quantidade}</strong>
+
+<button
+class="primary"
+onclick='alterarQuantidade(${JSON.stringify(item.nome)},1)'
+>
++
+</button>
+
+<button
+class="danger"
+onclick='removerDoCarrinho(${JSON.stringify(item.nome)})'
+>
+🗑️
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+document.getElementById("subtotalCarrinho")
+.textContent=
+calcularTotal().toLocaleString("pt-AO")+" Kz";
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function irParaCheckout(){
+
+const carrinho=obterCarrinho();
+
+if(carrinho.length===0){
+
+alert("🛒 O carrinho está vazio.");
+
+return;
+
+}
+
+
+if(!obterSessao()){
+
+alert(
+"🔐 Primeiro entra na tua conta para finalizar a compra."
+);
+
+mostrarLogin();
+
+return;
+
+}
+
+
+esconderTudo();
+
+document.getElementById("checkout")
+.style.display="block";
+
+
+mostrarResumoCheckout();
+
+}
+
+
+function mostrarResumoCheckout(){
+
+const carrinho=obterCarrinho();
+
+const resumo=
+document.getElementById("resumoCheckout");
+
+resumo.innerHTML="";
+
+
+carrinho.forEach(function(item){
+
+resumo.innerHTML+=`
+
+<p>
+${item.nome}
+× ${item.quantidade}
+—
+<strong>
+${(
+Number(item.preco)*item.quantidade
+).toLocaleString("pt-AO")} Kz
+</strong>
+</p>
+
+`;
+
+});
+
+
+document.getElementById("totalCheckout")
+.textContent=
+calcularTotal()
+.toLocaleString("pt-AO")+" Kz";
+
+
+const utilizador=obterSessao();
+
+if(utilizador){
+
+document.getElementById("clienteNome")
+.value=utilizador.nome;
+
+}
+
+}
+
+
+function confirmarPedido(){
+
+const nome=
+document.getElementById("clienteNome")
+.value.trim();
+
+const telefone=
+document.getElementById("clienteTelefone")
+.value.trim();
+
+const endereco=
+document.getElementById("clienteEndereco")
+.value.trim();
+
+const mensagem=
+document.getElementById("mensagemCheckout");
+
+
+if(!nome || !telefone || !endereco){
+
+mensagem.textContent=
+"⚠️ Preenche o nome, telefone e endereço de entrega.";
+
+return;
+
+}
+
+
+const carrinho=obterCarrinho();
+
+if(carrinho.length===0){
+
+mensagem.textContent=
+"⚠️ O carrinho está vazio.";
+
+return;
+
+}
+
+
+const pedido={
+
+numero:
+"GT-"+Date.now(),
+
+cliente:nome,
+
+telefone:telefone,
+
+endereco:endereco,
+
+produtos:carrinho,
+
+total:calcularTotal(),
+
+data:new Date().toLocaleString("pt-AO")
+
+};
+
+
+localStorage.setItem(
+"gtubeUltimoPedido",
+JSON.stringify(pedido)
+);
+
+
+localStorage.removeItem("gtubeCarrinho");
+
+atualizarContadorCarrinho();
+
+
+document.getElementById("numeroPedido")
+.innerHTML=`
+
+<p>
+<strong>Número da encomenda:</strong>
+${pedido.numero}
+</p>
+
+<p>
+<strong>Total:</strong>
+${pedido.total.toLocaleString("pt-AO")} Kz
+</p>
+
+<p>
+📞 Telefone: ${pedido.telefone}
+</p>
+
+<p>
+📍 Entrega: ${pedido.endereco}
+</p>
+
+`;
+
+
+esconderTudo();
+
+document.getElementById("sucesso")
+.style.display="block";
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+
+}
+
+
+/* =========================
    COMPRAR
 ========================= */
 
 function comprar(produto){
 
-adicionarCarrinho(produto);
+adicionarAoCarrinho(produto);
 
 }
 
+
+/* =========================
+   INICIAR
+========================= */
 
 mostrarProdutos();
 
