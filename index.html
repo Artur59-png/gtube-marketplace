@@ -2,107 +2,231 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GTube Marketplace</title>
 
 <style>
 *{box-sizing:border-box}
 
+:root{
+  --primary:#6c35ff;
+  --secondary:#ff3d81;
+  --orange:#ff9f1c;
+  --green:#16c784;
+  --dark:#15151b;
+  --light:#f6f7fb;
+  --text:#20212a;
+  --muted:#777b87;
+  --white:#fff;
+}
+
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#f4f5f7;
-  color:#202124;
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--light);
+  color:var(--text);
+  padding-bottom:80px;
 }
 
 header{
-  background:linear-gradient(135deg,#111,#292929);
+  background:linear-gradient(135deg,#6c35ff,#a52cff,#ff3d81);
   color:white;
-  padding:22px 16px;
-  text-align:center;
-  position:relative;
+  padding:18px 16px 28px;
+  border-radius:0 0 28px 28px;
 }
 
-header h1{
-  margin:0;
-  font-size:32px;
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  max-width:1100px;
+  margin:auto;
 }
 
-header p{
-  margin:7px 0;
-  color:#ddd;
+.logo{
+  font-size:28px;
+  font-weight:900;
+  letter-spacing:-1px;
 }
 
 .online{
-  color:#36d477;
-  font-size:14px;
-  font-weight:bold;
+  font-size:12px;
+  background:rgba(255,255,255,.18);
+  padding:7px 10px;
+  border-radius:20px;
+}
+
+.hero{
+  max-width:1100px;
+  margin:20px auto 0;
+}
+
+.hero h1{
+  font-size:32px;
+  margin:10px 0;
+}
+
+.hero p{
+  color:#f0eaff;
+  margin-bottom:20px;
+}
+
+.search{
+  width:100%;
+  border:0;
+  outline:none;
+  padding:16px 18px;
+  border-radius:16px;
+  font-size:16px;
+  box-shadow:0 8px 25px rgba(0,0,0,.12);
 }
 
 .container{
   max-width:1100px;
   margin:auto;
-  padding:16px;
+  padding:18px 14px;
 }
 
-.card{
-  background:white;
-  padding:22px;
-  border-radius:20px;
-  margin-bottom:18px;
-  box-shadow:0 4px 18px rgba(0,0,0,.07);
+.section{
+  margin-bottom:24px;
 }
 
-.hero{
-  background:linear-gradient(135deg,#111,#3b3b3b);
-  color:white;
-  text-align:center;
-  padding:40px 20px;
-}
-
-.hero h2{
-  font-size:30px;
-  margin:0 0 10px;
-}
-
-.hero p{
-  color:#ddd;
-}
-
-button{
-  border:0;
-  padding:13px 19px;
-  border-radius:11px;
-  font-size:16px;
-  cursor:pointer;
-  margin:4px;
-}
-
-.primary{
-  background:#111;
-  color:white;
-}
-
-.hero .primary{
-  background:white;
-  color:#111;
-}
-
-.secondary{
-  background:#e8e8e8;
-  color:#111;
-}
-
-.danger{
-  background:#d93025;
-  color:white;
-}
-
-.buttons{
+.section-title{
   display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:13px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:21px;
+}
+
+.see{
+  color:var(--primary);
+  font-size:14px;
+  font-weight:bold;
+}
+
+.categories{
+  display:flex;
+  gap:12px;
+  overflow-x:auto;
+  padding-bottom:5px;
+}
+
+.categories::-webkit-scrollbar{
+  display:none;
+}
+
+.category{
+  min-width:90px;
+  background:white;
+  padding:14px 8px;
+  border-radius:18px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(0,0,0,.06);
+  cursor:pointer;
+  transition:.2s;
+}
+
+.category:active{
+  transform:scale(.95);
+}
+
+.category-icon{
+  width:48px;
+  height:48px;
+  margin:auto auto 7px;
+  display:flex;
+  align-items:center;
   justify-content:center;
-  flex-wrap:wrap;
-  gap:7px;
+  border-radius:15px;
+  font-size:25px;
+}
+
+.c1{background:#eee7ff}
+.c2{background:#e1f3ff}
+.c3{background:#ffe5ef}
+.c4{background:#fff0d8}
+.c5{background:#e2f9ed}
+.c6{background:#eee}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
+}
+
+.product{
+  background:white;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow:0 5px 18px rgba(0,0,0,.07);
+  position:relative;
+}
+
+.product-image{
+  height:145px;
+  background:linear-gradient(135deg,#f0eff7,#dedee8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:58px;
+}
+
+.favorite{
+  position:absolute;
+  top:9px;
+  right:9px;
+  width:36px;
+  height:36px;
+  border-radius:50%;
+  background:white;
+  border:0;
+  font-size:19px;
+  padding:0;
+  margin:0;
+  box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+
+.product-body{
+  padding:13px;
+}
+
+.product h3{
+  margin:0 0 5px;
+  font-size:16px;
+}
+
+.description{
+  color:var(--muted);
+  font-size:13px;
+  height:32px;
+  overflow:hidden;
+}
+
+.price{
+  font-size:19px;
+  font-weight:900;
+  margin:9px 0;
+}
+
+.seller{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:10px;
+}
+
+.buy{
+  width:100%;
+  background:var(--dark);
+  color:white;
+  border:0;
+  border-radius:11px;
+  padding:11px;
+  font-weight:bold;
 }
 
 .form-box,
@@ -111,19 +235,48 @@ button{
 .profile-box,
 .products-box{
   display:none;
+  background:white;
+  padding:22px;
+  border-radius:20px;
+  margin-bottom:20px;
+  box-shadow:0 5px 20px rgba(0,0,0,.07);
 }
 
 input,textarea,select{
   width:100%;
   padding:14px;
   margin:7px 0;
-  border:1px solid #ccc;
-  border-radius:11px;
+  border:1px solid #ddd;
+  border-radius:12px;
   font-size:16px;
+  outline:none;
 }
 
-textarea{
-  min-height:100px;
+input:focus,textarea:focus,select:focus{
+  border-color:var(--primary);
+}
+
+button{
+  cursor:pointer;
+  border:0;
+  padding:12px 17px;
+  border-radius:12px;
+  font-size:15px;
+}
+
+.primary{
+  background:var(--primary);
+  color:white;
+}
+
+.secondary{
+  background:#eee;
+  color:#222;
+}
+
+.danger{
+  background:#e53935;
+  color:white;
 }
 
 .message{
@@ -131,156 +284,96 @@ textarea{
   font-weight:bold;
 }
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  margin-bottom:14px;
-}
-
-.section-title h2{
-  margin:0;
-}
-
-.categories{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.category{
-  background:#f1f2f4;
-  padding:17px 8px;
-  border-radius:15px;
-  text-align:center;
-  cursor:pointer;
-  font-size:15px;
-  transition:.2s;
-}
-
-.category:hover{
-  background:#e3e4e7;
-  transform:translateY(-2px);
-}
-
-.category-icon{
-  font-size:30px;
-  display:block;
-  margin-bottom:6px;
-}
-
-.search{
-  width:100%;
-  padding:15px;
-  border-radius:13px;
-  border:1px solid #ccc;
-  font-size:16px;
-  margin-bottom:15px;
-}
-
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
-  gap:15px;
-}
-
-.product{
-  background:white;
-  border:1px solid #eee;
-  padding:13px;
-  border-radius:17px;
-  box-shadow:0 3px 12px rgba(0,0,0,.06);
-}
-
-.product-image{
-  height:150px;
-  background:linear-gradient(135deg,#eee,#ddd);
-  border-radius:13px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:58px;
-}
-
-.product h3{
-  margin-bottom:5px;
-}
-
-.price{
-  font-size:20px;
-  font-weight:bold;
-}
-
-.product button{
-  width:calc(100% - 8px);
-}
-
 .account-menu{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  gap:12px;
+  gap:10px;
   margin:20px 0;
 }
 
 .account-card{
-  background:#f2f3f5;
-  padding:20px 10px;
+  background:#f5f5f8;
+  padding:18px 8px;
   border-radius:15px;
   text-align:center;
   cursor:pointer;
 }
 
-.account-card:hover{
-  background:#e4e5e8;
+.account-card:active{
+  transform:scale(.97);
+}
+
+.sell-title{
+  font-size:24px;
+  margin-top:0;
 }
 
 .empty{
   text-align:center;
-  padding:25px;
+  padding:30px;
+  color:var(--muted);
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(12px);
+  border-top:1px solid #eee;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  z-index:100;
+}
+
+.nav-item{
+  background:none;
+  padding:5px;
   color:#777;
+  font-size:11px;
+  text-align:center;
+}
+
+.nav-item span{
+  display:block;
+  font-size:23px;
+  margin-bottom:2px;
+}
+
+.nav-item.active{
+  color:var(--primary);
+  font-weight:bold;
+}
+
+.sell-nav{
+  width:54px;
+  height:54px;
+  margin-top:-25px;
+  border-radius:50%;
+  background:linear-gradient(135deg,#6c35ff,#ff3d81);
+  color:white;
+  font-size:28px;
+  box-shadow:0 6px 20px rgba(108,53,255,.4);
 }
 
 footer{
   text-align:center;
-  padding:30px 15px;
-  color:#777;
-  font-size:14px;
+  color:#888;
+  padding:25px;
+  font-size:12px;
 }
 
-@media(max-width:600px){
-
-  .container{
-    padding:11px;
-  }
-
-  .hero h2{
-    font-size:25px;
-  }
-
-  .categories{
-    grid-template-columns:repeat(3,1fr);
-  }
-
-  .account-menu{
-    grid-template-columns:1fr;
-  }
-
+@media(min-width:700px){
   .products{
-    grid-template-columns:1fr 1fr;
+    grid-template-columns:repeat(4,1fr);
   }
 
-  .product-image{
-    height:120px;
+  .hero h1{
+    font-size:42px;
   }
-}
-
-@media(max-width:390px){
-
-  .products{
-    grid-template-columns:1fr;
-  }
-
 }
 </style>
 </head>
@@ -288,76 +381,106 @@ footer{
 <body>
 
 <header>
-  <h1>GTube</h1>
-  <p>Compra. Vende. Conecta.</p>
-  <div class="online">● GTube online</div>
+
+  <div class="topbar">
+
+    <div class="logo">GTube</div>
+
+    <div class="online">
+      ● Online
+    </div>
+
+  </div>
+
+  <div class="hero">
+
+    <h1>Compra. Vende. Conecta. 🚀</h1>
+
+    <p>
+      Descobre milhares de oportunidades no GTube.
+    </p>
+
+    <input
+      id="pesquisa"
+      class="search"
+      type="text"
+      placeholder="🔎 O que estás à procura?"
+      oninput="mostrarProdutos()"
+    >
+
+  </div>
+
 </header>
+
 
 <div class="container">
 
-<!-- HERO -->
-<section id="inicio" class="card hero">
+<!-- INÍCIO -->
 
-  <h2>Encontra o que precisas 🚀</h2>
+<section id="inicio">
 
-  <p>
-    Descobre produtos, compara preços
-    e faz negócios no GTube.
-  </p>
+  <div class="section">
 
-  <div class="buttons">
+    <div class="section-title">
+      <h2>🏷️ Categorias</h2>
+    </div>
 
-    <button class="primary" onclick="mostrarCadastro()">
-      👤 Criar conta
-    </button>
+    <div class="categories">
 
-    <button class="secondary" onclick="mostrarLogin()">
-      🔐 Entrar
-    </button>
+      <div class="category"
+           onclick="filtrarCategoria('Telefones')">
+        <div class="category-icon c1">📱</div>
+        Telefones
+      </div>
+
+      <div class="category"
+           onclick="filtrarCategoria('Computadores')">
+        <div class="category-icon c2">💻</div>
+        Computadores
+      </div>
+
+      <div class="category"
+           onclick="filtrarCategoria('Moda')">
+        <div class="category-icon c3">👟</div>
+        Moda
+      </div>
+
+      <div class="category"
+           onclick="filtrarCategoria('Carros')">
+        <div class="category-icon c4">🚗</div>
+        Carros
+      </div>
+
+      <div class="category"
+           onclick="filtrarCategoria('Casa')">
+        <div class="category-icon c5">🏠</div>
+        Casa
+      </div>
+
+      <div class="category"
+           onclick="filtrarCategoria('Outros')">
+        <div class="category-icon c6">📦</div>
+        Outros
+      </div>
+
+    </div>
 
   </div>
 
-</section>
 
+  <div class="section">
 
-<!-- CATEGORIAS -->
-<section class="card">
+    <div class="section-title">
 
-  <div class="section-title">
-    <h2>🏷️ Categorias</h2>
-  </div>
+      <h2>🔥 Produtos em destaque</h2>
 
-  <div class="categories">
+      <span class="see">
+        Ver todos
+      </span>
 
-    <div class="category" onclick="filtrarCategoria('Telefones')">
-      <span class="category-icon">📱</span>
-      Telefones
     </div>
 
-    <div class="category" onclick="filtrarCategoria('Computadores')">
-      <span class="category-icon">💻</span>
-      Computadores
-    </div>
-
-    <div class="category" onclick="filtrarCategoria('Moda')">
-      <span class="category-icon">👟</span>
-      Moda
-    </div>
-
-    <div class="category" onclick="filtrarCategoria('Carros')">
-      <span class="category-icon">🚗</span>
-      Carros
-    </div>
-
-    <div class="category" onclick="filtrarCategoria('Casa')">
-      <span class="category-icon">🏠</span>
-      Casa
-    </div>
-
-    <div class="category" onclick="filtrarCategoria('Outros')">
-      <span class="category-icon">📦</span>
-      Outros
-    </div>
+    <div id="produtos" class="products"></div>
 
   </div>
 
@@ -365,78 +488,120 @@ footer{
 
 
 <!-- CADASTRO -->
-<section id="cadastro" class="card form-box">
+
+<section id="cadastro" class="form-box">
 
   <h2>👤 Criar conta</h2>
 
-  <input id="nome" type="text" placeholder="Seu nome">
+  <input
+    id="nome"
+    type="text"
+    placeholder="Seu nome"
+  >
 
-  <input id="email" type="email" placeholder="Seu e-mail">
+  <input
+    id="email"
+    type="email"
+    placeholder="Seu e-mail"
+  >
 
-  <input id="senha" type="password" placeholder="Crie uma palavra-passe">
+  <input
+    id="senha"
+    type="password"
+    placeholder="Crie uma palavra-passe"
+  >
 
-  <button class="primary" onclick="criarConta()">
+  <button
+    class="primary"
+    onclick="criarConta()">
     Criar minha conta
   </button>
 
-  <button class="secondary" onclick="voltarInicio()">
+  <button
+    class="secondary"
+    onclick="mostrarInicio()">
     Cancelar
   </button>
 
-  <div id="mensagemCadastro" class="message"></div>
+  <div id="mensagemCadastro"
+       class="message"></div>
 
 </section>
 
 
 <!-- LOGIN -->
-<section id="login" class="card form-box">
+
+<section id="login" class="form-box">
 
   <h2>🔐 Entrar</h2>
 
-  <input id="loginEmail" type="email" placeholder="Seu e-mail">
+  <input
+    id="loginEmail"
+    type="email"
+    placeholder="Seu e-mail"
+  >
 
-  <input id="loginSenha" type="password" placeholder="Sua palavra-passe">
+  <input
+    id="loginSenha"
+    type="password"
+    placeholder="Sua palavra-passe"
+  >
 
-  <button class="primary" onclick="entrar()">
+  <button
+    class="primary"
+    onclick="entrar()">
     Entrar
   </button>
 
-  <button class="secondary" onclick="voltarInicio()">
+  <button
+    class="secondary"
+    onclick="mostrarInicio()">
     Cancelar
   </button>
 
-  <div id="mensagemLogin" class="message"></div>
+  <div id="mensagemLogin"
+       class="message"></div>
 
 </section>
 
 
 <!-- CONTA -->
-<section id="conta" class="card account-box">
 
-  <h2>👋 Bem-vindo, <span id="nomeBemVindo"></span>!</h2>
+<section id="conta" class="account-box">
 
-  <p>Estás conectado à tua conta GTube.</p>
+  <h2>
+    👋 Olá, <span id="nomeBemVindo"></span>
+  </h2>
+
+  <p>
+    Bem-vindo ao teu painel GTube.
+  </p>
 
   <div class="account-menu">
 
-    <div class="account-card" onclick="mostrarPerfil()">
+    <div class="account-card"
+         onclick="mostrarPerfil()">
       👤<br><br>
       <strong>Meu perfil</strong>
     </div>
 
-    <div class="account-card" onclick="mostrarVenda()">
+    <div class="account-card"
+         onclick="mostrarVenda()">
       🏪<br><br>
-      <strong>Vender produto</strong>
+      <strong>Vender</strong>
     </div>
 
-    <div class="account-card" onclick="mostrarMeusProdutos()">
+    <div class="account-card"
+         onclick="mostrarMeusProdutos()">
       📦<br><br>
       <strong>Meus produtos</strong>
     </div>
 
   </div>
 
-  <button class="danger" onclick="terminarSessao()">
+  <button
+    class="danger"
+    onclick="terminarSessao()">
     🚪 Terminar sessão
   </button>
 
@@ -444,7 +609,8 @@ footer{
 
 
 <!-- PERFIL -->
-<section id="perfil" class="card profile-box">
+
+<section id="perfil" class="profile-box">
 
   <h2>👤 Meu perfil</h2>
 
@@ -458,7 +624,9 @@ footer{
     <span id="perfilEmail"></span>
   </p>
 
-  <button class="secondary" onclick="mostrarPainel()">
+  <button
+    class="secondary"
+    onclick="mostrarPainel()">
     ← Voltar
   </button>
 
@@ -466,30 +634,63 @@ footer{
 
 
 <!-- VENDER -->
-<section id="venda" class="card sell-box">
 
-  <h2>🏪 Vender produto</h2>
+<section id="venda" class="sell-box">
 
-  <input id="produtoNome"
-         type="text"
-         placeholder="Nome do produto">
+  <h2 class="sell-title">
+    🚀 Publicar produto
+  </h2>
 
-  <textarea id="produtoDescricao"
-            placeholder="Descrição do produto"></textarea>
+  <p>
+    Coloca o teu produto à venda no GTube.
+  </p>
 
-  <input id="produtoPreco"
-         type="number"
-         placeholder="Preço em Kz">
+  <input
+    id="produtoNome"
+    type="text"
+    placeholder="Nome do produto"
+  >
+
+  <textarea
+    id="produtoDescricao"
+    placeholder="Descreve o teu produto..."
+  ></textarea>
+
+  <input
+    id="produtoPreco"
+    type="number"
+    placeholder="Preço em Kz"
+  >
 
   <select id="produtoCategoria">
 
-    <option value="">Escolha uma categoria</option>
-    <option value="Telefones">📱 Telefones</option>
-    <option value="Computadores">💻 Computadores</option>
-    <option value="Moda">👟 Moda</option>
-    <option value="Carros">🚗 Carros</option>
-    <option value="Casa">🏠 Casa</option>
-    <option value="Outros">📦 Outros</option>
+    <option value="">
+      Categoria
+    </option>
+
+    <option value="Telefones">
+      📱 Telefones
+    </option>
+
+    <option value="Computadores">
+      💻 Computadores
+    </option>
+
+    <option value="Moda">
+      👟 Moda
+    </option>
+
+    <option value="Carros">
+      🚗 Carros
+    </option>
+
+    <option value="Casa">
+      🏠 Casa
+    </option>
+
+    <option value="Outros">
+      📦 Outros
+    </option>
 
   </select>
 
@@ -505,63 +706,88 @@ footer{
 
   </select>
 
-  <button class="primary" onclick="publicarProduto()">
+  <button
+    class="primary"
+    onclick="publicarProduto()">
     🚀 Publicar produto
   </button>
 
-  <button class="secondary" onclick="mostrarPainel()">
+  <button
+    class="secondary"
+    onclick="mostrarPainel()">
     ← Voltar
   </button>
 
-  <div id="mensagemVenda" class="message"></div>
+  <div id="mensagemVenda"
+       class="message"></div>
 
 </section>
 
 
 <!-- MEUS PRODUTOS -->
-<section id="meusProdutos" class="card products-box">
+
+<section id="meusProdutos"
+         class="products-box">
 
   <h2>📦 Meus produtos</h2>
 
   <div id="listaMeusProdutos"></div>
 
-  <button class="secondary" onclick="mostrarPainel()">
+  <button
+    class="secondary"
+    onclick="mostrarPainel()">
     ← Voltar
   </button>
 
 </section>
 
-
-<!-- PRODUTOS -->
-<section class="card">
-
-  <div class="section-title">
-    <h2>🔥 Produtos</h2>
-  </div>
-
-  <input
-    id="pesquisa"
-    class="search"
-    type="text"
-    placeholder="🔎 Procurar produtos..."
-    oninput="mostrarProdutos()"
-  >
-
-  <div id="produtos" class="products"></div>
-
-</section>
-
 </div>
 
+
+<!-- MENU INFERIOR -->
+
+<nav class="bottom-nav">
+
+  <button
+    class="nav-item active"
+    onclick="mostrarInicio()">
+    <span>🏠</span>
+    Início
+  </button>
+
+  <button
+    class="nav-item"
+    onclick="focarPesquisa()">
+    <span>🔎</span>
+    Pesquisar
+  </button>
+
+  <button
+    class="sell-nav"
+    onclick="mostrarVenda()">
+    +
+  </button>
+
+  <button
+    class="nav-item"
+    onclick="mostrarLoginOuConta()">
+    <span>👤</span>
+    Conta
+  </button>
+
+</nav>
+
+
 <footer>
-  GTube Marketplace © 2026<br>
-  Compra e venda online.
+  GTube Marketplace © 2026
 </footer>
 
 
 <script>
 
-/* CONTAS */
+/* =========================
+   CONTAS
+========================= */
 
 function obterConta(){
 
@@ -571,6 +797,7 @@ function obterConta(){
   return dados ? JSON.parse(dados) : null;
 
 }
+
 
 function obterSessao(){
 
@@ -582,11 +809,14 @@ function obterSessao(){
 }
 
 
-/* TELAS */
+/* =========================
+   TELAS
+========================= */
 
 function esconderTudo(){
 
   [
+    "inicio",
     "cadastro",
     "login",
     "conta",
@@ -601,29 +831,56 @@ function esconderTudo(){
 
 }
 
+
+function mostrarInicio(){
+
+  esconderTudo();
+
+  document.getElementById("inicio")
+    .style.display="block";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
 function mostrarCadastro(){
 
   esconderTudo();
 
-  document.getElementById("cadastro").style.display="block";
+  document.getElementById("cadastro")
+    .style.display="block";
 
 }
+
 
 function mostrarLogin(){
 
   esconderTudo();
 
-  document.getElementById("login").style.display="block";
+  document.getElementById("login")
+    .style.display="block";
 
 }
 
-function voltarInicio(){
 
-  esconderTudo();
+function mostrarLoginOuConta(){
 
-  document.getElementById("inicio").style.display="block";
+  if(obterSessao()){
+
+    mostrarPainel();
+
+  }else{
+
+    mostrarLogin();
+
+  }
 
 }
+
 
 function mostrarPainel(){
 
@@ -639,26 +896,33 @@ function mostrarPainel(){
 
   esconderTudo();
 
-  document.getElementById("conta").style.display="block";
+  document.getElementById("conta")
+    .style.display="block";
 
-  document.getElementById("nomeBemVindo").textContent=
-    sessao.nome;
+  document.getElementById("nomeBemVindo")
+    .textContent=sessao.nome;
 
 }
 
 
-/* CADASTRO */
+/* =========================
+   CADASTRO
+========================= */
 
 function criarConta(){
 
   const nome=
-    document.getElementById("nome").value.trim();
+    document.getElementById("nome")
+    .value.trim();
 
   const email=
-    document.getElementById("email").value.trim().toLowerCase();
+    document.getElementById("email")
+    .value.trim()
+    .toLowerCase();
 
   const senha=
-    document.getElementById("senha").value;
+    document.getElementById("senha")
+    .value;
 
   const mensagem=
     document.getElementById("mensagemCadastro");
@@ -673,10 +937,11 @@ function criarConta(){
 
   }
 
+
   if(senha.length<6){
 
     mensagem.textContent=
-      "⚠️ A palavra-passe precisa de pelo menos 6 caracteres.";
+      "⚠️ Use pelo menos 6 caracteres.";
 
     return;
 
@@ -714,15 +979,20 @@ function criarConta(){
 }
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 function entrar(){
 
   const email=
-    document.getElementById("loginEmail").value.trim().toLowerCase();
+    document.getElementById("loginEmail")
+    .value.trim()
+    .toLowerCase();
 
   const senha=
-    document.getElementById("loginSenha").value;
+    document.getElementById("loginSenha")
+    .value;
 
   const mensagem=
     document.getElementById("mensagemLogin");
@@ -761,6 +1031,7 @@ function entrar(){
 
     },600);
 
+
   }else{
 
     mensagem.textContent=
@@ -771,7 +1042,9 @@ function entrar(){
 }
 
 
-/* PERFIL */
+/* =========================
+   PERFIL
+========================= */
 
 function mostrarPerfil(){
 
@@ -787,18 +1060,21 @@ function mostrarPerfil(){
 
   esconderTudo();
 
-  document.getElementById("perfil").style.display="block";
+  document.getElementById("perfil")
+    .style.display="block";
 
-  document.getElementById("perfilNome").textContent=
-    sessao.nome;
+  document.getElementById("perfilNome")
+    .textContent=sessao.nome;
 
-  document.getElementById("perfilEmail").textContent=
-    sessao.email;
+  document.getElementById("perfilEmail")
+    .textContent=sessao.email;
 
 }
 
 
-/* VENDER */
+/* =========================
+   VENDER
+========================= */
 
 function mostrarVenda(){
 
@@ -812,7 +1088,8 @@ function mostrarVenda(){
 
   esconderTudo();
 
-  document.getElementById("venda").style.display="block";
+  document.getElementById("venda")
+    .style.display="block";
 
 }
 
@@ -831,13 +1108,17 @@ function publicarProduto(){
 
 
   const nome=
-    document.getElementById("produtoNome").value.trim();
+    document.getElementById("produtoNome")
+    .value.trim();
 
   const descricao=
-    document.getElementById("produtoDescricao").value.trim();
+    document.getElementById("produtoDescricao")
+    .value.trim();
 
   const preco=
-    Number(document.getElementById("produtoPreco").value);
+    Number(
+      document.getElementById("produtoPreco").value
+    );
 
   const categoria=
     document.getElementById("produtoCategoria").value;
@@ -881,7 +1162,7 @@ function publicarProduto(){
 
 
   mensagem.textContent=
-    "✅ Produto publicado com sucesso!";
+    "✅ Produto publicado!";
 
 
   document.getElementById("produtoNome").value="";
@@ -895,7 +1176,9 @@ function publicarProduto(){
 }
 
 
-/* MEUS PRODUTOS */
+/* =========================
+   MEUS PRODUTOS
+========================= */
 
 function mostrarMeusProdutos(){
 
@@ -912,16 +1195,18 @@ function mostrarMeusProdutos(){
 
   esconderTudo();
 
-  document.getElementById("meusProdutos").style.display="block";
+  document.getElementById("meusProdutos")
+    .style.display="block";
 
 
   const produtos=obterProdutos();
 
-  const meus=produtos.filter(function(produto){
+  const meus=
+    produtos.filter(function(produto){
 
-    return produto.vendedor===sessao.nome;
+      return produto.vendedor===sessao.nome;
 
-  });
+    });
 
 
   const lista=
@@ -931,7 +1216,7 @@ function mostrarMeusProdutos(){
   if(meus.length===0){
 
     lista.innerHTML=
-      "<div class='empty'>📦 Ainda não publicaste nenhum produto.</div>";
+      "<div class='empty'>📦 Ainda não tens produtos.</div>";
 
     return;
 
@@ -951,13 +1236,20 @@ function mostrarMeusProdutos(){
           ${produto.emoji}
         </div>
 
-        <h3>${produto.nome}</h3>
+        <div class="product-body">
 
-        <p>${produto.descricao}</p>
+          <h3>${produto.nome}</h3>
 
-        <p class="price">
-          ${Number(produto.preco).toLocaleString("pt-AO")} Kz
-        </p>
+          <p class="description">
+            ${produto.descricao}
+          </p>
+
+          <p class="price">
+            ${Number(produto.preco)
+              .toLocaleString("pt-AO")} Kz
+          </p>
+
+        </div>
 
       </div>
 
@@ -968,7 +1260,9 @@ function mostrarMeusProdutos(){
 }
 
 
-/* PRODUTOS */
+/* =========================
+   PRODUTOS
+========================= */
 
 function obterProdutos(){
 
@@ -1028,9 +1322,6 @@ function obterProdutos(){
 
 function mostrarProdutos(){
 
-  const lista=
-    document.getElementById("produtos");
-
   const campo=
     document.getElementById("pesquisa");
 
@@ -1046,11 +1337,22 @@ function mostrarProdutos(){
     produtos.filter(function(produto){
 
       return(
-        produto.nome.toLowerCase().includes(pesquisa) ||
-        produto.categoria.toLowerCase().includes(pesquisa)
+        produto.nome
+          .toLowerCase()
+          .includes(pesquisa)
+
+        ||
+
+        produto.categoria
+          .toLowerCase()
+          .includes(pesquisa)
       );
 
     });
+
+
+  const lista=
+    document.getElementById("produtos");
 
 
   lista.innerHTML="";
@@ -1059,43 +1361,53 @@ function mostrarProdutos(){
   if(filtrados.length===0){
 
     lista.innerHTML=
-      "<div class='empty'>🔎 Nenhum produto encontrado.</div>";
+      "<div class='empty'>🔎 Produto não encontrado.</div>";
 
     return;
 
   }
 
 
-  filtrados.forEach(function(produto){
+  filtrados.forEach(function(produto,index){
 
     lista.innerHTML+=`
 
       <div class="product">
 
+        <button
+          class="favorite"
+          onclick="favoritar(${index})">
+          ♡
+        </button>
+
         <div class="product-image">
           ${produto.emoji}
         </div>
 
-        <h3>${produto.nome}</h3>
+        <div class="product-body">
 
-        <p>${produto.descricao}</p>
+          <h3>${produto.nome}</h3>
 
-        <p>
-          <small>
-            Vendedor: ${produto.vendedor}
-          </small>
-        </p>
+          <p class="description">
+            ${produto.descricao}
+          </p>
 
-        <p class="price">
-          ${Number(produto.preco).toLocaleString("pt-AO")} Kz
-        </p>
+          <div class="price">
+            ${Number(produto.preco)
+              .toLocaleString("pt-AO")} Kz
+          </div>
 
-        <button
-          class="primary"
-          onclick="comprar()"
-        >
-          🛒 Comprar
-        </button>
+          <div class="seller">
+            👤 ${produto.vendedor}
+          </div>
+
+          <button
+            class="buy"
+            onclick="comprar()">
+            🛒 Comprar
+          </button>
+
+        </div>
 
       </div>
 
@@ -1106,14 +1418,16 @@ function mostrarProdutos(){
 }
 
 
-/* FILTRO POR CATEGORIA */
+/* =========================
+   CATEGORIA
+========================= */
 
 function filtrarCategoria(categoria){
 
-  const pesquisa=
+  const campo=
     document.getElementById("pesquisa");
 
-  pesquisa.value=categoria;
+  campo.value=categoria;
 
   mostrarProdutos();
 
@@ -1125,14 +1439,47 @@ function filtrarCategoria(categoria){
 }
 
 
-/* COMPRAR */
+/* =========================
+   PESQUISA
+========================= */
+
+function focarPesquisa(){
+
+  mostrarInicio();
+
+  setTimeout(function(){
+
+    document.getElementById("pesquisa")
+      .focus();
+
+  },300);
+
+}
+
+
+/* =========================
+   FAVORITOS
+========================= */
+
+function favoritar(){
+
+  alert(
+    "❤️ Produto adicionado aos favoritos!"
+  );
+
+}
+
+
+/* =========================
+   COMPRAR
+========================= */
 
 function comprar(){
 
   if(!obterSessao()){
 
     alert(
-      "🔐 Para comprar, primeiro entra na tua conta."
+      "🔐 Entra na tua conta para comprar."
     );
 
     mostrarLogin();
@@ -1150,22 +1497,26 @@ function comprar(){
 }
 
 
-/* TERMINAR SESSÃO */
+/* =========================
+   SESSÃO
+========================= */
 
 function terminarSessao(){
 
   localStorage.removeItem("gtubeSessao");
 
-  esconderTudo();
+  mostrarInicio();
 
-  document.getElementById("inicio").style.display="block";
-
-  alert("👋 Sessão terminada com sucesso!");
+  alert(
+    "👋 Sessão terminada com sucesso!"
+  );
 
 }
 
 
-/* INICIAR */
+/* =========================
+   INICIAR
+========================= */
 
 mostrarProdutos();
 
