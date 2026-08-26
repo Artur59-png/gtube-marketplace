@@ -1,507 +1,1252 @@
--- ============================================================
--- KIVO MARKETPLACE
--- ETAPA 1 — BANCO DE DADOS + COMISSÃO 10%
--- ============================================================
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kivo Marketplace</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  color: #222;
+}
+
+header {
+  background: #111;
+  color: white;
+  padding: 12px 15px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.icons {
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  background: #222;
+  color: white;
+  border: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.search {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+}
+
+.search input {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search button {
+  border: 0;
+  background: #ff6a00;
+  color: white;
+  padding: 0 16px;
+  border-radius: 8px;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  background: white;
+  padding: 10px 5px;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 106px;
+  z-index: 90;
+}
+
+nav button {
+  border: 0;
+  background: transparent;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.container {
+  padding: 15px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.banner {
+  background: linear-gradient(135deg, #ff6a00, #ff9500);
+  color: white;
+  padding: 25px;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.banner h1 {
+  margin: 0 0 8px;
+}
+
+.categories {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.category {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  white-space: nowrap;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 18px 0 10px;
+}
+
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.product {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.08);
+}
+
+.product img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  background: #eee;
+}
+
+.product-info {
+  padding: 10px;
+}
+
+.product-name {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.price {
+  color: #ff6a00;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.stock {
+  font-size: 12px;
+  color: #777;
+  margin: 5px 0;
+}
+
+.product-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.product-actions button {
+  flex: 1;
+  border: 0;
+  padding: 9px 4px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.buy {
+  background: #ff6a00;
+  color: white;
+}
+
+.favorite {
+  background: #eee;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+.card {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.form input,
+.form textarea,
+.form select {
+  width: 100%;
+  padding: 12px;
+  margin: 7px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.form button,
+.primary {
+  width: 100%;
+  padding: 12px;
+  background: #ff6a00;
+  color: white;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 8px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 10px;
+  background: white;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-info {
+  flex: 1;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.quantity button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  background: #eee;
+  border-radius: 5px;
+}
+
+.total {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.empty {
+  text-align: center;
+  padding: 35px;
+  color: #777;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.6);
+  z-index: 200;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+}
+
+.modal-content {
+  background: white;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 14px;
+  padding: 20px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.close {
+  float: right;
+  border: 0;
+  background: transparent;
+  font-size: 24px;
+}
+
+.order {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.badge {
+  display: inline-block;
+  background: #eee;
+  padding: 5px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+footer {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 25px;
+  margin-top: 30px;
+}
+
+@media (min-width: 700px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .product img {
+    height: 190px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="top">
+    <div class="logo">Kivo</div>
+
+    <div class="icons">
+      <button class="icon-btn" onclick="showPage('favorites')">♡</button>
+      <button class="icon-btn" onclick="showPage('cart')">
+        🛒 <span id="cartCount">0</span>
+      </button>
+      <button class="icon-btn" onclick="showPage('account')">👤</button>
+    </div>
+  </div>
+
+  <div class="search">
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Pesquisar produtos..."
+      oninput="searchProducts()"
+    >
+    <button onclick="searchProducts()">Buscar</button>
+  </div>
+</header>
+
+<nav>
+  <button onclick="showPage('home')">Início</button>
+  <button onclick="showPage('products')">Produtos</button>
+  <button onclick="showPage('orders')">Pedidos</button>
+  <button onclick="showPage('cart')">Carrinho</button>
+  <button onclick="showPage('account')">Conta</button>
+</nav>
+
+<main class="container">
+
+  <!-- INÍCIO -->
+  <section id="home" class="page active">
+
+    <div class="banner">
+      <h1>Bem-vindo ao Kivo</h1>
+      <p>Compre e venda produtos de forma simples.</p>
+    </div>
+
+    <h3>Categorias</h3>
+
+    <div class="categories">
+      <button class="category" onclick="filterCategory('Todos')">Todos</button>
+      <button class="category" onclick="filterCategory('Eletrônicos')">📱 Eletrônicos</button>
+      <button class="category" onclick="filterCategory('Moda')">👕 Moda</button>
+      <button class="category" onclick="filterCategory('Casa')">🏠 Casa</button>
+      <button class="category" onclick="filterCategory('Automóveis')">🚗 Automóveis</button>
+    </div>
+
+    <div class="section-title">
+      <h2>Produtos</h2>
+      <button onclick="showPage('products')">Ver todos</button>
+    </div>
+
+    <div id="homeProducts" class="products"></div>
+
+  </section>
+
+  <!-- PRODUTOS -->
+  <section id="products" class="page">
+
+    <div class="section-title">
+      <h2>Todos os produtos</h2>
+    </div>
+
+    <div id="productsList" class="products"></div>
+
+  </section>
+
+  <!-- FAVORITOS -->
+  <section id="favorites" class="page">
+
+    <div class="section-title">
+      <h2>Meus favoritos</h2>
+    </div>
+
+    <div id="favoritesList" class="products"></div>
+
+  </section>
+
+  <!-- CARRINHO -->
+  <section id="cart" class="page">
+
+    <div class="section-title">
+      <h2>Meu carrinho</h2>
+    </div>
+
+    <div id="cartList"></div>
+
+    <div class="card">
+      <div class="total">
+        Total: <span id="cartTotal">0 Kz</span>
+      </div>
+
+      <button class="primary" onclick="openCheckout()">
+        Finalizar compra
+      </button>
+    </div>
+
+  </section>
+
+  <!-- PEDIDOS -->
+  <section id="orders" class="page">
+
+    <div class="section-title">
+      <h2>Meus pedidos</h2>
+    </div>
+
+    <div id="ordersList"></div>
+
+  </section>
+
+  <!-- CONTA -->
+  <section id="account" class="page">
+
+    <div class="card">
+
+      <h2>Minha conta</h2>
+
+      <div id="accountInfo">
+        <p>Você ainda não iniciou sessão.</p>
+        <button class="primary" onclick="openLogin()">
+          Entrar / Criar conta
+        </button>
+      </div>
+
+    </div>
+
+    <div class="card">
+
+      <h3>Quero vender no Kivo</h3>
+
+      <p>
+        Crie a sua loja e comece a publicar os seus produtos.
+      </p>
+
+      <button class="primary" onclick="openSeller()">
+        Criar minha loja
+      </button>
+
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  <strong>Kivo Marketplace</strong>
+  <p>Compre. Venda. Cresça.</p>
+</footer>
+
+<!-- =====================================================
+     MODAL LOGIN
+===================================================== -->
+
+<div id="loginModal" class="modal">
+
+  <div class="modal-content">
+
+    <button class="close" onclick="closeModal('loginModal')">×</button>
+
+    <h2>Entrar no Kivo</h2>
+
+    <div class="form">
+
+      <input
+        id="loginName"
+        placeholder="Seu nome"
+      >
+
+      <input
+        id="loginPhone"
+        placeholder="Telefone"
+      >
+
+      <button onclick="login()">
+        Entrar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
+
+<div id="checkoutModal" class="modal">
+
+  <div class="modal-content">
+
+    <button class="close" onclick="closeModal('checkoutModal')">×</button>
+
+    <h2>Finalizar compra</h2>
+
+    <div class="form">
+
+      <input
+        id="deliveryName"
+        placeholder="Nome completo"
+      >
+
+      <input
+        id="deliveryPhone"
+        placeholder="Telefone"
+      >
+
+      <textarea
+        id="deliveryAddress"
+        placeholder="Endereço de entrega"
+      ></textarea>
+
+      <button onclick="finishOrder()">
+        Confirmar pedido
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- =====================================================
+     CRIAR LOJA
+===================================================== -->
+
+<div id="sellerModal" class="modal">
+
+  <div class="modal-content">
+
+    <button class="close" onclick="closeModal('sellerModal')">×</button>
+
+    <h2>Criar minha loja</h2>
+
+    <div class="form">
+
+      <input
+        id="storeName"
+        placeholder="Nome da loja"
+      >
+
+      <input
+        id="storePhone"
+        placeholder="Telefone"
+      >
+
+      <input
+        id="storeAddress"
+        placeholder="Endereço"
+      >
+
+      <textarea
+        id="storeDescription"
+        placeholder="Descrição da loja"
+      ></textarea>
+
+      <button onclick="createStore()">
+        Criar loja
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+
+let products = [
+  {
+    id: 1,
+    name: "Smartphone",
+    price: 85000,
+    category: "Eletrônicos",
+    stock: 10,
+    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600"
+  },
+
+  {
+    id: 2,
+    name: "Tênis",
+    price: 35000,
+    category: "Moda",
+    stock: 15,
+    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"
+  },
+
+  {
+    id: 3,
+    name: "Relógio",
+    price: 25000,
+    category: "Moda",
+    stock: 8,
+    image: "https://images.unsplash.com/photo-1524805444758-089113d48a6d?w=600"
+  },
+
+  {
+    id: 4,
+    name: "Fone Bluetooth",
+    price: 18000,
+    category: "Eletrônicos",
+    stock: 20,
+    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"
+  }
+];
+
+let cart = JSON.parse(localStorage.getItem("kivo_cart")) || [];
+let favorites = JSON.parse(localStorage.getItem("kivo_favorites")) || [];
+let orders = JSON.parse(localStorage.getItem("kivo_orders")) || [];
+let user = JSON.parse(localStorage.getItem("kivo_user")) || null;
+
+function money(value) {
+  return Number(value).toLocaleString("pt-AO") + " Kz";
+}
+
+function saveData() {
+  localStorage.setItem("kivo_cart", JSON.stringify(cart));
+  localStorage.setItem("kivo_favorites", JSON.stringify(favorites));
+  localStorage.setItem("kivo_orders", JSON.stringify(orders));
+  localStorage.setItem("kivo_user", JSON.stringify(user));
+}
+
+function showPage(page) {
+
+  document.querySelectorAll(".page").forEach(function(section) {
+    section.classList.remove("active");
+  });
+
+  document.getElementById(page).classList.add("active");
+
+  renderAll();
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+}
+
+function renderAll() {
+  renderProducts(products, "homeProducts");
+  renderProducts(products, "productsList");
+  renderFavorites();
+  renderCart();
+  renderOrders();
+  renderAccount();
+  updateCartCount();
+}
+
+function renderProducts(list, elementId) {
+
+  const container = document.getElementById(elementId);
+
+  if (!container) return;
+
+  if (list.length === 0) {
+    container.innerHTML =
+      '<div class="empty">Nenhum produto encontrado.</div>';
+
+    return;
+  }
+
+  container.innerHTML = list.map(function(product) {
+
+    const isFavorite = favorites.includes(product.id);
+
+    return `
+      <div class="product">
+
+        <img
+          src="${product.image}"
+          alt="${product.name}"
+        >
+
+        <div class="product-info">
+
+          <div class="product-name">
+            ${product.name}
+          </div>
+
+          <div class="price">
+            ${money(product.price)}
+          </div>
+
+          <div class="stock">
+            ${product.stock} unidades disponíveis
+          </div>
+
+          <div class="product-actions">
+
+            <button
+              class="buy"
+              onclick="addToCart(${product.id})"
+            >
+              🛒 Comprar
+            </button>
+
+            <button
+              class="favorite"
+              onclick="toggleFavorite(${product.id})"
+            >
+              ${isFavorite ? "❤️" : "♡"}
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+}
 
-create extension if not exists "pgcrypto";
+function addToCart(id) {
 
--- ============================================================
--- PERFIS DOS UTILIZADORES
--- ============================================================
+  const product = products.find(p => p.id === id);
 
-create table if not exists public.profiles (
-  id uuid primary key references auth.users(id) on delete cascade,
-  nome text not null,
-  telefone text,
-  tipo text not null default 'cliente'
-    check (tipo in ('cliente', 'vendedor', 'admin')),
-  created_at timestamptz not null default now()
-);
+  if (!product) return;
 
--- ============================================================
--- LOJAS / VENDEDORES
--- ============================================================
+  const existing = cart.find(item => item.id === id);
 
-create table if not exists public.stores (
-  id uuid primary key default gen_random_uuid(),
+  if (existing) {
 
-  owner_id uuid not null
-    references public.profiles(id)
-    on delete cascade,
+    if (existing.quantity >= product.stock) {
+      alert("Não há mais unidades disponíveis.");
+      return;
+    }
 
-  nome text not null,
-  descricao text,
-  telefone text,
-  endereco text,
+    existing.quantity++;
 
-  created_at timestamptz not null default now()
-);
+  } else {
 
--- ============================================================
--- PRODUTOS
--- ============================================================
+    cart.push({
+      id: product.id,
+      quantity: 1
+    });
 
-create table if not exists public.products (
-  id uuid primary key default gen_random_uuid(),
+  }
 
-  store_id uuid not null
-    references public.stores(id)
-    on delete cascade,
+  saveData();
+  renderAll();
 
-  nome text not null,
-  descricao text,
+  alert("Produto adicionado ao carrinho!");
+}
 
-  preco numeric(12,2) not null
-    check (preco >= 0),
+function removeFromCart(id) {
 
-  categoria text not null,
+  cart = cart.filter(item => item.id !== id);
 
-  imagem_url text,
+  saveData();
+  renderAll();
+}
 
-  estoque integer not null default 0
-    check (estoque >= 0),
+function changeQuantity(id, amount) {
 
-  ativo boolean not null default true,
+  const item = cart.find(item => item.id === id);
 
-  created_at timestamptz not null default now()
-);
+  const product = products.find(p => p.id === id);
 
--- ============================================================
--- FAVORITOS
--- ============================================================
+  if (!item || !product) return;
 
-create table if not exists public.favorites (
-  user_id uuid not null
-    references public.profiles(id)
-    on delete cascade,
+  item.quantity += amount;
 
-  product_id uuid not null
-    references public.products(id)
-    on delete cascade,
+  if (item.quantity <= 0) {
+    removeFromCart(id);
+    return;
+  }
 
-  created_at timestamptz not null default now(),
+  if (item.quantity > product.stock) {
+    item.quantity = product.stock;
+    alert("Quantidade máxima disponível: " + product.stock);
+  }
 
-  primary key (user_id, product_id)
-);
+  saveData();
+  renderAll();
+}
 
--- ============================================================
--- CARRINHO
--- ============================================================
+function renderCart() {
 
-create table if not exists public.cart_items (
-  id uuid primary key default gen_random_uuid(),
+  const container = document.getElementById("cartList");
 
-  user_id uuid not null
-    references public.profiles(id)
-    on delete cascade,
+  if (!container) return;
 
-  product_id uuid not null
-    references public.products(id)
-    on delete cascade,
+  if (cart.length === 0) {
 
-  quantidade integer not null default 1
-    check (quantidade > 0),
+    container.innerHTML =
+      '<div class="empty">Seu carrinho está vazio.</div>';
 
-  created_at timestamptz not null default now(),
+    document.getElementById("cartTotal").innerText = "0 Kz";
 
-  unique(user_id, product_id)
-);
+    return;
+  }
 
--- ============================================================
--- PEDIDOS
--- ============================================================
+  let total = 0;
 
-create table if not exists public.orders (
-  id uuid primary key default gen_random_uuid(),
+  container.innerHTML = cart.map(function(item) {
 
-  user_id uuid not null
-    references public.profiles(id)
-    on delete restrict,
+    const product = products.find(p => p.id === item.id);
 
-  nome_entrega text not null,
-  telefone_entrega text not null,
-  endereco_entrega text not null,
+    if (!product) return "";
 
-  subtotal numeric(12,2) not null default 0
-    check (subtotal >= 0),
+    const subtotal = product.price * item.quantity;
 
-  comissao_kivo numeric(12,2) not null default 0
-    check (comissao_kivo >= 0),
+    total += subtotal;
 
-  total numeric(12,2) not null default 0
-    check (total >= 0),
+    return `
+      <div class="cart-item">
 
-  status text not null default 'recebido'
-    check (
-      status in (
-        'recebido',
-        'confirmado',
-        'preparando',
-        'enviado',
-        'entregue',
-        'cancelado'
-      )
-    ),
+        <img src="${product.image}">
 
-  created_at timestamptz not null default now()
-);
+        <div class="cart-info">
 
--- ============================================================
--- ITENS DOS PEDIDOS
--- ============================================================
+          <strong>${product.name}</strong>
 
-create table if not exists public.order_items (
-  id uuid primary key default gen_random_uuid(),
+          <div>${money(product.price)}</div>
 
-  order_id uuid not null
-    references public.orders(id)
-    on delete cascade,
+          <div class="quantity">
 
-  product_id uuid
-    references public.products(id)
-    on delete set null,
+            <button onclick="changeQuantity(${product.id}, -1)">
+              -
+            </button>
 
-  store_id uuid
-    references public.stores(id)
-    on delete set null,
+            <span>${item.quantity}</span>
 
-  nome_produto text not null,
+            <button onclick="changeQuantity(${product.id}, 1)">
+              +
+            </button>
 
-  preco numeric(12,2) not null
-    check (preco >= 0),
+            <button
+              onclick="removeFromCart(${product.id})"
+              style="margin-left:10px"
+            >
+              🗑
+            </button>
 
-  quantidade integer not null
-    check (quantidade > 0),
+          </div>
 
-  subtotal numeric(12,2) generated always as
-    (preco * quantidade) stored
-);
+        </div>
 
--- ============================================================
--- GANHOS / COMISSÕES DOS VENDEDORES
--- ============================================================
+      </div>
+    `;
 
-create table if not exists public.seller_earnings (
-  id uuid primary key default gen_random_uuid(),
+  }).join("");
 
-  seller_id uuid not null
-    references public.profiles(id)
-    on delete restrict,
+  document.getElementById("cartTotal").innerText =
+    money(total);
+}
 
-  store_id uuid
-    references public.stores(id)
-    on delete set null,
+function updateCartCount() {
 
-  order_id uuid
-    references public.orders(id)
-    on delete set null,
+  const count = cart.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
-  order_item_id uuid
-    references public.order_items(id)
-    on delete set null,
+  document.getElementById("cartCount").innerText = count;
+}
 
-  valor_venda numeric(12,2) not null
-    check (valor_venda >= 0),
+function toggleFavorite(id) {
 
-  comissao_percentual numeric(5,2) not null default 10.00
-    check (comissao_percentual >= 0),
+  if (favorites.includes(id)) {
 
-  comissao_kivo numeric(12,2) not null default 0
-    check (comissao_kivo >= 0),
+    favorites = favorites.filter(item => item !== id);
 
-  valor_vendedor numeric(12,2) not null default 0
-    check (valor_vendedor >= 0),
+  } else {
 
-  status text not null default 'pendente'
-    check (
-      status in (
-        'pendente',
-        'disponivel',
-        'pago',
-        'cancelado'
-      )
-    ),
+    favorites.push(id);
 
-  created_at timestamptz not null default now()
-);
+  }
 
--- ============================================================
--- PAGAMENTOS AOS VENDEDORES
--- ============================================================
+  saveData();
+  renderAll();
+}
 
-create table if not exists public.seller_payouts (
-  id uuid primary key default gen_random_uuid(),
+function renderFavorites() {
 
-  seller_id uuid not null
-    references public.profiles(id)
-    on delete restrict,
+  const container = document.getElementById("favoritesList");
 
-  valor numeric(12,2) not null
-    check (valor > 0),
+  if (!container) return;
 
-  metodo text,
-  referencia text,
+  const list = products.filter(
+    product => favorites.includes(product.id)
+  );
 
-  status text not null default 'pendente'
-    check (
-      status in (
-        'pendente',
-        'processando',
-        'pago',
-        'cancelado'
-      )
-    ),
+  renderProducts(list, "favoritesList");
+}
 
-  created_at timestamptz not null default now(),
+function searchProducts() {
 
-  paid_at timestamptz
-);
+  const text =
+    document.getElementById("searchInput").value
+    .toLowerCase();
 
--- ============================================================
--- ÍNDICES
--- ============================================================
+  const result = products.filter(product =>
+    product.name.toLowerCase().includes(text) ||
+    product.category.toLowerCase().includes(text)
+  );
 
-create index if not exists idx_stores_owner
-on public.stores(owner_id);
+  renderProducts(result, "productsList");
 
-create index if not exists idx_products_store
-on public.products(store_id);
+  showPage("products");
+}
 
-create index if not exists idx_products_categoria
-on public.products(categoria);
-
-create index if not exists idx_products_ativo
-on public.products(ativo);
-
-create index if not exists idx_cart_user
-on public.cart_items(user_id);
-
-create index if not exists idx_orders_user
-on public.orders(user_id);
-
-create index if not exists idx_orders_status
-on public.orders(status);
-
-create index if not exists idx_order_items_order
-on public.order_items(order_id);
-
-create index if not exists idx_order_items_store
-on public.order_items(store_id);
-
-create index if not exists idx_earnings_seller
-on public.seller_earnings(seller_id);
-
-create index if not exists idx_payouts_seller
-on public.seller_payouts(seller_id);
-
--- ============================================================
--- RLS
--- ============================================================
-
-alter table public.profiles enable row level security;
-alter table public.stores enable row level security;
-alter table public.products enable row level security;
-alter table public.favorites enable row level security;
-alter table public.cart_items enable row level security;
-alter table public.orders enable row level security;
-alter table public.order_items enable row level security;
-alter table public.seller_earnings enable row level security;
-alter table public.seller_payouts enable row level security;
-
--- ============================================================
--- PROFILES
--- ============================================================
-
-create policy "Perfil proprio - visualizar"
-on public.profiles
-for select
-using (auth.uid() = id);
-
-create policy "Perfil proprio - criar"
-on public.profiles
-for insert
-with check (auth.uid() = id);
-
-create policy "Perfil proprio - atualizar"
-on public.profiles
-for update
-using (auth.uid() = id)
-with check (auth.uid() = id);
-
--- ============================================================
--- STORES
--- ============================================================
-
-create policy "Todos podem ver lojas"
-on public.stores
-for select
-using (true);
-
-create policy "Vendedor cria sua loja"
-on public.stores
-for insert
-with check (auth.uid() = owner_id);
-
-create policy "Vendedor atualiza sua loja"
-on public.stores
-for update
-using (auth.uid() = owner_id)
-with check (auth.uid() = owner_id);
-
-create policy "Vendedor apaga sua loja"
-on public.stores
-for delete
-using (auth.uid() = owner_id);
-
--- ============================================================
--- PRODUTOS
--- ============================================================
-
-create policy "Todos podem ver produtos ativos"
-on public.products
-for select
-using (ativo = true);
-
-create policy "Vendedor cria produtos"
-on public.products
-for insert
-with check (
-  exists (
-    select 1
-    from public.stores
-    where stores.id = products.store_id
-      and stores.owner_id = auth.uid()
-  )
-);
-
-create policy "Vendedor atualiza seus produtos"
-on public.products
-for update
-using (
-  exists (
-    select 1
-    from public.stores
-    where stores.id = products.store_id
-      and stores.owner_id = auth.uid()
-  )
-);
-
-create policy "Vendedor apaga seus produtos"
-on public.products
-for delete
-using (
-  exists (
-    select 1
-    from public.stores
-    where stores.id = products.store_id
-      and stores.owner_id = auth.uid()
-  )
-);
-
--- ============================================================
--- FAVORITOS
--- ============================================================
-
-create policy "Utilizador ve seus favoritos"
-on public.favorites
-for select
-using (auth.uid() = user_id);
-
-create policy "Utilizador adiciona favoritos"
-on public.favorites
-for insert
-with check (auth.uid() = user_id);
-
-create policy "Utilizador remove favoritos"
-on public.favorites
-for delete
-using (auth.uid() = user_id);
-
--- ============================================================
--- CARRINHO
--- ============================================================
-
-create policy "Utilizador ve seu carrinho"
-on public.cart_items
-for select
-using (auth.uid() = user_id);
-
-create policy "Utilizador adiciona ao carrinho"
-on public.cart_items
-for insert
-with check (auth.uid() = user_id);
-
-create policy "Utilizador atualiza seu carrinho"
-on public.cart_items
-for update
-using (auth.uid() = user_id)
-with check (auth.uid() = user_id);
-
-create policy "Utilizador remove do carrinho"
-on public.cart_items
-for delete
-using (auth.uid() = user_id);
-
--- ============================================================
--- PEDIDOS
--- ============================================================
-
-create policy "Cliente ve seus pedidos"
-on public.orders
-for select
-using (auth.uid() = user_id);
-
-create policy "Cliente cria seus pedidos"
-on public.orders
-for insert
-with check (auth.uid() = user_id);
-
--- ============================================================
--- ITENS DOS PEDIDOS
--- ============================================================
-
-create policy "Cliente ve itens dos seus pedidos"
-on public.order_items
-for select
-using (
-  exists (
-    select 1
-    from public.orders
-    where orders.id = order_items.order_id
-      and orders.user_id = auth.uid()
-  )
-);
-
-create policy "Cliente cria itens dos seus pedidos"
-on public.order_items
-for insert
-with check (
-  exists (
-    select 1
-    from public.orders
-    where orders.id = order_items.order_id
-      and orders.user_id = auth.uid()
-  )
-);
-
--- ============================================================
--- GANHOS DOS VENDEDORES
--- ============================================================
-
-create policy "Vendedor ve seus ganhos"
-on public.seller_earnings
-for select
-using (auth.uid() = seller_id);
-
--- ============================================================
--- PAGAMENTOS DOS VENDEDORES
--- ============================================================
-
-create policy "Vendedor ve seus pagamentos"
-on public.seller_payouts
-for select
-using (auth.uid() = seller_id);
-
--- ============================================================
--- FIM DA ETAPA 1
--- ============================================================
+function filterCategory(category) {
+
+  if (category === "Todos") {
+
+    renderProducts(products, "productsList");
+
+  } else {
+
+    const result = products.filter(
+      product => product.category === category
+    );
+
+    renderProducts(result, "productsList");
+  }
+
+  showPage("products");
+}
+
+function openLogin() {
+  document.getElementById("loginModal").style.display = "flex";
+}
+
+function openCheckout() {
+
+  if (cart.length === 0) {
+
+    alert("Seu carrinho está vazio.");
+
+    return;
+  }
+
+  document.getElementById("checkoutModal").style.display = "flex";
+}
+
+function openSeller() {
+
+  if (!user) {
+
+    alert("Primeiro entre na sua conta.");
+
+    openLogin();
+
+    return;
+  }
+
+  document.getElementById("sellerModal").style.display = "flex";
+}
+
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+
+function login() {
+
+  const name =
+    document.getElementById("loginName").value.trim();
+
+  const phone =
+    document.getElementById("loginPhone").value.trim();
+
+  if (!name || !phone) {
+
+    alert("Preencha seu nome e telefone.");
+
+    return;
+  }
+
+  user = {
+    name: name,
+    phone: phone
+  };
+
+  saveData();
+
+  closeModal("loginModal");
+
+  renderAll();
+
+  alert("Conta criada/iniciada com sucesso!");
+}
+
+function finishOrder() {
+
+  if (!user) {
+
+    alert("Entre na sua conta primeiro.");
+
+    return;
+  }
+
+  const name =
+    document.getElementById("deliveryName").value.trim();
+
+  const phone =
+    document.getElementById("deliveryPhone").value.trim();
+
+  const address =
+    document.getElementById("deliveryAddress").value.trim();
+
+  if (!name || !phone || !address) {
+
+    alert("Preencha todos os dados de entrega.");
+
+    return;
+  }
+
+  let total = 0;
+
+  const orderItems = cart.map(function(item) {
+
+    const product = products.find(p => p.id === item.id);
+
+    const subtotal = product.price * item.quantity;
+
+    total += subtotal;
+
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: item.quantity,
+      subtotal: subtotal
+    };
+
+  });
+
+  const commission = total * 0.10;
+
+  const order = {
+
+    id: Date.now(),
+
+    customer: user.name,
+
+    deliveryName: name,
+
+    phone: phone,
+
+    address: address,
+
+    items: orderItems,
+
+    subtotal: total,
+
+    kivoCommission: commission,
+
+    total: total,
+
+    status: "recebido",
+
+    date: new Date().toLocaleString("pt-AO")
+
+  };
+
+  orders.unshift(order);
+
+  cart = [];
+
+  saveData();
+
+  closeModal("checkoutModal");
+
+  renderAll();
+
+  showPage("orders");
+
+  alert(
+    "Pedido realizado com sucesso!\n\n" +
+    "Total: " + money(total)
+  );
+}
+
+function renderOrders() {
+
+  const container =
+    document.getElementById("ordersList");
+
+  if (!container) return;
+
+  if (orders.length === 0) {
+
+    container.innerHTML =
+      '<div class="empty">Você ainda não fez nenhum pedido.</div>';
+
+    return;
+  }
+
+  container.innerHTML = orders.map(function(order) {
+
+    return `
+      <div class="order">
+
+        <strong>Pedido #${order.id}</strong>
+
+        <p>${order.date}</p>
+
+        <span class="badge">
+          ${order.status}
+        </span>
+
+        <p>
+          Total:
+          <strong>${money(order.total)}</strong>
+        </p>
+
+        <p>
+          ${order.items.length} produto(s)
+        </p>
+
+      </div>
+    `;
+
+  }).join("");
+}
+
+function renderAccount() {
+
+  const container =
+    document.getElementById("accountInfo");
+
+  if (!container) return;
+
+  if (!user) {
+
+    container.innerHTML = `
+      <p>Você ainda não iniciou sessão.</p>
+
+      <button
+        class="primary"
+        onclick="openLogin()"
+      >
+        Entrar / Criar conta
+      </button>
+    `;
+
+    return;
+  }
+
+  container.innerHTML = `
+
+    <h3>${user.name}</h3>
+
+    <p>📞 ${user.phone}</p>
+
+    <button
+      class="primary"
+      onclick="logout()"
+    >
+      Sair da conta
+    </button>
+
+  `;
+}
+
+function logout() {
+
+  user = null;
+
+  saveData();
+
+  renderAll();
+
+  alert("Você saiu da conta.");
+}
+
+function createStore() {
+
+  const name =
+    document.getElementById("storeName").value.trim();
+
+  const phone =
+    document.getElementById("storePhone").value.trim();
+
+  const address =
+    document.getElementById("storeAddress").value.trim();
+
+  if (!name || !phone || !address) {
+
+    alert("Preencha os dados da loja.");
+
+    return;
+  }
+
+  closeModal("sellerModal");
+
+  alert(
+    "Loja criada com sucesso!\n\n" +
+    "Na próxima etapa vamos ligar esta função ao banco de dados."
+  );
+}
+
+renderAll();
+
+</script>
+
+</body>
+</html>
