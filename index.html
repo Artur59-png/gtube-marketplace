@@ -7,197 +7,511 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f5f5;color:#222}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+
 button{cursor:pointer}
 
 header{
-background:#111;color:#fff;position:sticky;top:0;z-index:1000;
-box-shadow:0 2px 10px #0003
+  background:#111;
+  color:white;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:0 2px 10px #0003;
 }
 
 .top{
-max-width:1250px;margin:auto;padding:10px 18px;
-display:flex;align-items:center;justify-content:space-between;gap:15px
+  max-width:1250px;
+  margin:auto;
+  padding:10px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
 }
 
-.logo{font-size:25px;font-weight:bold;color:#ff4747}
-.logo span{color:#fff}
+.logo{
+  font-size:25px;
+  font-weight:bold;
+  color:#ff4747;
+}
 
-.menu{display:flex;gap:5px;overflow-x:auto}
+.logo span{color:white}
+
+.menu{
+  display:flex;
+  gap:5px;
+  overflow-x:auto;
+}
+
 .menu button{
-background:transparent;border:0;color:#fff;padding:10px;
-border-radius:6px;white-space:nowrap
+  background:transparent;
+  border:0;
+  color:white;
+  padding:10px;
+  border-radius:6px;
+  white-space:nowrap;
 }
-.menu button:hover{background:#292929}
-.cart-btn{background:#ff4747!important}
+
+.menu button:hover{
+  background:#292929;
+}
+
+.cart-btn{
+  background:#ff4747!important;
+}
 
 .badge{
-background:#fff;color:#ff4747;border-radius:50%;
-padding:2px 6px;font-size:11px
+  background:white;
+  color:#ff4747;
+  border-radius:50%;
+  padding:2px 6px;
+  font-size:11px;
 }
 
-.search-area{background:#fff;padding:12px 18px}
-.search{max-width:900px;margin:auto;display:flex;height:46px}
+.search-area{
+  background:white;
+  padding:12px 16px;
+}
+
+.search{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  height:46px;
+}
+
 .search input{
-flex:1;border:2px solid #ff4747;border-right:0;
-border-radius:7px 0 0 7px;padding:0 15px;font-size:15px
+  flex:1;
+  border:2px solid #ff4747;
+  border-right:0;
+  border-radius:7px 0 0 7px;
+  padding:0 15px;
+  font-size:15px;
+  outline:none;
 }
+
 .search button{
-width:90px;border:0;background:#ff4747;color:white;
-border-radius:0 7px 7px 0
+  width:80px;
+  border:0;
+  background:#ff4747;
+  color:white;
+  border-radius:0 7px 7px 0;
 }
 
-.categories{background:white;border-bottom:1px solid #ddd;overflow:auto}
+.categories{
+  background:white;
+  border-bottom:1px solid #ddd;
+  overflow:auto;
+}
+
 .categories-inner{
-max-width:1250px;margin:auto;padding:10px 18px;
-display:flex;gap:8px
+  max-width:1250px;
+  margin:auto;
+  padding:10px 16px;
+  display:flex;
+  gap:8px;
 }
-.category{
-border:0;padding:9px 15px;border-radius:20px;
-white-space:nowrap;background:#eee
-}
-.category.active,.category:hover{background:#ff4747;color:white}
 
-main{max-width:1250px;margin:auto;padding:20px}
+.category{
+  border:0;
+  padding:9px 15px;
+  border-radius:20px;
+  white-space:nowrap;
+  background:#eee;
+}
+
+.category.active,
+.category:hover{
+  background:#ff4747;
+  color:white;
+}
+
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:20px;
+}
 
 .banner{
-background:linear-gradient(120deg,#111,#333);
-color:white;border-radius:12px;padding:35px;margin-bottom:25px
+  background:linear-gradient(120deg,#111,#333);
+  color:white;
+  border-radius:12px;
+  padding:35px;
+  margin-bottom:25px;
 }
-.banner h1{font-size:32px;margin-bottom:10px}
-.banner p{color:#ddd}
+
+.banner h1{
+  font-size:32px;
+  margin-bottom:10px;
+}
+
+.banner p{
+  color:#ddd;
+}
+
 .banner button{
-margin-top:18px;padding:12px 20px;border:0;
-border-radius:7px;background:#ff4747;color:#fff;font-weight:bold
+  margin-top:18px;
+  padding:12px 20px;
+  border:0;
+  border-radius:7px;
+  background:#ff4747;
+  color:white;
+  font-weight:bold;
 }
 
 .title{
-display:flex;justify-content:space-between;
-align-items:center;margin-bottom:15px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
 }
 
 .products{
-display:grid;grid-template-columns:repeat(4,1fr);gap:18px
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
 }
 
 .product{
-background:white;border-radius:10px;overflow:hidden;
-box-shadow:0 2px 8px #00000014;position:relative
+  background:white;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 2px 8px #00000014;
+  position:relative;
 }
 
 .product-img{
-height:190px;background:#eee;
-display:flex;align-items:center;justify-content:center;
-font-size:65px
+  height:190px;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:65px;
 }
 
-.product-info{padding:14px}
-.product-info h3{font-size:16px;min-height:38px}
-.rating{color:#e9a000;margin:7px 0;font-size:13px}
-.old{text-decoration:line-through;color:#999;font-size:12px}
-.price{color:#ff4747;font-weight:bold;font-size:20px;margin:4px 0 12px}
-.buy{
-width:100%;padding:10px;border:0;border-radius:6px;
-background:#111;color:white;font-weight:bold
+.product-info{
+  padding:14px;
 }
-.buy:hover{background:#ff4747}
+
+.product-info h3{
+  font-size:16px;
+  min-height:38px;
+}
+
+.rating{
+  color:#e9a000;
+  margin:7px 0;
+}
+
+.price{
+  color:#ff4747;
+  font-weight:bold;
+  font-size:20px;
+  margin:5px 0 12px;
+}
+
+.buy{
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:6px;
+  background:#111;
+  color:white;
+  font-weight:bold;
+}
+
+.buy:hover{
+  background:#ff4747;
+}
 
 .favorite{
-position:absolute;right:10px;top:10px;
-width:35px;height:35px;border:0;border-radius:50%;
-background:white;font-size:19px
+  position:absolute;
+  right:10px;
+  top:10px;
+  width:35px;
+  height:35px;
+  border:0;
+  border-radius:50%;
+  background:white;
+  font-size:20px;
 }
-.favorite.active{color:#ff4747}
+
+.favorite.active{
+  color:#ff4747;
+}
 
 .modal{
-display:none;position:fixed;inset:0;background:#0009;
-z-index:3000;padding:15px;overflow:auto
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:3000;
+  padding:15px;
+  overflow:auto;
 }
 
 .modal-box{
-background:white;max-width:600px;margin:30px auto;
-padding:22px;border-radius:12px;position:relative
+  background:white;
+  max-width:650px;
+  margin:30px auto;
+  padding:22px;
+  border-radius:12px;
+  position:relative;
 }
 
 .close{
-position:absolute;right:12px;top:8px;
-border:0;background:none;font-size:27px
+  position:absolute;
+  right:12px;
+  top:8px;
+  border:0;
+  background:none;
+  font-size:28px;
 }
 
-.form-group{margin-bottom:13px}
-.form-group label{display:block;font-weight:bold;margin-bottom:5px}
-.form-group input,.form-group textarea,.form-group select{
-width:100%;padding:11px;border:1px solid #ccc;border-radius:6px
+.form-group{
+  margin-bottom:14px;
 }
-.form-group textarea{min-height:80px}
+
+.form-group label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+  width:100%;
+  padding:11px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  font-size:15px;
+}
+
+.form-group textarea{
+  min-height:85px;
+  resize:vertical;
+}
 
 .primary{
-width:100%;padding:12px;border:0;border-radius:7px;
-background:#ff4747;color:#fff;font-weight:bold
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:7px;
+  background:#ff4747;
+  color:white;
+  font-weight:bold;
 }
 
 .secondary{
-width:100%;padding:11px;border:1px solid #ddd;
-border-radius:7px;background:#eee;margin-top:8px
+  width:100%;
+  padding:11px;
+  border:1px solid #ddd;
+  border-radius:7px;
+  background:#eee;
+  margin-top:8px;
+}
+
+.danger{
+  width:100%;
+  padding:10px;
+  border:0;
+  border-radius:6px;
+  background:#e53935;
+  color:white;
 }
 
 .tabs{
-display:flex;gap:5px;border-bottom:1px solid #ddd;
-margin-bottom:18px;overflow:auto
+  display:flex;
+  gap:5px;
+  border-bottom:1px solid #ddd;
+  margin-bottom:18px;
+  overflow:auto;
 }
-.tabs button{
-border:0;background:#eee;padding:10px;white-space:nowrap
-}
-.tabs button.active{background:#ff4747;color:white}
 
-.admin-product,.order{
-border:1px solid #ddd;padding:12px;border-radius:8px;
-margin-bottom:10px
+.tabs button{
+  border:0;
+  background:#eee;
+  padding:10px;
+  white-space:nowrap;
+  border-radius:5px 5px 0 0;
+}
+
+.tabs button.active{
+  background:#ff4747;
+  color:white;
+}
+
+.admin-product,
+.order,
+.coupon{
+  border:1px solid #ddd;
+  padding:13px;
+  border-radius:8px;
+  margin-bottom:10px;
+  background:#fff;
 }
 
 .cart-item{
-display:flex;align-items:center;gap:10px;
-padding:12px 0;border-bottom:1px solid #ddd
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #ddd;
 }
-.cart-name{flex:1;font-weight:bold}
-.qty{display:flex;align-items:center;gap:6px}
-.qty button{width:28px;height:28px;border:1px solid #ccc;background:white}
-.remove{border:0;background:none;color:#f33}
+
+.cart-name{
+  flex:1;
+  font-weight:bold;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+
+.qty button{
+  width:28px;
+  height:28px;
+  border:1px solid #ccc;
+  background:white;
+}
+
+.remove{
+  border:0;
+  background:none;
+  color:#e33;
+}
 
 .total{
-display:flex;justify-content:space-between;
-font-size:20px;font-weight:bold;margin-top:18px
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:bold;
+  margin:18px 0;
 }
 
-.empty{text-align:center;padding:25px;color:#777}
+.empty{
+  text-align:center;
+  padding:25px;
+  color:#777;
+}
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.stat{
+  background:#f5f5f5;
+  border-radius:8px;
+  padding:15px;
+  text-align:center;
+}
+
+.stat strong{
+  display:block;
+  font-size:22px;
+  color:#ff4747;
+  margin-top:5px;
+}
+
+.coupon-code{
+  font-size:20px;
+  font-weight:bold;
+  color:#ff4747;
+}
 
 footer{
-background:#111;color:white;text-align:center;
-padding:30px;margin-top:35px
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:30px;
+  margin-top:35px;
 }
-footer p{color:#aaa;margin-top:8px}
+
+footer p{
+  color:#aaa;
+  margin-top:8px;
+}
 
 @media(max-width:900px){
-.products{grid-template-columns:repeat(3,1fr)}
+  .products{
+    grid-template-columns:repeat(3,1fr);
+  }
 }
 
 @media(max-width:700px){
-.top{flex-direction:column}
-.menu{width:100%;justify-content:center}
-.products{grid-template-columns:repeat(2,1fr);gap:10px}
-main{padding:12px}
-.banner{padding:25px}
-.banner h1{font-size:25px}
-.product-img{height:140px;font-size:55px}
+  .top{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .logo{
+    text-align:center;
+  }
+
+  .menu{
+    width:100%;
+  }
+
+  .menu button{
+    font-size:12px;
+    padding:8px;
+  }
+
+  .products{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  main{
+    padding:12px;
+  }
+
+  .banner{
+    padding:25px;
+  }
+
+  .banner h1{
+    font-size:25px;
+  }
+
+  .product-img{
+    height:140px;
+    font-size:55px;
+  }
+
+  .stat-grid{
+    grid-template-columns:1fr;
+  }
 }
 
 @media(max-width:420px){
-.logo{font-size:21px}
-.menu button{font-size:11px;padding:8px}
-.product-img{height:125px}
-.product-info{padding:10px}
-.product-info h3{font-size:14px}
-.price{font-size:18px}
+  .product-img{
+    height:125px;
+  }
+
+  .product-info{
+    padding:10px;
+  }
+
+  .product-info h3{
+    font-size:14px;
+  }
+
+  .price{
+    font-size:18px;
+  }
 }
 </style>
 </head>
@@ -213,87 +527,184 @@ GTube <span>Marketplace</span>
 </div>
 
 <div class="menu">
-<button onclick="abrir('loginModal')">👤 Conta</button>
-<button onclick="abrirPedidos()">📦 Pedidos</button>
-<button onclick="abrirFavoritos()">❤️ Favoritos</button>
-<button onclick="abrirPainel()">🏪 Vender</button>
-<button class="cart-btn" onclick="abrirCarrinho()">
-🛒 Carrinho <span class="badge" id="cartCount">0</span>
+
+<button onclick="abrirConta()">
+👤 Conta
 </button>
+
+<button onclick="abrirPedidos()">
+📦 Pedidos
+</button>
+
+<button onclick="abrirFavoritos()">
+❤️ Favoritos
+</button>
+
+<button onclick="abrirPainel()">
+🏪 Vender
+</button>
+
+<button onclick="abrirCupom()">
+🎟️ Cupom
+</button>
+
+<button class="cart-btn" onclick="abrirCarrinho()">
+🛒 Carrinho
+<span class="badge" id="cartCount">0</span>
+</button>
+
 </div>
 
 </div>
 
 <div class="search-area">
+
 <div class="search">
-<input id="search" placeholder="Pesquisar produtos..." oninput="pesquisar()">
-<button onclick="pesquisar()">🔍</button>
+
+<input
+id="search"
+placeholder="Pesquisar produtos..."
+>
+
+<button onclick="pesquisar()">
+🔍
+</button>
+
 </div>
+
 </div>
 
 </header>
 
+
 <div class="categories">
+
 <div class="categories-inner">
 
-<button class="category active" onclick="filtrar('todos',this)">Todos</button>
-<button class="category" onclick="filtrar('eletronicos',this)">📱 Eletrônicos</button>
-<button class="category" onclick="filtrar('moda',this)">👕 Moda</button>
-<button class="category" onclick="filtrar('casa',this)">🏠 Casa</button>
-<button class="category" onclick="filtrar('beleza',this)">💄 Beleza</button>
-<button class="category" onclick="filtrar('acessorios',this)">🎧 Acessórios</button>
-<button class="category" onclick="filtrar('automoveis',this)">🚗 Automóveis</button>
+<button class="category active"
+onclick="filtrar('todos',this)">
+Todos
+</button>
+
+<button class="category"
+onclick="filtrar('eletronicos',this)">
+📱 Eletrônicos
+</button>
+
+<button class="category"
+onclick="filtrar('moda',this)">
+👕 Moda
+</button>
+
+<button class="category"
+onclick="filtrar('casa',this)">
+🏠 Casa
+</button>
+
+<button class="category"
+onclick="filtrar('beleza',this)">
+💄 Beleza
+</button>
+
+<button class="category"
+onclick="filtrar('acessorios',this)">
+🎧 Acessórios
+</button>
+
+<button class="category"
+onclick="filtrar('automoveis',this)">
+🚗 Automóveis
+</button>
 
 </div>
+
 </div>
+
 
 <main>
 
 <section class="banner">
-<h1>Bem-vindo ao GTube Marketplace</h1>
-<p>Compre, venda e encontre produtos em um só lugar.</p>
-<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+
+<h1>
+Bem-vindo ao GTube Marketplace
+</h1>
+
+<p>
+Compre, venda e encontre produtos em um só lugar.
+</p>
+
+<button onclick="irProdutos()">
 Ver produtos
 </button>
+
 </section>
 
+
 <div class="title">
-<h2>🔥 Produtos</h2>
-<span id="result">Produtos</span>
+
+<h2>
+🔥 Produtos
+</h2>
+
+<span id="result">
+0 produtos
+</span>
+
 </div>
+
 
 <section class="products" id="products"></section>
 
 </main>
 
+
 <footer>
-<h3>GTube Marketplace</h3>
-<p>Compre. Venda. Cresça.</p>
-<p>© 2026 GTube Marketplace</p>
+
+<h3>
+GTube Marketplace
+</h3>
+
+<p>
+Compre. Venda. Cresça.
+</p>
+
+<p>
+© 2026 GTube Marketplace
+</p>
+
 </footer>
 
 
-<!-- LOGIN / CONTA -->
+<!-- CONTA -->
 
-<div class="modal" id="loginModal">
+<div class="modal" id="accountModal">
+
 <div class="modal-box">
-<button class="close" onclick="fechar('loginModal')">×</button>
 
-<h2>👤 Minha conta</h2><br>
+<button class="close"
+onclick="fechar('accountModal')">
+×
+</button>
 
-<div id="loginArea">
+<h2>👤 Minha conta</h2>
+
+<br>
+
+<div id="accountLogin">
 
 <div class="form-group">
 <label>Email</label>
-<input id="loginEmail" type="email" placeholder="Seu email">
+<input id="loginEmail" type="email">
 </div>
 
 <div class="form-group">
 <label>Senha</label>
-<input id="loginSenha" type="password" placeholder="Sua senha">
+<input id="loginSenha" type="password">
 </div>
 
-<button class="primary" onclick="login()">Entrar</button>
+<button class="primary" onclick="entrar()">
+Entrar
+</button>
 
 <button class="secondary" onclick="mostrarCadastro()">
 Criar uma conta
@@ -301,21 +712,27 @@ Criar uma conta
 
 </div>
 
-<div id="cadastroArea" style="display:none">
+
+<div id="accountCadastro" style="display:none">
 
 <div class="form-group">
-<label>Nome</label>
-<input id="cadNome" placeholder="Seu nome completo">
+<label>Nome completo</label>
+<input id="cadNome">
 </div>
 
 <div class="form-group">
 <label>Email</label>
-<input id="cadEmail" type="email" placeholder="Seu email">
+<input id="cadEmail" type="email">
+</div>
+
+<div class="form-group">
+<label>Telefone</label>
+<input id="cadTelefone">
 </div>
 
 <div class="form-group">
 <label>Senha</label>
-<input id="cadSenha" type="password" placeholder="Crie uma senha">
+<input id="cadSenha" type="password">
 </div>
 
 <button class="primary" onclick="criarConta()">
@@ -323,47 +740,90 @@ Criar conta
 </button>
 
 <button class="secondary" onclick="mostrarLogin()">
-Já tenho uma conta
+Voltar para entrar
+</button>
+
+</div>
+
+
+<div id="accountLogado" style="display:none">
+
+<h3 id="nomeUsuario"></h3>
+
+<br>
+
+<p>
+Email: <span id="emailUsuario"></span>
+</p>
+
+<p style="margin-top:8px">
+Telefone: <span id="telefoneUsuario"></span>
+</p>
+
+<br>
+
+<button class="secondary" onclick="sair()">
+Sair da conta
 </button>
 
 </div>
 
 </div>
+
 </div>
 
 
 <!-- CARRINHO -->
 
 <div class="modal" id="cartModal">
+
 <div class="modal-box">
 
-<button class="close" onclick="fechar('cartModal')">×</button>
+<button class="close"
+onclick="fechar('cartModal')">
+×
+</button>
 
-<h2>🛒 Meu carrinho</h2><br>
+<h2>🛒 Meu carrinho</h2>
+
+<br>
 
 <div id="cartItems"></div>
 
 <div class="total">
+
 <span>Total</span>
-<span id="total">0 Kz</span>
+
+<span id="total">
+0 Kz
+</span>
+
 </div>
 
-<button class="primary" onclick="abrirCheckout()">
+<button class="primary"
+onclick="abrirCheckout()">
 Finalizar compra
 </button>
 
 </div>
+
 </div>
 
 
 <!-- CHECKOUT -->
 
 <div class="modal" id="checkoutModal">
+
 <div class="modal-box">
 
-<button class="close" onclick="fechar('checkoutModal')">×</button>
+<button class="close"
+onclick="fechar('checkoutModal')">
+×
+</button>
 
-<h2>📦 Dados de entrega</h2><br>
+<h2>📦 Finalizar compra</h2>
+
+<br>
 
 <div class="form-group">
 <label>Nome completo</label>
@@ -372,123 +832,277 @@ Finalizar compra
 
 <div class="form-group">
 <label>Telefone</label>
-<input id="clienteTelefone" placeholder="923 000 000">
+<input id="clienteTelefone">
 </div>
 
 <div class="form-group">
-<label>Endereço</label>
-<textarea id="clienteEndereco"
-placeholder="Província, município, bairro, rua e casa"></textarea>
+<label>Endereço de entrega</label>
+<textarea
+id="clienteEndereco"
+placeholder="Província, município, bairro, rua e casa">
+</textarea>
 </div>
 
-<button class="primary" onclick="finalizarPedido()">
+<div class="form-group">
+
+<label>Cupom</label>
+
+<input
+id="checkoutCupom"
+placeholder="Ex: GTUBE10"
+>
+
+</div>
+
+<button class="primary"
+onclick="finalizarPedido()">
 Confirmar pedido
 </button>
 
 </div>
+
 </div>
 
 
 <!-- FAVORITOS -->
 
 <div class="modal" id="favModal">
+
 <div class="modal-box">
 
-<button class="close" onclick="fechar('favModal')">×</button>
+<button class="close"
+onclick="fechar('favModal')">
+×
+</button>
 
-<h2>❤️ Favoritos</h2><br>
+<h2>❤️ Favoritos</h2>
+
+<br>
 
 <div id="favList"></div>
 
 </div>
+
 </div>
 
 
 <!-- PEDIDOS -->
 
 <div class="modal" id="ordersModal">
+
 <div class="modal-box">
 
-<button class="close" onclick="fechar('ordersModal')">×</button>
+<button class="close"
+onclick="fechar('ordersModal')">
+×
+</button>
 
-<h2>📦 Meus pedidos</h2><br>
+<h2>📦 Meus pedidos</h2>
+
+<br>
 
 <div id="ordersList"></div>
 
 </div>
+
 </div>
 
 
-<!-- PAINEL DO VENDEDOR -->
+<!-- CUPONS -->
 
-<div class="modal" id="panelModal">
+<div class="modal" id="couponModal">
+
 <div class="modal-box">
 
-<button class="close" onclick="fechar('panelModal')">×</button>
+<button class="close"
+onclick="fechar('couponModal')">
+×
+</button>
 
-<h2>🏪 Painel do vendedor</h2>
+<h2>🎟️ Cupons econômicos</h2>
+
+<br>
+
+<div class="coupon">
+
+<div class="coupon-code">
+GTUBE10
+</div>
+
+<p>
+10% de desconto
+</p>
+
+<button class="secondary"
+onclick="usarCupom('GTUBE10')">
+Usar cupom
+</button>
+
+</div>
+
+
+<div class="coupon">
+
+<div class="coupon-code">
+GTUBE5000
+</div>
+
+<p>
+5.000 Kz de desconto
+</p>
+
+<button class="secondary"
+onclick="usarCupom('GTUBE5000')">
+Usar cupom
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- PAINEL DO DONO -->
+
+<div class="modal" id="panelModal">
+
+<div class="modal-box">
+
+<button class="close"
+onclick="fechar('panelModal')">
+×
+</button>
+
+<h2>🏪 Painel do dono</h2>
+
 <p style="color:#777;margin-top:5px">
-Controle os seus produtos e pedidos.
+Controle do GTube Marketplace
 </p>
 
 <br>
 
+
+<div class="stat-grid">
+
+<div class="stat">
+Produtos
+<strong id="statProdutos">0</strong>
+</div>
+
+<div class="stat">
+Pedidos
+<strong id="statPedidos">0</strong>
+</div>
+
+<div class="stat">
+Vendas
+<strong id="statVendas">0 Kz</strong>
+</div>
+
+</div>
+
+
 <div class="tabs">
 
-<button class="active" onclick="painelAba('produto',this)">
-➕ Adicionar produto
+<button
+class="active"
+onclick="painelAba('produto',this)">
+➕ Produto
 </button>
 
-<button onclick="painelAba('meus',this)">
-📦 Meus produtos
+<button
+onclick="painelAba('meus',this)">
+📦 Produtos
 </button>
 
-<button onclick="painelAba('vendas',this)">
-🛒 Vendas
+<button
+onclick="painelAba('vendas',this)">
+🛒 Pedidos
 </button>
 
 </div>
 
 
-<!-- ADICIONAR PRODUTO -->
+<!-- NOVO PRODUTO -->
 
 <div id="abaProduto">
 
 <div class="form-group">
 <label>Nome do produto</label>
-<input id="prodNome" placeholder="Ex: iPhone 15">
+<input
+id="prodNome"
+placeholder="Ex: iPhone 15">
 </div>
 
 <div class="form-group">
 <label>Preço em Kz</label>
-<input id="prodPreco" type="number" placeholder="250000">
+<input
+id="prodPreco"
+type="number"
+placeholder="250000">
 </div>
 
 <div class="form-group">
+
 <label>Categoria</label>
 
 <select id="prodCategoria">
-<option value="eletronicos">Eletrônicos</option>
-<option value="moda">Moda</option>
-<option value="casa">Casa</option>
-<option value="beleza">Beleza</option>
-<option value="acessorios">Acessórios</option>
-<option value="automoveis">Automóveis</option>
+
+<option value="eletronicos">
+Eletrônicos
+</option>
+
+<option value="moda">
+Moda
+</option>
+
+<option value="casa">
+Casa
+</option>
+
+<option value="beleza">
+Beleza
+</option>
+
+<option value="acessorios">
+Acessórios
+</option>
+
+<option value="automoveis">
+Automóveis
+</option>
+
 </select>
 
 </div>
 
-<div class="form-group">
-<label>Emoji/imagem provisória</label>
-<input id="prodImg" placeholder="📱">
-</div>
 
 <div class="form-group">
+
+<label>Imagem / emoji</label>
+
+<input
+id="prodImg"
+placeholder="📱">
+
+</div>
+
+
+<div class="form-group">
+
 <label>Descrição</label>
-<textarea id="prodDesc" placeholder="Descrição do produto"></textarea>
+
+<textarea
+id="prodDesc"
+placeholder="Descrição do produto">
+</textarea>
+
 </div>
 
-<button class="primary" onclick="adicionarProduto()">
+
+<button class="primary"
+onclick="adicionarProduto()">
 Publicar produto
 </button>
 
@@ -497,7 +1111,8 @@ Publicar produto
 
 <!-- MEUS PRODUTOS -->
 
-<div id="abaMeus" style="display:none">
+<div id="abaMeus"
+style="display:none">
 
 <div id="myProducts"></div>
 
@@ -506,46 +1121,92 @@ Publicar produto
 
 <!-- VENDAS -->
 
-<div id="abaVendas" style="display:none">
+<div id="abaVendas"
+style="display:none">
 
 <div id="sales"></div>
 
 </div>
 
 </div>
+
 </div>
 
 
 <script>
 
-/* ================= DADOS ================= */
+/* =========================
+   BANCO LOCAL
+========================= */
 
-let produtos = JSON.parse(
-localStorage.getItem("gtube_produtos") || "[]"
+function ler(chave,valor){
+
+try{
+
+let dados=localStorage.getItem(chave);
+
+if(dados===null)return valor;
+
+return JSON.parse(dados);
+
+}catch(e){
+
+return valor;
+
+}
+
+}
+
+
+function gravar(chave,valor){
+
+try{
+
+localStorage.setItem(
+chave,
+JSON.stringify(valor)
 );
 
-let carrinho = JSON.parse(
-localStorage.getItem("gtube_carrinho") || "[]"
+return true;
+
+}catch(e){
+
+alert(
+"⚠️ O navegador não permitiu guardar os dados."
 );
 
-let favoritos = JSON.parse(
-localStorage.getItem("gtube_favoritos") || "[]"
-);
+return false;
 
-let pedidos = JSON.parse(
-localStorage.getItem("gtube_pedidos") || "[]"
-);
+}
 
-let conta = JSON.parse(
-localStorage.getItem("gtube_conta") || "null"
-);
+}
 
 
-/* ================= PRODUTOS PADRÃO ================= */
+/* =========================
+   DADOS
+========================= */
 
-if(produtos.length===0){
+let produtos=ler("gtube_produtos",null);
+
+let carrinho=ler("gtube_carrinho",[]);
+
+let favoritos=ler("gtube_favoritos",[]);
+
+let pedidos=ler("gtube_pedidos",[]);
+
+let contas=ler("gtube_contas",[]);
+
+let usuarioAtual=ler("gtube_usuario",null);
+
+
+/* =========================
+   PRODUTOS INICIAIS
+========================= */
+
+if(!Array.isArray(produtos)){
 
 produtos=[
+
 {
 id:1,
 nome:"Smartphone Android",
@@ -555,24 +1216,27 @@ img:"📱",
 desc:"Smartphone Android moderno.",
 rating:"★★★★★"
 },
+
 {
 id:2,
 nome:"Fone Bluetooth",
 preco:15000,
 categoria:"acessorios",
 img:"🎧",
-desc:"Fone sem fios.",
+desc:"Fone Bluetooth sem fios.",
 rating:"★★★★☆"
 },
+
 {
 id:3,
 nome:"Ténis Esportivo",
 preco:25000,
 categoria:"moda",
 img:"👟",
-desc:"Ténis confortável.",
+desc:"Ténis confortável para esporte.",
 rating:"★★★★★"
 },
+
 {
 id:4,
 nome:"Smartwatch",
@@ -582,15 +1246,17 @@ img:"⌚",
 desc:"Relógio inteligente.",
 rating:"★★★★☆"
 },
+
 {
 id:5,
 nome:"Lâmpada LED",
 preco:8500,
 categoria:"casa",
 img:"💡",
-desc:"Lâmpada LED.",
+desc:"Lâmpada econômica.",
 rating:"★★★★★"
 },
+
 {
 id:6,
 nome:"Perfume Masculino",
@@ -600,46 +1266,17 @@ img:"🧴",
 desc:"Perfume masculino.",
 rating:"★★★★☆"
 }
+
 ];
 
-salvar();
+gravar("gtube_produtos",produtos);
 
 }
 
 
-/* ================= SALVAR ================= */
-
-function salvar(){
-
-localStorage.setItem(
-"gtube_produtos",
-JSON.stringify(produtos)
-);
-
-localStorage.setItem(
-"gtube_carrinho",
-JSON.stringify(carrinho)
-);
-
-localStorage.setItem(
-"gtube_favoritos",
-JSON.stringify(favoritos)
-);
-
-localStorage.setItem(
-"gtube_pedidos",
-JSON.stringify(pedidos)
-);
-
-localStorage.setItem(
-"gtube_conta",
-JSON.stringify(conta)
-);
-
-}
-
-
-/* ================= MOSTRAR PRODUTOS ================= */
+/* =========================
+   RENDER PRODUTOS
+========================= */
 
 function renderProdutos(lista=produtos){
 
@@ -647,15 +1284,20 @@ const area=document.getElementById("products");
 
 area.innerHTML="";
 
-if(lista.length===0){
+if(!Array.isArray(lista)||lista.length===0){
 
-area.innerHTML="<div class='empty'>Nenhum produto encontrado.</div>";
+area.innerHTML=
+"<div class='empty'>Nenhum produto encontrado.</div>";
+
+document.getElementById("result").textContent=
+"0 produtos";
 
 return;
 
 }
 
-lista.forEach(p=>{
+
+lista.forEach(function(p){
 
 const fav=favoritos.includes(p.id);
 
@@ -663,26 +1305,32 @@ area.innerHTML+=`
 
 <div class="product">
 
-<button class="favorite ${fav?'active':''}"
+<button
+class="favorite ${fav?"active":""}"
 onclick="favoritar(${p.id})">
-${fav?'♥':'♡'}
+${fav?"♥":"♡"}
 </button>
 
-<div class="product-img">${p.img}</div>
+<div class="product-img">
+${p.img||"📦"}
+</div>
 
 <div class="product-info">
 
-<h3>${p.nome}</h3>
+<h3>
+${esc(p.nome)}
+</h3>
 
 <div class="rating">
-${p.rating || "★★★★★"}
+${p.rating||"★★★★★"}
 </div>
 
 <div class="price">
-${Number(p.preco).toLocaleString('pt-AO')} Kz
+${Number(p.preco).toLocaleString("pt-AO")} Kz
 </div>
 
-<button class="buy"
+<button
+class="buy"
 onclick="adicionarCarrinho(${p.id})">
 🛒 Adicionar ao carrinho
 </button>
@@ -695,21 +1343,44 @@ onclick="adicionarCarrinho(${p.id})">
 
 });
 
+
 document.getElementById("result").textContent=
 lista.length+" produto(s)";
 
 }
 
 
-/* ================= CARRINHO ================= */
+/* =========================
+   SEGURANÇA DE TEXTO
+========================= */
+
+function esc(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   CARRINHO
+========================= */
 
 function adicionarCarrinho(id){
 
-const existente=carrinho.find(x=>x.id===id);
+let p=produtos.find(x=>x.id===id);
 
-if(existente){
+if(!p)return;
 
-existente.quantidade++;
+let item=carrinho.find(x=>x.id===id);
+
+if(item){
+
+item.quantidade++;
 
 }else{
 
@@ -720,21 +1391,30 @@ quantidade:1
 
 }
 
-salvar();
+gravar("gtube_carrinho",carrinho);
+
 atualizarCarrinho();
 
-alert("✅ Produto adicionado ao carrinho!");
+alert(
+"✅ "+p.nome+
+" foi adicionado ao carrinho!"
+);
 
 }
 
 
 function atualizarCarrinho(){
 
-let qtd=0;
+let quantidade=0;
 
-carrinho.forEach(x=>qtd+=x.quantidade);
+carrinho.forEach(function(x){
 
-document.getElementById("cartCount").textContent=qtd;
+quantidade+=Number(x.quantidade)||0;
+
+});
+
+document.getElementById("cartCount")
+.textContent=quantidade;
 
 }
 
@@ -752,53 +1432,63 @@ function renderCarrinho(){
 
 const area=document.getElementById("cartItems");
 
-if(carrinho.length===0){
-
-area.innerHTML="<div class='empty'>O carrinho está vazio.</div>";
-
-document.getElementById("total").textContent="0 Kz";
-
-return;
-
-}
+area.innerHTML="";
 
 let total=0;
 
-area.innerHTML="";
+let itensValidos=0;
 
-carrinho.forEach((item,index)=>{
+
+carrinho.forEach(function(item,index){
 
 const p=produtos.find(x=>x.id===item.id);
 
 if(!p)return;
 
-const subtotal=p.preco*item.quantidade;
+itensValidos++;
+
+let subtotal=
+Number(p.preco)*Number(item.quantidade);
 
 total+=subtotal;
+
 
 area.innerHTML+=`
 
 <div class="cart-item">
 
 <div class="cart-name">
-${p.img} ${p.nome}
+
+${p.img} ${esc(p.nome)}
+
 <br>
+
 <span style="color:#ff4747">
-${p.preco.toLocaleString('pt-AO')} Kz
+${Number(p.preco).toLocaleString("pt-AO")} Kz
 </span>
+
 </div>
 
 <div class="qty">
 
-<button onclick="quantidade(${index},-1)">−</button>
+<button
+onclick="alterarQuantidade(${index},-1)">
+−
+</button>
 
-<strong>${item.quantidade}</strong>
+<strong>
+${item.quantidade}
+</strong>
 
-<button onclick="quantidade(${index},1)">+</button>
+<button
+onclick="alterarQuantidade(${index},1)">
++
+</button>
 
 </div>
 
-<button class="remove"
+<button
+class="remove"
 onclick="removerCarrinho(${index})">
 🗑️
 </button>
@@ -809,15 +1499,26 @@ onclick="removerCarrinho(${index})">
 
 });
 
-document.getElementById("total").textContent=
-total.toLocaleString('pt-AO')+" Kz";
+
+if(itensValidos===0){
+
+area.innerHTML=
+"<div class='empty'>O carrinho está vazio.</div>";
 
 }
 
 
-function quantidade(index,v){
+document.getElementById("total").textContent=
+total.toLocaleString("pt-AO")+" Kz";
 
-carrinho[index].quantidade+=v;
+}
+
+
+function alterarQuantidade(index,valor){
+
+if(!carrinho[index])return;
+
+carrinho[index].quantidade+=valor;
 
 if(carrinho[index].quantidade<=0){
 
@@ -825,8 +1526,10 @@ carrinho.splice(index,1);
 
 }
 
-salvar();
+gravar("gtube_carrinho",carrinho);
+
 atualizarCarrinho();
+
 renderCarrinho();
 
 }
@@ -836,14 +1539,18 @@ function removerCarrinho(index){
 
 carrinho.splice(index,1);
 
-salvar();
+gravar("gtube_carrinho",carrinho);
+
 atualizarCarrinho();
+
 renderCarrinho();
 
 }
 
 
-/* ================= FAVORITOS ================= */
+/* =========================
+   FAVORITOS
+========================= */
 
 function favoritar(id){
 
@@ -857,7 +1564,8 @@ favoritos.push(id);
 
 }
 
-salvar();
+gravar("gtube_favoritos",favoritos);
+
 renderProdutos();
 
 }
@@ -867,24 +1575,45 @@ function abrirFavoritos(){
 
 const area=document.getElementById("favList");
 
-const lista=produtos.filter(
+let lista=produtos.filter(
 p=>favoritos.includes(p.id)
 );
 
+
 if(lista.length===0){
 
-area.innerHTML="<div class='empty'>Nenhum favorito.</div>";
+area.innerHTML=
+"<div class='empty'>Nenhum favorito ainda.</div>";
 
 }else{
 
-area.innerHTML=lista.map(p=>`
+area.innerHTML=lista.map(function(p){
+
+return `
 
 <div class="admin-product">
-<strong>${p.img} ${p.nome}</strong><br>
-${p.preco.toLocaleString('pt-AO')} Kz
+
+<strong>
+${p.img} ${esc(p.nome)}
+</strong>
+
+<br><br>
+
+${Number(p.preco).toLocaleString("pt-AO")} Kz
+
+<br><br>
+
+<button
+class="primary"
+onclick="adicionarCarrinho(${p.id})">
+Adicionar ao carrinho
+</button>
+
 </div>
 
-`).join("");
+`;
+
+}).join("");
 
 }
 
@@ -893,58 +1622,197 @@ abrir("favModal");
 }
 
 
-/* ================= CONTA ================= */
+/* =========================
+   CONTA
+========================= */
+
+function abrirConta(){
+
+if(usuarioAtual){
+
+document.getElementById("accountLogin")
+.style.display="none";
+
+document.getElementById("accountCadastro")
+.style.display="none";
+
+document.getElementById("accountLogado")
+.style.display="block";
+
+document.getElementById("nomeUsuario")
+.textContent="Olá, "+usuarioAtual.nome+"!";
+
+document.getElementById("emailUsuario")
+.textContent=usuarioAtual.email;
+
+document.getElementById("telefoneUsuario")
+.textContent=usuarioAtual.telefone||"Não informado";
+
+}else{
+
+mostrarLogin();
+
+}
+
+abrir("accountModal");
+
+}
+
 
 function mostrarCadastro(){
 
-document.getElementById("loginArea").style.display="none";
-document.getElementById("cadastroArea").style.display="block";
+document.getElementById("accountLogin")
+.style.display="none";
+
+document.getElementById("accountCadastro")
+.style.display="block";
+
+document.getElementById("accountLogado")
+.style.display="none";
 
 }
 
 
 function mostrarLogin(){
 
-document.getElementById("loginArea").style.display="block";
-document.getElementById("cadastroArea").style.display="none";
+document.getElementById("accountLogin")
+.style.display="block";
+
+document.getElementById("accountCadastro")
+.style.display="none";
+
+document.getElementById("accountLogado")
+.style.display="none";
 
 }
 
 
 function criarConta(){
 
-const nome=document.getElementById("cadNome").value.trim();
-const email=document.getElementById("cadEmail").value.trim();
-const senha=document.getElementById("cadSenha").value;
+const nome=document.getElementById("cadNome")
+.value.trim();
+
+const email=document.getElementById("cadEmail")
+.value.trim()
+.toLowerCase();
+
+const telefone=document.getElementById("cadTelefone")
+.value.trim();
+
+const senha=document.getElementById("cadSenha")
+.value;
+
 
 if(!nome||!email||!senha){
 
-alert("⚠️ Preencha todos os campos.");
+alert(
+"⚠️ Preencha nome, email e senha."
+);
 
 return;
 
 }
 
-conta={
-nome:nome,
-email:email,
-senha:senha
-};
 
-salvar();
+if(!email.includes("@")){
 
-alert("✅ Conta criada com sucesso!");
+alert("⚠️ Digite um email válido.");
 
-mostrarLogin();
+return;
 
 }
 
 
-function login(){
+if(senha.length<4){
 
-if(!conta){
+alert(
+"⚠️ A senha deve ter pelo menos 4 caracteres."
+);
 
-alert("Você ainda não criou uma conta.");
+return;
+
+}
+
+
+if(!Array.isArray(contas))contas=[];
+
+
+if(contas.some(x=>x.email===email)){
+
+alert(
+"⚠️ Este email já está cadastrado."
+);
+
+return;
+
+}
+
+
+const novaConta={
+
+id:Date.now(),
+
+nome:nome,
+
+email:email,
+
+telefone:telefone,
+
+senha:senha
+
+};
+
+
+contas.push(novaConta);
+
+usuarioAtual={
+
+id:novaConta.id,
+
+nome:novaConta.nome,
+
+email:novaConta.email,
+
+telefone:novaConta.telefone
+
+};
+
+
+gravar("gtube_contas",contas);
+
+gravar("gtube_usuario",usuarioAtual);
+
+
+document.getElementById("cadNome").value="";
+document.getElementById("cadEmail").value="";
+document.getElementById("cadTelefone").value="";
+document.getElementById("cadSenha").value="";
+
+
+alert(
+"🎉 Conta criada com sucesso!"
+);
+
+abrirConta();
+
+}
+
+
+function entrar(){
+
+const email=document.getElementById("loginEmail")
+.value.trim()
+.toLowerCase();
+
+const senha=document.getElementById("loginSenha")
+.value;
+
+
+if(!Array.isArray(contas)||contas.length===0){
+
+alert(
+"Você ainda não possui uma conta. Crie uma primeiro."
+);
 
 mostrarCadastro();
 
@@ -952,65 +1820,488 @@ return;
 
 }
 
-const email=document.getElementById("loginEmail").value.trim();
-const senha=document.getElementById("loginSenha").value;
 
-if(email===conta.email && senha===conta.senha){
-
-alert("✅ Bem-vindo, "+conta.nome+"!");
-
-fechar("loginModal");
-
-}else{
-
-alert("❌ Email ou senha incorretos.");
-
-}
-
-}
+const conta=contas.find(
+x=>x.email===email&&x.senha===senha
+);
 
 
-/* ================= PRODUTOS DO VENDEDOR ================= */
+if(!conta){
 
-function adicionarProduto(){
-
-const nome=document.getElementById("prodNome").value.trim();
-const preco=Number(document.getElementById("prodPreco").value);
-const categoria=document.getElementById("prodCategoria").value;
-const img=document.getElementById("prodImg").value.trim() || "📦";
-const desc=document.getElementById("prodDesc").value.trim();
-
-if(!nome||!preco){
-
-alert("⚠️ Coloque o nome e o preço do produto.");
+alert(
+"❌ Email ou senha incorretos."
+);
 
 return;
 
 }
 
-produtos.push({
 
-id:Date.now(),
-nome:nome,
-preco:preco,
-categoria:categoria,
-img:img,
-desc:desc,
-rating:"★★★★★"
+usuarioAtual={
+
+id:conta.id,
+
+nome:conta.nome,
+
+email:conta.email,
+
+telefone:conta.telefone
+
+};
+
+
+gravar("gtube_usuario",usuarioAtual);
+
+
+alert(
+"✅ Bem-vindo, "+conta.nome+"!"
+);
+
+abrirConta();
+
+}
+
+
+function sair(){
+
+usuarioAtual=null;
+
+gravar("gtube_usuario",null);
+
+alert("Você saiu da conta.");
+
+fechar("accountModal");
+
+}
+
+
+/* =========================
+   CHECKOUT
+========================= */
+
+function abrirCheckout(){
+
+if(carrinho.length===0){
+
+alert(
+"🛒 O seu carrinho está vazio."
+);
+
+return;
+
+}
+
+
+if(usuarioAtual){
+
+document.getElementById("clienteNome")
+.value=usuarioAtual.nome||"";
+
+document.getElementById("clienteTelefone")
+.value=usuarioAtual.telefone||"";
+
+}
+
+
+fechar("cartModal");
+
+abrir("checkoutModal");
+
+}
+
+
+function calcularCarrinho(){
+
+let total=0;
+
+carrinho.forEach(function(item){
+
+const p=produtos.find(x=>x.id===item.id);
+
+if(p){
+
+total+=
+Number(p.preco)*Number(item.quantidade);
+
+}
 
 });
 
-salvar();
-renderProdutos();
+return total;
+
+}
+
+
+function finalizarPedido(){
+
+const nome=document.getElementById("clienteNome")
+.value.trim();
+
+const telefone=document.getElementById("clienteTelefone")
+.value.trim();
+
+const endereco=document.getElementById("clienteEndereco")
+.value.trim();
+
+const cupom=document.getElementById("checkoutCupom")
+.value.trim()
+.toUpperCase();
+
+
+if(!nome||!telefone||!endereco){
+
+alert(
+"⚠️ Preencha nome, telefone e endereço."
+);
+
+return;
+
+}
+
+
+let subtotal=calcularCarrinho();
+
+let desconto=0;
+
+
+if(cupom==="GTUBE10"){
+
+desconto=Math.round(subtotal*0.10);
+
+}
+
+else if(cupom==="GTUBE5000"){
+
+desconto=Math.min(5000,subtotal);
+
+}
+
+
+let total=subtotal-desconto;
+
+
+const pedido={
+
+id:"GT"+Date.now(),
+
+data:new Date().toLocaleString("pt-AO"),
+
+cliente:nome,
+
+telefone:telefone,
+
+endereco:endereco,
+
+itens:JSON.parse(JSON.stringify(carrinho)),
+
+subtotal:subtotal,
+
+desconto:desconto,
+
+total:total,
+
+status:"Pedido recebido"
+
+};
+
+
+pedidos.push(pedido);
+
+gravar("gtube_pedidos",pedidos);
+
+
+carrinho=[];
+
+gravar("gtube_carrinho",carrinho);
+
+atualizarCarrinho();
+
+
+alert(
+
+"🎉 PEDIDO REALIZADO!\n\n"+
+
+"Pedido: "+pedido.id+"\n"+
+
+"Subtotal: "+
+subtotal.toLocaleString("pt-AO")+
+" Kz\n"+
+
+"Desconto: "+
+desconto.toLocaleString("pt-AO")+
+" Kz\n"+
+
+"Total: "+
+total.toLocaleString("pt-AO")+
+" Kz"
+
+);
+
+
+fechar("checkoutModal");
+
+}
+
+
+/* =========================
+   PEDIDOS
+========================= */
+
+function abrirPedidos(){
+
+const area=document.getElementById("ordersList");
+
+if(pedidos.length===0){
+
+area.innerHTML=
+"<div class='empty'>Ainda não existem pedidos.</div>";
+
+}else{
+
+area.innerHTML=
+pedidos.slice().reverse().map(function(p){
+
+return `
+
+<div class="order">
+
+<strong>
+📦 Pedido ${p.id}
+</strong>
+
+<br><br>
+
+Data: ${esc(p.data)}
+
+<br>
+
+Cliente: ${esc(p.cliente)}
+
+<br>
+
+Telefone: ${esc(p.telefone)}
+
+<br>
+
+Endereço: ${esc(p.endereco)}
+
+<br><br>
+
+Subtotal:
+${Number(p.subtotal).toLocaleString("pt-AO")} Kz
+
+<br>
+
+Desconto:
+${Number(p.desconto).toLocaleString("pt-AO")} Kz
+
+<br><br>
+
+<strong>
+Total:
+${Number(p.total).toLocaleString("pt-AO")} Kz
+</strong>
+
+<br><br>
+
+<span style="color:#ff4747">
+${esc(p.status)}
+</span>
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+abrir("ordersModal");
+
+}
+
+
+/* =========================
+   PAINEL DO DONO
+========================= */
+
+function abrirPainel(){
+
+atualizarEstatisticas();
+
+renderMeusProdutos();
+
+renderVendas();
+
+abrir("panelModal");
+
+}
+
+
+function atualizarEstatisticas(){
+
+document.getElementById("statProdutos")
+.textContent=produtos.length;
+
+document.getElementById("statPedidos")
+.textContent=pedidos.length;
+
+
+let vendas=0;
+
+pedidos.forEach(function(p){
+
+vendas+=Number(p.total)||0;
+
+});
+
+
+document.getElementById("statVendas")
+.textContent=
+vendas.toLocaleString("pt-AO")+" Kz";
+
+}
+
+
+function painelAba(aba,botao){
+
+document.getElementById("abaProduto")
+.style.display="none";
+
+document.getElementById("abaMeus")
+.style.display="none";
+
+document.getElementById("abaVendas")
+.style.display="none";
+
+
+document.querySelectorAll(".tabs button")
+.forEach(function(x){
+
+x.classList.remove("active");
+
+});
+
+
+if(botao){
+
+botao.classList.add("active");
+
+}
+
+
+if(aba==="produto"){
+
+document.getElementById("abaProduto")
+.style.display="block";
+
+}
+
+if(aba==="meus"){
+
+document.getElementById("abaMeus")
+.style.display="block";
+
+renderMeusProdutos();
+
+}
+
+if(aba==="vendas"){
+
+document.getElementById("abaVendas")
+.style.display="block";
+
+renderVendas();
+
+}
+
+}
+
+
+function adicionarProduto(){
+
+const nome=document.getElementById("prodNome")
+.value.trim();
+
+const preco=Number(
+document.getElementById("prodPreco").value
+);
+
+const categoria=document.getElementById("prodCategoria")
+.value;
+
+const img=document.getElementById("prodImg")
+.value.trim()||"📦";
+
+const desc=document.getElementById("prodDesc")
+.value.trim();
+
+
+if(!nome){
+
+alert(
+"⚠️ Digite o nome do produto."
+);
+
+return;
+
+}
+
+
+if(!preco||preco<=0){
+
+alert(
+"⚠️ Digite um preço válido."
+);
+
+return;
+
+}
+
+
+const novo={
+
+id:Date.now(),
+
+nome:nome,
+
+preco:preco,
+
+categoria:categoria,
+
+img:img,
+
+desc:desc,
+
+rating:"★★★★★"
+
+};
+
+
+produtos.push(novo);
+
+gravar("gtube_produtos",produtos);
+
 
 document.getElementById("prodNome").value="";
 document.getElementById("prodPreco").value="";
 document.getElementById("prodImg").value="";
 document.getElementById("prodDesc").value="";
 
-alert("✅ Produto publicado no marketplace!");
 
-painelAba("meus");
+renderProdutos();
+
+atualizarEstatisticas();
+
+renderMeusProdutos();
+
+
+alert(
+"✅ Produto publicado com sucesso!"
+);
+
+
+painelAba("meus",null);
 
 }
 
@@ -1021,215 +2312,98 @@ const area=document.getElementById("myProducts");
 
 if(produtos.length===0){
 
-area.innerHTML="<div class='empty'>Nenhum produto.</div>";
+area.innerHTML=
+"<div class='empty'>Nenhum produto.</div>";
 
 return;
 
 }
 
-area.innerHTML=produtos.map(p=>`
+
+area.innerHTML=produtos.slice().reverse()
+.map(function(p){
+
+return `
 
 <div class="admin-product">
 
-<strong>${p.img} ${p.nome}</strong>
+<strong>
+${p.img} ${esc(p.nome)}
+</strong>
+
+<br><br>
+
+Preço:
+${Number(p.preco).toLocaleString("pt-AO")} Kz
 
 <br>
 
-${p.preco.toLocaleString('pt-AO')} Kz
+Categoria:
+${esc(p.categoria)}
 
 <br><br>
 
 <button
-class="secondary"
+class="danger"
 onclick="eliminarProduto(${p.id})">
-🗑️ Eliminar
+🗑️ Eliminar produto
 </button>
 
 </div>
 
-`).join("");
+`;
+
+}).join("");
 
 }
 
 
 function eliminarProduto(id){
 
-if(!confirm("Eliminar este produto?"))return;
+const produto=produtos.find(x=>x.id===id);
 
-produtos=produtos.filter(p=>p.id!==id);
-
-carrinho=carrinho.filter(x=>x.id!==id);
-
-favoritos=favoritos.filter(x=>x!==id);
-
-salvar();
-
-renderProdutos();
-renderMeusProdutos();
-atualizarCarrinho();
-
-}
+if(!produto)return;
 
 
-/* ================= PEDIDOS ================= */
-
-function abrirCheckout(){
-
-if(carrinho.length===0){
-
-alert("Seu carrinho está vazio.");
-
-return;
-
-}
-
-fechar("cartModal");
-abrir("checkoutModal");
-
-}
+if(!confirm(
+"Eliminar "+produto.nome+"?"
+))return;
 
 
-function finalizarPedido(){
-
-const nome=document.getElementById("clienteNome").value.trim();
-const telefone=document.getElementById("clienteTelefone").value.trim();
-const endereco=document.getElementById("clienteEndereco").value.trim();
-
-if(!nome||!telefone||!endereco){
-
-alert("⚠️ Preencha nome, telefone e endereço.");
-
-return;
-
-}
-
-let total=0;
-
-carrinho.forEach(item=>{
-
-const p=produtos.find(x=>x.id===item.id);
-
-if(p)total+=p.preco*item.quantidade;
-
-});
-
-pedidos.push({
-
-id:"GT"+Date.now(),
-data:new Date().toLocaleString("pt-AO"),
-nome:nome,
-telefone:telefone,
-endereco:endereco,
-total:total,
-itens:[...carrinho],
-status:"Pedido recebido"
-
-});
-
-salvar();
-
-carrinho=[];
-
-salvar();
-atualizarCarrinho();
-
-alert(
-"✅ PEDIDO REALIZADO!\n\n"+
-"Pedido: GT"+Date.now()+"\n"+
-"Total: "+total.toLocaleString('pt-AO')+" Kz"
+produtos=produtos.filter(
+p=>p.id!==id
 );
 
-fechar("checkoutModal");
+carrinho=carrinho.filter(
+x=>x.id!==id
+);
 
-renderCarrinho();
-
-}
-
-
-function abrirPedidos(){
-
-const area=document.getElementById("ordersList");
-
-if(pedidos.length===0){
-
-area.innerHTML="<div class='empty'>Ainda não existem pedidos.</div>";
-
-}else{
-
-area.innerHTML=pedidos.slice().reverse().map(p=>`
-
-<div class="order">
-
-<strong>📦 Pedido ${p.id}</strong>
-
-<br><br>
-
-Cliente: ${p.nome}<br>
-Telefone: ${p.telefone}<br>
-Endereço: ${p.endereco}<br><br>
-
-<strong>
-Total: ${p.total.toLocaleString('pt-AO')} Kz
-</strong>
-
-<br>
-
-<span style="color:#ff4747">
-${p.status}
-</span>
-
-</div>
-
-`).join("");
-
-}
-
-abrir("ordersModal");
-
-}
+favoritos=favoritos.filter(
+x=>x!==id
+);
 
 
-/* ================= PAINEL ================= */
+gravar("gtube_produtos",produtos);
 
-function abrirPainel(){
+gravar("gtube_carrinho",carrinho);
 
-abrir("panelModal");
-renderMeusProdutos();
-renderVendas();
-
-}
+gravar("gtube_favoritos",favoritos);
 
 
-function painelAba(aba,botao){
+renderProdutos();
 
-document.getElementById("abaProduto").style.display="none";
-document.getElementById("abaMeus").style.display="none";
-document.getElementById("abaVendas").style.display="none";
-
-document.querySelectorAll(".tabs button")
-.forEach(x=>x.classList.remove("active"));
-
-botao.classList.add("active");
-
-if(aba==="produto")
-document.getElementById("abaProduto").style.display="block";
-
-if(aba==="meus"){
-
-document.getElementById("abaMeus").style.display="block";
 renderMeusProdutos();
 
-}
+atualizarCarrinho();
 
-if(aba==="vendas"){
-
-document.getElementById("abaVendas").style.display="block";
-renderVendas();
+atualizarEstatisticas();
 
 }
 
-}
 
+/* =========================
+   VENDAS
+========================= */
 
 function renderVendas(){
 
@@ -1237,59 +2411,172 @@ const area=document.getElementById("sales");
 
 if(pedidos.length===0){
 
-area.innerHTML="<div class='empty'>Nenhuma venda ainda.</div>";
+area.innerHTML=
+"<div class='empty'>Nenhum pedido ainda.</div>";
 
 return;
 
 }
 
-area.innerHTML=pedidos.slice().reverse().map(p=>`
+
+area.innerHTML=
+pedidos.slice().reverse().map(function(p){
+
+return `
 
 <div class="order">
 
-<strong>📦 ${p.id}</strong>
+<strong>
+📦 ${p.id}
+</strong>
 
 <br><br>
 
-Cliente: ${p.nome}<br>
-Telefone: ${p.telefone}<br>
-Total: ${p.total.toLocaleString('pt-AO')} Kz
+Cliente:
+${esc(p.cliente)}
+
+<br>
+
+Telefone:
+${esc(p.telefone)}
+
+<br>
+
+Total:
+<strong>
+${Number(p.total).toLocaleString("pt-AO")} Kz
+</strong>
 
 <br><br>
 
-<strong>Status:</strong> ${p.status}
+Status:
+<strong>
+${esc(p.status)}
+</strong>
+
+<br><br>
+
+<button
+class="secondary"
+onclick="marcarEnviado('${p.id}')">
+🚚 Marcar como enviado
+</button>
 
 </div>
 
-`).join("");
+`;
+
+}).join("");
 
 }
 
 
-/* ================= PESQUISA ================= */
+function marcarEnviado(id){
+
+const pedido=pedidos.find(
+x=>x.id===id
+);
+
+if(!pedido)return;
+
+pedido.status="Enviado";
+
+gravar("gtube_pedidos",pedidos);
+
+renderVendas();
+
+abrirPedidos();
+
+alert(
+"🚚 Pedido marcado como enviado."
+);
+
+}
+
+
+/* =========================
+   CUPONS
+========================= */
+
+function abrirCupom(){
+
+abrir("couponModal");
+
+}
+
+
+function usarCupom(codigo){
+
+fechar("couponModal");
+
+abrirCarrinho();
+
+document.getElementById("checkoutCupom")
+.value=codigo;
+
+alert(
+"🎟️ Cupom "+codigo+
+" selecionado. Use-o ao finalizar a compra."
+);
+
+}
+
+
+/* =========================
+   PESQUISA
+========================= */
 
 function pesquisar(){
 
 const texto=document.getElementById("search")
-.value.toLowerCase();
+.value
+.toLowerCase()
+.trim();
 
-const lista=produtos.filter(p=>
-p.nome.toLowerCase().includes(texto)
+
+const lista=produtos.filter(function(p){
+
+return (
+
+p.nome.toLowerCase()
+.includes(texto)
+
+||
+
+(p.desc||"")
+.toLowerCase()
+.includes(texto)
+
 );
+
+});
+
 
 renderProdutos(lista);
 
 }
 
 
-/* ================= CATEGORIAS ================= */
+/* =========================
+   CATEGORIAS
+========================= */
 
 function filtrar(categoria,botao){
 
 document.querySelectorAll(".category")
-.forEach(x=>x.classList.remove("active"));
+.forEach(function(x){
+
+x.classList.remove("active");
+
+});
+
+
+if(botao){
 
 botao.classList.add("active");
+
+}
+
 
 if(categoria==="todos"){
 
@@ -1299,41 +2586,82 @@ return;
 
 }
 
+
 renderProdutos(
-produtos.filter(p=>p.categoria===categoria)
+produtos.filter(
+p=>p.categoria===categoria
+)
 );
 
 }
 
 
-/* ================= MODAIS ================= */
+/* =========================
+   MODAIS
+========================= */
 
 function abrir(id){
 
-document.getElementById(id).style.display="block";
+const elemento=document.getElementById(id);
+
+if(elemento){
+
+elemento.style.display="block";
 
 }
+
+}
+
 
 function fechar(id){
 
-document.getElementById(id).style.display="none";
+const elemento=document.getElementById(id);
+
+if(elemento){
+
+elemento.style.display="none";
 
 }
 
-window.onclick=function(e){
+}
 
-document.querySelectorAll(".modal").forEach(m=>{
 
-if(e.target===m)m.style.display="none";
+window.addEventListener("click",function(e){
+
+document.querySelectorAll(".modal")
+.forEach(function(modal){
+
+if(e.target===modal){
+
+modal.style.display="none";
+
+}
 
 });
 
-};
+});
 
 
-/* ================= INICIAR ================= */
+/* =========================
+   VER PRODUTOS
+========================= */
+
+function irProdutos(){
+
+document.getElementById("products")
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* =========================
+   INICIAR
+========================= */
 
 renderProdutos();
+
 atualizarCarrinho();
 
 </script>
