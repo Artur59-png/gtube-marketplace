@@ -1,1625 +1,507 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>KIVO — Marketplace</title>
-
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f6f8;color:#222}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-header{background:#111;color:#fff;position:sticky;top:0;z-index:1000}
-.top{max-width:1300px;margin:auto;padding:12px 18px;display:flex;align-items:center;gap:22px}
-.logo{font-size:28px;font-weight:900;color:#ff3d3d;white-space:nowrap}
-.logo small{display:block;font-size:9px;color:#bbb;letter-spacing:2px}
-.search{flex:1;display:flex;height:44px}
-.search input{flex:1;border:0;padding:0 15px;border-radius:7px 0 0 7px;outline:0}
-.search button{width:55px;border:0;background:#ff3d3d;color:white;border-radius:0 7px 7px 0}
-.actions{display:flex;gap:6px}
-.actions button{border:0;background:#222;color:white;padding:9px 10px;border-radius:7px;white-space:nowrap}
-.actions button:hover{background:#333}
-.cart{background:#ff3d3d!important}
-.badge{background:#fff;color:#ff3d3d;border-radius:20px;padding:2px 6px;font-size:11px}
-.categories{background:white;border-bottom:1px solid #ddd}
-.cat-inner{max-width:1300px;margin:auto;display:flex;gap:8px;padding:10px 18px;overflow:auto}
-.cat{border:0;background:#f0f0f0;padding:9px 16px;border-radius:20px;white-space:nowrap}
-.cat.active,.cat:hover{background:#ff3d3d;color:white}
-
-main{max-width:1300px;margin:auto;padding:22px 18px}
-.hero{background:linear-gradient(120deg,#111,#292929);color:white;border-radius:14px;padding:40px;margin-bottom:28px}
-.hero h1{font-size:38px;margin-bottom:10px}
-.hero p{color:#ccc;font-size:17px}
-.hero button{margin-top:20px;background:#ff3d3d;border:0;color:#fff;padding:13px 22px;border-radius:7px;font-weight:bold}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.product{background:white;border-radius:12px;overflow:hidden;box-shadow:0 2px 10px #00000012;position:relative;transition:.2s}
-.product:hover{transform:translateY(-3px);box-shadow:0 6px 18px #0002}
-.product-img{height:190px;background:#eee;display:flex;align-items:center;justify-content:center;font-size:70px}
-.fav{position:absolute;right:10px;top:10px;width:36px;height:36px;border:0;border-radius:50%;background:#fff;font-size:20px}
-.fav.on{color:#ff3d3d}
-.info{padding:14px}
-.info h3{font-size:16px;min-height:38px}
-.rating{color:#e8a000;margin:7px 0;font-size:13px}
-.price{font-size:20px;font-weight:bold;color:#ff3d3d;margin:8px 0 13px}
-.buy,.primary{width:100%;border:0;border-radius:7px;background:#111;color:white;padding:11px;font-weight:bold}
-.buy:hover,.primary:hover{background:#ff3d3d}
-
-footer{margin-top:40px;background:#111;color:white;text-align:center;padding:35px}
-footer p{color:#aaa;margin-top:7px}
-
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:5000;padding:15px;overflow:auto}
-.box{background:white;max-width:650px;margin:35px auto;border-radius:13px;padding:24px;position:relative}
-.close{position:absolute;right:13px;top:8px;border:0;background:none;font-size:28px}
-.group{margin-bottom:14px}
-.group label{display:block;font-weight:bold;margin-bottom:6px}
-.group input,.group textarea,.group select{width:100%;padding:11px;border:1px solid #ccc;border-radius:7px;outline:0}
-.group textarea{min-height:90px}
-.secondary{width:100%;border:1px solid #ddd;background:#eee;padding:11px;border-radius:7px;margin-top:8px}
-.tabs{display:flex;gap:6px;overflow:auto;margin:20px 0;border-bottom:1px solid #ddd;padding-bottom:8px}
-.tabs button{border:0;background:#eee;padding:10px;white-space:nowrap;border-radius:6px}
-.tabs button.active{background:#ff3d3d;color:white}
-.item{border:1px solid #ddd;border-radius:8px;padding:13px;margin-bottom:10px}
-.cart-item{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #ddd}
-.cart-name{flex:1;font-weight:bold}
-.qty{display:flex;align-items:center;gap:5px}
-.qty button{width:30px;height:30px;border:1px solid #ccc;background:white}
-.remove{border:0;background:none;color:#f33}
-.total{display:flex;justify-content:space-between;font-size:21px;font-weight:bold;margin:20px 0}
-.empty{text-align:center;padding:25px;color:#777}
-.success{background:#e9fff0;border:1px solid #8add9e;padding:12px;border-radius:7px;margin-bottom:15px}
-.danger{background:#fff0f0;color:#c00;padding:10px;border-radius:7px}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:15px 0}
-.stat{background:#f5f5f5;padding:18px;border-radius:9px;text-align:center}
-.stat strong{display:block;font-size:22px;margin-top:5px}
-
-@media(max-width:1000px){
-.products{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:750px){
-.top{flex-wrap:wrap}
-.logo{order:1}
-.actions{order:2;width:100%;overflow:auto}
-.search{order:3;flex-basis:100%}
-.products{grid-template-columns:repeat(2,1fr);gap:10px}
-.hero{padding:27px}
-.hero h1{font-size:28px}
-.product-img{height:145px;font-size:55px}
-}
-@media(max-width:430px){
-.actions button{font-size:11px;padding:8px}
-.products{gap:8px}
-.info{padding:10px}
-.info h3{font-size:14px}
-.price{font-size:17px}
-.product-img{height:125px}
-}
-</style>
-</head>
-
-<body>
-
-<header>
-<div class="top">
-
-<div class="logo">
-KIVO
-<small>MARKETPLACE</small>
-</div>
-
-<div class="search">
-<input id="search" placeholder="Pesquisar produtos..." oninput="pesquisar()">
-<button onclick="pesquisar()">🔍</button>
-</div>
-
-<div class="actions">
-<button onclick="abrirConta()">👤 Conta</button>
-<button onclick="abrirPedidos()">📦 Pedidos</button>
-<button onclick="abrirFavoritos()">❤️</button>
-<button onclick="abrirPainel()">🏪 Vender</button>
-<button class="cart" onclick="abrirCarrinho()">🛒 <span id="cartCount" class="badge">0</span></button>
-</div>
-
-</div>
-</header>
-
-<div class="categories">
-<div class="cat-inner">
-<button class="cat active" onclick="filtrar('todos',this)">Todos</button>
-<button class="cat" onclick="filtrar('eletronicos',this)">📱 Eletrônicos</button>
-<button class="cat" onclick="filtrar('moda',this)">👕 Moda</button>
-<button class="cat" onclick="filtrar('casa',this)">🏠 Casa</button>
-<button class="cat" onclick="filtrar('beleza',this)">💄 Beleza</button>
-<button class="cat" onclick="filtrar('acessorios',this)">🎧 Acessórios</button>
-<button class="cat" onclick="filtrar('automoveis',this)">🚗 Automóveis</button>
-</div>
-</div>
-
-<main>
-
-<section class="hero">
-<h1>Bem-vindo ao KIVO</h1>
-<p>O teu mercado online para comprar, vender e crescer.</p>
-<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
-Explorar produtos
-</button>
-</section>
-
-<div class="section-title">
-<h2>🔥 Produtos</h2>
-<span id="result">0 produtos</span>
-</div>
-
-<section id="products" class="products"></section>
-
-</main>
-
-<footer>
-<h2>KIVO</h2>
-<p>Compra. Venda. Cresça.</p>
-<p>© 2026 KIVO Marketplace</p>
-</footer>
-
-
-<!-- CONTA -->
-<div class="modal" id="accountModal">
-<div class="box">
-<button class="close" onclick="fechar('accountModal')">×</button>
-
-<h2>👤 Minha conta</h2><br>
-
-<div id="accountContent"></div>
-
-</div>
-</div>
-
-
-<!-- CARRINHO -->
-<div class="modal" id="cartModal">
-<div class="box">
-<button class="close" onclick="fechar('cartModal')">×</button>
-<h2>🛒 Meu carrinho</h2><br>
-
-<div id="cartItems"></div>
-
-<div class="total">
-<span>Total</span>
-<span id="total">0 Kz</span>
-</div>
-
-<button class="primary" onclick="checkout()">Finalizar compra</button>
-</div>
-</div>
-
-
-<!-- CHECKOUT -->
-<div class="modal" id="checkoutModal">
-<div class="box">
-<button class="close" onclick="fechar('checkoutModal')">×</button>
-<h2>📦 Finalizar compra</h2><br>
-
-<div class="group">
-<label>Nome completo</label>
-<input id="clienteNome" placeholder="Seu nome">
-</div>
-
-<div class="group">
-<label>Telefone</label>
-<input id="clienteTelefone" placeholder="923 000 000">
-</div>
-
-<div class="group">
-<label>Endereço de entrega</label>
-<textarea id="clienteEndereco" placeholder="Província, município, bairro, rua e casa"></textarea>
-</div>
-
-<div class="group">
-<label>Cupom</label>
-<input id="cupom" placeholder="Digite o cupom">
-</div>
-
-<button class="primary" onclick="finalizarPedido()">Confirmar pedido</button>
-</div>
-</div>
-
-
-<!-- FAVORITOS -->
-<div class="modal" id="favModal">
-<div class="box">
-<button class="close" onclick="fechar('favModal')">×</button>
-<h2>❤️ Meus favoritos</h2><br>
-<div id="favList"></div>
-</div>
-</div>
-
-
-<!-- PEDIDOS -->
-<div class="modal" id="ordersModal">
-<div class="box">
-<button class="close" onclick="fechar('ordersModal')">×</button>
-<h2>📦 Meus pedidos</h2><br>
-<div id="ordersList"></div>
-</div>
-</div>
-
-
-<!-- PAINEL -->
-<div class="modal" id="panelModal">
-<div class="box" style="max-width:850px">
-<button class="close" onclick="fechar('panelModal')">×</button>
-
-<h2>🏪 Painel KIVO</h2>
-<p style="color:#777;margin-top:5px">Controle produtos, pedidos e vendas.</p>
-
-<div class="stat-grid">
-<div class="stat">Produtos<strong id="statProdutos">0</strong></div>
-<div class="stat">Pedidos<strong id="statPedidos">0</strong></div>
-<div class="stat">Vendas<strong id="statVendas">0 Kz</strong></div>
-</div>
-
-<div class="tabs">
-<button class="active" onclick="aba('add',this)">➕ Adicionar</button>
-<button onclick="aba('products',this)">📦 Produtos</button>
-<button onclick="aba('sales',this)">🛒 Vendas</button>
-<button onclick="aba('coupons',this)">🎟️ Cupons</button>
-</div>
-
-
-<div id="abaAdd">
-
-<div class="group">
-<label>Nome do produto</label>
-<input id="prodNome" placeholder="Ex: iPhone 15">
-</div>
-
-<div class="group">
-<label>Preço em Kz</label>
-<input id="prodPreco" type="number" placeholder="250000">
-</div>
-
-<div class="group">
-<label>Categoria</label>
-<select id="prodCategoria">
-<option value="eletronicos">Eletrônicos</option>
-<option value="moda">Moda</option>
-<option value="casa">Casa</option>
-<option value="beleza">Beleza</option>
-<option value="acessorios">Acessórios</option>
-<option value="automoveis">Automóveis</option>
-</select>
-</div>
-
-<div class="group">
-<label>Imagem/emoji</label>
-<input id="prodImg" placeholder="📱">
-</div>
-
-<div class="group">
-<label>Descrição</label>
-<textarea id="prodDesc" placeholder="Descrição do produto"></textarea>
-</div>
-
-<button class="primary" onclick="adicionarProduto()">Publicar produto</button>
-
-</div>
-
-
-<div id="abaProducts" style="display:none">
-<div id="myProducts"></div>
-</div>
-
-
-<div id="abaSales" style="display:none">
-<div id="sales"></div>
-</div>
-
-
-<div id="abaCoupons" style="display:none">
-
-<div class="group">
-<label>Novo cupom</label>
-<input id="novoCupom" placeholder="Ex: KIVO10">
-</div>
-
-<div class="group">
-<label>Desconto (%)</label>
-<input id="novoDesconto" type="number" placeholder="10">
-</div>
-
-<button class="primary" onclick="criarCupom()">Criar cupom</button>
-
-<br><br>
-
-<div id="couponList"></div>
-
-</div>
-
-</div>
-</div>
-
-
-<script>
-
-/* =========================
-   DADOS
-========================= */
-
-let produtos = JSON.parse(localStorage.getItem("kivo_produtos") || "null");
-
-let carrinho = JSON.parse(localStorage.getItem("kivo_carrinho") || "[]");
-
-let favoritos = JSON.parse(localStorage.getItem("kivo_favoritos") || "[]");
-
-let pedidos = JSON.parse(localStorage.getItem("kivo_pedidos") || "[]");
-
-let conta = JSON.parse(localStorage.getItem("kivo_conta") || "null");
-
-let cupons = JSON.parse(localStorage.getItem("kivo_cupons") || "null");
-
-
-/* =========================
-   PRODUTOS INICIAIS
-========================= */
-
-if(!produtos){
-
-produtos=[
-{
-id:1,
-nome:"Smartphone Android",
-preco:85000,
-categoria:"eletronicos",
-img:"📱",
-desc:"Smartphone moderno.",
-rating:"★★★★★"
-},
-{
-id:2,
-nome:"Fone Bluetooth",
-preco:15000,
-categoria:"acessorios",
-img:"🎧",
-desc:"Fone sem fios.",
-rating:"★★★★☆"
-},
-{
-id:3,
-nome:"Ténis Esportivo",
-preco:25000,
-categoria:"moda",
-img:"👟",
-desc:"Ténis confortável.",
-rating:"★★★★★"
-},
-{
-id:4,
-nome:"Smartwatch",
-preco:35000,
-categoria:"acessorios",
-img:"⌚",
-desc:"Relógio inteligente.",
-rating:"★★★★☆"
-},
-{
-id:5,
-nome:"Lâmpada LED",
-preco:8500,
-categoria:"casa",
-img:"💡",
-desc:"Lâmpada econômica.",
-rating:"★★★★★"
-},
-{
-id:6,
-nome:"Perfume Masculino",
-preco:22000,
-categoria:"beleza",
-img:"🧴",
-desc:"Perfume masculino.",
-rating:"★★★★☆"
-},
-{
-id:7,
-nome:"Mochila",
-preco:18000,
-categoria:"moda",
-img:"🎒",
-desc:"Mochila resistente.",
-rating:"★★★★★"
-},
-{
-id:8,
-nome:"Capa para telefone",
-preco:5000,
-categoria:"acessorios",
-img:"📱",
-desc:"Capa protetora.",
-rating:"★★★★☆"
-}
-];
-
-salvar();
-}
-
-if(!cupons){
-cupons=[
-{codigo:"KIVO10",desconto:10},
-{codigo:"BEMVINDO",desconto:5}
-];
-salvar();
-}
-
-
-/* =========================
-   SALVAR
-========================= */
-
-function salvar(){
-
-localStorage.setItem("kivo_produtos",JSON.stringify(produtos));
-
-localStorage.setItem("kivo_carrinho",JSON.stringify(carrinho));
-
-localStorage.setItem("kivo_favoritos",JSON.stringify(favoritos));
-
-localStorage.setItem("kivo_pedidos",JSON.stringify(pedidos));
-
-localStorage.setItem("kivo_conta",JSON.stringify(conta));
-
-localStorage.setItem("kivo_cupons",JSON.stringify(cupons));
-
-}
-
-
-/* =========================
-   FORMATAÇÃO
-========================= */
-
-function dinheiro(valor){
-
-return Number(valor).toLocaleString("pt-AO")+" Kz";
-
-}
-
-
-/* =========================
-   PRODUTOS
-========================= */
-
-function renderProdutos(lista=produtos){
-
-const area=document.getElementById("products");
-
-area.innerHTML="";
-
-document.getElementById("result").textContent=
-lista.length+" produto(s)";
-
-if(lista.length===0){
-
-area.innerHTML="<div class='empty'>Nenhum produto encontrado.</div>";
-
-return;
-}
-
-lista.forEach(p=>{
-
-let favorito=favoritos.includes(p.id);
-
-area.innerHTML+=`
-
-<div class="product">
-
-<button class="fav ${favorito?"on":""}"
-onclick="favoritar(${p.id})">
-${favorito?"♥":"♡"}
-</button>
-
-<div class="product-img">${p.img}</div>
-
-<div class="info">
-
-<h3>${esc(p.nome)}</h3>
-
-<div class="rating">
-${p.rating||"★★★★★"}
-</div>
-
-<div class="price">
-${dinheiro(p.preco)}
-</div>
-
-<button class="buy"
-onclick="adicionarCarrinho(${p.id})">
-🛒 Adicionar ao carrinho
-</button>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-}
-
-
-/* =========================
-   SEGURANÇA DE TEXTO
-========================= */
-
-function esc(text){
-
-return String(text)
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================
-   PESQUISA
-========================= */
-
-function pesquisar(){
-
-let texto=document
-.getElementById("search")
-.value
-.toLowerCase()
-.trim();
-
-let lista=produtos.filter(p=>
-p.nome.toLowerCase().includes(texto) ||
-(p.desc||"").toLowerCase().includes(texto)
+-- ============================================================
+-- KIVO MARKETPLACE
+-- ETAPA 1 — BANCO DE DADOS + COMISSÃO 10%
+-- ============================================================
+
+create extension if not exists "pgcrypto";
+
+-- ============================================================
+-- PERFIS DOS UTILIZADORES
+-- ============================================================
+
+create table if not exists public.profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  nome text not null,
+  telefone text,
+  tipo text not null default 'cliente'
+    check (tipo in ('cliente', 'vendedor', 'admin')),
+  created_at timestamptz not null default now()
 );
 
-renderProdutos(lista);
-
-}
-
-
-/* =========================
-   CATEGORIAS
-========================= */
-
-function filtrar(cat,btn){
-
-document.querySelectorAll(".cat")
-.forEach(x=>x.classList.remove("active"));
-
-btn.classList.add("active");
-
-if(cat==="todos"){
-renderProdutos();
-}else{
-renderProdutos(
-produtos.filter(p=>p.categoria===cat)
-);
-}
-
-}
-
-
-/* =========================
-   CARRINHO
-========================= */
-
-function adicionarCarrinho(id){
-
-let item=carrinho.find(x=>x.id===id);
-
-if(item){
-
-item.quantidade++;
-
-}else{
-
-carrinho.push({
-id:id,
-quantidade:1
-});
-
-}
-
-salvar();
-atualizarCarrinho();
-
-alert("✅ Produto adicionado ao carrinho!");
-
-}
-
-
-function atualizarCarrinho(){
-
-let total=0;
-
-carrinho.forEach(x=>{
-total+=x.quantidade;
-});
-
-document.getElementById("cartCount").textContent=total;
-
-}
-
-
-function abrirCarrinho(){
-
-renderCarrinho();
-abrir("cartModal");
-
-}
-
-
-function renderCarrinho(){
-
-let area=document.getElementById("cartItems");
-
-if(carrinho.length===0){
-
-area.innerHTML="<div class='empty'>O carrinho está vazio.</div>";
-
-document.getElementById("total").textContent="0 Kz";
-
-return;
-
-}
-
-let total=0;
-
-area.innerHTML="";
-
-carrinho.forEach((item,index)=>{
-
-let p=produtos.find(x=>x.id===item.id);
-
-if(!p)return;
-
-let subtotal=p.preco*item.quantidade;
-
-total+=subtotal;
-
-area.innerHTML+=`
-
-<div class="cart-item">
-
-<div class="cart-name">
-${p.img} ${esc(p.nome)}
-<br>
-<span style="color:#ff3d3d">
-${dinheiro(p.preco)}
-</span>
-</div>
-
-<div class="qty">
-
-<button onclick="alterarQuantidade(${index},-1)">−</button>
-
-<strong>${item.quantidade}</strong>
-
-<button onclick="alterarQuantidade(${index},1)">+</button>
-
-</div>
-
-<button class="remove"
-onclick="removerCarrinho(${index})">
-🗑️
-</button>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("total").textContent=dinheiro(total);
-
-}
-
-
-function alterarQuantidade(index,valor){
-
-carrinho[index].quantidade+=valor;
-
-if(carrinho[index].quantidade<=0){
-
-carrinho.splice(index,1);
-
-}
-
-salvar();
-atualizarCarrinho();
-renderCarrinho();
-
-}
-
-
-function removerCarrinho(index){
-
-carrinho.splice(index,1);
-
-salvar();
-atualizarCarrinho();
-renderCarrinho();
-
-}
-
-
-/* =========================
-   FAVORITOS
-========================= */
-
-function favoritar(id){
-
-if(favoritos.includes(id)){
-
-favoritos=favoritos.filter(x=>x!==id);
-
-}else{
-
-favoritos.push(id);
-
-}
-
-salvar();
-renderProdutos();
-
-}
-
-
-function abrirFavoritos(){
-
-let area=document.getElementById("favList");
-
-let lista=produtos.filter(p=>
-favoritos.includes(p.id)
+-- ============================================================
+-- LOJAS / VENDEDORES
+-- ============================================================
+
+create table if not exists public.stores (
+  id uuid primary key default gen_random_uuid(),
+
+  owner_id uuid not null
+    references public.profiles(id)
+    on delete cascade,
+
+  nome text not null,
+  descricao text,
+  telefone text,
+  endereco text,
+
+  created_at timestamptz not null default now()
 );
 
-if(lista.length===0){
+-- ============================================================
+-- PRODUTOS
+-- ============================================================
 
-area.innerHTML="<div class='empty'>Nenhum favorito.</div>";
+create table if not exists public.products (
+  id uuid primary key default gen_random_uuid(),
 
-}else{
+  store_id uuid not null
+    references public.stores(id)
+    on delete cascade,
 
-area.innerHTML=lista.map(p=>`
+  nome text not null,
+  descricao text,
 
-<div class="item">
-<strong>${p.img} ${esc(p.nome)}</strong>
-<br>
-${dinheiro(p.preco)}
-<br><br>
-<button class="primary"
-onclick="adicionarCarrinho(${p.id})">
-Adicionar ao carrinho
-</button>
-</div>
+  preco numeric(12,2) not null
+    check (preco >= 0),
 
-`).join("");
+  categoria text not null,
 
-}
+  imagem_url text,
 
-abrir("favModal");
+  estoque integer not null default 0
+    check (estoque >= 0),
 
-}
+  ativo boolean not null default true,
 
-
-/* =========================
-   CONTA
-========================= */
-
-function abrirConta(){
-
-renderConta();
-abrir("accountModal");
-
-}
-
-
-function renderConta(){
-
-let area=document.getElementById("accountContent");
-
-if(conta){
-
-area.innerHTML=`
-
-<div class="success">
-✅ Conta ativa
-</div>
-
-<h3>Olá, ${esc(conta.nome)}!</h3>
-
-<br>
-
-<p><strong>Email:</strong> ${esc(conta.email)}</p>
-
-<br>
-
-<button class="primary"
-onclick="logout()">
-Sair da conta
-</button>
-
-`;
-
-return;
-
-}
-
-area.innerHTML=`
-
-<div id="loginForm">
-
-<div class="group">
-<label>Email</label>
-<input id="loginEmail" type="email"
-placeholder="Seu email">
-</div>
-
-<div class="group">
-<label>Senha</label>
-<input id="loginSenha" type="password"
-placeholder="Sua senha">
-</div>
-
-<button class="primary" onclick="login()">
-Entrar
-</button>
-
-<button class="secondary"
-onclick="mostrarCadastro()">
-Criar uma conta
-</button>
-
-</div>
-
-<div id="cadastroForm" style="display:none">
-
-<div class="group">
-<label>Nome</label>
-<input id="cadNome"
-placeholder="Seu nome completo">
-</div>
-
-<div class="group">
-<label>Email</label>
-<input id="cadEmail"
-type="email"
-placeholder="Seu email">
-</div>
-
-<div class="group">
-<label>Senha</label>
-<input id="cadSenha"
-type="password"
-placeholder="Crie uma senha">
-</div>
-
-<button class="primary"
-onclick="criarConta()">
-Criar conta
-</button>
-
-<button class="secondary"
-onclick="renderConta()">
-Já tenho uma conta
-</button>
-
-</div>
-
-`;
-
-}
-
-
-function mostrarCadastro(){
-
-document.getElementById("loginForm").style.display="none";
-
-document.getElementById("cadastroForm").style.display="block";
-
-}
-
-
-function criarConta(){
-
-let nome=document.getElementById("cadNome").value.trim();
-
-let email=document.getElementById("cadEmail").value.trim();
-
-let senha=document.getElementById("cadSenha").value;
-
-if(!nome||!email||!senha){
-
-alert("⚠️ Preencha todos os campos.");
-
-return;
-}
-
-if(!email.includes("@")){
-
-alert("⚠️ Digite um email válido.");
-
-return;
-}
-
-if(senha.length<4){
-
-alert("⚠️ A senha precisa ter pelo menos 4 caracteres.");
-
-return;
-}
-
-conta={
-nome:nome,
-email:email,
-senha:senha
-};
-
-salvar();
-
-alert("✅ Conta criada com sucesso!");
-
-renderConta();
-
-}
-
-
-function login(){
-
-if(!conta){
-
-alert("Você ainda não tem conta.");
-
-return;
-
-}
-
-let email=document.getElementById("loginEmail").value.trim();
-
-let senha=document.getElementById("loginSenha").value;
-
-if(email===conta.email && senha===conta.senha){
-
-alert("✅ Login realizado!");
-
-fechar("accountModal");
-
-}else{
-
-alert("❌ Email ou senha incorretos.");
-
-}
-
-}
-
-
-function logout(){
-
-conta=null;
-
-salvar();
-
-renderConta();
-
-alert("Você saiu da conta.");
-
-}
-
-
-/* =========================
-   CHECKOUT
-========================= */
-
-function checkout(){
-
-if(carrinho.length===0){
-
-alert("🛒 O carrinho está vazio.");
-
-return;
-
-}
-
-fechar("cartModal");
-
-abrir("checkoutModal");
-
-}
-
-
-function finalizarPedido(){
-
-let nome=document.getElementById("clienteNome").value.trim();
-
-let telefone=document.getElementById("clienteTelefone").value.trim();
-
-let endereco=document.getElementById("clienteEndereco").value.trim();
-
-let codigo=document.getElementById("cupom").value.trim().toUpperCase();
-
-if(!nome||!telefone||!endereco){
-
-alert("⚠️ Preencha nome, telefone e endereço.");
-
-return;
-
-}
-
-let total=0;
-
-carrinho.forEach(item=>{
-
-let p=produtos.find(x=>x.id===item.id);
-
-if(p){
-
-total+=p.preco*item.quantidade;
-
-}
-
-});
-
-let desconto=0;
-
-let cupomEncontrado=cupons.find(c=>c.codigo===codigo);
-
-if(codigo){
-
-if(cupomEncontrado){
-
-desconto=total*(cupomEncontrado.desconto/100);
-
-}else{
-
-alert("⚠️ Cupom inválido.");
-
-return;
-
-}
-
-}
-
-let final=total-desconto;
-
-let numero="GT"+Date.now();
-
-pedidos.push({
-
-id:numero,
-
-data:new Date().toLocaleString("pt-AO"),
-
-nome:nome,
-
-telefone:telefone,
-
-endereco:endereco,
-
-total:final,
-
-desconto:desconto,
-
-itens:JSON.parse(JSON.stringify(carrinho)),
-
-status:"Pedido recebido"
-
-});
-
-carrinho=[];
-
-salvar();
-
-atualizarCarrinho();
-
-alert(
-"✅ PEDIDO REALIZADO!\n\n"+
-"Pedido: "+numero+"\n"+
-"Total: "+dinheiro(final)
+  created_at timestamptz not null default now()
 );
 
-document.getElementById("clienteNome").value="";
-document.getElementById("clienteTelefone").value="";
-document.getElementById("clienteEndereco").value="";
-document.getElementById("cupom").value="";
+-- ============================================================
+-- FAVORITOS
+-- ============================================================
 
-fechar("checkoutModal");
+create table if not exists public.favorites (
+  user_id uuid not null
+    references public.profiles(id)
+    on delete cascade,
 
-}
+  product_id uuid not null
+    references public.products(id)
+    on delete cascade,
 
+  created_at timestamptz not null default now(),
 
-/* =========================
-   PEDIDOS
-========================= */
-
-function abrirPedidos(){
-
-let area=document.getElementById("ordersList");
-
-if(pedidos.length===0){
-
-area.innerHTML=
-"<div class='empty'>Ainda não existem pedidos.</div>";
-
-}else{
-
-area.innerHTML=pedidos
-.slice()
-.reverse()
-.map(p=>`
-
-<div class="item">
-
-<strong>📦 ${p.id}</strong>
-
-<br><br>
-
-Cliente: ${esc(p.nome)}
-
-<br>
-Telefone: ${esc(p.telefone)}
-
-<br>
-Endereço: ${esc(p.endereco)}
-
-<br><br>
-
-<strong>Total:
-${dinheiro(p.total)}
-</strong>
-
-<br><br>
-
-<span style="color:#ff3d3d">
-${esc(p.status)}
-</span>
-
-</div>
-
-`).join("");
-
-}
-
-abrir("ordersModal");
-
-}
-
-
-/* =========================
-   PAINEL
-========================= */
-
-function abrirPainel(){
-
-renderPainel();
-
-abrir("panelModal");
-
-}
-
-
-function renderPainel(){
-
-document.getElementById("statProdutos").textContent=
-produtos.length;
-
-document.getElementById("statPedidos").textContent=
-pedidos.length;
-
-let vendas=pedidos.reduce((s,p)=>s+Number(p.total),0);
-
-document.getElementById("statVendas").textContent=
-dinheiro(vendas);
-
-renderMeusProdutos();
-
-renderVendas();
-
-renderCupons();
-
-}
-
-
-function aba(nome,btn){
-
-document.querySelectorAll(".tabs button")
-.forEach(x=>x.classList.remove("active"));
-
-btn.classList.add("active");
-
-document.getElementById("abaAdd").style.display="none";
-
-document.getElementById("abaProducts").style.display="none";
-
-document.getElementById("abaSales").style.display="none";
-
-document.getElementById("abaCoupons").style.display="none";
-
-if(nome==="add")
-document.getElementById("abaAdd").style.display="block";
-
-if(nome==="products"){
-
-document.getElementById("abaProducts").style.display="block";
-
-renderMeusProdutos();
-
-}
-
-if(nome==="sales"){
-
-document.getElementById("abaSales").style.display="block";
-
-renderVendas();
-
-}
-
-if(nome==="coupons"){
-
-document.getElementById("abaCoupons").style.display="block";
-
-renderCupons();
-
-}
-
-}
-
-
-/* =========================
-   ADICIONAR PRODUTO
-========================= */
-
-function adicionarProduto(){
-
-let nome=document.getElementById("prodNome").value.trim();
-
-let preco=Number(document.getElementById("prodPreco").value);
-
-let categoria=document.getElementById("prodCategoria").value;
-
-let img=document.getElementById("prodImg").value.trim()||"📦";
-
-let desc=document.getElementById("prodDesc").value.trim();
-
-if(!nome||!preco||preco<=0){
-
-alert("⚠️ Informe nome e preço válido.");
-
-return;
-
-}
-
-produtos.push({
-
-id:Date.now(),
-
-nome:nome,
-
-preco:preco,
-
-categoria:categoria,
-
-img:img,
-
-desc:desc,
-
-rating:"★★★★★"
-
-});
-
-salvar();
-
-renderProdutos();
-
-renderPainel();
-
-document.getElementById("prodNome").value="";
-
-document.getElementById("prodPreco").value="";
-
-document.getElementById("prodImg").value="";
-
-document.getElementById("prodDesc").value="";
-
-alert("✅ Produto publicado no KIVO!");
-
-}
-
-
-/* =========================
-   MEUS PRODUTOS
-========================= */
-
-function renderMeusProdutos(){
-
-let area=document.getElementById("myProducts");
-
-if(produtos.length===0){
-
-area.innerHTML="<div class='empty'>Nenhum produto.</div>";
-
-return;
-
-}
-
-area.innerHTML=produtos.map(p=>`
-
-<div class="item">
-
-<strong>${p.img} ${esc(p.nome)}</strong>
-
-<br>
-
-${dinheiro(p.preco)}
-
-<br>
-
-Categoria: ${esc(p.categoria)}
-
-<br><br>
-
-<button class="secondary"
-onclick="eliminarProduto(${p.id})">
-🗑️ Eliminar
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-
-function eliminarProduto(id){
-
-if(!confirm("Eliminar este produto?"))return;
-
-produtos=produtos.filter(p=>p.id!==id);
-
-carrinho=carrinho.filter(x=>x.id!==id);
-
-favoritos=favoritos.filter(x=>x!==id);
-
-salvar();
-
-renderProdutos();
-
-renderPainel();
-
-atualizarCarrinho();
-
-}
-
-
-/* =========================
-   VENDAS
-========================= */
-
-function renderVendas(){
-
-let area=document.getElementById("sales");
-
-if(pedidos.length===0){
-
-area.innerHTML=
-"<div class='empty'>Nenhuma venda ainda.</div>";
-
-return;
-
-}
-
-area.innerHTML=pedidos
-.slice()
-.reverse()
-.map(p=>`
-
-<div class="item">
-
-<strong>📦 ${p.id}</strong>
-
-<br><br>
-
-Cliente: ${esc(p.nome)}
-
-<br>
-Telefone: ${esc(p.telefone)}
-
-<br>
-
-Total:
-<strong>${dinheiro(p.total)}</strong>
-
-<br><br>
-
-Status:
-<strong>${esc(p.status)}</strong>
-
-<br><br>
-
-<button class="secondary"
-onclick="alterarStatus('${p.id}')">
-Alterar status
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-
-function alterarStatus(id){
-
-let p=pedidos.find(x=>x.id===id);
-
-if(!p)return;
-
-let status=prompt(
-"Novo status:\n"+
-"Pedido recebido\n"+
-"Em preparação\n"+
-"Enviado\n"+
-"Entregue\n"+
-"Cancelado",
-p.status
+  primary key (user_id, product_id)
 );
 
-if(status){
+-- ============================================================
+-- CARRINHO
+-- ============================================================
 
-p.status=status;
+create table if not exists public.cart_items (
+  id uuid primary key default gen_random_uuid(),
 
-salvar();
+  user_id uuid not null
+    references public.profiles(id)
+    on delete cascade,
 
-renderVendas();
+  product_id uuid not null
+    references public.products(id)
+    on delete cascade,
 
-}
+  quantidade integer not null default 1
+    check (quantidade > 0),
 
-}
+  created_at timestamptz not null default now(),
 
-
-/* =========================
-   CUPONS
-========================= */
-
-function criarCupom(){
-
-let codigo=document.getElementById("novoCupom").value
-.trim()
-.toUpperCase();
-
-let desconto=Number(
-document.getElementById("novoDesconto").value
+  unique(user_id, product_id)
 );
 
-if(!codigo||!desconto||desconto<=0||desconto>100){
+-- ============================================================
+-- PEDIDOS
+-- ============================================================
 
-alert("⚠️ Informe cupom e desconto entre 1 e 100%.");
+create table if not exists public.orders (
+  id uuid primary key default gen_random_uuid(),
 
-return;
+  user_id uuid not null
+    references public.profiles(id)
+    on delete restrict,
 
-}
+  nome_entrega text not null,
+  telefone_entrega text not null,
+  endereco_entrega text not null,
 
-if(cupons.some(c=>c.codigo===codigo)){
+  subtotal numeric(12,2) not null default 0
+    check (subtotal >= 0),
 
-alert("⚠️ Esse cupom já existe.");
+  comissao_kivo numeric(12,2) not null default 0
+    check (comissao_kivo >= 0),
 
-return;
+  total numeric(12,2) not null default 0
+    check (total >= 0),
 
-}
+  status text not null default 'recebido'
+    check (
+      status in (
+        'recebido',
+        'confirmado',
+        'preparando',
+        'enviado',
+        'entregue',
+        'cancelado'
+      )
+    ),
 
-cupons.push({
-codigo:codigo,
-desconto:desconto
-});
+  created_at timestamptz not null default now()
+);
 
-salvar();
+-- ============================================================
+-- ITENS DOS PEDIDOS
+-- ============================================================
 
-document.getElementById("novoCupom").value="";
+create table if not exists public.order_items (
+  id uuid primary key default gen_random_uuid(),
 
-document.getElementById("novoDesconto").value="";
+  order_id uuid not null
+    references public.orders(id)
+    on delete cascade,
 
-renderCupons();
+  product_id uuid
+    references public.products(id)
+    on delete set null,
 
-alert("✅ Cupom criado!");
+  store_id uuid
+    references public.stores(id)
+    on delete set null,
 
-}
+  nome_produto text not null,
 
+  preco numeric(12,2) not null
+    check (preco >= 0),
 
-function renderCupons(){
+  quantidade integer not null
+    check (quantidade > 0),
 
-let area=document.getElementById("couponList");
+  subtotal numeric(12,2) generated always as
+    (preco * quantidade) stored
+);
 
-if(!area)return;
+-- ============================================================
+-- GANHOS / COMISSÕES DOS VENDEDORES
+-- ============================================================
 
-if(cupons.length===0){
+create table if not exists public.seller_earnings (
+  id uuid primary key default gen_random_uuid(),
 
-area.innerHTML=
-"<div class='empty'>Nenhum cupom.</div>";
+  seller_id uuid not null
+    references public.profiles(id)
+    on delete restrict,
 
-return;
+  store_id uuid
+    references public.stores(id)
+    on delete set null,
 
-}
+  order_id uuid
+    references public.orders(id)
+    on delete set null,
 
-area.innerHTML=cupons.map((c,i)=>`
+  order_item_id uuid
+    references public.order_items(id)
+    on delete set null,
 
-<div class="item">
+  valor_venda numeric(12,2) not null
+    check (valor_venda >= 0),
 
-<strong>🎟️ ${esc(c.codigo)}</strong>
+  comissao_percentual numeric(5,2) not null default 10.00
+    check (comissao_percentual >= 0),
 
-<br>
+  comissao_kivo numeric(12,2) not null default 0
+    check (comissao_kivo >= 0),
 
-Desconto: ${c.desconto}%
+  valor_vendedor numeric(12,2) not null default 0
+    check (valor_vendedor >= 0),
 
-<br><br>
+  status text not null default 'pendente'
+    check (
+      status in (
+        'pendente',
+        'disponivel',
+        'pago',
+        'cancelado'
+      )
+    ),
 
-<button class="secondary"
-onclick="eliminarCupom(${i})">
-🗑️ Eliminar
-</button>
+  created_at timestamptz not null default now()
+);
 
-</div>
+-- ============================================================
+-- PAGAMENTOS AOS VENDEDORES
+-- ============================================================
 
-`).join("");
+create table if not exists public.seller_payouts (
+  id uuid primary key default gen_random_uuid(),
 
-}
+  seller_id uuid not null
+    references public.profiles(id)
+    on delete restrict,
 
+  valor numeric(12,2) not null
+    check (valor > 0),
 
-function eliminarCupom(index){
+  metodo text,
+  referencia text,
 
-cupons.splice(index,1);
+  status text not null default 'pendente'
+    check (
+      status in (
+        'pendente',
+        'processando',
+        'pago',
+        'cancelado'
+      )
+    ),
 
-salvar();
+  created_at timestamptz not null default now(),
 
-renderCupons();
+  paid_at timestamptz
+);
 
-}
+-- ============================================================
+-- ÍNDICES
+-- ============================================================
 
+create index if not exists idx_stores_owner
+on public.stores(owner_id);
 
-/* =========================
-   MODAIS
-========================= */
+create index if not exists idx_products_store
+on public.products(store_id);
 
-function abrir(id){
+create index if not exists idx_products_categoria
+on public.products(categoria);
 
-document.getElementById(id).style.display="block";
+create index if not exists idx_products_ativo
+on public.products(ativo);
 
-}
+create index if not exists idx_cart_user
+on public.cart_items(user_id);
 
-function fechar(id){
+create index if not exists idx_orders_user
+on public.orders(user_id);
 
-document.getElementById(id).style.display="none";
+create index if not exists idx_orders_status
+on public.orders(status);
 
-}
+create index if not exists idx_order_items_order
+on public.order_items(order_id);
 
-window.addEventListener("click",function(e){
+create index if not exists idx_order_items_store
+on public.order_items(store_id);
 
-document.querySelectorAll(".modal").forEach(m=>{
+create index if not exists idx_earnings_seller
+on public.seller_earnings(seller_id);
 
-if(e.target===m){
+create index if not exists idx_payouts_seller
+on public.seller_payouts(seller_id);
 
-m.style.display="none";
+-- ============================================================
+-- RLS
+-- ============================================================
 
-}
+alter table public.profiles enable row level security;
+alter table public.stores enable row level security;
+alter table public.products enable row level security;
+alter table public.favorites enable row level security;
+alter table public.cart_items enable row level security;
+alter table public.orders enable row level security;
+alter table public.order_items enable row level security;
+alter table public.seller_earnings enable row level security;
+alter table public.seller_payouts enable row level security;
 
-});
+-- ============================================================
+-- PROFILES
+-- ============================================================
 
-});
+create policy "Perfil proprio - visualizar"
+on public.profiles
+for select
+using (auth.uid() = id);
 
+create policy "Perfil proprio - criar"
+on public.profiles
+for insert
+with check (auth.uid() = id);
 
-/* =========================
-   INICIAR
-========================= */
+create policy "Perfil proprio - atualizar"
+on public.profiles
+for update
+using (auth.uid() = id)
+with check (auth.uid() = id);
 
-renderProdutos();
+-- ============================================================
+-- STORES
+-- ============================================================
 
-atualizarCarrinho();
+create policy "Todos podem ver lojas"
+on public.stores
+for select
+using (true);
 
-</script>
+create policy "Vendedor cria sua loja"
+on public.stores
+for insert
+with check (auth.uid() = owner_id);
 
-</body>
-</html>
+create policy "Vendedor atualiza sua loja"
+on public.stores
+for update
+using (auth.uid() = owner_id)
+with check (auth.uid() = owner_id);
+
+create policy "Vendedor apaga sua loja"
+on public.stores
+for delete
+using (auth.uid() = owner_id);
+
+-- ============================================================
+-- PRODUTOS
+-- ============================================================
+
+create policy "Todos podem ver produtos ativos"
+on public.products
+for select
+using (ativo = true);
+
+create policy "Vendedor cria produtos"
+on public.products
+for insert
+with check (
+  exists (
+    select 1
+    from public.stores
+    where stores.id = products.store_id
+      and stores.owner_id = auth.uid()
+  )
+);
+
+create policy "Vendedor atualiza seus produtos"
+on public.products
+for update
+using (
+  exists (
+    select 1
+    from public.stores
+    where stores.id = products.store_id
+      and stores.owner_id = auth.uid()
+  )
+);
+
+create policy "Vendedor apaga seus produtos"
+on public.products
+for delete
+using (
+  exists (
+    select 1
+    from public.stores
+    where stores.id = products.store_id
+      and stores.owner_id = auth.uid()
+  )
+);
+
+-- ============================================================
+-- FAVORITOS
+-- ============================================================
+
+create policy "Utilizador ve seus favoritos"
+on public.favorites
+for select
+using (auth.uid() = user_id);
+
+create policy "Utilizador adiciona favoritos"
+on public.favorites
+for insert
+with check (auth.uid() = user_id);
+
+create policy "Utilizador remove favoritos"
+on public.favorites
+for delete
+using (auth.uid() = user_id);
+
+-- ============================================================
+-- CARRINHO
+-- ============================================================
+
+create policy "Utilizador ve seu carrinho"
+on public.cart_items
+for select
+using (auth.uid() = user_id);
+
+create policy "Utilizador adiciona ao carrinho"
+on public.cart_items
+for insert
+with check (auth.uid() = user_id);
+
+create policy "Utilizador atualiza seu carrinho"
+on public.cart_items
+for update
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
+create policy "Utilizador remove do carrinho"
+on public.cart_items
+for delete
+using (auth.uid() = user_id);
+
+-- ============================================================
+-- PEDIDOS
+-- ============================================================
+
+create policy "Cliente ve seus pedidos"
+on public.orders
+for select
+using (auth.uid() = user_id);
+
+create policy "Cliente cria seus pedidos"
+on public.orders
+for insert
+with check (auth.uid() = user_id);
+
+-- ============================================================
+-- ITENS DOS PEDIDOS
+-- ============================================================
+
+create policy "Cliente ve itens dos seus pedidos"
+on public.order_items
+for select
+using (
+  exists (
+    select 1
+    from public.orders
+    where orders.id = order_items.order_id
+      and orders.user_id = auth.uid()
+  )
+);
+
+create policy "Cliente cria itens dos seus pedidos"
+on public.order_items
+for insert
+with check (
+  exists (
+    select 1
+    from public.orders
+    where orders.id = order_items.order_id
+      and orders.user_id = auth.uid()
+  )
+);
+
+-- ============================================================
+-- GANHOS DOS VENDEDORES
+-- ============================================================
+
+create policy "Vendedor ve seus ganhos"
+on public.seller_earnings
+for select
+using (auth.uid() = seller_id);
+
+-- ============================================================
+-- PAGAMENTOS DOS VENDEDORES
+-- ============================================================
+
+create policy "Vendedor ve seus pagamentos"
+on public.seller_payouts
+for select
+using (auth.uid() = seller_id);
+
+-- ============================================================
+-- FIM DA ETAPA 1
+-- ============================================================
