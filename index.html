@@ -2,1496 +2,1266 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>GTube Marketplace</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f5f5f5;
-  color:#222;
-}
-
-/* ================= HEADER ================= */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#f5f5f5;color:#222}
+button{cursor:pointer}
 
 header{
-  background:#111;
-  color:white;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 2px 10px rgba(0,0,0,.25);
+background:#111;color:#fff;position:sticky;top:0;z-index:1000;
+box-shadow:0 2px 10px #0003
 }
 
 .top{
-  max-width:1250px;
-  margin:auto;
-  min-height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  padding:10px 20px;
+max-width:1250px;margin:auto;padding:10px 18px;
+display:flex;align-items:center;justify-content:space-between;gap:15px
 }
 
-.logo{
-  font-size:27px;
-  font-weight:bold;
-  color:#ff4747;
-  white-space:nowrap;
-}
+.logo{font-size:25px;font-weight:bold;color:#ff4747}
+.logo span{color:#fff}
 
-.logo span{
-  color:#fff;
-}
-
-.menu{
-  display:flex;
-  align-items:center;
-  gap:5px;
-}
-
+.menu{display:flex;gap:5px;overflow-x:auto}
 .menu button{
-  border:0;
-  background:transparent;
-  color:#fff;
-  padding:10px;
-  cursor:pointer;
-  border-radius:6px;
-  font-size:13px;
+background:transparent;border:0;color:#fff;padding:10px;
+border-radius:6px;white-space:nowrap
 }
-
-.menu button:hover{
-  background:#292929;
-}
-
-.cartBtn{
-  background:#ff4747 !important;
-}
+.menu button:hover{background:#292929}
+.cart-btn{background:#ff4747!important}
 
 .badge{
-  background:white;
-  color:#ff4747;
-  border-radius:50%;
-  font-size:11px;
-  padding:2px 6px;
-  margin-left:3px;
+background:#fff;color:#ff4747;border-radius:50%;
+padding:2px 6px;font-size:11px
 }
 
-/* ================= SEARCH ================= */
-
-.search-area{
-  background:white;
-  padding:12px 20px;
-  border-top:1px solid #333;
-  border-bottom:1px solid #ddd;
-}
-
-.search{
-  max-width:900px;
-  margin:auto;
-  display:flex;
-  height:46px;
-}
-
+.search-area{background:#fff;padding:12px 18px}
+.search{max-width:900px;margin:auto;display:flex;height:46px}
 .search input{
-  flex:1;
-  border:2px solid #ff4747;
-  border-right:0;
-  border-radius:7px 0 0 7px;
-  padding:0 15px;
-  font-size:15px;
-  outline:none;
+flex:1;border:2px solid #ff4747;border-right:0;
+border-radius:7px 0 0 7px;padding:0 15px;font-size:15px
 }
-
 .search button{
-  width:100px;
-  border:0;
-  background:#ff4747;
-  color:#fff;
-  font-weight:bold;
-  cursor:pointer;
-  border-radius:0 7px 7px 0;
+width:90px;border:0;background:#ff4747;color:white;
+border-radius:0 7px 7px 0
 }
 
-/* ================= CATEGORIAS ================= */
-
-.categories{
-  background:#fff;
-  border-bottom:1px solid #ddd;
-  overflow-x:auto;
-}
-
+.categories{background:white;border-bottom:1px solid #ddd;overflow:auto}
 .categories-inner{
-  max-width:1250px;
-  margin:auto;
-  display:flex;
-  gap:8px;
-  padding:10px 20px;
+max-width:1250px;margin:auto;padding:10px 18px;
+display:flex;gap:8px
 }
-
 .category{
-  border:0;
-  background:#f1f1f1;
-  padding:9px 16px;
-  border-radius:20px;
-  cursor:pointer;
-  white-space:nowrap;
+border:0;padding:9px 15px;border-radius:20px;
+white-space:nowrap;background:#eee
 }
+.category.active,.category:hover{background:#ff4747;color:white}
 
-.category.active,
-.category:hover{
-  background:#ff4747;
-  color:#fff;
-}
-
-/* ================= MAIN ================= */
-
-main{
-  max-width:1250px;
-  margin:auto;
-  padding:20px;
-}
-
-/* ================= BANNER ================= */
+main{max-width:1250px;margin:auto;padding:20px}
 
 .banner{
-  min-height:260px;
-  border-radius:12px;
-  padding:40px;
-  color:#fff;
-  background:linear-gradient(120deg,#111,#333);
-  display:flex;
-  align-items:center;
-  margin-bottom:25px;
+background:linear-gradient(120deg,#111,#333);
+color:white;border-radius:12px;padding:35px;margin-bottom:25px
 }
-
-.banner h1{
-  font-size:34px;
-  margin-bottom:12px;
-}
-
-.banner p{
-  color:#ddd;
-  max-width:600px;
-  line-height:1.5;
-}
-
+.banner h1{font-size:32px;margin-bottom:10px}
+.banner p{color:#ddd}
 .banner button{
-  margin-top:20px;
-  padding:12px 22px;
-  border:0;
-  background:#ff4747;
-  color:white;
-  border-radius:7px;
-  cursor:pointer;
-  font-weight:bold;
+margin-top:18px;padding:12px 20px;border:0;
+border-radius:7px;background:#ff4747;color:#fff;font-weight:bold
 }
-
-/* ================= TITULO ================= */
 
 .title{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:15px;
+display:flex;justify-content:space-between;
+align-items:center;margin-bottom:15px
 }
-
-.title h2{
-  font-size:23px;
-}
-
-/* ================= PRODUTOS ================= */
 
 .products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+display:grid;grid-template-columns:repeat(4,1fr);gap:18px
 }
 
 .product{
-  background:white;
-  border-radius:10px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  position:relative;
-  transition:.2s;
+background:white;border-radius:10px;overflow:hidden;
+box-shadow:0 2px 8px #00000014;position:relative
 }
 
-.product:hover{
-  transform:translateY(-3px);
-  box-shadow:0 6px 18px rgba(0,0,0,.14);
+.product-img{
+height:190px;background:#eee;
+display:flex;align-items:center;justify-content:center;
+font-size:65px
 }
 
-.product-image{
-  height:200px;
-  background:#eee;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
+.product-info{padding:14px}
+.product-info h3{font-size:16px;min-height:38px}
+.rating{color:#e9a000;margin:7px 0;font-size:13px}
+.old{text-decoration:line-through;color:#999;font-size:12px}
+.price{color:#ff4747;font-weight:bold;font-size:20px;margin:4px 0 12px}
+.buy{
+width:100%;padding:10px;border:0;border-radius:6px;
+background:#111;color:white;font-weight:bold
 }
+.buy:hover{background:#ff4747}
 
 .favorite{
-  position:absolute;
-  right:10px;
-  top:10px;
-  width:35px;
-  height:35px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  cursor:pointer;
-  font-size:18px;
-  box-shadow:0 2px 7px rgba(0,0,0,.15);
+position:absolute;right:10px;top:10px;
+width:35px;height:35px;border:0;border-radius:50%;
+background:white;font-size:19px
 }
-
-.favorite.active{
-  color:#ff4747;
-}
-
-.info{
-  padding:15px;
-}
-
-.info h3{
-  font-size:16px;
-  min-height:38px;
-}
-
-.rating{
-  color:#f5a400;
-  font-size:13px;
-  margin:7px 0;
-}
-
-.old-price{
-  color:#999;
-  text-decoration:line-through;
-  font-size:13px;
-}
-
-.price{
-  color:#ff4747;
-  font-size:21px;
-  font-weight:bold;
-  margin:4px 0 12px;
-}
-
-.buy{
-  width:100%;
-  padding:10px;
-  border:0;
-  border-radius:6px;
-  background:#111;
-  color:white;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.buy:hover{
-  background:#ff4747;
-}
-
-/* ================= MODAL ================= */
+.favorite.active{color:#ff4747}
 
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:2000;
-  padding:20px;
-  overflow:auto;
+display:none;position:fixed;inset:0;background:#0009;
+z-index:3000;padding:15px;overflow:auto
 }
 
 .modal-box{
-  background:white;
-  width:100%;
-  max-width:550px;
-  margin:40px auto;
-  border-radius:12px;
-  padding:22px;
-  position:relative;
+background:white;max-width:600px;margin:30px auto;
+padding:22px;border-radius:12px;position:relative
 }
 
 .close{
-  position:absolute;
-  right:15px;
-  top:12px;
-  border:0;
-  background:none;
-  font-size:25px;
-  cursor:pointer;
+position:absolute;right:12px;top:8px;
+border:0;background:none;font-size:27px
 }
 
-/* ================= CARRINHO ================= */
+.form-group{margin-bottom:13px}
+.form-group label{display:block;font-weight:bold;margin-bottom:5px}
+.form-group input,.form-group textarea,.form-group select{
+width:100%;padding:11px;border:1px solid #ccc;border-radius:6px
+}
+.form-group textarea{min-height:80px}
+
+.primary{
+width:100%;padding:12px;border:0;border-radius:7px;
+background:#ff4747;color:#fff;font-weight:bold
+}
+
+.secondary{
+width:100%;padding:11px;border:1px solid #ddd;
+border-radius:7px;background:#eee;margin-top:8px
+}
+
+.tabs{
+display:flex;gap:5px;border-bottom:1px solid #ddd;
+margin-bottom:18px;overflow:auto
+}
+.tabs button{
+border:0;background:#eee;padding:10px;white-space:nowrap
+}
+.tabs button.active{background:#ff4747;color:white}
+
+.admin-product,.order{
+border:1px solid #ddd;padding:12px;border-radius:8px;
+margin-bottom:10px
+}
 
 .cart-item{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:10px;
-  padding:12px 0;
-  border-bottom:1px solid #ddd;
+display:flex;align-items:center;gap:10px;
+padding:12px 0;border-bottom:1px solid #ddd
 }
-
-.cart-item-info{
-  flex:1;
-}
-
-.cart-item-name{
-  font-weight:bold;
-  margin-bottom:5px;
-}
-
-.cart-price{
-  color:#ff4747;
-  font-weight:bold;
-}
-
-.quantity{
-  display:flex;
-  align-items:center;
-  gap:7px;
-}
-
-.quantity button{
-  width:28px;
-  height:28px;
-  border:1px solid #ccc;
-  background:#fff;
-  cursor:pointer;
-}
-
-.remove{
-  color:#ff4747;
-  border:0;
-  background:none;
-  cursor:pointer;
-}
+.cart-name{flex:1;font-weight:bold}
+.qty{display:flex;align-items:center;gap:6px}
+.qty button{width:28px;height:28px;border:1px solid #ccc;background:white}
+.remove{border:0;background:none;color:#f33}
 
 .total{
-  display:flex;
-  justify-content:space-between;
-  font-size:20px;
-  font-weight:bold;
-  margin-top:20px;
+display:flex;justify-content:space-between;
+font-size:20px;font-weight:bold;margin-top:18px
 }
 
-.checkout{
-  width:100%;
-  padding:13px;
-  border:0;
-  background:#ff4747;
-  color:#fff;
-  border-radius:7px;
-  margin-top:15px;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-/* ================= FORMULÁRIO ================= */
-
-.form-group{
-  margin-bottom:14px;
-}
-
-.form-group label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  outline:none;
-}
-
-.form-group textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-/* ================= FOOTER ================= */
+.empty{text-align:center;padding:25px;color:#777}
 
 footer{
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:30px 20px;
-  margin-top:40px;
+background:#111;color:white;text-align:center;
+padding:30px;margin-top:35px
 }
-
-footer p{
-  color:#aaa;
-  font-size:14px;
-}
-
-/* ================= RESPONSIVO ================= */
+footer p{color:#aaa;margin-top:8px}
 
 @media(max-width:900px){
-
-  .products{
-    grid-template-columns:repeat(3,1fr);
-  }
-
+.products{grid-template-columns:repeat(3,1fr)}
 }
 
 @media(max-width:700px){
-
-  .top{
-    flex-direction:column;
-    padding:10px;
-  }
-
-  .menu{
-    width:100%;
-    justify-content:center;
-    overflow-x:auto;
-  }
-
-  .menu button{
-    font-size:12px;
-    padding:8px;
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  main{
-    padding:12px;
-  }
-
-  .banner{
-    padding:25px;
-    min-height:220px;
-  }
-
-  .banner h1{
-    font-size:25px;
-  }
-
-  .product-image{
-    height:145px;
-    font-size:55px;
-  }
-
+.top{flex-direction:column}
+.menu{width:100%;justify-content:center}
+.products{grid-template-columns:repeat(2,1fr);gap:10px}
+main{padding:12px}
+.banner{padding:25px}
+.banner h1{font-size:25px}
+.product-img{height:140px;font-size:55px}
 }
 
 @media(max-width:420px){
-
-  .logo{
-    font-size:22px;
-  }
-
-  .menu button{
-    font-size:11px;
-  }
-
-  .product-image{
-    height:125px;
-  }
-
-  .info{
-    padding:10px;
-  }
-
-  .info h3{
-    font-size:14px;
-  }
-
-  .price{
-    font-size:18px;
-  }
-
+.logo{font-size:21px}
+.menu button{font-size:11px;padding:8px}
+.product-img{height:125px}
+.product-info{padding:10px}
+.product-info h3{font-size:14px}
+.price{font-size:18px}
 }
 </style>
 </head>
 
 <body>
 
-<!-- ================= HEADER ================= -->
-
 <header>
 
-  <div class="top">
+<div class="top">
 
-    <div class="logo">
-      GTube <span>Marketplace</span>
-    </div>
+<div class="logo">
+GTube <span>Marketplace</span>
+</div>
 
-    <div class="menu">
+<div class="menu">
+<button onclick="abrir('loginModal')">👤 Conta</button>
+<button onclick="abrirPedidos()">📦 Pedidos</button>
+<button onclick="abrirFavoritos()">❤️ Favoritos</button>
+<button onclick="abrirPainel()">🏪 Vender</button>
+<button class="cart-btn" onclick="abrirCarrinho()">
+🛒 Carrinho <span class="badge" id="cartCount">0</span>
+</button>
+</div>
 
-      <button onclick="abrirPerfil()">
-        👤 Perfil
-      </button>
+</div>
 
-      <button onclick="mostrarPedidos()">
-        📦 Pedidos
-      </button>
-
-      <button onclick="abrirFavoritos()">
-        ❤️ Favoritos
-      </button>
-
-      <button class="cartBtn" onclick="abrirCarrinho()">
-        🛒 Carrinho
-        <span class="badge" id="cartCount">0</span>
-      </button>
-
-    </div>
-
-  </div>
-
-  <div class="search-area">
-
-    <div class="search">
-
-      <input
-        id="searchInput"
-        type="text"
-        placeholder="Pesquisar produtos, marcas e categorias..."
-        oninput="pesquisar()"
-      >
-
-      <button onclick="pesquisar()">
-        🔍
-      </button>
-
-    </div>
-
-  </div>
+<div class="search-area">
+<div class="search">
+<input id="search" placeholder="Pesquisar produtos..." oninput="pesquisar()">
+<button onclick="pesquisar()">🔍</button>
+</div>
+</div>
 
 </header>
 
-
-<!-- ================= CATEGORIAS ================= -->
-
 <div class="categories">
+<div class="categories-inner">
 
-  <div class="categories-inner">
-
-    <button class="category active" onclick="filtrar('todos',this)">
-      Todos
-    </button>
-
-    <button class="category" onclick="filtrar('eletronicos',this)">
-      📱 Eletrônicos
-    </button>
-
-    <button class="category" onclick="filtrar('moda',this)">
-      👕 Moda
-    </button>
-
-    <button class="category" onclick="filtrar('casa',this)">
-      🏠 Casa
-    </button>
-
-    <button class="category" onclick="filtrar('beleza',this)">
-      💄 Beleza
-    </button>
-
-    <button class="category" onclick="filtrar('acessorios',this)">
-      🎧 Acessórios
-    </button>
-
-    <button class="category" onclick="filtrar('automoveis',this)">
-      🚗 Automóveis
-    </button>
-
-  </div>
+<button class="category active" onclick="filtrar('todos',this)">Todos</button>
+<button class="category" onclick="filtrar('eletronicos',this)">📱 Eletrônicos</button>
+<button class="category" onclick="filtrar('moda',this)">👕 Moda</button>
+<button class="category" onclick="filtrar('casa',this)">🏠 Casa</button>
+<button class="category" onclick="filtrar('beleza',this)">💄 Beleza</button>
+<button class="category" onclick="filtrar('acessorios',this)">🎧 Acessórios</button>
+<button class="category" onclick="filtrar('automoveis',this)">🚗 Automóveis</button>
 
 </div>
-
-
-<!-- ================= CONTEÚDO ================= -->
+</div>
 
 <main>
 
-  <section class="banner">
-
-    <div>
-
-      <h1>
-        Compre tudo em um só lugar.
-      </h1>
-
-      <p>
-        Encontre produtos, descubra ofertas e faça suas compras
-        de forma simples no GTube Marketplace.
-      </p>
-
-      <button onclick="irProdutos()">
-        Ver produtos
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <div class="title">
-
-    <h2>
-      🔥 Ofertas em destaque
-    </h2>
-
-    <span id="resultado">
-      Produtos
-    </span>
-
-  </div>
-
-
-  <section class="products" id="products">
-
-
-    <!-- PRODUTO 1 -->
-
-    <div class="product"
-         data-category="eletronicos"
-         data-name="Smartphone Android">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Smartphone Android')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        📱
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Smartphone Android
-        </h3>
-
-        <div class="rating">
-          ★★★★★ (128)
-        </div>
-
-        <div class="old-price">
-          110.000 Kz
-        </div>
-
-        <div class="price">
-          85.000 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Smartphone Android',85000)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 2 -->
-
-    <div class="product"
-         data-category="acessorios"
-         data-name="Fone Bluetooth">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Fone Bluetooth')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        🎧
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Fone Bluetooth
-        </h3>
-
-        <div class="rating">
-          ★★★★☆ (94)
-        </div>
-
-        <div class="old-price">
-          20.000 Kz
-        </div>
-
-        <div class="price">
-          15.000 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Fone Bluetooth',15000)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 3 -->
-
-    <div class="product"
-         data-category="moda"
-         data-name="Tenis Esportivo">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Tenis Esportivo')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        👟
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Ténis Esportivo
-        </h3>
-
-        <div class="rating">
-          ★★★★★ (203)
-        </div>
-
-        <div class="old-price">
-          35.000 Kz
-        </div>
-
-        <div class="price">
-          25.000 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Ténis Esportivo',25000)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 4 -->
-
-    <div class="product"
-         data-category="acessorios"
-         data-name="Smartwatch">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Smartwatch')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        ⌚
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Smartwatch
-        </h3>
-
-        <div class="rating">
-          ★★★★☆ (76)
-        </div>
-
-        <div class="old-price">
-          45.000 Kz
-        </div>
-
-        <div class="price">
-          35.000 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Smartwatch',35000)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 5 -->
-
-    <div class="product"
-         data-category="casa"
-         data-name="Lampada LED">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Lampada LED')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        💡
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Lâmpada LED Inteligente
-        </h3>
-
-        <div class="rating">
-          ★★★★★ (51)
-        </div>
-
-        <div class="old-price">
-          12.000 Kz
-        </div>
-
-        <div class="price">
-          8.500 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Lâmpada LED Inteligente',8500)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 6 -->
-
-    <div class="product"
-         data-category="beleza"
-         data-name="Perfume">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Perfume')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        🧴
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Perfume Masculino
-        </h3>
-
-        <div class="rating">
-          ★★★★☆ (88)
-        </div>
-
-        <div class="old-price">
-          30.000 Kz
-        </div>
-
-        <div class="price">
-          22.000 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Perfume Masculino',22000)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 7 -->
-
-    <div class="product"
-         data-category="automoveis"
-         data-name="Suporte Celular Carro">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Suporte Celular Carro')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        🚗
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Suporte de Celular para Carro
-        </h3>
-
-        <div class="rating">
-          ★★★★★ (119)
-        </div>
-
-        <div class="old-price">
-          10.000 Kz
-        </div>
-
-        <div class="price">
-          6.500 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Suporte de Celular para Carro',6500)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- PRODUTO 8 -->
-
-    <div class="product"
-         data-category="eletronicos"
-         data-name="Power Bank">
-
-      <button class="favorite"
-              onclick="favoritar(this,'Power Bank')">
-        ♡
-      </button>
-
-      <div class="product-image">
-        🔋
-      </div>
-
-      <div class="info">
-
-        <h3>
-          Power Bank 20.000mAh
-        </h3>
-
-        <div class="rating">
-          ★★★★★ (142)
-        </div>
-
-        <div class="old-price">
-          28.000 Kz
-        </div>
-
-        <div class="price">
-          19.000 Kz
-        </div>
-
-        <button class="buy"
-          onclick="adicionar('Power Bank 20.000mAh',19000)">
-          🛒 Adicionar ao carrinho
-        </button>
-
-      </div>
-
-    </div>
-
-  </section>
+<section class="banner">
+<h1>Bem-vindo ao GTube Marketplace</h1>
+<p>Compre, venda e encontre produtos em um só lugar.</p>
+<button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+Ver produtos
+</button>
+</section>
+
+<div class="title">
+<h2>🔥 Produtos</h2>
+<span id="result">Produtos</span>
+</div>
+
+<section class="products" id="products"></section>
 
 </main>
 
+<footer>
+<h3>GTube Marketplace</h3>
+<p>Compre. Venda. Cresça.</p>
+<p>© 2026 GTube Marketplace</p>
+</footer>
 
-<!-- ================= MODAL CARRINHO ================= -->
+
+<!-- LOGIN / CONTA -->
+
+<div class="modal" id="loginModal">
+<div class="modal-box">
+<button class="close" onclick="fechar('loginModal')">×</button>
+
+<h2>👤 Minha conta</h2><br>
+
+<div id="loginArea">
+
+<div class="form-group">
+<label>Email</label>
+<input id="loginEmail" type="email" placeholder="Seu email">
+</div>
+
+<div class="form-group">
+<label>Senha</label>
+<input id="loginSenha" type="password" placeholder="Sua senha">
+</div>
+
+<button class="primary" onclick="login()">Entrar</button>
+
+<button class="secondary" onclick="mostrarCadastro()">
+Criar uma conta
+</button>
+
+</div>
+
+<div id="cadastroArea" style="display:none">
+
+<div class="form-group">
+<label>Nome</label>
+<input id="cadNome" placeholder="Seu nome completo">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input id="cadEmail" type="email" placeholder="Seu email">
+</div>
+
+<div class="form-group">
+<label>Senha</label>
+<input id="cadSenha" type="password" placeholder="Crie uma senha">
+</div>
+
+<button class="primary" onclick="criarConta()">
+Criar conta
+</button>
+
+<button class="secondary" onclick="mostrarLogin()">
+Já tenho uma conta
+</button>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- CARRINHO -->
 
 <div class="modal" id="cartModal">
+<div class="modal-box">
 
-  <div class="modal-box">
+<button class="close" onclick="fechar('cartModal')">×</button>
 
-    <button class="close" onclick="fechar('cartModal')">
-      ×
-    </button>
+<h2>🛒 Meu carrinho</h2><br>
 
-    <h2>🛒 Meu Carrinho</h2>
+<div id="cartItems"></div>
 
-    <div id="cartItems"></div>
+<div class="total">
+<span>Total</span>
+<span id="total">0 Kz</span>
+</div>
 
-    <div class="total">
+<button class="primary" onclick="abrirCheckout()">
+Finalizar compra
+</button>
 
-      <span>Total</span>
-
-      <span id="cartTotal">
-        0 Kz
-      </span>
-
-    </div>
-
-    <button class="checkout" onclick="abrirCheckout()">
-      Continuar para finalizar compra
-    </button>
-
-  </div>
-
+</div>
 </div>
 
 
-<!-- ================= MODAL CHECKOUT ================= -->
+<!-- CHECKOUT -->
 
 <div class="modal" id="checkoutModal">
+<div class="modal-box">
 
-  <div class="modal-box">
+<button class="close" onclick="fechar('checkoutModal')">×</button>
 
-    <button class="close" onclick="fechar('checkoutModal')">
-      ×
-    </button>
+<h2>📦 Dados de entrega</h2><br>
 
-    <h2>📦 Finalizar compra</h2>
+<div class="form-group">
+<label>Nome completo</label>
+<input id="clienteNome">
+</div>
 
-    <br>
+<div class="form-group">
+<label>Telefone</label>
+<input id="clienteTelefone" placeholder="923 000 000">
+</div>
 
-    <div class="form-group">
+<div class="form-group">
+<label>Endereço</label>
+<textarea id="clienteEndereco"
+placeholder="Província, município, bairro, rua e casa"></textarea>
+</div>
 
-      <label>Nome completo</label>
+<button class="primary" onclick="finalizarPedido()">
+Confirmar pedido
+</button>
 
-      <input
-        id="nome"
-        type="text"
-        placeholder="Digite seu nome"
-      >
+</div>
+</div>
 
-    </div>
 
-    <div class="form-group">
+<!-- FAVORITOS -->
 
-      <label>Telefone</label>
+<div class="modal" id="favModal">
+<div class="modal-box">
 
-      <input
-        id="telefone"
-        type="tel"
-        placeholder="Ex: 923 000 000"
-      >
+<button class="close" onclick="fechar('favModal')">×</button>
 
-    </div>
+<h2>❤️ Favoritos</h2><br>
 
-    <div class="form-group">
+<div id="favList"></div>
 
-      <label>Endereço de entrega</label>
+</div>
+</div>
 
-      <textarea
-        id="endereco"
-        placeholder="Província, município, bairro, rua e número da casa"
-      ></textarea>
 
-    </div>
+<!-- PEDIDOS -->
 
-    <button class="checkout" onclick="finalizarPedido()">
-      Confirmar pedido
-    </button>
+<div class="modal" id="ordersModal">
+<div class="modal-box">
 
-  </div>
+<button class="close" onclick="fechar('ordersModal')">×</button>
+
+<h2>📦 Meus pedidos</h2><br>
+
+<div id="ordersList"></div>
+
+</div>
+</div>
+
+
+<!-- PAINEL DO VENDEDOR -->
+
+<div class="modal" id="panelModal">
+<div class="modal-box">
+
+<button class="close" onclick="fechar('panelModal')">×</button>
+
+<h2>🏪 Painel do vendedor</h2>
+<p style="color:#777;margin-top:5px">
+Controle os seus produtos e pedidos.
+</p>
+
+<br>
+
+<div class="tabs">
+
+<button class="active" onclick="painelAba('produto',this)">
+➕ Adicionar produto
+</button>
+
+<button onclick="painelAba('meus',this)">
+📦 Meus produtos
+</button>
+
+<button onclick="painelAba('vendas',this)">
+🛒 Vendas
+</button>
 
 </div>
 
 
-<!-- ================= MODAL PERFIL ================= -->
+<!-- ADICIONAR PRODUTO -->
 
-<div class="modal" id="perfilModal">
+<div id="abaProduto">
 
-  <div class="modal-box">
+<div class="form-group">
+<label>Nome do produto</label>
+<input id="prodNome" placeholder="Ex: iPhone 15">
+</div>
 
-    <button class="close" onclick="fechar('perfilModal')">
-      ×
-    </button>
+<div class="form-group">
+<label>Preço em Kz</label>
+<input id="prodPreco" type="number" placeholder="250000">
+</div>
 
-    <h2>👤 Meu Perfil</h2>
+<div class="form-group">
+<label>Categoria</label>
 
-    <br>
+<select id="prodCategoria">
+<option value="eletronicos">Eletrônicos</option>
+<option value="moda">Moda</option>
+<option value="casa">Casa</option>
+<option value="beleza">Beleza</option>
+<option value="acessorios">Acessórios</option>
+<option value="automoveis">Automóveis</option>
+</select>
 
-    <p>
-      Bem-vindo ao GTube Marketplace.
-    </p>
+</div>
 
-    <br>
+<div class="form-group">
+<label>Emoji/imagem provisória</label>
+<input id="prodImg" placeholder="📱">
+</div>
 
-    <button class="checkout"
-            onclick="alert('Sistema de conta será conectado na próxima etapa.')">
-      Entrar / Criar conta
-    </button>
+<div class="form-group">
+<label>Descrição</label>
+<textarea id="prodDesc" placeholder="Descrição do produto"></textarea>
+</div>
 
-  </div>
+<button class="primary" onclick="adicionarProduto()">
+Publicar produto
+</button>
 
 </div>
 
 
-<!-- ================= MODAL FAVORITOS ================= -->
+<!-- MEUS PRODUTOS -->
 
-<div class="modal" id="favoritosModal">
+<div id="abaMeus" style="display:none">
 
-  <div class="modal-box">
-
-    <button class="close" onclick="fechar('favoritosModal')">
-      ×
-    </button>
-
-    <h2>❤️ Meus Favoritos</h2>
-
-    <br>
-
-    <div id="favoriteList">
-      Nenhum produto favorito ainda.
-    </div>
-
-  </div>
+<div id="myProducts"></div>
 
 </div>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- VENDAS -->
 
-<footer>
+<div id="abaVendas" style="display:none">
 
-  <h3>GTube Marketplace</h3>
+<div id="sales"></div>
 
-  <br>
+</div>
 
-  <p>
-    Compre. Venda. Cresça.
-  </p>
-
-  <br>
-
-  <p>
-    © 2026 GTube Marketplace
-  </p>
-
-</footer>
+</div>
+</div>
 
 
 <script>
 
 /* ================= DADOS ================= */
 
-let carrinho = [];
-let favoritos = [];
+let produtos = JSON.parse(
+localStorage.getItem("gtube_produtos") || "[]"
+);
+
+let carrinho = JSON.parse(
+localStorage.getItem("gtube_carrinho") || "[]"
+);
+
+let favoritos = JSON.parse(
+localStorage.getItem("gtube_favoritos") || "[]"
+);
+
+let pedidos = JSON.parse(
+localStorage.getItem("gtube_pedidos") || "[]"
+);
+
+let conta = JSON.parse(
+localStorage.getItem("gtube_conta") || "null"
+);
+
+
+/* ================= PRODUTOS PADRÃO ================= */
+
+if(produtos.length===0){
+
+produtos=[
+{
+id:1,
+nome:"Smartphone Android",
+preco:85000,
+categoria:"eletronicos",
+img:"📱",
+desc:"Smartphone Android moderno.",
+rating:"★★★★★"
+},
+{
+id:2,
+nome:"Fone Bluetooth",
+preco:15000,
+categoria:"acessorios",
+img:"🎧",
+desc:"Fone sem fios.",
+rating:"★★★★☆"
+},
+{
+id:3,
+nome:"Ténis Esportivo",
+preco:25000,
+categoria:"moda",
+img:"👟",
+desc:"Ténis confortável.",
+rating:"★★★★★"
+},
+{
+id:4,
+nome:"Smartwatch",
+preco:35000,
+categoria:"acessorios",
+img:"⌚",
+desc:"Relógio inteligente.",
+rating:"★★★★☆"
+},
+{
+id:5,
+nome:"Lâmpada LED",
+preco:8500,
+categoria:"casa",
+img:"💡",
+desc:"Lâmpada LED.",
+rating:"★★★★★"
+},
+{
+id:6,
+nome:"Perfume Masculino",
+preco:22000,
+categoria:"beleza",
+img:"🧴",
+desc:"Perfume masculino.",
+rating:"★★★★☆"
+}
+];
+
+salvar();
+
+}
+
+
+/* ================= SALVAR ================= */
+
+function salvar(){
+
+localStorage.setItem(
+"gtube_produtos",
+JSON.stringify(produtos)
+);
+
+localStorage.setItem(
+"gtube_carrinho",
+JSON.stringify(carrinho)
+);
+
+localStorage.setItem(
+"gtube_favoritos",
+JSON.stringify(favoritos)
+);
+
+localStorage.setItem(
+"gtube_pedidos",
+JSON.stringify(pedidos)
+);
+
+localStorage.setItem(
+"gtube_conta",
+JSON.stringify(conta)
+);
+
+}
+
+
+/* ================= MOSTRAR PRODUTOS ================= */
+
+function renderProdutos(lista=produtos){
+
+const area=document.getElementById("products");
+
+area.innerHTML="";
+
+if(lista.length===0){
+
+area.innerHTML="<div class='empty'>Nenhum produto encontrado.</div>";
+
+return;
+
+}
+
+lista.forEach(p=>{
+
+const fav=favoritos.includes(p.id);
+
+area.innerHTML+=`
+
+<div class="product">
+
+<button class="favorite ${fav?'active':''}"
+onclick="favoritar(${p.id})">
+${fav?'♥':'♡'}
+</button>
+
+<div class="product-img">${p.img}</div>
+
+<div class="product-info">
+
+<h3>${p.nome}</h3>
+
+<div class="rating">
+${p.rating || "★★★★★"}
+</div>
+
+<div class="price">
+${Number(p.preco).toLocaleString('pt-AO')} Kz
+</div>
+
+<button class="buy"
+onclick="adicionarCarrinho(${p.id})">
+🛒 Adicionar ao carrinho
+</button>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("result").textContent=
+lista.length+" produto(s)";
+
+}
 
 
 /* ================= CARRINHO ================= */
 
-function adicionar(nome, preco){
+function adicionarCarrinho(id){
 
-  const existente = carrinho.find(
-    item => item.nome === nome
-  );
+const existente=carrinho.find(x=>x.id===id);
 
-  if(existente){
+if(existente){
 
-    existente.quantidade++;
+existente.quantidade++;
 
-  }else{
+}else{
 
-    carrinho.push({
-      nome:nome,
-      preco:preco,
-      quantidade:1
-    });
+carrinho.push({
+id:id,
+quantidade:1
+});
 
-  }
+}
 
-  atualizarCarrinho();
+salvar();
+atualizarCarrinho();
 
-  alert("✅ " + nome + " foi adicionado ao carrinho!");
+alert("✅ Produto adicionado ao carrinho!");
 
 }
 
 
 function atualizarCarrinho(){
 
-  let quantidade = 0;
+let qtd=0;
 
-  carrinho.forEach(item=>{
-    quantidade += item.quantidade;
-  });
+carrinho.forEach(x=>qtd+=x.quantidade);
 
-  document.getElementById("cartCount")
-    .textContent = quantidade;
+document.getElementById("cartCount").textContent=qtd;
 
 }
 
 
 function abrirCarrinho(){
 
-  renderizarCarrinho();
+renderCarrinho();
 
-  document.getElementById("cartModal")
-    .style.display="block";
-
-}
-
-
-function renderizarCarrinho(){
-
-  const area =
-    document.getElementById("cartItems");
-
-  if(carrinho.length===0){
-
-    area.innerHTML =
-      "<p style='padding:20px 0'>Seu carrinho está vazio.</p>";
-
-    document.getElementById("cartTotal")
-      .textContent="0 Kz";
-
-    return;
-
-  }
-
-  area.innerHTML="";
-
-  let total=0;
-
-  carrinho.forEach((item,index)=>{
-
-    const subtotal =
-      item.preco * item.quantidade;
-
-    total += subtotal;
-
-    area.innerHTML += `
-
-      <div class="cart-item">
-
-        <div class="cart-item-info">
-
-          <div class="cart-item-name">
-            ${item.nome}
-          </div>
-
-          <div class="cart-price">
-            ${item.preco.toLocaleString('pt-AO')} Kz
-          </div>
-
-        </div>
-
-        <div class="quantity">
-
-          <button onclick="alterarQuantidade(${index},-1)">
-            -
-          </button>
-
-          <strong>
-            ${item.quantidade}
-          </strong>
-
-          <button onclick="alterarQuantidade(${index},1)">
-            +
-          </button>
-
-        </div>
-
-        <button class="remove"
-          onclick="removerItem(${index})">
-          🗑️
-        </button>
-
-      </div>
-
-    `;
-
-  });
-
-  document.getElementById("cartTotal")
-    .textContent =
-    total.toLocaleString('pt-AO') + " Kz";
+abrir("cartModal");
 
 }
 
 
-function alterarQuantidade(index,valor){
+function renderCarrinho(){
 
-  carrinho[index].quantidade += valor;
+const area=document.getElementById("cartItems");
 
-  if(carrinho[index].quantidade<=0){
+if(carrinho.length===0){
 
-    carrinho.splice(index,1);
+area.innerHTML="<div class='empty'>O carrinho está vazio.</div>";
 
-  }
+document.getElementById("total").textContent="0 Kz";
 
-  atualizarCarrinho();
+return;
 
-  renderizarCarrinho();
+}
+
+let total=0;
+
+area.innerHTML="";
+
+carrinho.forEach((item,index)=>{
+
+const p=produtos.find(x=>x.id===item.id);
+
+if(!p)return;
+
+const subtotal=p.preco*item.quantidade;
+
+total+=subtotal;
+
+area.innerHTML+=`
+
+<div class="cart-item">
+
+<div class="cart-name">
+${p.img} ${p.nome}
+<br>
+<span style="color:#ff4747">
+${p.preco.toLocaleString('pt-AO')} Kz
+</span>
+</div>
+
+<div class="qty">
+
+<button onclick="quantidade(${index},-1)">−</button>
+
+<strong>${item.quantidade}</strong>
+
+<button onclick="quantidade(${index},1)">+</button>
+
+</div>
+
+<button class="remove"
+onclick="removerCarrinho(${index})">
+🗑️
+</button>
+
+</div>
+
+`;
+
+});
+
+document.getElementById("total").textContent=
+total.toLocaleString('pt-AO')+" Kz";
 
 }
 
 
-function removerItem(index){
+function quantidade(index,v){
 
-  carrinho.splice(index,1);
+carrinho[index].quantidade+=v;
 
-  atualizarCarrinho();
+if(carrinho[index].quantidade<=0){
 
-  renderizarCarrinho();
+carrinho.splice(index,1);
+
+}
+
+salvar();
+atualizarCarrinho();
+renderCarrinho();
 
 }
 
 
-/* ================= CHECKOUT ================= */
+function removerCarrinho(index){
 
-function abrirCheckout(){
+carrinho.splice(index,1);
 
-  if(carrinho.length===0){
-
-    alert("Seu carrinho está vazio.");
-
-    return;
-
-  }
-
-  fechar("cartModal");
-
-  document.getElementById("checkoutModal")
-    .style.display="block";
-
-}
-
-
-function finalizarPedido(){
-
-  const nome =
-    document.getElementById("nome").value.trim();
-
-  const telefone =
-    document.getElementById("telefone").value.trim();
-
-  const endereco =
-    document.getElementById("endereco").value.trim();
-
-
-  if(!nome || !telefone || !endereco){
-
-    alert("⚠️ Preencha todos os campos.");
-
-    return;
-
-  }
-
-
-  let total=0;
-
-  carrinho.forEach(item=>{
-
-    total +=
-      item.preco * item.quantidade;
-
-  });
-
-
-  alert(
-    "✅ PEDIDO REALIZADO!\n\n" +
-
-    "Cliente: " + nome + "\n" +
-
-    "Telefone: " + telefone + "\n\n" +
-
-    "Endereço:\n" + endereco + "\n\n" +
-
-    "Total: " +
-    total.toLocaleString('pt-AO') +
-    " Kz"
-  );
-
-
-  carrinho=[];
-
-  atualizarCarrinho();
-
-  fechar("checkoutModal");
-
-  document.getElementById("nome").value="";
-  document.getElementById("telefone").value="";
-  document.getElementById("endereco").value="";
-
-}
-
-
-/* ================= PERFIL ================= */
-
-function abrirPerfil(){
-
-  document.getElementById("perfilModal")
-    .style.display="block";
+salvar();
+atualizarCarrinho();
+renderCarrinho();
 
 }
 
 
 /* ================= FAVORITOS ================= */
 
-function favoritar(botao,nome){
+function favoritar(id){
 
-  const existe =
-    favoritos.includes(nome);
+if(favoritos.includes(id)){
 
-  if(existe){
+favoritos=favoritos.filter(x=>x!==id);
 
-    favoritos =
-      favoritos.filter(item=>item!==nome);
+}else{
 
-    botao.classList.remove("active");
+favoritos.push(id);
 
-    botao.textContent="♡";
+}
 
-  }else{
-
-    favoritos.push(nome);
-
-    botao.classList.add("active");
-
-    botao.textContent="♥";
-
-  }
+salvar();
+renderProdutos();
 
 }
 
 
 function abrirFavoritos(){
 
-  const lista =
-    document.getElementById("favoriteList");
+const area=document.getElementById("favList");
 
-  if(favoritos.length===0){
+const lista=produtos.filter(
+p=>favoritos.includes(p.id)
+);
 
-    lista.innerHTML=
-      "Nenhum produto favorito ainda.";
+if(lista.length===0){
 
-  }else{
+area.innerHTML="<div class='empty'>Nenhum favorito.</div>";
 
-    lista.innerHTML =
-      favoritos.map(item =>
-        "<p style='padding:10px 0;border-bottom:1px solid #ddd'>❤️ "
-        + item +
-        "</p>"
-      ).join("");
+}else{
 
-  }
+area.innerHTML=lista.map(p=>`
 
-  document.getElementById("favoritosModal")
-    .style.display="block";
+<div class="admin-product">
+<strong>${p.img} ${p.nome}</strong><br>
+${p.preco.toLocaleString('pt-AO')} Kz
+</div>
+
+`).join("");
+
+}
+
+abrir("favModal");
+
+}
+
+
+/* ================= CONTA ================= */
+
+function mostrarCadastro(){
+
+document.getElementById("loginArea").style.display="none";
+document.getElementById("cadastroArea").style.display="block";
+
+}
+
+
+function mostrarLogin(){
+
+document.getElementById("loginArea").style.display="block";
+document.getElementById("cadastroArea").style.display="none";
+
+}
+
+
+function criarConta(){
+
+const nome=document.getElementById("cadNome").value.trim();
+const email=document.getElementById("cadEmail").value.trim();
+const senha=document.getElementById("cadSenha").value;
+
+if(!nome||!email||!senha){
+
+alert("⚠️ Preencha todos os campos.");
+
+return;
+
+}
+
+conta={
+nome:nome,
+email:email,
+senha:senha
+};
+
+salvar();
+
+alert("✅ Conta criada com sucesso!");
+
+mostrarLogin();
+
+}
+
+
+function login(){
+
+if(!conta){
+
+alert("Você ainda não criou uma conta.");
+
+mostrarCadastro();
+
+return;
+
+}
+
+const email=document.getElementById("loginEmail").value.trim();
+const senha=document.getElementById("loginSenha").value;
+
+if(email===conta.email && senha===conta.senha){
+
+alert("✅ Bem-vindo, "+conta.nome+"!");
+
+fechar("loginModal");
+
+}else{
+
+alert("❌ Email ou senha incorretos.");
+
+}
+
+}
+
+
+/* ================= PRODUTOS DO VENDEDOR ================= */
+
+function adicionarProduto(){
+
+const nome=document.getElementById("prodNome").value.trim();
+const preco=Number(document.getElementById("prodPreco").value);
+const categoria=document.getElementById("prodCategoria").value;
+const img=document.getElementById("prodImg").value.trim() || "📦";
+const desc=document.getElementById("prodDesc").value.trim();
+
+if(!nome||!preco){
+
+alert("⚠️ Coloque o nome e o preço do produto.");
+
+return;
+
+}
+
+produtos.push({
+
+id:Date.now(),
+nome:nome,
+preco:preco,
+categoria:categoria,
+img:img,
+desc:desc,
+rating:"★★★★★"
+
+});
+
+salvar();
+renderProdutos();
+
+document.getElementById("prodNome").value="";
+document.getElementById("prodPreco").value="";
+document.getElementById("prodImg").value="";
+document.getElementById("prodDesc").value="";
+
+alert("✅ Produto publicado no marketplace!");
+
+painelAba("meus");
+
+}
+
+
+function renderMeusProdutos(){
+
+const area=document.getElementById("myProducts");
+
+if(produtos.length===0){
+
+area.innerHTML="<div class='empty'>Nenhum produto.</div>";
+
+return;
+
+}
+
+area.innerHTML=produtos.map(p=>`
+
+<div class="admin-product">
+
+<strong>${p.img} ${p.nome}</strong>
+
+<br>
+
+${p.preco.toLocaleString('pt-AO')} Kz
+
+<br><br>
+
+<button
+class="secondary"
+onclick="eliminarProduto(${p.id})">
+🗑️ Eliminar
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+function eliminarProduto(id){
+
+if(!confirm("Eliminar este produto?"))return;
+
+produtos=produtos.filter(p=>p.id!==id);
+
+carrinho=carrinho.filter(x=>x.id!==id);
+
+favoritos=favoritos.filter(x=>x!==id);
+
+salvar();
+
+renderProdutos();
+renderMeusProdutos();
+atualizarCarrinho();
 
 }
 
 
 /* ================= PEDIDOS ================= */
 
-function mostrarPedidos(){
+function abrirCheckout(){
 
-  alert(
-    "📦 MEUS PEDIDOS\n\n" +
-    "Você ainda não possui pedidos realizados."
-  );
+if(carrinho.length===0){
+
+alert("Seu carrinho está vazio.");
+
+return;
+
+}
+
+fechar("cartModal");
+abrir("checkoutModal");
+
+}
+
+
+function finalizarPedido(){
+
+const nome=document.getElementById("clienteNome").value.trim();
+const telefone=document.getElementById("clienteTelefone").value.trim();
+const endereco=document.getElementById("clienteEndereco").value.trim();
+
+if(!nome||!telefone||!endereco){
+
+alert("⚠️ Preencha nome, telefone e endereço.");
+
+return;
+
+}
+
+let total=0;
+
+carrinho.forEach(item=>{
+
+const p=produtos.find(x=>x.id===item.id);
+
+if(p)total+=p.preco*item.quantidade;
+
+});
+
+pedidos.push({
+
+id:"GT"+Date.now(),
+data:new Date().toLocaleString("pt-AO"),
+nome:nome,
+telefone:telefone,
+endereco:endereco,
+total:total,
+itens:[...carrinho],
+status:"Pedido recebido"
+
+});
+
+salvar();
+
+carrinho=[];
+
+salvar();
+atualizarCarrinho();
+
+alert(
+"✅ PEDIDO REALIZADO!\n\n"+
+"Pedido: GT"+Date.now()+"\n"+
+"Total: "+total.toLocaleString('pt-AO')+" Kz"
+);
+
+fechar("checkoutModal");
+
+renderCarrinho();
+
+}
+
+
+function abrirPedidos(){
+
+const area=document.getElementById("ordersList");
+
+if(pedidos.length===0){
+
+area.innerHTML="<div class='empty'>Ainda não existem pedidos.</div>";
+
+}else{
+
+area.innerHTML=pedidos.slice().reverse().map(p=>`
+
+<div class="order">
+
+<strong>📦 Pedido ${p.id}</strong>
+
+<br><br>
+
+Cliente: ${p.nome}<br>
+Telefone: ${p.telefone}<br>
+Endereço: ${p.endereco}<br><br>
+
+<strong>
+Total: ${p.total.toLocaleString('pt-AO')} Kz
+</strong>
+
+<br>
+
+<span style="color:#ff4747">
+${p.status}
+</span>
+
+</div>
+
+`).join("");
+
+}
+
+abrir("ordersModal");
+
+}
+
+
+/* ================= PAINEL ================= */
+
+function abrirPainel(){
+
+abrir("panelModal");
+renderMeusProdutos();
+renderVendas();
+
+}
+
+
+function painelAba(aba,botao){
+
+document.getElementById("abaProduto").style.display="none";
+document.getElementById("abaMeus").style.display="none";
+document.getElementById("abaVendas").style.display="none";
+
+document.querySelectorAll(".tabs button")
+.forEach(x=>x.classList.remove("active"));
+
+botao.classList.add("active");
+
+if(aba==="produto")
+document.getElementById("abaProduto").style.display="block";
+
+if(aba==="meus"){
+
+document.getElementById("abaMeus").style.display="block";
+renderMeusProdutos();
+
+}
+
+if(aba==="vendas"){
+
+document.getElementById("abaVendas").style.display="block";
+renderVendas();
+
+}
+
+}
+
+
+function renderVendas(){
+
+const area=document.getElementById("sales");
+
+if(pedidos.length===0){
+
+area.innerHTML="<div class='empty'>Nenhuma venda ainda.</div>";
+
+return;
+
+}
+
+area.innerHTML=pedidos.slice().reverse().map(p=>`
+
+<div class="order">
+
+<strong>📦 ${p.id}</strong>
+
+<br><br>
+
+Cliente: ${p.nome}<br>
+Telefone: ${p.telefone}<br>
+Total: ${p.total.toLocaleString('pt-AO')} Kz
+
+<br><br>
+
+<strong>Status:</strong> ${p.status}
+
+</div>
+
+`).join("");
 
 }
 
@@ -1500,121 +1270,71 @@ function mostrarPedidos(){
 
 function pesquisar(){
 
-  const texto =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+const texto=document.getElementById("search")
+.value.toLowerCase();
 
-  const produtos =
-    document.querySelectorAll(".product");
+const lista=produtos.filter(p=>
+p.nome.toLowerCase().includes(texto)
+);
 
-  let encontrados=0;
-
-  produtos.forEach(produto=>{
-
-    const nome =
-      produto.dataset.name.toLowerCase();
-
-    if(nome.includes(texto)){
-
-      produto.style.display="";
-
-      encontrados++;
-
-    }else{
-
-      produto.style.display="none";
-
-    }
-
-  });
-
-  document.getElementById("resultado")
-    .textContent =
-    encontrados + " produto(s)";
+renderProdutos(lista);
 
 }
 
 
-/* ================= FILTRO ================= */
+/* ================= CATEGORIAS ================= */
 
 function filtrar(categoria,botao){
 
-  document.querySelectorAll(".category")
-    .forEach(btn=>{
-      btn.classList.remove("active");
-    });
+document.querySelectorAll(".category")
+.forEach(x=>x.classList.remove("active"));
 
-  botao.classList.add("active");
+botao.classList.add("active");
 
-  const produtos =
-    document.querySelectorAll(".product");
+if(categoria==="todos"){
 
-  let encontrados=0;
+renderProdutos();
 
-  produtos.forEach(produto=>{
+return;
 
-    if(
-      categoria==="todos" ||
-      produto.dataset.category===categoria
-    ){
+}
 
-      produto.style.display="";
-
-      encontrados++;
-
-    }else{
-
-      produto.style.display="none";
-
-    }
-
-  });
-
-  document.getElementById("resultado")
-    .textContent =
-    encontrados + " produto(s)";
+renderProdutos(
+produtos.filter(p=>p.categoria===categoria)
+);
 
 }
 
 
 /* ================= MODAIS ================= */
 
-function fechar(id){
+function abrir(id){
 
-  document.getElementById(id)
-    .style.display="none";
+document.getElementById(id).style.display="block";
 
 }
 
+function fechar(id){
 
-window.onclick=function(event){
+document.getElementById(id).style.display="none";
 
-  document.querySelectorAll(".modal")
-    .forEach(modal=>{
+}
 
-      if(event.target===modal){
+window.onclick=function(e){
 
-        modal.style.display="none";
+document.querySelectorAll(".modal").forEach(m=>{
 
-      }
+if(e.target===m)m.style.display="none";
 
-    });
+});
 
 };
 
 
-/* ================= SCROLL ================= */
+/* ================= INICIAR ================= */
 
-function irProdutos(){
-
-  document.getElementById("products")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
+renderProdutos();
+atualizarCarrinho();
 
 </script>
 
