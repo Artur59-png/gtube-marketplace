@@ -455,15 +455,10 @@ Buscar
 <nav>
 
 <button onclick="showPage('home')">Início</button>
-
 <button onclick="showPage('products')">Produtos</button>
-
 <button onclick="showPage('orders')">Pedidos</button>
-
 <button onclick="showPage('cart')">Carrinho</button>
-
 <button onclick="showPage('account')">Conta</button>
-
 <button onclick="showPage('admin')">⚙️ Painel</button>
 
 </nav>
@@ -762,9 +757,9 @@ Criar loja
 
 <script>
 
-/* =====================================================
+/* ================================
 SUPABASE
-===================================================== */
+================================ */
 
 const SUPABASE_URL =
 "https://ozhhemaplvfxyoglvfqo.supabase.co";
@@ -779,17 +774,17 @@ SUPABASE_KEY
 );
 
 
-/* =====================================================
+/* ================================
 PERFIL DE TESTE
-===================================================== */
+================================ */
 
 const TEST_PROFILE_ID =
 "0c9f8851-6469-4f91-9cc2-33aacaedc528";
 
 
-/* =====================================================
-DADOS
-===================================================== */
+/* ================================
+DADOS LOCAIS
+================================ */
 
 let products = [];
 
@@ -806,9 +801,9 @@ let user =
 JSON.parse(localStorage.getItem("kivo_user")) || null;
 
 
-/* =====================================================
+/* ================================
 DINHEIRO
-===================================================== */
+================================ */
 
 function money(value){
 
@@ -818,9 +813,9 @@ return Number(value || 0)
 }
 
 
-/* =====================================================
-ESCAPAR HTML
-===================================================== */
+/* ================================
+SEGURANÇA HTML
+================================ */
 
 function escapeHtml(text){
 
@@ -834,9 +829,9 @@ return String(text ?? "")
 }
 
 
-/* =====================================================
+/* ================================
 GUARDAR
-===================================================== */
+================================ */
 
 function saveData(){
 
@@ -863,9 +858,9 @@ JSON.stringify(user)
 }
 
 
-/* =====================================================
-CARREGAR PRODUTOS
-===================================================== */
+/* ================================
+PRODUTOS
+================================ */
 
 async function loadProducts(){
 
@@ -951,9 +946,9 @@ renderAll();
 }
 
 
-/* =====================================================
+/* ================================
 NAVEGAÇÃO
-===================================================== */
+================================ */
 
 function showPage(page){
 
@@ -992,9 +987,9 @@ behavior:"smooth"
 }
 
 
-/* =====================================================
-RENDER
-===================================================== */
+/* ================================
+RENDER GERAL
+================================ */
 
 function renderAll(){
 
@@ -1015,9 +1010,9 @@ updateCartCount();
 }
 
 
-/* =====================================================
+/* ================================
 PRODUTOS
-===================================================== */
+================================ */
 
 function renderProducts(list,elementId){
 
@@ -1108,9 +1103,9 @@ ${favorite ? "❤️" : "♡"}
 }
 
 
-/* =====================================================
+/* ================================
 CARRINHO
-===================================================== */
+================================ */
 
 function addToCart(id){
 
@@ -1391,9 +1386,9 @@ count;
 }
 
 
-/* =====================================================
+/* ================================
 FAVORITOS
-===================================================== */
+================================ */
 
 function toggleFavorite(id){
 
@@ -1448,9 +1443,9 @@ renderProducts(list,"favoritesList");
 }
 
 
-/* =====================================================
+/* ================================
 PESQUISA
-===================================================== */
+================================ */
 
 function searchProducts(){
 
@@ -1500,9 +1495,9 @@ renderProducts(result,"productsList");
 }
 
 
-/* =====================================================
+/* ================================
 CATEGORIAS
-===================================================== */
+================================ */
 
 function normalizeText(text){
 
@@ -1547,9 +1542,9 @@ renderProducts(result,"productsList");
 }
 
 
-/* =====================================================
+/* ================================
 LOGIN
-===================================================== */
+================================ */
 
 function openLogin(){
 
@@ -1603,9 +1598,9 @@ alert("Conta iniciada com sucesso! 🎉");
 }
 
 
-/* =====================================================
+/* ================================
 MODAIS
-===================================================== */
+================================ */
 
 function closeModal(id){
 
@@ -1621,9 +1616,9 @@ modal.style.display = "none";
 }
 
 
-/* =====================================================
+/* ================================
 CHECKOUT
-===================================================== */
+================================ */
 
 function openCheckout(){
 
@@ -1664,7 +1659,7 @@ document.getElementById("checkoutModal")
 
 
 /* =====================================================
-FINALIZAR PEDIDO
+FINALIZAR PEDIDO — CORRIGIDO
 ===================================================== */
 
 async function finishOrder(){
@@ -1692,18 +1687,15 @@ document.getElementById("deliveryName")
 .value
 .trim();
 
-
 const phone =
 document.getElementById("deliveryPhone")
 .value
 .trim();
 
-
 const address =
 document.getElementById("deliveryAddress")
 .value
 .trim();
-
 
 const paymentMethod =
 document.getElementById("paymentMethod")
@@ -1731,9 +1723,9 @@ button.innerText =
 
 try{
 
-/* =====================================================
-VALIDAR CARRINHO
-===================================================== */
+/* --------------------------------
+VALIDAR PRODUTOS
+-------------------------------- */
 
 const cartProducts = [];
 
@@ -1758,7 +1750,11 @@ throw new Error(
 }
 
 
-if(Number(item.quantity) <= 0){
+const quantity =
+Number(item.quantity || 0);
+
+
+if(quantity <= 0){
 
 throw new Error(
 "Quantidade inválida."
@@ -1767,10 +1763,7 @@ throw new Error(
 }
 
 
-if(
-Number(item.quantity) >
-Number(product.stock)
-){
+if(quantity > Number(product.stock)){
 
 throw new Error(
 "O produto " +
@@ -1794,18 +1787,18 @@ product.name +
 
 cartProducts.push({
 
-item:item,
+product:product,
 
-product:product
+quantity:quantity
 
 });
 
 }
 
 
-/* =====================================================
-MESMA LOJA
-===================================================== */
+/* --------------------------------
+VERIFICAR LOJA
+-------------------------------- */
 
 const lojaId =
 cartProducts[0].product.storeId;
@@ -1814,8 +1807,7 @@ cartProducts[0].product.storeId;
 const differentStore =
 cartProducts.some(function(row){
 
-return String(row.product.storeId)
-!==
+return String(row.product.storeId) !==
 String(lojaId);
 
 });
@@ -1824,15 +1816,15 @@ String(lojaId);
 if(differentStore){
 
 throw new Error(
-"Por enquanto, o carrinho precisa ter produtos da mesma loja."
+"Por enquanto, os produtos do carrinho precisam pertencer à mesma loja."
 );
 
 }
 
 
-/* =====================================================
-CALCULAR
-===================================================== */
+/* --------------------------------
+CALCULAR VALORES
+-------------------------------- */
 
 let subtotal = 0;
 
@@ -1841,7 +1833,7 @@ cartProducts.forEach(function(row){
 
 subtotal +=
 Number(row.product.price) *
-Number(row.item.quantity);
+Number(row.quantity);
 
 });
 
@@ -1858,28 +1850,29 @@ const comissaoPercentual = 10;
 
 const comissaoPlataforma =
 Number(
-(total * comissaoPercentual / 100)
-.toFixed(2)
+(
+total *
+comissaoPercentual /
+100
+).toFixed(2)
 );
 
 
 const valorVendedor =
 Number(
-(total - comissaoPlataforma)
-.toFixed(2)
+(
+total -
+comissaoPlataforma
+).toFixed(2)
 );
 
 
-/* =====================================================
+/* --------------------------------
 DADOS DO PEDIDO
-===================================================== */
 
-/*
-IMPORTANTE:
-
-Estes são exatamente os nomes
-das colunas que você mostrou.
-*/
+ATENÇÃO:
+Usamos nomes SEM acentos.
+-------------------------------- */
 
 const pedidoDados = {
 
@@ -1913,7 +1906,7 @@ status:
 status_de_comercial:
 "pendente",
 
-"método_pagamento":
+metodo_pagamento:
 paymentMethod,
 
 nome_entrega:
@@ -1925,21 +1918,21 @@ phone,
 endereco_entrega:
 address,
 
-"observação":
+observacao:
 "Pedido realizado pelo Kivo Marketplace"
 
 };
 
 
+/* --------------------------------
+ENVIAR PARA SUPABASE
+-------------------------------- */
+
 console.log(
-"DADOS ENVIADOS:",
+"ENVIANDO PEDIDO:",
 pedidoDados
 );
 
-
-/* =====================================================
-CRIAR PEDIDO
-===================================================== */
 
 const result =
 await supabaseClient
@@ -1952,7 +1945,7 @@ await supabaseClient
 if(result.error){
 
 console.error(
-"ERRO SUPABASE:",
+"ERRO AO CRIAR PEDIDO:",
 result.error
 );
 
@@ -1973,15 +1966,15 @@ pedido
 );
 
 
-/* =====================================================
-GUARDAR LOCALMENTE
-===================================================== */
+/* --------------------------------
+GUARDAR PEDIDO LOCAL
+-------------------------------- */
 
 orders.unshift({
 
 id:
-pedido.id ||
 pedido.eu_ia ||
+pedido.id ||
 "Pedido criado",
 
 total:
@@ -2003,18 +1996,19 @@ new Date()
 });
 
 
-/* =====================================================
-LIMPAR CARRINHO
-===================================================== */
+/* --------------------------------
+LIMPAR CARRINHO SOMENTE DEPOIS
+DO SUCESSO DO SUPABASE
+-------------------------------- */
 
 cart = [];
 
 saveData();
 
 
-/* =====================================================
-FECHAR
-===================================================== */
+/* --------------------------------
+FECHAR CHECKOUT
+-------------------------------- */
 
 closeModal("checkoutModal");
 
@@ -2037,16 +2031,21 @@ money(valorVendedor)
 );
 
 
-}catch(error){
+}
+catch(error){
 
-console.error(error);
+console.error(
+"ERRO FINAL:",
+error
+);
 
 alert(
 "Não foi possível criar o pedido.\n\n" +
 error.message
 );
 
-}finally{
+}
+finally{
 
 button.disabled = false;
 
@@ -2058,9 +2057,9 @@ button.innerText =
 }
 
 
-/* =====================================================
+/* ================================
 PEDIDOS
-===================================================== */
+================================ */
 
 function renderOrders(){
 
@@ -2128,9 +2127,9 @@ ${money(order.commission || 0)}
 }
 
 
-/* =====================================================
+/* ================================
 CONTA
-===================================================== */
+================================ */
 
 function renderAccount(){
 
@@ -2203,9 +2202,9 @@ alert("Você saiu da conta.");
 }
 
 
-/* =====================================================
+/* ================================
 LOJA
-===================================================== */
+================================ */
 
 function openSeller(){
 
@@ -2226,9 +2225,9 @@ document.getElementById("sellerModal")
 }
 
 
-/* =====================================================
+/* ================================
 CRIAR LOJA
-===================================================== */
+================================ */
 
 async function createStore(){
 
@@ -2246,18 +2245,15 @@ document.getElementById("storeName")
 .value
 .trim();
 
-
 const phone =
 document.getElementById("storePhone")
 .value
 .trim();
 
-
 const address =
 document.getElementById("storeAddress")
 .value
 .trim();
-
 
 const description =
 document.getElementById("storeDescription")
@@ -2333,9 +2329,9 @@ name
 }
 
 
-/* =====================================================
+/* ================================
 PAINEL
-===================================================== */
+================================ */
 
 async function renderAdmin(){
 
@@ -2489,9 +2485,9 @@ ${produtos.length}
 }
 
 
-/* =====================================================
-INICIAR
-===================================================== */
+/* ================================
+INICIAR KIVO
+================================ */
 
 async function startKivo(){
 
