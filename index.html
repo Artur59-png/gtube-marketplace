@@ -2,568 +2,516 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>GTube Marketplace</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f4f6f8;
-  color:#171717;
+font-family:Arial,sans-serif;
+background:#f4f6f8;
+color:#171717
 }
 
-/* HEADER */
+button,input,select{font:inherit}
+
 header{
-  background:#111827;
-  color:white;
-  position:sticky;
-  top:0;
-  z-index:1000;
-  box-shadow:0 3px 15px rgba(0,0,0,.15);
+background:#111827;
+color:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 3px 15px #0002
 }
 
-.topbar{
-  max-width:1250px;
-  margin:auto;
-  padding:15px 18px;
-  display:flex;
-  align-items:center;
-  gap:18px;
+.top{
+max-width:1250px;
+margin:auto;
+padding:14px 18px;
+display:flex;
+align-items:center;
+gap:15px
 }
 
 .logo{
-  font-size:25px;
-  font-weight:900;
-  white-space:nowrap;
+font-size:25px;
+font-weight:900
 }
 
-.logo span{
-  color:#ff7a00;
-}
+.logo span{color:#ff7900}
 
 .search{
-  flex:1;
-  display:flex;
-  background:white;
-  border-radius:10px;
-  overflow:hidden;
+flex:1;
+display:flex;
+background:white;
+border-radius:9px;
+overflow:hidden
 }
 
 .search input{
-  flex:1;
-  border:0;
-  outline:0;
-  padding:13px;
-  font-size:15px;
+flex:1;
+border:0;
+outline:0;
+padding:12px
 }
 
 .search button{
-  border:0;
-  background:#ff7a00;
-  color:white;
-  padding:0 18px;
-  cursor:pointer;
-  font-size:17px;
+border:0;
+background:#ff7900;
+color:white;
+padding:0 18px
 }
 
-.header-buttons{
-  display:flex;
-  gap:8px;
+.head-btn{
+border:0;
+background:#202938;
+color:white;
+padding:10px 13px;
+border-radius:8px;
+cursor:pointer
 }
 
-.header-btn{
-  border:0;
-  background:#202938;
-  color:white;
-  padding:10px 12px;
-  border-radius:8px;
-  cursor:pointer;
+.count{
+background:#ff7900;
+border-radius:20px;
+padding:2px 6px;
+font-size:11px
 }
 
-.cart-count{
-  background:#ff7a00;
-  padding:2px 6px;
-  border-radius:20px;
-  font-size:11px;
-}
-
-/* NAV */
 nav{
-  background:#fff;
-  border-bottom:1px solid #e5e7eb;
+background:white;
+border-bottom:1px solid #ddd
 }
 
-.nav-inner{
-  max-width:1250px;
-  margin:auto;
-  display:flex;
-  gap:25px;
-  padding:12px 18px;
-  overflow:auto;
+.nav{
+max-width:1250px;
+margin:auto;
+padding:11px 18px;
+display:flex;
+gap:25px;
+overflow:auto
 }
 
-.nav-inner button{
-  border:0;
-  background:none;
-  white-space:nowrap;
-  cursor:pointer;
-  font-weight:bold;
-  color:#555;
+.nav button{
+border:0;
+background:none;
+cursor:pointer;
+font-weight:bold;
+color:#555;
+white-space:nowrap
 }
 
-.nav-inner button:hover{
-  color:#ff7a00;
-}
+.nav button:hover{color:#ff7900}
 
-/* HERO */
 .hero{
-  max-width:1250px;
-  margin:22px auto;
-  padding:40px 30px;
-  border-radius:18px;
-  background:linear-gradient(120deg,#111827,#283548);
-  color:white;
-  position:relative;
-  overflow:hidden;
-}
-
-.hero:after{
-  content:"";
-  width:300px;
-  height:300px;
-  border-radius:50%;
-  background:rgba(255,122,0,.18);
-  position:absolute;
-  right:-80px;
-  top:-100px;
+max-width:1250px;
+margin:22px auto;
+padding:42px 30px;
+border-radius:18px;
+background:linear-gradient(120deg,#111827,#334155);
+color:white
 }
 
 .hero h1{
-  font-size:36px;
-  margin-bottom:10px;
+font-size:36px;
+margin-bottom:10px
 }
 
 .hero p{
-  color:#d1d5db;
-  max-width:600px;
-  line-height:1.6;
+color:#d5d9df;
+line-height:1.6;
+max-width:650px
 }
 
 .hero button{
-  margin-top:22px;
-  border:0;
-  background:#ff7a00;
-  color:white;
-  padding:13px 22px;
-  border-radius:9px;
-  font-weight:bold;
-  cursor:pointer;
+margin-top:20px;
+border:0;
+background:#ff7900;
+color:white;
+padding:13px 22px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer
 }
 
-/* CONTAINER */
 .container{
-  max-width:1250px;
-  margin:auto;
-  padding:0 18px 40px;
+max-width:1250px;
+margin:auto;
+padding:0 18px 40px
 }
 
-.section-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:25px 0 15px;
+.title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:25px 0 15px
 }
 
-.section-title h2{
-  font-size:22px;
-}
-
-/* CATEGORIES */
 .categories{
-  display:flex;
-  gap:12px;
-  overflow:auto;
-  padding-bottom:5px;
+display:flex;
+gap:12px;
+overflow:auto
 }
 
 .category{
-  min-width:125px;
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:12px;
-  padding:16px 12px;
-  text-align:center;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.category:hover{
-  transform:translateY(-3px);
-  border-color:#ff7a00;
+background:white;
+border:1px solid #ddd;
+border-radius:12px;
+padding:16px;
+min-width:120px;
+text-align:center;
+cursor:pointer
 }
 
 .category-icon{
-  font-size:28px;
-  margin-bottom:7px;
+font-size:27px;
+margin-bottom:7px
 }
 
-/* PRODUCTS */
 .products{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px
 }
 
 .product{
-  background:white;
-  border-radius:14px;
-  overflow:hidden;
-  border:1px solid #e5e7eb;
-  transition:.2s;
-  position:relative;
+background:white;
+border:1px solid #e3e3e3;
+border-radius:14px;
+overflow:hidden;
+transition:.2s
 }
 
 .product:hover{
-  transform:translateY(-4px);
-  box-shadow:0 10px 25px rgba(0,0,0,.08);
+transform:translateY(-3px);
+box-shadow:0 10px 25px #0001
 }
 
-.product-image{
-  height:200px;
-  background:#eef0f2;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  overflow:hidden;
+.pic{
+height:190px;
+background:#eee;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden
 }
 
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.pic img{
+width:100%;
+height:100%;
+object-fit:cover
 }
 
-.no-image{
-  font-size:55px;
-  color:#9ca3af;
-}
+.noimg{font-size:50px}
 
-.product-info{
-  padding:14px;
-}
-
-.product-info h3{
-  font-size:16px;
-  margin-bottom:7px;
-}
+.info{padding:14px}
 
 .price{
-  font-size:20px;
-  font-weight:900;
-  color:#111827;
+font-size:20px;
+font-weight:900;
+margin:7px 0
 }
 
-.product-meta{
-  color:#777;
-  font-size:12px;
-  margin:7px 0 12px;
+.meta{
+font-size:12px;
+color:#777;
+margin-bottom:12px
 }
 
-.product-actions{
-  display:flex;
-  gap:7px;
+.actions{
+display:flex;
+gap:7px
 }
 
-.product-actions button{
-  flex:1;
-  padding:10px 6px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
+.actions button{
+flex:1;
+padding:10px;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold
 }
 
 .buy{
-  background:#ff7a00;
-  color:white;
-  border:0;
+background:#ff7900;
+color:white;
+border:0
 }
 
-.favorite{
-  background:white;
-  border:1px solid #ddd;
+.fav{
+background:white;
+border:1px solid #ddd
 }
 
-/* MODAL */
 .modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.6);
-  z-index:2000;
-  align-items:center;
-  justify-content:center;
-  padding:15px;
+display:none;
+position:fixed;
+inset:0;
+background:#0008;
+z-index:3000;
+align-items:center;
+justify-content:center;
+padding:15px
 }
 
-.modal-box{
-  width:100%;
-  max-width:500px;
-  max-height:90vh;
-  overflow:auto;
-  background:white;
-  border-radius:16px;
-  padding:24px;
-  position:relative;
+.box{
+background:white;
+width:100%;
+max-width:600px;
+max-height:92vh;
+overflow:auto;
+border-radius:16px;
+padding:24px;
+position:relative
 }
 
 .close{
-  position:absolute;
-  right:15px;
-  top:12px;
-  border:0;
-  background:none;
-  font-size:25px;
-  cursor:pointer;
+position:absolute;
+right:15px;
+top:10px;
+border:0;
+background:none;
+font-size:27px;
+cursor:pointer
 }
 
-.modal-box h2{
-  margin-bottom:20px;
+.field{margin-bottom:14px}
+
+.field label{
+display:block;
+font-weight:bold;
+margin-bottom:6px
 }
 
-.form-group{
-  margin-bottom:14px;
-}
-
-.form-group label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select{
-  width:100%;
-  padding:12px;
-  border:1px solid #ddd;
-  border-radius:8px;
-  outline:none;
-}
-
-.form-group textarea{
-  min-height:90px;
-  resize:vertical;
+.field input,
+.field textarea,
+.field select{
+width:100%;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+outline:0
 }
 
 .primary{
-  width:100%;
-  border:0;
-  background:#ff7a00;
-  color:white;
-  padding:13px;
-  border-radius:8px;
-  cursor:pointer;
-  font-weight:bold;
+width:100%;
+padding:13px;
+background:#ff7900;
+color:white;
+border:0;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer
 }
 
-/* CART */
-.cart-item{
-  display:flex;
-  gap:12px;
-  align-items:center;
-  border-bottom:1px solid #eee;
-  padding:13px 0;
+/* PAINEL */
+
+.panel{
+max-width:1250px;
+margin:auto;
+padding:20px 18px 50px
 }
 
-.cart-item img{
-  width:65px;
-  height:65px;
-  object-fit:cover;
-  border-radius:8px;
+.panel-header{
+background:#111827;
+color:white;
+padding:25px;
+border-radius:16px;
+margin-bottom:18px
 }
 
-.cart-info{
-  flex:1;
-}
+.panel-header h1{margin-bottom:7px}
 
-.cart-total{
-  background:#f7f7f7;
-  padding:15px;
-  border-radius:10px;
-  margin-top:15px;
-}
-
-.total-line{
-  display:flex;
-  justify-content:space-between;
-  margin:7px 0;
-}
-
-.total-final{
-  font-size:21px;
-  font-weight:bold;
-}
-
-/* ACCOUNT */
-.account-card{
-  background:white;
-  border-radius:15px;
-  padding:20px;
-  margin-bottom:15px;
-}
-
-.account-header{
-  display:flex;
-  gap:15px;
-  align-items:center;
-}
-
-.avatar{
-  width:65px;
-  height:65px;
-  border-radius:50%;
-  background:#ff7a00;
-  color:white;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:25px;
-  font-weight:bold;
-}
-
-.dashboard-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:15px;
-  margin-top:15px;
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:18px
 }
 
 .stat{
-  background:#f7f7f7;
-  padding:20px;
-  border-radius:12px;
+background:white;
+border-radius:13px;
+padding:20px;
+border:1px solid #e5e7eb
+}
+
+.stat small{
+color:#777
 }
 
 .stat strong{
-  display:block;
-  font-size:25px;
-  margin-top:7px;
+display:block;
+font-size:25px;
+margin-top:8px
 }
 
-/* SELL */
-.sell-box{
-  background:white;
-  padding:22px;
-  border-radius:15px;
-  margin-top:20px;
+.panel-grid{
+display:grid;
+grid-template-columns:240px 1fr;
+gap:18px
 }
 
-.preview{
-  width:100%;
-  height:180px;
-  background:#f1f1f1;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-  margin-bottom:15px;
+.side{
+background:white;
+border-radius:13px;
+padding:12px;
+height:max-content
 }
 
-.preview img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.side button{
+width:100%;
+text-align:left;
+padding:13px;
+border:0;
+background:white;
+border-radius:8px;
+cursor:pointer;
+margin-bottom:4px;
+font-weight:bold
 }
 
-/* FOOTER */
-footer{
-  background:#111827;
-  color:#aaa;
-  text-align:center;
-  padding:30px 15px;
-  margin-top:30px;
+.side button:hover{
+background:#f2f2f2;
+color:#ff7900
 }
 
-.hidden{
-  display:none!important;
+.panel-content{
+background:white;
+border-radius:13px;
+padding:20px;
+min-height:400px
+}
+
+.table-wrap{
+overflow:auto
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+min-width:600px
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #eee;
+text-align:left
+}
+
+th{
+background:#f8f8f8
+}
+
+.badge{
+padding:5px 9px;
+border-radius:20px;
+background:#eee;
+font-size:12px
 }
 
 .empty{
-  text-align:center;
-  padding:35px;
-  color:#777;
-  background:white;
-  border-radius:12px;
+padding:35px;
+text-align:center;
+color:#777;
+background:#fafafa;
+border-radius:10px
 }
 
-/* RESPONSIVE */
+.cart-item{
+display:flex;
+align-items:center;
+gap:12px;
+padding:13px 0;
+border-bottom:1px solid #eee
+}
+
+.cart-img{
+width:65px;
+height:65px;
+background:#eee;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden
+}
+
+.cart-img img{
+width:100%;
+height:100%;
+object-fit:cover
+}
+
+.cart-info{flex:1}
+
+.total{
+background:#f5f5f5;
+padding:15px;
+margin-top:15px;
+border-radius:10px
+}
+
+.line{
+display:flex;
+justify-content:space-between;
+margin:7px 0
+}
+
+.final{
+font-size:21px;
+font-weight:bold
+}
+
+footer{
+background:#111827;
+color:#aaa;
+padding:30px;
+text-align:center
+}
+
 @media(max-width:900px){
-  .products{
-    grid-template-columns:repeat(3,1fr);
-  }
+.products{grid-template-columns:repeat(3,1fr)}
+.stats{grid-template-columns:repeat(2,1fr)}
 }
 
 @media(max-width:650px){
-  .topbar{
-    flex-wrap:wrap;
-  }
 
-  .logo{
-    width:100%;
-  }
+.top{flex-wrap:wrap}
 
-  .search{
-    order:3;
-    width:100%;
-    flex-basis:100%;
-  }
+.logo{width:100%}
 
-  .header-buttons{
-    margin-left:auto;
-  }
-
-  .hero{
-    margin:15px 10px;
-    padding:30px 20px;
-  }
-
-  .hero h1{
-    font-size:27px;
-  }
-
-  .container{
-    padding:0 10px 30px;
-  }
-
-  .products{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .product-image{
-    height:160px;
-  }
-
-  .dashboard-grid{
-    grid-template-columns:1fr;
-  }
+.search{
+flex-basis:100%;
+order:3
 }
 
-@media(max-width:380px){
-  .products{
-    grid-template-columns:1fr 1fr;
-  }
+.products{
+grid-template-columns:repeat(2,1fr);
+gap:10px
+}
 
-  .product-image{
-    height:135px;
-  }
+.pic{height:145px}
+
+.hero{
+margin:12px 10px;
+padding:30px 20px
+}
+
+.hero h1{font-size:27px}
+
+.container,.panel{
+padding-left:10px;
+padding-right:10px
+}
+
+.panel-grid{
+grid-template-columns:1fr
+}
+
+.stats{
+grid-template-columns:1fr 1fr
+}
 }
 </style>
 </head>
@@ -571,1203 +519,1876 @@ footer{
 <body>
 
 <header>
-  <div class="topbar">
+<div class="top">
 
-    <div class="logo">
-      G<span>Tube</span>
-    </div>
+<div class="logo">G<span>Tube</span></div>
 
-    <div class="search">
-      <input id="searchInput" type="text" placeholder="Pesquisar produtos...">
-      <button onclick="searchProducts()">🔍</button>
-    </div>
+<div class="search">
+<input id="search" placeholder="Pesquisar produtos...">
+<button onclick="pesquisar()">🔍</button>
+</div>
 
-    <div class="header-buttons">
-      <button class="header-btn" onclick="openAccount()">👤</button>
+<button class="head-btn" onclick="abrirConta()">👤</button>
 
-      <button class="header-btn" onclick="openCart()">
-        🛒 <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
+<button class="head-btn" onclick="abrirCarrinho()">
+🛒 <span class="count" id="cartCount">0</span>
+</button>
 
-  </div>
+</div>
 </header>
 
 <nav>
-  <div class="nav-inner">
-    <button onclick="showHome()">Início</button>
-    <button onclick="filterCategory('Telefones')">Telefones</button>
-    <button onclick="filterCategory('Computadores')">Computadores</button>
-    <button onclick="filterCategory('Moda')">Moda</button>
-    <button onclick="filterCategory('Carros')">Carros</button>
-    <button onclick="filterCategory('Casa')">Casa</button>
-    <button onclick="openSell()">Vender</button>
-  </div>
+<div class="nav">
+<button onclick="inicio()">Início</button>
+<button onclick="categoria('Telefones')">Telefones</button>
+<button onclick="categoria('Computadores')">Computadores</button>
+<button onclick="categoria('Moda')">Moda</button>
+<button onclick="categoria('Carros')">Carros</button>
+<button onclick="categoria('Casa')">Casa</button>
+<button onclick="abrirVenda()">Vender</button>
+</div>
 </nav>
 
-<main id="home">
+<main id="site">
 
-  <section class="hero">
-    <h1>Compra e vende no GTube</h1>
-    <p>
-      O marketplace onde compradores encontram produtos
-      e vendedores podem começar o seu negócio online.
-    </p>
-    <button onclick="openSell()">Começar a vender</button>
-  </section>
+<section class="hero">
+<h1>Compra e vende no GTube</h1>
+<p>
+Encontra produtos, compra com facilidade e cria o teu próprio negócio no GTube Marketplace.
+</p>
+<button onclick="abrirVenda()">Começar a vender</button>
+</section>
 
-  <div class="container">
+<div class="container">
 
-    <div class="section-title">
-      <h2>Categorias</h2>
-    </div>
+<div class="title">
+<h2>Categorias</h2>
+</div>
 
-    <div class="categories">
+<div class="categories">
 
-      <div class="category" onclick="filterCategory('Telefones')">
-        <div class="category-icon">📱</div>
-        Telefones
-      </div>
+<div class="category" onclick="categoria('Telefones')">
+<div class="category-icon">📱</div>
+Telefones
+</div>
 
-      <div class="category" onclick="filterCategory('Computadores')">
-        <div class="category-icon">💻</div>
-        Computadores
-      </div>
+<div class="category" onclick="categoria('Computadores')">
+<div class="category-icon">💻</div>
+Computadores
+</div>
 
-      <div class="category" onclick="filterCategory('Moda')">
-        <div class="category-icon">👕</div>
-        Moda
-      </div>
+<div class="category" onclick="categoria('Moda')">
+<div class="category-icon">👕</div>
+Moda
+</div>
 
-      <div class="category" onclick="filterCategory('Carros')">
-        <div class="category-icon">🚗</div>
-        Carros
-      </div>
+<div class="category" onclick="categoria('Carros')">
+<div class="category-icon">🚗</div>
+Carros
+</div>
 
-      <div class="category" onclick="filterCategory('Casa')">
-        <div class="category-icon">🏠</div>
-        Casa
-      </div>
+<div class="category" onclick="categoria('Casa')">
+<div class="category-icon">🏠</div>
+Casa
+</div>
 
-      <div class="category" onclick="filterCategory('Outros')">
-        <div class="category-icon">📦</div>
-        Outros
-      </div>
+<div class="category" onclick="categoria('Outros')">
+<div class="category-icon">📦</div>
+Outros
+</div>
 
-    </div>
+</div>
 
-    <div class="section-title">
-      <h2>Produtos em destaque</h2>
-    </div>
+<div class="title">
+<h2>Produtos em destaque</h2>
+</div>
 
-    <div id="products" class="products"></div>
+<div id="products" class="products"></div>
 
-  </div>
-
+</div>
 </main>
 
 <footer>
-  <strong>GTube Marketplace</strong>
-  <p style="margin-top:8px;">Compra • Venda • Crescimento</p>
+<strong>GTube Marketplace</strong>
+<p style="margin-top:8px">Compra • Venda • Crescimento</p>
 </footer>
 
 
-<!-- CART MODAL -->
-
-<div class="modal" id="cartModal">
-  <div class="modal-box">
-
-    <button class="close" onclick="closeModal('cartModal')">×</button>
-
-    <h2>🛒 Meu carrinho</h2>
-
-    <div id="cartItems"></div>
-
-    <div id="cartSummary"></div>
-
-  </div>
-</div>
-
-
-<!-- ACCOUNT MODAL -->
+<!-- CONTA -->
 
 <div class="modal" id="accountModal">
-  <div class="modal-box">
 
-    <button class="close" onclick="closeModal('accountModal')">×</button>
+<div class="box">
 
-    <div id="accountContent"></div>
+<button class="close" onclick="fechar('accountModal')">×</button>
 
-  </div>
+<div id="account"></div>
+
+</div>
 </div>
 
 
-<!-- SELL MODAL -->
+<!-- CARRINHO -->
+
+<div class="modal" id="cartModal">
+
+<div class="box">
+
+<button class="close" onclick="fechar('cartModal')">×</button>
+
+<h2>🛒 Meu carrinho</h2>
+
+<div id="cartItems"></div>
+
+<div id="cartTotal"></div>
+
+</div>
+</div>
+
+
+<!-- VENDA -->
 
 <div class="modal" id="sellModal">
-  <div class="modal-box">
 
-    <button class="close" onclick="closeModal('sellModal')">×</button>
+<div class="box">
 
-    <h2>📦 Publicar produto</h2>
+<button class="close" onclick="fechar('sellModal')">×</button>
 
-    <form onsubmit="publishProduct(event)">
+<h2>📦 Publicar produto</h2>
 
-      <div class="form-group">
-        <label>Nome do produto</label>
-        <input id="productName" required placeholder="Ex: iPhone 15">
-      </div>
+<form onsubmit="publicar(event)">
 
-      <div class="form-group">
-        <label>Preço (Kz)</label>
-        <input id="productPrice" type="number" required placeholder="150000">
-      </div>
+<div class="field">
+<label>Nome do produto</label>
+<input id="nomeProduto" required>
+</div>
 
-      <div class="form-group">
-        <label>Categoria</label>
+<div class="field">
+<label>Preço em Kz</label>
+<input id="precoProduto" type="number" required>
+</div>
 
-        <select id="productCategory">
-          <option>Telefones</option>
-          <option>Computadores</option>
-          <option>Moda</option>
-          <option>Carros</option>
-          <option>Casa</option>
-          <option>Outros</option>
-        </select>
+<div class="field">
+<label>Categoria</label>
 
-      </div>
+<select id="catProduto">
+<option>Telefones</option>
+<option>Computadores</option>
+<option>Moda</option>
+<option>Carros</option>
+<option>Casa</option>
+<option>Outros</option>
+</select>
 
-      <div class="form-group">
-        <label>Descrição</label>
-        <textarea id="productDescription" placeholder="Descreva o produto..."></textarea>
-      </div>
+</div>
 
-      <div class="form-group">
-        <label>Imagem</label>
-        <input id="productImage" type="file" accept="image/*" onchange="previewImage(event)">
-      </div>
+<div class="field">
+<label>Descrição</label>
+<textarea id="descProduto"></textarea>
+</div>
 
-      <div class="preview" id="imagePreview">
-        <span>Pré-visualização</span>
-      </div>
+<div class="field">
+<label>Imagem</label>
+<input id="imgProduto" type="file" accept="image/*">
+</div>
 
-      <button class="primary" type="submit">
-        Publicar produto
-      </button>
+<button class="primary">
+Publicar produto
+</button>
 
-    </form>
+</form>
 
-  </div>
+</div>
+</div>
+
+
+<!-- LOGIN DONO -->
+
+<div class="modal" id="adminLoginModal">
+
+<div class="box">
+
+<button class="close" onclick="fechar('adminLoginModal')">×</button>
+
+<h2>🔐 Área administrativa</h2>
+
+<p style="margin:10px 0 20px;color:#666">
+Esta área é exclusiva do proprietário do GTube.
+</p>
+
+<div class="field">
+<label>Email do administrador</label>
+<input id="adminEmail" type="email">
+</div>
+
+<div class="field">
+<label>Senha</label>
+<input id="adminSenha" type="password">
+</div>
+
+<button class="primary" onclick="loginAdmin()">
+Entrar no Painel do Dono
+</button>
+
+</div>
 </div>
 
 
 <script>
 
-/* =========================
+/* ================================
    DADOS
-========================= */
+================================ */
 
-let produtos = JSON.parse(
-  localStorage.getItem("gtubeProdutos")
-) || [
+let produtos =
+JSON.parse(localStorage.getItem("gtubeProdutos")) || [
 
-  {
-    id:1,
-    nome:"Smartphone",
-    preco:150000,
-    categoria:"Telefones",
-    descricao:"Smartphone moderno",
-    imagem:"",
-    vendedor:"GTube"
-  },
+{
+id:1,
+nome:"Smartphone",
+preco:150000,
+categoria:"Telefones",
+descricao:"Smartphone moderno",
+imagem:"",
+vendedor:"GTube"
+},
 
-  {
-    id:2,
-    nome:"Ténis",
-    preco:35000,
-    categoria:"Moda",
-    descricao:"Ténis de qualidade",
-    imagem:"",
-    vendedor:"GTube"
-  },
+{
+id:2,
+nome:"Ténis",
+preco:35000,
+categoria:"Moda",
+descricao:"Ténis de qualidade",
+imagem:"",
+vendedor:"GTube"
+},
 
-  {
-    id:3,
-    nome:"Computador",
-    preco:250000,
-    categoria:"Computadores",
-    descricao:"Computador para trabalho",
-    imagem:"",
-    vendedor:"GTube"
-  }
+{
+id:3,
+nome:"Computador",
+preco:250000,
+categoria:"Computadores",
+descricao:"Computador para trabalho",
+imagem:"",
+vendedor:"GTube"
+}
 
 ];
 
-let carrinho = JSON.parse(
-  localStorage.getItem("gtubeCarrinho")
-) || [];
 
-let favoritos = JSON.parse(
-  localStorage.getItem("gtubeFavoritos")
-) || [];
+let carrinho =
+JSON.parse(localStorage.getItem("gtubeCarrinho")) || [];
 
-let imagemAtual = "";
+let favoritos =
+JSON.parse(localStorage.getItem("gtubeFavoritos")) || [];
+
+let pedidos =
+JSON.parse(localStorage.getItem("gtubePedidos")) || [];
+
+let usuarios =
+JSON.parse(localStorage.getItem("gtubeUsuarios")) || [];
 
 
-/* =========================
+/*
+  CONTAS
+
+  IMPORTANTE:
+  Para teste local, o administrador
+  é separado dos compradores/vendedores.
+*/
+
+const ADMIN_EMAIL = "dono@gtube.com";
+const ADMIN_SENHA = "GTubeAdmin2026";
+
+
+/* ================================
    UTILIDADES
-========================= */
+================================ */
 
-function saveData(){
+function salvar(){
 
-  localStorage.setItem(
-    "gtubeProdutos",
-    JSON.stringify(produtos)
-  );
+localStorage.setItem(
+"gtubeProdutos",
+JSON.stringify(produtos)
+);
 
-  localStorage.setItem(
-    "gtubeCarrinho",
-    JSON.stringify(carrinho)
-  );
+localStorage.setItem(
+"gtubeCarrinho",
+JSON.stringify(carrinho)
+);
 
-  localStorage.setItem(
-    "gtubeFavoritos",
-    JSON.stringify(favoritos)
-  );
+localStorage.setItem(
+"gtubeFavoritos",
+JSON.stringify(favoritos)
+);
 
-}
+localStorage.setItem(
+"gtubePedidos",
+JSON.stringify(pedidos)
+);
 
-
-/* =========================
-   FORMATAR PREÇO
-========================= */
-
-function formatPrice(valor){
-
-  return Number(valor).toLocaleString("pt-AO") + " Kz";
-
-}
-
-
-/* =========================
-   MOSTRAR PRODUTOS
-========================= */
-
-function renderProducts(lista = produtos){
-
-  const container =
-    document.getElementById("products");
-
-  if(!lista.length){
-
-    container.innerHTML =
-      `<div class="empty">
-        Nenhum produto encontrado.
-      </div>`;
-
-    return;
-  }
-
-  container.innerHTML =
-    lista.map(p => `
-
-      <div class="product">
-
-        <div class="product-image">
-
-          ${
-            p.imagem
-
-            ?
-
-            `<img src="${p.imagem}" alt="${p.nome}">`
-
-            :
-
-            `<div class="no-image">📦</div>`
-          }
-
-        </div>
-
-        <div class="product-info">
-
-          <h3>${escapeHtml(p.nome)}</h3>
-
-          <div class="price">
-            ${formatPrice(p.preco)}
-          </div>
-
-          <div class="product-meta">
-            ${escapeHtml(p.categoria)}
-          </div>
-
-          <div class="product-actions">
-
-            <button
-              class="buy"
-              onclick="addToCart(${p.id})">
-              🛒 Comprar
-            </button>
-
-            <button
-              class="favorite"
-              onclick="toggleFavorite(${p.id})">
-              ${favoritos.includes(p.id) ? "❤️" : "♡"}
-            </button>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    `).join("");
+localStorage.setItem(
+"gtubeUsuarios",
+JSON.stringify(usuarios)
+);
 
 }
 
 
-/* =========================
-   SEGURANÇA TEXTO
-========================= */
+function preco(valor){
 
-function escapeHtml(text){
-
-  return String(text || "")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+return Number(valor).toLocaleString("pt-AO")+" Kz";
 
 }
 
 
-/* =========================
+function fechar(id){
+
+document.getElementById(id).style.display="none";
+
+}
+
+
+/* ================================
+   PRODUTOS
+================================ */
+
+function mostrar(lista=produtos){
+
+const area=document.getElementById("products");
+
+if(!lista.length){
+
+area.innerHTML=
+'<div class="empty">Nenhum produto encontrado.</div>';
+
+return;
+
+}
+
+area.innerHTML=lista.map(p=>`
+
+<div class="product">
+
+<div class="pic">
+
+${p.imagem
+? `<img src="${p.imagem}">`
+: `<div class="noimg">📦</div>`
+}
+
+</div>
+
+<div class="info">
+
+<h3>${seguro(p.nome)}</h3>
+
+<div class="price">
+${preco(p.preco)}
+</div>
+
+<div class="meta">
+${seguro(p.categoria)}
+</div>
+
+<div class="actions">
+
+<button class="buy"
+onclick="adicionar(${p.id})">
+🛒 Comprar
+</button>
+
+<button class="fav"
+onclick="favorito(${p.id})">
+${favoritos.includes(p.id)?"❤️":"♡"}
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`).join("");
+
+}
+
+
+function seguro(text){
+
+return String(text||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+function inicio(){
+
+mostrar();
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+function categoria(cat){
+
+mostrar(
+produtos.filter(p=>p.categoria===cat)
+);
+
+}
+
+
+function pesquisar(){
+
+const texto=
+document.getElementById("search")
+.value.toLowerCase();
+
+mostrar(
+produtos.filter(p=>
+p.nome.toLowerCase().includes(texto) ||
+p.categoria.toLowerCase().includes(texto)
+)
+);
+
+}
+
+
+/* ================================
    CARRINHO
-========================= */
+================================ */
 
-function addToCart(id){
+function adicionar(id){
 
-  const produto =
-    produtos.find(p => p.id === id);
+const p=produtos.find(x=>x.id===id);
 
-  if(!produto) return;
+if(!p)return;
 
-  const existente =
-    carrinho.find(item => item.id === id);
+const item=
+carrinho.find(x=>x.id===id);
 
-  if(existente){
+if(item){
 
-    existente.quantidade++;
+item.quantidade++;
 
-  }else{
+}else{
 
-    carrinho.push({
-      id:produto.id,
-      nome:produto.nome,
-      preco:produto.preco,
-      imagem:produto.imagem,
-      quantidade:1
-    });
+carrinho.push({
+id:p.id,
+nome:p.nome,
+preco:p.preco,
+imagem:p.imagem,
+quantidade:1
+});
 
-  }
+}
 
-  saveData();
-  updateCartCount();
+salvar();
+contarCarrinho();
 
-  alert("Produto adicionado ao carrinho!");
+alert("Produto adicionado ao carrinho.");
 
 }
 
 
-function updateCartCount(){
+function contarCarrinho(){
 
-  const total =
-    carrinho.reduce(
-      (soma,item) => soma + item.quantidade,
-      0
-    );
+const total=
+carrinho.reduce(
+(a,b)=>a+b.quantidade,0
+);
 
-  document.getElementById("cartCount")
-    .textContent = total;
-
-}
-
-
-function openCart(){
-
-  const modal =
-    document.getElementById("cartModal");
-
-  modal.style.display = "flex";
-
-  renderCart();
+document.getElementById("cartCount")
+.textContent=total;
 
 }
 
 
-function renderCart(){
+function abrirCarrinho(){
 
-  const area =
-    document.getElementById("cartItems");
+document.getElementById("cartModal")
+.style.display="flex";
 
-  const summary =
-    document.getElementById("cartSummary");
-
-  if(!carrinho.length){
-
-    area.innerHTML =
-      `<div class="empty">
-        🛒<br><br>
-        O seu carrinho está vazio.
-      </div>`;
-
-    summary.innerHTML = "";
-
-    return;
-  }
-
-  area.innerHTML =
-    carrinho.map(item => `
-
-      <div class="cart-item">
-
-        ${
-          item.imagem
-          ?
-          `<img src="${item.imagem}">`
-          :
-          `<div style="
-            width:65px;
-            height:65px;
-            background:#eee;
-            border-radius:8px;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            font-size:28px;">
-            📦
-          </div>`
-        }
-
-        <div class="cart-info">
-
-          <strong>
-            ${escapeHtml(item.nome)}
-          </strong>
-
-          <div>
-            ${formatPrice(item.preco)}
-          </div>
-
-          <div style="margin-top:5px">
-
-            <button
-              onclick="changeQuantity(${item.id},-1)">
-              −
-            </button>
-
-            <strong>
-              ${item.quantidade}
-            </strong>
-
-            <button
-              onclick="changeQuantity(${item.id},1)">
-              +
-            </button>
-
-          </div>
-
-        </div>
-
-        <button
-          onclick="removeCart(${item.id})"
-          style="
-          border:0;
-          background:none;
-          cursor:pointer;
-          font-size:18px;">
-          🗑️
-        </button>
-
-      </div>
-
-    `).join("");
-
-
-  const subtotal =
-    carrinho.reduce(
-      (total,item) =>
-        total + item.preco * item.quantidade,
-      0
-    );
-
-
-  summary.innerHTML = `
-
-    <div class="cart-total">
-
-      <div class="total-line">
-        <span>Subtotal</span>
-        <strong>${formatPrice(subtotal)}</strong>
-      </div>
-
-      <div class="total-line">
-        <span>Comissão GTube</span>
-        <strong>10%</strong>
-      </div>
-
-      <div class="total-line total-final">
-        <span>Total</span>
-        <span>${formatPrice(subtotal)}</span>
-      </div>
-
-      <button
-        class="primary"
-        onclick="checkout()"
-        style="margin-top:12px;">
-        Finalizar compra
-      </button>
-
-    </div>
-
-  `;
+mostrarCarrinho();
 
 }
 
 
-function changeQuantity(id,valor){
+function mostrarCarrinho(){
 
-  const item =
-    carrinho.find(i => i.id === id);
+const area=
+document.getElementById("cartItems");
 
-  if(!item) return;
+const totalArea=
+document.getElementById("cartTotal");
 
-  item.quantidade += valor;
+if(!carrinho.length){
 
-  if(item.quantidade <= 0){
+area.innerHTML=
+'<div class="empty">🛒<br><br>O carrinho está vazio.</div>';
 
-    carrinho =
-      carrinho.filter(i => i.id !== id);
+totalArea.innerHTML="";
 
-  }
-
-  saveData();
-  updateCartCount();
-  renderCart();
+return;
 
 }
 
 
-function removeCart(id){
+area.innerHTML=carrinho.map(i=>`
 
-  carrinho =
-    carrinho.filter(i => i.id !== id);
+<div class="cart-item">
 
-  saveData();
-  updateCartCount();
-  renderCart();
+<div class="cart-img">
+
+${i.imagem
+? `<img src="${i.imagem}">`
+: "📦"
+}
+
+</div>
+
+<div class="cart-info">
+
+<strong>${seguro(i.nome)}</strong>
+
+<div>${preco(i.preco)}</div>
+
+<div style="margin-top:7px">
+
+<button onclick="quantidade(${i.id},-1)">−</button>
+
+<strong style="margin:0 8px">
+${i.quantidade}
+</strong>
+
+<button onclick="quantidade(${i.id},1)">+</button>
+
+</div>
+
+</div>
+
+<button
+onclick="remover(${i.id})"
+style="border:0;background:none;cursor:pointer">
+🗑️
+</button>
+
+</div>
+
+`).join("");
+
+
+const total=
+carrinho.reduce(
+(a,b)=>a+(b.preco*b.quantidade),0
+);
+
+
+totalArea.innerHTML=`
+
+<div class="total">
+
+<div class="line">
+<span>Subtotal</span>
+<strong>${preco(total)}</strong>
+</div>
+
+<div class="line">
+<span>Comissão GTube</span>
+<strong>${preco(total*0.10)}</strong>
+</div>
+
+<div class="line final">
+<span>Total</span>
+<strong>${preco(total)}</strong>
+</div>
+
+<button
+class="primary"
+onclick="finalizar()"
+style="margin-top:12px">
+Finalizar compra
+</button>
+
+</div>
+
+`;
 
 }
 
 
-/* =========================
-   CHECKOUT
-========================= */
+function quantidade(id,n){
 
-function checkout(){
+const item=
+carrinho.find(x=>x.id===id);
 
-  if(!carrinho.length){
+if(!item)return;
 
-    alert("O carrinho está vazio.");
-    return;
+item.quantidade+=n;
 
-  }
+if(item.quantidade<=0){
 
-  const total =
-    carrinho.reduce(
-      (soma,item) =>
-        soma + item.preco * item.quantidade,
-      0
-    );
+carrinho=
+carrinho.filter(x=>x.id!==id);
 
-  const nome =
-    prompt("Digite o seu nome:");
+}
 
-  if(!nome) return;
-
-  const telefone =
-    prompt("Digite o seu telefone:");
-
-  if(!telefone) return;
-
-  const endereco =
-    prompt("Digite o endereço de entrega:");
-
-  if(!endereco) return;
-
-
-  const pedido = {
-
-    id:Date.now(),
-
-    comprador:nome,
-
-    telefone:telefone,
-
-    endereco:endereco,
-
-    itens:[...carrinho],
-
-    total:total,
-
-    comissao:total * 0.10,
-
-    vendedorRecebe:total * 0.90,
-
-    data:new Date().toLocaleString("pt-AO"),
-
-    estado:"Novo"
-
-  };
-
-
-  let pedidos =
-    JSON.parse(
-      localStorage.getItem("gtubePedidos")
-    ) || [];
-
-  pedidos.push(pedido);
-
-  localStorage.setItem(
-    "gtubePedidos",
-    JSON.stringify(pedidos)
-  );
-
-
-  carrinho = [];
-
-  saveData();
-  updateCartCount();
-
-  closeModal("cartModal");
-
-  alert(
-    "Pedido criado com sucesso!\n\n" +
-    "Valor: " + formatPrice(total) +
-    "\nComissão GTube: " +
-    formatPrice(total * 0.10) +
-    "\nVendedor recebe: " +
-    formatPrice(total * 0.90)
-  );
+salvar();
+contarCarrinho();
+mostrarCarrinho();
 
 }
 
 
-/* =========================
+function remover(id){
+
+carrinho=
+carrinho.filter(x=>x.id!==id);
+
+salvar();
+contarCarrinho();
+mostrarCarrinho();
+
+}
+
+
+function finalizar(){
+
+if(!carrinho.length){
+
+alert("Carrinho vazio.");
+return;
+
+}
+
+const nome=
+prompt("Nome do comprador:");
+
+if(!nome)return;
+
+const telefone=
+prompt("Telefone:");
+
+if(!telefone)return;
+
+const endereco=
+prompt("Endereço de entrega:");
+
+if(!endereco)return;
+
+
+const total=
+carrinho.reduce(
+(a,b)=>a+(b.preco*b.quantidade),0
+);
+
+
+const pedido={
+
+id:Date.now(),
+
+comprador:nome,
+
+telefone:telefone,
+
+endereco:endereco,
+
+itens:[...carrinho],
+
+total:total,
+
+comissao:total*0.10,
+
+vendedorRecebe:total*0.90,
+
+estado:"Novo",
+
+data:new Date().toLocaleString("pt-AO")
+
+};
+
+
+pedidos.push(pedido);
+
+carrinho=[];
+
+salvar();
+contarCarrinho();
+
+fechar("cartModal");
+
+alert(
+"Pedido criado com sucesso!\n\n"+
+"Valor: "+preco(total)+
+"\nComissão GTube: "+preco(total*.10)+
+"\nVendedor recebe: "+preco(total*.90)
+);
+
+}
+
+
+/* ================================
    FAVORITOS
-========================= */
+================================ */
 
-function toggleFavorite(id){
+function favorito(id){
 
-  if(favoritos.includes(id)){
+if(favoritos.includes(id)){
 
-    favoritos =
-      favoritos.filter(x => x !== id);
+favoritos=
+favoritos.filter(x=>x!==id);
 
-  }else{
+}else{
 
-    favoritos.push(id);
+favoritos.push(id);
 
-  }
+}
 
-  saveData();
-  renderProducts();
+salvar();
+mostrar();
 
 }
 
 
-/* =========================
-   PESQUISA
-========================= */
+/* ================================
+   CONTA
+================================ */
 
-function searchProducts(){
+function abrirConta(){
 
-  const termo =
-    document.getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+document.getElementById("accountModal")
+.style.display="flex";
 
-  if(!termo){
-
-    renderProducts();
-    return;
-
-  }
-
-  const resultado =
-    produtos.filter(p =>
-      p.nome.toLowerCase().includes(termo) ||
-      p.categoria.toLowerCase().includes(termo)
-    );
-
-  renderProducts(resultado);
+mostrarConta();
 
 }
 
 
-document.getElementById("searchInput")
-  .addEventListener("input", searchProducts);
+function mostrarConta(){
+
+const area=
+document.getElementById("account");
+
+const usuario=
+JSON.parse(
+localStorage.getItem("gtubeUtilizador")
+);
 
 
-/* =========================
-   CATEGORIAS
-========================= */
+if(!usuario){
 
-function filterCategory(categoria){
+area.innerHTML=`
 
-  const resultado =
-    produtos.filter(
-      p => p.categoria === categoria
-    );
+<h2>👤 Minha conta</h2>
 
-  renderProducts(resultado);
+<div class="field">
+<label>Nome</label>
+<input id="regNome">
+</div>
 
-  window.scrollTo({
-    top:350,
-    behavior:"smooth"
-  });
+<div class="field">
+<label>Email</label>
+<input id="regEmail" type="email">
+</div>
 
-}
+<div class="field">
+<label>Telefone</label>
+<input id="regTelefone">
+</div>
 
+<div class="field">
+<label>Tipo de conta</label>
 
-function showHome(){
+<select id="regTipo">
+<option value="comprador">Comprador</option>
+<option value="vendedor">Vendedor</option>
+</select>
 
-  renderProducts();
+</div>
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+<button class="primary"
+onclick="criarConta()">
+Criar conta
+</button>
 
-}
+`;
 
-
-/* =========================
-   VENDER
-========================= */
-
-function openSell(){
-
-  document.getElementById("sellModal")
-    .style.display = "flex";
-
-}
-
-
-function previewImage(event){
-
-  const file =
-    event.target.files[0];
-
-  if(!file) return;
-
-  const reader =
-    new FileReader();
-
-  reader.onload = function(e){
-
-    imagemAtual = e.target.result;
-
-    document.getElementById("imagePreview")
-      .innerHTML =
-      `<img src="${imagemAtual}">`;
-
-  };
-
-  reader.readAsDataURL(file);
+return;
 
 }
 
 
-function publishProduct(event){
+if(usuario.tipo==="vendedor"){
 
-  event.preventDefault();
+mostrarPainelVendedor(usuario);
 
-  const nome =
-    document.getElementById("productName").value;
-
-  const preco =
-    Number(
-      document.getElementById("productPrice").value
-    );
-
-  const categoria =
-    document.getElementById("productCategory").value;
-
-  const descricao =
-    document.getElementById("productDescription").value;
-
-
-  const novo = {
-
-    id:Date.now(),
-
-    nome:nome,
-
-    preco:preco,
-
-    categoria:categoria,
-
-    descricao:descricao,
-
-    imagem:imagemAtual,
-
-    vendedor:"Vendedor GTube"
-
-  };
-
-
-  produtos.unshift(novo);
-
-  saveData();
-
-  renderProducts();
-
-  document.querySelector("#sellModal form").reset();
-
-  imagemAtual = "";
-
-  document.getElementById("imagePreview")
-    .innerHTML =
-    "<span>Pré-visualização</span>";
-
-  closeModal("sellModal");
-
-  alert("Produto publicado com sucesso!");
+return;
 
 }
 
 
-/* =========================
-   CONTA / PAINEL
-========================= */
-
-function openAccount(){
-
-  document.getElementById("accountModal")
-    .style.display = "flex";
-
-  renderAccount();
+mostrarPainelComprador(usuario);
 
 }
 
 
-function renderAccount(){
+function criarConta(){
 
-  const area =
-    document.getElementById("accountContent");
+const nome=
+document.getElementById("regNome").value.trim();
 
-  const usuario =
-    JSON.parse(
-      localStorage.getItem("gtubeUtilizador")
-    );
+const email=
+document.getElementById("regEmail").value.trim();
 
+const telefone=
+document.getElementById("regTelefone").value.trim();
 
-  if(!usuario){
-
-    area.innerHTML = `
-
-      <h2>👤 Minha conta</h2>
-
-      <div class="account-card">
-
-        <p style="margin-bottom:15px;">
-          Crie uma conta para gerir os seus
-          produtos, pedidos e vendas.
-        </p>
-
-        <div class="form-group">
-          <label>Nome</label>
-          <input id="regNome" placeholder="Seu nome">
-        </div>
-
-        <div class="form-group">
-          <label>Email</label>
-          <input id="regEmail" type="email" placeholder="seu@email.com">
-        </div>
-
-        <div class="form-group">
-          <label>Telefone</label>
-          <input id="regTelefone" placeholder="9XXXXXXXX">
-        </div>
-
-        <button class="primary" onclick="createAccount()">
-          Criar conta
-        </button>
-
-      </div>
-
-    `;
-
-    return;
-  }
+const tipo=
+document.getElementById("regTipo").value;
 
 
-  const pedidos =
-    JSON.parse(
-      localStorage.getItem("gtubePedidos")
-    ) || [];
+if(!nome||!email||!telefone){
 
-
-  const vendas =
-    pedidos.reduce(
-      (soma,p) => soma + p.comissao,
-      0
-    );
-
-
-  const primeiraLetra =
-    (usuario.nome || "U")
-      .charAt(0)
-      .toUpperCase();
-
-
-  area.innerHTML = `
-
-    <h2>Painel</h2>
-
-    <div class="account-card">
-
-      <div class="account-header">
-
-        <div class="avatar">
-          ${primeiraLetra}
-        </div>
-
-        <div>
-          <h3>${escapeHtml(usuario.nome)}</h3>
-          <p style="color:#777;">
-            ${escapeHtml(usuario.email || "")}
-          </p>
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="dashboard-grid">
-
-      <div class="stat">
-        🛍️
-        <strong>${produtos.length}</strong>
-        Produtos
-      </div>
-
-      <div class="stat">
-        📦
-        <strong>${pedidos.length}</strong>
-        Pedidos
-      </div>
-
-      <div class="stat">
-        💰
-        <strong>${formatPrice(vendas)}</strong>
-        Comissão
-      </div>
-
-    </div>
-
-
-    <div class="account-card" style="margin-top:15px">
-
-      <button
-        class="primary"
-        onclick="openSell();closeModal('accountModal')">
-        + Publicar produto
-      </button>
-
-      <button
-        onclick="showOrders()"
-        style="
-        width:100%;
-        margin-top:10px;
-        padding:12px;
-        background:white;
-        border:1px solid #ddd;
-        border-radius:8px;
-        font-weight:bold;">
-        📦 Ver meus pedidos
-      </button>
-
-    </div>
-
-  `;
+alert("Preencha todos os campos.");
+return;
 
 }
 
 
-/* =========================
-   CRIAR CONTA
-========================= */
+const usuario={
 
-function createAccount(){
+id:Date.now(),
 
-  const nome =
-    document.getElementById("regNome").value.trim();
+nome:nome,
 
-  const email =
-    document.getElementById("regEmail").value.trim();
+email:email,
 
-  const telefone =
-    document.getElementById("regTelefone").value.trim();
+telefone:telefone,
 
+tipo:tipo
 
-  if(!nome || !email || !telefone){
-
-    alert("Preencha todos os campos.");
-    return;
-
-  }
+};
 
 
-  const usuario = {
-
-    nome:nome,
-
-    email:email,
-
-    telefone:telefone,
-
-    criadoEm:new Date().toLocaleString("pt-AO")
-
-  };
+localStorage.setItem(
+"gtubeUtilizador",
+JSON.stringify(usuario)
+);
 
 
-  localStorage.setItem(
-    "gtubeUtilizador",
-    JSON.stringify(usuario)
-  );
+usuarios.push(usuario);
 
+salvar();
 
-  alert("Conta criada com sucesso!");
-
-  renderAccount();
+mostrarConta();
 
 }
 
 
-/* =========================
-   PEDIDOS
-========================= */
+/* ================================
+   COMPRADOR
+================================ */
 
-function showOrders(){
+function mostrarPainelComprador(u){
 
-  const pedidos =
-    JSON.parse(
-      localStorage.getItem("gtubePedidos")
-    ) || [];
-
-
-  const area =
-    document.getElementById("accountContent");
+const meusPedidos=
+pedidos.filter(
+p=>p.comprador===u.nome
+);
 
 
-  if(!pedidos.length){
+document.getElementById("account")
+.innerHTML=`
 
-    area.innerHTML = `
+<h2>👤 Área do Comprador</h2>
 
-      <h2>📦 Meus pedidos</h2>
+<div class="stat" style="margin-top:15px">
 
-      <div class="empty">
-        Ainda não existem pedidos.
-      </div>
+<small>Comprador</small>
 
-    `;
+<strong>
+${seguro(u.nome)}
+</strong>
 
-    return;
+</div>
 
-  }
+<div class="stat" style="margin-top:15px">
 
+<small>Meus pedidos</small>
 
-  area.innerHTML = `
+<strong>
+${meusPedidos.length}
+</strong>
 
-    <h2>📦 Meus pedidos</h2>
+</div>
 
-    ${
-      pedidos.map(p => `
+<div style="margin-top:15px">
 
-        <div class="account-card">
+<button class="primary"
+onclick="mostrarPedidosComprador()">
+📦 Ver meus pedidos
+</button>
 
-          <strong>
-            Pedido #${p.id}
-          </strong>
+</div>
 
-          <p style="margin-top:8px;">
-            Data: ${p.data}
-          </p>
-
-          <p>
-            Estado:
-            <strong>${p.estado}</strong>
-          </p>
-
-          <p>
-            Total:
-            <strong>${formatPrice(p.total)}</strong>
-          </p>
-
-          <p style="color:#777;">
-            Comissão GTube:
-            ${formatPrice(p.comissao)}
-          </p>
-
-        </div>
-
-      `).join("")
-    }
-
-  `;
+`;
 
 }
 
 
-/* =========================
-   MODAIS
-========================= */
+function mostrarPedidosComprador(){
 
-function closeModal(id){
+const u=
+JSON.parse(
+localStorage.getItem("gtubeUtilizador")
+);
 
-  document.getElementById(id)
-    .style.display = "none";
+const meus=
+pedidos.filter(
+p=>p.comprador===u.nome
+);
+
+const area=
+document.getElementById("account");
+
+
+area.innerHTML=`
+
+<h2>📦 Meus pedidos</h2>
+
+<div style="margin-top:15px">
+
+${
+meus.length
+?
+meus.map(p=>`
+
+<div class="stat" style="margin-bottom:10px">
+
+<strong>
+Pedido #${p.id}
+</strong>
+
+<p style="margin-top:7px">
+Total: ${preco(p.total)}
+</p>
+
+<p>
+Estado:
+<span class="badge">${p.estado}</span>
+</p>
+
+</div>
+
+`).join("")
+:
+'<div class="empty">Ainda não tens pedidos.</div>'
+}
+
+</div>
+
+`;
 
 }
 
 
-window.addEventListener("click",function(event){
+/* ================================
+   VENDEDOR
+================================ */
 
-  document.querySelectorAll(".modal")
-    .forEach(modal => {
+function mostrarPainelVendedor(u){
 
-      if(event.target === modal){
+const meusProdutos=
+produtos.filter(
+p=>p.vendedor===u.nome
+);
 
-        modal.style.display = "none";
 
-      }
+const minhasVendas=
+pedidos.filter(
+p=>p.itens.some(
+i=>produtos.some(
+pr=>pr.id===i.id &&
+pr.vendedor===u.nome
+)
+)
+);
 
-    });
+
+const valor=
+minhasVendas.reduce(
+(a,p)=>a+p.total,0
+);
+
+
+document.getElementById("account")
+.innerHTML=`
+
+<h2>🏪 Painel do Vendedor</h2>
+
+<p style="color:#777;margin-top:5px">
+${seguro(u.nome)}
+</p>
+
+<div class="stats"
+style="margin-top:15px">
+
+<div class="stat">
+<small>Produtos</small>
+<strong>${meusProdutos.length}</strong>
+</div>
+
+<div class="stat">
+<small>Pedidos</small>
+<strong>${minhasVendas.length}</strong>
+</div>
+
+<div class="stat">
+<small>Vendas</small>
+<strong>${preco(valor)}</strong>
+</div>
+
+<div class="stat">
+<small>Recebe</small>
+<strong>${preco(valor*.90)}</strong>
+</div>
+
+</div>
+
+<div style="margin-top:15px">
+
+<button class="primary"
+onclick="abrirVenda();fechar('accountModal')">
++ Publicar produto
+</button>
+
+</div>
+
+`;
+
+
+}
+
+
+/* ================================
+   PUBLICAR
+================================ */
+
+function abrirVenda(){
+
+const usuario=
+JSON.parse(
+localStorage.getItem("gtubeUtilizador")
+);
+
+if(!usuario){
+
+alert("Primeiro crie uma conta de vendedor.");
+
+abrirConta();
+
+return;
+
+}
+
+if(usuario.tipo!=="vendedor"){
+
+alert(
+"Apenas vendedores podem publicar produtos."
+);
+
+return;
+
+}
+
+document.getElementById("sellModal")
+.style.display="flex";
+
+}
+
+
+function publicar(e){
+
+e.preventDefault();
+
+
+const usuario=
+JSON.parse(
+localStorage.getItem("gtubeUtilizador")
+);
+
+
+const nome=
+document.getElementById("nomeProduto").value;
+
+const precoProduto=
+Number(
+document.getElementById("precoProduto").value
+);
+
+const categoriaProduto=
+document.getElementById("catProduto").value;
+
+const descricao=
+document.getElementById("descProduto").value;
+
+const arquivo=
+document.getElementById("imgProduto").files[0];
+
+
+function guardarProduto(imagem){
+
+produtos.unshift({
+
+id:Date.now(),
+
+nome:nome,
+
+preco:precoProduto,
+
+categoria:categoriaProduto,
+
+descricao:descricao,
+
+imagem:imagem,
+
+vendedor:usuario.nome
 
 });
 
+salvar();
 
-/* =========================
-   INICIAR
-========================= */
+mostrar();
 
-renderProducts();
-updateCartCount();
+fechar("sellModal");
+
+alert("Produto publicado com sucesso!");
+
+}
+
+
+if(arquivo){
+
+const reader=new FileReader();
+
+reader.onload=function(){
+
+guardarProduto(reader.result);
+
+};
+
+reader.readAsDataURL(arquivo);
+
+}else{
+
+guardarProduto("");
+
+}
+
+}
+
+
+/* ==================================================
+   PAINEL DO DONO / ADMINISTRADOR
+================================================== */
+
+function abrirLoginDono(){
+
+document.getElementById("adminLoginModal")
+.style.display="flex";
+
+}
+
+
+/*
+  O PAINEL DO DONO NÃO É MOSTRADO
+  PARA COMPRADORES OU VENDEDORES.
+*/
+
+function loginAdmin(){
+
+const email=
+document.getElementById("adminEmail").value.trim();
+
+const senha=
+document.getElementById("adminSenha").value;
+
+
+if(
+email!==ADMIN_EMAIL ||
+senha!==ADMIN_SENHA
+){
+
+alert("Email ou senha de administrador incorretos.");
+
+return;
+
+}
+
+
+localStorage.setItem(
+"gtubeAdminLogado",
+"true"
+);
+
+fechar("adminLoginModal");
+
+mostrarPainelDono();
+
+}
+
+
+/* ================================
+   PAINEL DONO
+================================ */
+
+function mostrarPainelDono(){
+
+const logado=
+localStorage.getItem("gtubeAdminLogado");
+
+if(logado!=="true"){
+
+abrirLoginDono();
+
+return;
+
+}
+
+
+document.getElementById("site")
+.innerHTML=`
+
+<div class="panel">
+
+<div class="panel-header">
+
+<h1>⚡ Painel de Controlo</h1>
+
+<p>
+Administrador • GTube Marketplace
+</p>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<small>Vendas totais</small>
+
+<strong>
+${preco(
+pedidos.reduce(
+(a,p)=>a+p.total,0
+)
+)}
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>Comissão GTube</small>
+
+<strong>
+${preco(
+pedidos.reduce(
+(a,p)=>a+p.comissao,0
+)
+)}
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>Vendedores</small>
+
+<strong>
+${usuarios.filter(
+u=>u.tipo==="vendedor"
+).length}
+</strong>
+
+</div>
+
+
+<div class="stat">
+
+<small>Compradores</small>
+
+<strong>
+${usuarios.filter(
+u=>u.tipo==="comprador"
+).length}
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="panel-grid">
+
+<div class="side">
+
+<button onclick="adminInicio()">
+📊 Visão geral
+</button>
+
+<button onclick="adminPedidos()">
+📦 Pedidos
+</button>
+
+<button onclick="adminProdutos()">
+🛍️ Produtos
+</button>
+
+<button onclick="adminVendedores()">
+🏪 Vendedores
+</button>
+
+<button onclick="adminCompradores()">
+👥 Compradores
+</button>
+
+<button onclick="adminFinanceiro()">
+💰 Financeiro
+</button>
+
+<button onclick="adminSair()">
+🚪 Sair
+</button>
+
+</div>
+
+
+<div class="panel-content"
+id="adminContent">
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+adminInicio();
+
+}
+
+
+/* ================================
+   ADMIN INÍCIO
+================================ */
+
+function adminInicio(){
+
+const area=
+document.getElementById("adminContent");
+
+if(!area)return;
+
+
+const total=
+pedidos.reduce(
+(a,p)=>a+p.total,0
+);
+
+const comissao=
+pedidos.reduce(
+(a,p)=>a+p.comissao,0
+);
+
+const vendedor=
+pedidos.reduce(
+(a,p)=>a+p.vendedorRecebe,0
+);
+
+
+area.innerHTML=`
+
+<h2>📊 Visão geral</h2>
+
+<p style="color:#777;margin:8px 0 20px">
+Resumo financeiro da plataforma
+</p>
+
+<div class="stats">
+
+<div class="stat">
+<small>Pedidos</small>
+<strong>${pedidos.length}</strong>
+</div>
+
+<div class="stat">
+<small>Produtos</small>
+<strong>${produtos.length}</strong>
+</div>
+
+<div class="stat">
+<small>Comissão 10%</small>
+<strong>${preco(comissao)}</strong>
+</div>
+
+<div class="stat">
+<small>Vendedores</small>
+<strong>
+${usuarios.filter(
+u=>u.tipo==="vendedor"
+).length}
+</strong>
+</div>
+
+</div>
+
+
+<div class="stat" style="margin-top:15px">
+
+<h3>💰 Movimento financeiro</h3>
+
+<div class="line" style="margin-top:15px">
+<span>Volume vendido</span>
+<strong>${preco(total)}</strong>
+</div>
+
+<div class="line">
+<span>Comissão GTube</span>
+<strong>${preco(comissao)}</strong>
+</div>
+
+<div class="line">
+<span>Valor para vendedores</span>
+<strong>${preco(vendedor)}</strong>
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   ADMIN PEDIDOS
+================================ */
+
+function adminPedidos(){
+
+const area=
+document.getElementById("adminContent");
+
+area.innerHTML=`
+
+<h2>📦 Todos os pedidos</h2>
+
+<div class="table-wrap"
+style="margin-top:15px">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Pedido</th>
+<th>Comprador</th>
+<th>Total</th>
+<th>Comissão</th>
+<th>Vendedor</th>
+<th>Estado</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+pedidos.length
+?
+pedidos.map(p=>`
+
+<tr>
+
+<td>#${p.id}</td>
+
+<td>${seguro(p.comprador)}</td>
+
+<td>${preco(p.total)}</td>
+
+<td>${preco(p.comissao)}</td>
+
+<td>${preco(p.vendedorRecebe)}</td>
+
+<td>
+<span class="badge">
+${p.estado}
+</span>
+</td>
+
+</tr>
+
+`).join("")
+:
+`<tr>
+<td colspan="6">Nenhum pedido.</td>
+</tr>`
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   ADMIN PRODUTOS
+================================ */
+
+function adminProdutos(){
+
+const area=
+document.getElementById("adminContent");
+
+area.innerHTML=`
+
+<h2>🛍️ Produtos</h2>
+
+<div class="table-wrap"
+style="margin-top:15px">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Produto</th>
+<th>Categoria</th>
+<th>Preço</th>
+<th>Vendedor</th>
+<th>Ação</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+produtos.map(p=>`
+
+<tr>
+
+<td>${seguro(p.nome)}</td>
+
+<td>${seguro(p.categoria)}</td>
+
+<td>${preco(p.preco)}</td>
+
+<td>${seguro(p.vendedor)}</td>
+
+<td>
+
+<button
+onclick="apagarProduto(${p.id})"
+style="
+border:0;
+background:#fee;
+padding:7px;
+border-radius:6px;
+cursor:pointer">
+🗑️
+</button>
+
+</td>
+
+</tr>
+
+`).join("")
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+function apagarProduto(id){
+
+if(!confirm("Apagar este produto?"))return;
+
+produtos=
+produtos.filter(p=>p.id!==id);
+
+salvar();
+
+adminProdutos();
+
+mostrar();
+
+}
+
+
+/* ================================
+   ADMIN VENDEDORES
+================================ */
+
+function adminVendedores(){
+
+const area=
+document.getElementById("adminContent");
+
+const vendedores=
+usuarios.filter(
+u=>u.tipo==="vendedor"
+);
+
+
+area.innerHTML=`
+
+<h2>🏪 Vendedores</h2>
+
+<div class="table-wrap"
+style="margin-top:15px">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Nome</th>
+<th>Email</th>
+<th>Telefone</th>
+<th>Produtos</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+vendedores.length
+?
+vendedores.map(v=>`
+
+<tr>
+
+<td>${seguro(v.nome)}</td>
+
+<td>${seguro(v.email)}</td>
+
+<td>${seguro(v.telefone)}</td>
+
+<td>
+${
+produtos.filter(
+p=>p.vendedor===v.nome
+).length
+}
+</td>
+
+</tr>
+
+`).join("")
+:
+`<tr>
+<td colspan="4">Nenhum vendedor.</td>
+</tr>`
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   ADMIN COMPRADORES
+================================ */
+
+function adminCompradores(){
+
+const area=
+document.getElementById("adminContent");
+
+const compradores=
+usuarios.filter(
+u=>u.tipo==="comprador"
+);
+
+
+area.innerHTML=`
+
+<h2>👥 Compradores</h2>
+
+<div class="table-wrap"
+style="margin-top:15px">
+
+<table>
+
+<thead>
+
+<tr>
+<th>Nome</th>
+<th>Email</th>
+<th>Telefone</th>
+</tr>
+
+</thead>
+
+<tbody>
+
+${
+compradores.length
+?
+compradores.map(c=>`
+
+<tr>
+
+<td>${seguro(c.nome)}</td>
+
+<td>${seguro(c.email)}</td>
+
+<td>${seguro(c.telefone)}</td>
+
+</tr>
+
+`).join("")
+:
+`<tr>
+<td colspan="3">Nenhum comprador.</td>
+</tr>`
+}
+
+</tbody>
+
+</table>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   ADMIN FINANCEIRO
+================================ */
+
+function adminFinanceiro(){
+
+const area=
+document.getElementById("adminContent");
+
+const total=
+pedidos.reduce(
+(a,p)=>a+p.total,0
+);
+
+const comissao=
+pedidos.reduce(
+(a,p)=>a+p.comissao,0
+);
+
+const vendedores=
+pedidos.reduce(
+(a,p)=>a+p.vendedorRecebe,0
+);
+
+
+area.innerHTML=`
+
+<h2>💰 Financeiro</h2>
+
+<div class="stat"
+style="margin-top:15px">
+
+<div class="line">
+<span>Volume total</span>
+<strong>${preco(total)}</strong>
+</div>
+
+<div class="line">
+<span>Comissão GTube — 10%</span>
+<strong>${preco(comissao)}</strong>
+</div>
+
+<div class="line">
+<span>Parte dos vendedores — 90%</span>
+<strong>${preco(vendedores)}</strong>
+</div>
+
+<hr style="margin:15px 0;border:0;border-top:1px solid #ddd">
+
+<p style="color:#777">
+Exemplo: uma venda de 10.000 Kz gera
+1.000 Kz de comissão para o GTube e
+9.000 Kz para o vendedor.
+</p>
+
+</div>
+
+`;
+
+}
+
+
+/* ================================
+   ADMIN SAIR
+================================ */
+
+function adminSair(){
+
+localStorage.removeItem("gtubeAdminLogado");
+
+inicio();
+
+}
+
+
+/* ================================
+   INICIALIZAÇÃO
+================================ */
+
+mostrar();
+
+contarCarrinho();
+
+
+/*
+  Para abrir o Painel do Dono:
+  no navegador, executar:
+
+  mostrarPainelDono();
+
+*/
 
 </script>
 
