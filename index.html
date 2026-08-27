@@ -2,506 +2,167 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GTube Marketplace</title>
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-
 body{
-font-family:Arial,sans-serif;
-background:#f4f6f8;
-color:#171717
+ font-family:Arial,sans-serif;
+ background:#f5f6fa;
+ color:#222;
 }
-
-button,input,select,textarea{font:inherit}
-
-button{cursor:pointer}
-
 header{
-background:#111827;
-color:white;
-position:sticky;
-top:0;
-z-index:1000;
-box-shadow:0 3px 15px #0002
+ background:linear-gradient(135deg,#111827,#2563eb);
+ color:white;
+ padding:18px;
+ position:sticky;
+ top:0;
+ z-index:10;
 }
-
-.top{
-max-width:1250px;
-margin:auto;
-padding:14px 18px;
-display:flex;
-align-items:center;
-gap:15px
+.header{
+ max-width:1100px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
 }
-
-.logo{
-font-size:25px;
-font-weight:900
+.logo{font-size:25px;font-weight:bold}
+nav button{
+ border:0;
+ background:white;
+ color:#2563eb;
+ padding:9px 13px;
+ border-radius:8px;
+ margin-left:5px;
+ font-weight:bold;
 }
-
-.logo span{color:#ff7900}
-
-.search{
-flex:1;
-display:flex;
-background:white;
-border-radius:9px;
-overflow:hidden
-}
-
-.search input{
-flex:1;
-border:0;
-outline:0;
-padding:12px
-}
-
-.search button{
-border:0;
-background:#ff7900;
-color:white;
-padding:0 18px
-}
-
-.head-btn{
-border:0;
-background:#202938;
-color:white;
-padding:10px 13px;
-border-radius:8px
-}
-
-.count{
-background:#ff7900;
-border-radius:20px;
-padding:2px 6px;
-font-size:11px
-}
-
-nav{
-background:white;
-border-bottom:1px solid #ddd
-}
-
-.nav{
-max-width:1250px;
-margin:auto;
-padding:11px 18px;
-display:flex;
-gap:25px;
-overflow:auto
-}
-
-.nav button{
-border:0;
-background:none;
-font-weight:bold;
-color:#555;
-white-space:nowrap
-}
-
-.nav button:hover{color:#ff7900}
-
 .hero{
-max-width:1250px;
-margin:22px auto;
-padding:42px 30px;
-border-radius:18px;
-background:linear-gradient(120deg,#111827,#334155);
-color:white
+ max-width:1100px;
+ margin:20px auto;
+ padding:35px 20px;
+ background:linear-gradient(135deg,#2563eb,#7c3aed);
+ color:white;
+ border-radius:18px;
 }
-
-.hero h1{
-font-size:36px;
-margin-bottom:10px
+.hero h1{font-size:32px;margin-bottom:10px}
+.container{max-width:1100px;margin:20px auto;padding:0 15px}
+.search{
+ width:100%;
+ padding:14px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ margin-bottom:20px;
+ font-size:16px;
 }
-
-.hero p{
-color:#d5d9df;
-line-height:1.6;
-max-width:650px
-}
-
-.hero button{
-margin-top:20px;
-border:0;
-background:#ff7900;
-color:white;
-padding:13px 22px;
-border-radius:8px;
-font-weight:bold
-}
-
-.container{
-max-width:1250px;
-margin:auto;
-padding:0 18px 40px
-}
-
-.title{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin:25px 0 15px
-}
-
 .categories{
-display:flex;
-gap:12px;
-overflow:auto
+ display:flex;
+ gap:8px;
+ overflow:auto;
+ margin-bottom:20px;
 }
-
-.category{
-background:white;
-border:1px solid #ddd;
-border-radius:12px;
-padding:16px;
-min-width:120px;
-text-align:center
+.categories button{
+ padding:10px 15px;
+ border:0;
+ border-radius:20px;
+ background:white;
+ white-space:nowrap;
 }
-
-.category-icon{
-font-size:27px;
-margin-bottom:7px
-}
-
 .products{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:18px
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:15px;
 }
-
-.product{
-background:white;
-border:1px solid #e3e3e3;
-border-radius:14px;
-overflow:hidden
+.card{
+ background:white;
+ border-radius:15px;
+ padding:15px;
+ box-shadow:0 3px 12px #00000012;
 }
-
-.pic{
-height:190px;
-background:#eee;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden
+.card img{
+ width:100%;
+ height:170px;
+ object-fit:cover;
+ border-radius:10px;
+ background:#eee;
 }
-
-.pic img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
-.noimg{font-size:50px}
-
-.info{padding:14px}
-
+.card h3{margin:10px 0}
 .price{
-font-size:20px;
-font-weight:900;
-margin:7px 0
+ color:#2563eb;
+ font-size:20px;
+ font-weight:bold;
+ margin:8px 0;
 }
-
-.meta{
-font-size:12px;
-color:#777;
-margin-bottom:12px
+.btn{
+ width:100%;
+ padding:11px;
+ border:0;
+ border-radius:9px;
+ background:#2563eb;
+ color:white;
+ font-weight:bold;
+ margin-top:8px;
 }
-
-.actions{
-display:flex;
-gap:7px
-}
-
-.actions button{
-flex:1;
-padding:10px;
-border-radius:8px;
-font-weight:bold
-}
-
-.buy{
-background:#ff7900;
-color:white;
-border:0
-}
-
-.fav{
-background:white;
-border:1px solid #ddd
-}
-
-.modal{
-display:none;
-position:fixed;
-inset:0;
-background:#0008;
-z-index:3000;
-align-items:center;
-justify-content:center;
-padding:15px
-}
-
-.box{
-background:white;
-width:100%;
-max-width:650px;
-max-height:92vh;
-overflow:auto;
-border-radius:16px;
-padding:24px;
-position:relative
-}
-
-.close{
-position:absolute;
-right:15px;
-top:10px;
-border:0;
-background:none;
-font-size:27px
-}
-
-.field{margin-bottom:14px}
-
-.field label{
-display:block;
-font-weight:bold;
-margin-bottom:6px
-}
-
-.field input,
-.field textarea,
-.field select{
-width:100%;
-padding:12px;
-border:1px solid #ddd;
-border-radius:8px;
-outline:0
-}
-
-.primary{
-width:100%;
-padding:13px;
-background:#ff7900;
-color:white;
-border:0;
-border-radius:8px;
-font-weight:bold
-}
-
-.secondary{
-padding:11px 15px;
-background:#111827;
-color:white;
-border:0;
-border-radius:8px
-}
-
-/* PAINEL */
-
+.btn.secondary{background:#111827}
+.btn.danger{background:#dc2626}
 .panel{
-max-width:1250px;
-margin:auto;
-padding:20px 18px 50px
+ background:white;
+ padding:20px;
+ border-radius:15px;
+ margin-bottom:20px;
+ box-shadow:0 3px 12px #00000012;
 }
-
-.panel-header{
-background:#111827;
-color:white;
-padding:25px;
-border-radius:16px;
-margin-bottom:18px
+input,select,textarea{
+ width:100%;
+ padding:12px;
+ margin:7px 0;
+ border:1px solid #ddd;
+ border-radius:8px;
 }
-
-.panel-header h1{margin-bottom:7px}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:15px;
-margin-bottom:18px
+.hidden{display:none!important}
+.cart{
+ position:fixed;
+ right:15px;
+ bottom:15px;
+ background:#2563eb;
+ color:white;
+ padding:15px 18px;
+ border-radius:50px;
+ box-shadow:0 5px 20px #0005;
+ z-index:20;
 }
-
-.stat{
-background:white;
-border-radius:13px;
-padding:20px;
-border:1px solid #e5e7eb
-}
-
-.stat small{color:#777}
-
-.stat strong{
-display:block;
-font-size:25px;
-margin-top:8px
-}
-
-.panel-grid{
-display:grid;
-grid-template-columns:240px 1fr;
-gap:18px
-}
-
-.side{
-background:white;
-border-radius:13px;
-padding:12px;
-height:max-content
-}
-
-.side button{
-width:100%;
-text-align:left;
-padding:13px;
-border:0;
-background:white;
-border-radius:8px;
-margin-bottom:4px;
-font-weight:bold
-}
-
-.side button:hover{
-background:#f2f2f2;
-color:#ff7900
-}
-
-.panel-content{
-background:white;
-border-radius:13px;
-padding:20px;
-min-height:400px
-}
-
-.table-wrap{overflow:auto}
-
-table{
-width:100%;
-border-collapse:collapse;
-min-width:650px
-}
-
-th,td{
-padding:12px;
-border-bottom:1px solid #eee;
-text-align:left
-}
-
-th{background:#f8f8f8}
-
 .badge{
-padding:5px 9px;
-border-radius:20px;
-background:#eee;
-font-size:12px
+ background:#dc2626;
+ border-radius:20px;
+ padding:3px 7px;
+ font-size:12px;
 }
-
-.empty{
-padding:35px;
-text-align:center;
-color:#777;
-background:#fafafa;
-border-radius:10px
-}
-
-.cart-item{
-display:flex;
-align-items:center;
-gap:12px;
-padding:13px 0;
-border-bottom:1px solid #eee
-}
-
-.cart-img{
-width:65px;
-height:65px;
-background:#eee;
-border-radius:8px;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden
-}
-
-.cart-img img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
-.cart-info{flex:1}
-
-.total{
-background:#f5f5f5;
-padding:15px;
-margin-top:15px;
-border-radius:10px
-}
-
-.line{
-display:flex;
-justify-content:space-between;
-margin:7px 0
-}
-
-.final{
-font-size:21px;
-font-weight:bold
-}
-
-footer{
-background:#111827;
-color:#aaa;
-padding:30px;
-text-align:center
-}
-
-@media(max-width:900px){
-.products{grid-template-columns:repeat(3,1fr)}
-.stats{grid-template-columns:repeat(2,1fr)}
-}
-
-@media(max-width:650px){
-
-.top{flex-wrap:wrap}
-
-.logo{width:100%}
-
-.search{
-flex-basis:100%;
-order:3
-}
-
-.products{
-grid-template-columns:repeat(2,1fr);
-gap:10px
-}
-
-.pic{height:145px}
-
-.hero{
-margin:12px 10px;
-padding:30px 20px
-}
-
-.hero h1{font-size:27px}
-
-.container,.panel{
-padding-left:10px;
-padding-right:10px
-}
-
-.panel-grid{
-grid-template-columns:1fr
-}
-
 .stats{
-grid-template-columns:1fr 1fr
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:12px;
 }
+.stat{
+ background:#f1f5f9;
+ padding:18px;
+ border-radius:12px;
+}
+.stat strong{
+ display:block;
+ font-size:22px;
+ margin-top:7px;
+}
+.order{
+ border:1px solid #ddd;
+ padding:15px;
+ border-radius:10px;
+ margin-top:10px;
+}
+footer{
+ text-align:center;
+ padding:30px;
+ color:#777;
 }
 </style>
 </head>
@@ -509,2598 +170,681 @@ grid-template-columns:1fr 1fr
 <body>
 
 <header>
-<div class="top">
-
-<div class="logo">G<span>Tube</span></div>
-
-<div class="search">
-<input id="search" placeholder="Pesquisar produtos..."
-onkeyup="pesquisar()">
-<button onclick="pesquisar()">🔍</button>
-</div>
-
-<button class="head-btn" onclick="abrirConta()">👤</button>
-
-<button class="head-btn" onclick="abrirCarrinho()">
-🛒 <span class="count" id="cartCount">0</span>
-</button>
-
+<div class="header">
+<div class="logo">🛍️ GTube Marketplace</div>
+<nav>
+<button onclick="showPage('home')">Início</button>
+<button onclick="showPage('login')">Entrar</button>
+<button onclick="showPage('account')">Minha conta</button>
+<button onclick="showPage('admin')">Admin</button>
+</nav>
 </div>
 </header>
 
-<nav>
-<div class="nav">
+<section id="home">
 
-<button onclick="inicio()">Início</button>
-<button onclick="categoria('Telefones')">Telefones</button>
-<button onclick="categoria('Computadores')">Computadores</button>
-<button onclick="categoria('Moda')">Moda</button>
-<button onclick="categoria('Carros')">Carros</button>
-<button onclick="categoria('Casa')">Casa</button>
-<button onclick="abrirVenda()">Vender</button>
-
+<div class="hero">
+<h1>Compre e venda no GTube Marketplace</h1>
+<p>Encontre produtos, publique os seus e faça pedidos de forma simples.</p>
 </div>
-</nav>
-
-<main id="site">
-
-<section class="hero">
-
-<h1>Compra e vende no GTube</h1>
-
-<p>
-Encontra produtos, compra com facilidade e cria o teu próprio negócio no GTube Marketplace.
-</p>
-
-<button onclick="abrirVenda()">
-Começar a vender
-</button>
-
-</section>
 
 <div class="container">
 
-<div class="title">
-<h2>Categorias</h2>
-</div>
+<input id="search" class="search"
+placeholder="🔎 Procurar produto..."
+oninput="renderProducts()">
 
 <div class="categories">
-
-<div class="category" onclick="categoria('Telefones')">
-<div class="category-icon">📱</div>
-Telefones
-</div>
-
-<div class="category" onclick="categoria('Computadores')">
-<div class="category-icon">💻</div>
-Computadores
-</div>
-
-<div class="category" onclick="categoria('Moda')">
-<div class="category-icon">👕</div>
-Moda
-</div>
-
-<div class="category" onclick="categoria('Carros')">
-<div class="category-icon">🚗</div>
-Carros
-</div>
-
-<div class="category" onclick="categoria('Casa')">
-<div class="category-icon">🏠</div>
-Casa
-</div>
-
-<div class="category" onclick="categoria('Outros')">
-<div class="category-icon">📦</div>
-Outros
-</div>
-
-</div>
-
-<div class="title">
-<h2>Produtos em destaque</h2>
+<button onclick="filterCategory('Todos')">Todos</button>
+<button onclick="filterCategory('Telefones')">Telefones</button>
+<button onclick="filterCategory('Computadores')">Computadores</button>
+<button onclick="filterCategory('Moda')">Moda</button>
+<button onclick="filterCategory('Carros')">Carros</button>
+<button onclick="filterCategory('Casa')">Casa</button>
+<button onclick="filterCategory('Outros')">Outros</button>
 </div>
 
 <div id="products" class="products"></div>
 
 </div>
+</section>
 
-</main>
+<section id="login" class="container hidden">
 
-<footer>
-<strong>GTube Marketplace</strong>
-<p style="margin-top:8px">
-Compra • Venda • Crescimento
-</p>
-</footer>
+<div class="panel">
+<h2>Entrar</h2>
 
+<input id="loginEmail" type="email" placeholder="E-mail">
+<input id="loginPassword" type="password" placeholder="Palavra-passe">
 
-<!-- CONTA -->
+<button class="btn" onclick="login()">Entrar</button>
 
-<div class="modal" id="accountModal">
+<hr style="margin:20px 0">
 
-<div class="box">
+<h3>Criar conta</h3>
 
-<button class="close"
-onclick="fechar('accountModal')">×</button>
+<input id="name" placeholder="Nome completo">
+<input id="email" type="email" placeholder="E-mail">
+<input id="password" type="password" placeholder="Palavra-passe">
+<input id="phone" placeholder="Telefone">
 
-<div id="account"></div>
+<select id="type">
+<option value="comprador">Comprador</option>
+<option value="vendedor">Vendedor</option>
+</select>
 
-</div>
-</div>
-
-
-<!-- CARRINHO -->
-
-<div class="modal" id="cartModal">
-
-<div class="box">
-
-<button class="close"
-onclick="fechar('cartModal')">×</button>
-
-<h2>🛒 Meu carrinho</h2>
-
-<div id="cartItems"></div>
-
-<div id="cartTotal"></div>
-
-</div>
+<button class="btn secondary" onclick="register()">Criar conta</button>
 </div>
 
+</section>
 
-<!-- VENDA -->
+<section id="account" class="container hidden">
 
-<div class="modal" id="sellModal">
+<div class="panel">
+<h2>Minha conta</h2>
+<div id="accountInfo"></div>
+<button class="btn danger" onclick="logout()">Sair</button>
+</div>
 
-<div class="box">
-
-<button class="close"
-onclick="fechar('sellModal')">×</button>
+<div id="sellerPanel" class="panel hidden">
 
 <h2>📦 Publicar produto</h2>
 
-<form onsubmit="publicar(event)">
+<input id="productName" placeholder="Nome do produto">
+<input id="productPrice" type="number" placeholder="Preço em Kz">
 
-<div class="field">
-<label>Nome do produto</label>
-<input id="nomeProduto" required>
-</div>
-
-<div class="field">
-<label>Preço em Kz</label>
-<input id="precoProduto"
-type="number"
-min="1"
-required>
-</div>
-
-<div class="field">
-
-<label>Categoria</label>
-
-<select id="catProduto">
-
+<select id="productCategory">
 <option>Telefones</option>
 <option>Computadores</option>
 <option>Moda</option>
 <option>Carros</option>
 <option>Casa</option>
 <option>Outros</option>
-
 </select>
 
-</div>
+<textarea id="productDescription" placeholder="Descrição do produto"></textarea>
 
-<div class="field">
+<input id="productImage" type="file" accept="image/*">
 
-<label>Descrição</label>
+<button class="btn" onclick="publishProduct()">Publicar produto</button>
 
-<textarea id="descProduto"
-rows="4"></textarea>
-
-</div>
-
-<div class="field">
-
-<label>Imagem</label>
-
-<input id="imgProduto"
-type="file"
-accept="image/*">
+<h3 style="margin-top:25px">Meus produtos</h3>
+<div id="myProducts"></div>
 
 </div>
 
-<button class="primary">
-Publicar produto
-</button>
-
-</form>
-
-</div>
+<div class="panel">
+<h2>🧾 Meus pedidos</h2>
+<div id="myOrders"></div>
 </div>
 
+</section>
 
-<!-- LOGIN DONO -->
-
-<div class="modal" id="adminLoginModal">
-
-<div class="box">
-
-<button class="close"
-onclick="fechar('adminLoginModal')">×</button>
-
-<h2>🔐 Área administrativa</h2>
-
-<p style="margin:10px 0 20px;color:#666">
-Área exclusiva do proprietário do GTube.
-</p>
-
-<div class="field">
-
-<label>Email do administrador</label>
-
-<input id="adminEmail"
-type="email"
-placeholder="Email">
-
-</div>
-
-<div class="field">
-
-<label>Senha</label>
-
-<input id="adminSenha"
-type="password"
-placeholder="Senha">
-
-</div>
-
-<button class="primary"
-onclick="loginAdmin()">
-Entrar no Painel do Dono
-</button>
-
-</div>
-</div>
-
-
-<script>
-
-/* =========================================
-   CONFIGURAÇÃO
-========================================= */
-
-const SUPABASE_URL =
-"https://ozhhemaplvfxyoglvfqo.supabase.co";
-
-const SUPABASE_KEY =
-"sb_publishable_j87agBrGR2fD2k8rOdyeZg_ldPe200L";
-
-
-/*
-  DADOS DO DONO
-
-  IMPORTANTE:
-  Isto é apenas para o painel de administração
-  do protótipo.
-*/
-
-const ADMIN_EMAIL = "dono@gtube.com";
-const ADMIN_SENHA = "GTubeAdmin2026";
-
-
-/* =========================================
-   DADOS LOCAIS
-========================================= */
-
-let produtos =
-JSON.parse(localStorage.getItem("gtubeProdutos")) || [];
-
-let carrinho =
-JSON.parse(localStorage.getItem("gtubeCarrinho")) || [];
-
-let favoritos =
-JSON.parse(localStorage.getItem("gtubeFavoritos")) || [];
-
-let pedidos =
-JSON.parse(localStorage.getItem("gtubePedidos")) || [];
-
-let usuarios =
-JSON.parse(localStorage.getItem("gtubeUsuarios")) || [];
-
-
-/* =========================================
-   SUPABASE
-========================================= */
-
-async function supabase(tabela,opcoes={}){
-
-const config={
-method:opcoes.method || "GET",
-headers:{
-"apikey":SUPABASE_KEY,
-"Authorization":"Bearer "+SUPABASE_KEY,
-"Content-Type":"application/json",
-"Prefer":opcoes.method==="POST"
-?"return=representation"
-:"return=minimal"
-}
-};
-
-if(opcoes.body){
-config.body=JSON.stringify(opcoes.body);
-}
-
-const resposta=await fetch(
-SUPABASE_URL+"/rest/v1/"+tabela+
-(opcoes.query ? "?"+opcoes.query : ""),
-config
-);
-
-if(!resposta.ok){
-
-const texto=await resposta.text();
-
-throw new Error(texto || "Erro no Supabase");
-}
-
-const texto=await resposta.text();
-
-if(!texto)return null;
-
-try{
-return JSON.parse(texto);
-}catch{
-return null;
-}
-
-}
-
-
-/* =========================================
-   UTILIDADES
-========================================= */
-
-function salvar(){
-
-localStorage.setItem(
-"gtubeProdutos",
-JSON.stringify(produtos)
-);
-
-localStorage.setItem(
-"gtubeCarrinho",
-JSON.stringify(carrinho)
-);
-
-localStorage.setItem(
-"gtubeFavoritos",
-JSON.stringify(favoritos)
-);
-
-localStorage.setItem(
-"gtubePedidos",
-JSON.stringify(pedidos)
-);
-
-localStorage.setItem(
-"gtubeUsuarios",
-JSON.stringify(usuarios)
-);
-
-}
-
-
-function preco(valor){
-
-return Number(valor || 0)
-.toLocaleString("pt-AO")+" Kz";
-
-}
-
-
-function fechar(id){
-
-const elemento=document.getElementById(id);
-
-if(elemento){
-elemento.style.display="none";
-}
-
-}
-
-
-function seguro(texto){
-
-return String(texto || "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
-/* =========================================
-   PRODUTOS
-========================================= */
-
-async function carregarProdutos(){
-
-try{
-
-const dados=await supabase(
-"produtos",
-{
-query:"select=*"
-}
-);
-
-if(Array.isArray(dados)){
-
-produtos=dados.map(p=>({
-
-id:p.id,
-nome:p.nome || p.nome_produto || "",
-preco:Number(p.preco || p.valor || 0),
-categoria:p.categoria || "Outros",
-descricao:p.descricao || "",
-imagem:p.imagem || "",
-vendedor:p.vendedor || p.vendedor_id || "Vendedor"
-
-}));
-
-salvar();
-
-}
-
-}catch(erro){
-
-console.log(
-"Supabase produtos:",
-erro.message
-);
-
-}
-
-mostrar();
-
-}
-
-
-function mostrar(lista=produtos){
-
-const area=
-document.getElementById("products");
-
-if(!lista.length){
-
-area.innerHTML=
-'<div class="empty">📦<br><br>Nenhum produto encontrado.</div>';
-
-return;
-
-}
-
-area.innerHTML=lista.map(p=>`
-
-<div class="product">
-
-<div class="pic">
-
-${
-p.imagem
-?
-`<img src="${seguro(p.imagem)}">`
-:
-`<div class="noimg">📦</div>`
-}
-
-</div>
-
-<div class="info">
-
-<h3>${seguro(p.nome)}</h3>
-
-<div class="price">
-${preco(p.preco)}
-</div>
-
-<div class="meta">
-${seguro(p.categoria)}
-</div>
-
-<div class="actions">
-
-<button class="buy"
-onclick="adicionar(${p.id})">
-🛒 Comprar
-</button>
-
-<button class="fav"
-onclick="favorito(${p.id})">
-${favoritos.includes(p.id)?"❤️":"♡"}
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-`).join("");
-
-}
-
-
-function inicio(){
-
-mostrar();
-
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-function categoria(cat){
-
-mostrar(
-produtos.filter(
-p=>p.categoria===cat
-)
-);
-
-}
-
-
-function pesquisar(){
-
-const texto=
-document.getElementById("search")
-.value.toLowerCase()
-.trim();
-
-if(!texto){
-
-mostrar();
-
-return;
-
-}
-
-mostrar(
-produtos.filter(p=>
-String(p.nome)
-.toLowerCase()
-.includes(texto)
-||
-String(p.categoria)
-.toLowerCase()
-.includes(texto)
-)
-);
-
-}
-
-
-/* =========================================
-   CARRINHO
-========================================= */
-
-function adicionar(id){
-
-const p=
-produtos.find(x=>String(x.id)===String(id));
-
-if(!p)return;
-
-const item=
-carrinho.find(
-x=>String(x.id)===String(id)
-);
-
-if(item){
-
-item.quantidade++;
-
-}else{
-
-carrinho.push({
-
-id:p.id,
-nome:p.nome,
-preco:Number(p.preco),
-imagem:p.imagem,
-quantidade:1
-
-});
-
-}
-
-salvar();
-
-contarCarrinho();
-
-alert(
-"Produto adicionado ao carrinho."
-);
-
-}
-
-
-function contarCarrinho(){
-
-const total=
-carrinho.reduce(
-(a,b)=>a+Number(b.quantidade || 0),
-0
-);
-
-document.getElementById(
-"cartCount"
-).textContent=total;
-
-}
-
-
-function abrirCarrinho(){
-
-document.getElementById(
-"cartModal"
-).style.display="flex";
-
-mostrarCarrinho();
-
-}
-
-
-function mostrarCarrinho(){
-
-const area=
-document.getElementById("cartItems");
-
-const totalArea=
-document.getElementById("cartTotal");
-
-if(!carrinho.length){
-
-area.innerHTML=
-'<div class="empty">🛒<br><br>O carrinho está vazio.</div>';
-
-totalArea.innerHTML="";
-
-return;
-
-}
-
-area.innerHTML=carrinho.map(i=>`
-
-<div class="cart-item">
-
-<div class="cart-img">
-
-${
-i.imagem
-?
-`<img src="${seguro(i.imagem)}">`
-:
-"📦"
-}
-
-</div>
-
-<div class="cart-info">
-
-<strong>
-${seguro(i.nome)}
-</strong>
-
-<div>
-${preco(i.preco)}
-</div>
-
-<div style="margin-top:7px">
-
-<button
-onclick="quantidade(${i.id},-1)">
-−
-</button>
-
-<strong style="margin:0 8px">
-${i.quantidade}
-</strong>
-
-<button
-onclick="quantidade(${i.id},1)">
-+
-</button>
-
-</div>
-
-</div>
-
-<button
-onclick="remover(${i.id})"
-style="
-border:0;
-background:none;
-font-size:20px">
-🗑️
-</button>
-
-</div>
-
-`).join("");
-
-
-const total=
-carrinho.reduce(
-(a,b)=>
-a+
-(Number(b.preco)*
-Number(b.quantidade)),
-0
-);
-
-
-const comissao=total*0.10;
-
-const vendedor=total*0.90;
-
-
-totalArea.innerHTML=`
-
-<div class="total">
-
-<div class="line">
-<span>Subtotal</span>
-<strong>${preco(total)}</strong>
-</div>
-
-<div class="line">
-<span>Comissão GTube 10%</span>
-<strong>${preco(comissao)}</strong>
-</div>
-
-<div class="line">
-<span>Vendedor recebe</span>
-<strong>${preco(vendedor)}</strong>
-</div>
-
-<hr style="margin:12px 0;border:0;border-top:1px solid #ddd">
-
-<div class="line final">
-<span>Total</span>
-<strong>${preco(total)}</strong>
-</div>
-
-<button
-class="primary"
-onclick="finalizar()"
-style="margin-top:12px">
-Finalizar compra
-</button>
-
-</div>
-
-`;
-
-}
-
-
-function quantidade(id,n){
-
-const item=
-carrinho.find(
-x=>String(x.id)===String(id)
-);
-
-if(!item)return;
-
-item.quantidade+=n;
-
-if(item.quantidade<=0){
-
-carrinho=
-carrinho.filter(
-x=>String(x.id)!==String(id)
-);
-
-}
-
-salvar();
-
-contarCarrinho();
-
-mostrarCarrinho();
-
-}
-
-
-function remover(id){
-
-carrinho=
-carrinho.filter(
-x=>String(x.id)!==String(id)
-);
-
-salvar();
-
-contarCarrinho();
-
-mostrarCarrinho();
-
-}
-
-
-/* =========================================
-   FINALIZAR PEDIDO
-========================================= */
-
-async function finalizar(){
-
-if(!carrinho.length){
-
-alert("Carrinho vazio.");
-
-return;
-
-}
-
-const usuario=
-JSON.parse(
-localStorage.getItem(
-"gtubeUtilizador"
-)
-);
-
-
-if(!usuario){
-
-alert(
-"Primeiro crie uma conta de comprador."
-);
-
-fechar("cartModal");
-
-abrirConta();
-
-return;
-
-}
-
-
-if(usuario.tipo!=="comprador"){
-
-alert(
-"Para comprar, utilize uma conta de comprador."
-);
-
-return;
-
-}
-
-
-const nome=usuario.nome;
-
-const telefone=usuario.telefone;
-
-
-const endereco=
-prompt("Digite o endereço de entrega:");
-
-if(!endereco)return;
-
-
-const total=
-carrinho.reduce(
-(a,b)=>
-a+
-(Number(b.preco)*
-Number(b.quantidade)),
-0
-);
-
-
-const comissao=
-total*0.10;
-
-const valorVendedor=
-total*0.90;
-
-
-const pedido={
-
-id:Date.now(),
-
-comprador_id:usuario.id,
-
-comprador:nome,
-
-telefone:telefone,
-
-endereco:endereco,
-
-itens:[...carrinho],
-
-valor:total,
-
-total:total,
-
-comissao:comissao,
-
-valor_vendedor:valorVendedor,
-
-vendedorRecebe:valorVendedor,
-
-estado:"Novo",
-
-status:"Novo",
-
-data:new Date().toISOString()
-
-};
-
-
-/*
-  Primeiro guardamos localmente.
-  Assim o pedido não desaparece
-  mesmo se houver algum problema
-  temporário na ligação.
-*/
-
-pedidos.push(pedido);
-
-salvar();
-
-
-/*
-  Tentamos enviar para o Supabase.
-
-  Os campos principais usados são:
-  comprador_id
-  valor
-  comissao
-  valor_vendedor
-  estado
-*/
-
-try{
-
-await supabase(
-"pedidos",
-{
-method:"POST",
-body:{
-comprador_id:usuario.id,
-valor:total,
-comissao:comissao,
-valor_vendedor:valorVendedor,
-estado:"Novo"
-}
-}
-);
-
-console.log(
-"Pedido enviado ao Supabase."
-);
-
-}catch(erro){
-
-console.log(
-"Pedido local / Supabase:",
-erro.message
-);
-
-}
-
-
-carrinho=[];
-
-salvar();
-
-contarCarrinho();
-
-fechar("cartModal");
-
-
-alert(
-"Pedido criado com sucesso!\n\n"+
-"Valor: "+preco(total)+
-"\nComissão GTube: "+preco(comissao)+
-"\nVendedor recebe: "+preco(valorVendedor)
-);
-
-}
-
-
-/* =========================================
-   FAVORITOS
-========================================= */
-
-function favorito(id){
-
-if(favoritos.includes(id)){
-
-favoritos=
-favoritos.filter(
-x=>String(x)!==String(id)
-);
-
-}else{
-
-favoritos.push(id);
-
-}
-
-salvar();
-
-mostrar();
-
-}
-
-
-/* =========================================
-   CONTA
-========================================= */
-
-function abrirConta(){
-
-document.getElementById(
-"accountModal"
-).style.display="flex";
-
-mostrarConta();
-
-}
-
-
-function mostrarConta(){
-
-const area=
-document.getElementById("account");
-
-const usuario=
-JSON.parse(
-localStorage.getItem(
-"gtubeUtilizador"
-)
-);
-
-
-if(!usuario){
-
-area.innerHTML=`
-
-<h2>👤 Criar conta</h2>
-
-<p style="color:#777;margin:8px 0 20px">
-Escolha se quer comprar ou vender.
-</p>
-
-<div class="field">
-
-<label>Nome</label>
-
-<input id="regNome"
-placeholder="Seu nome">
-
-</div>
-
-<div class="field">
-
-<label>Email</label>
-
-<input id="regEmail"
-type="email"
-placeholder="seu@email.com">
-
-</div>
-
-<div class="field">
-
-<label>Telefone</label>
-
-<input id="regTelefone"
-placeholder="Telefone">
-
-</div>
-
-<div class="field">
-
-<label>Tipo de conta</label>
-
-<select id="regTipo">
-
-<option value="comprador">
-Comprador
-</option>
-
-<option value="vendedor">
-Vendedor
-</option>
-
-</select>
-
-</div>
-
-<button
-class="primary"
-onclick="criarConta()">
-Criar conta
-</button>
-
-`;
-
-return;
-
-}
-
-
-area.innerHTML=`
-
-<h2>
-👤 Olá, ${seguro(usuario.nome)}
-</h2>
-
-<p style="color:#777;margin-top:7px">
-Conta: ${seguro(usuario.tipo)}
-</p>
-
-<div class="stat"
-style="margin-top:15px">
-
-<small>Email</small>
-
-<strong style="font-size:17px">
-${seguro(usuario.email)}
-</strong>
-
-</div>
-
-<div style="margin-top:15px">
-
-${
-usuario.tipo==="vendedor"
-?
-`
-<button
-class="primary"
-onclick="fechar('accountModal');abrirVenda()">
-📦 Publicar produto
-</button>
-`
-:
-`
-<button
-class="primary"
-onclick="mostrarPedidosComprador()">
-📦 Meus pedidos
-</button>
-`
-}
-
-</div>
-
-<button
-class="secondary"
-style="margin-top:10px;width:100%"
-onclick="sairConta()">
-🚪 Sair da conta
-</button>
-
-`;
-
-}
-
-
-async function criarConta(){
-
-const nome=
-document.getElementById(
-"regNome"
-).value.trim();
-
-const email=
-document.getElementById(
-"regEmail"
-).value.trim();
-
-const telefone=
-document.getElementById(
-"regTelefone"
-).value.trim();
-
-const tipo=
-document.getElementById(
-"regTipo"
-).value;
-
-
-if(!nome||!email||!telefone){
-
-alert(
-"Preencha todos os campos."
-);
-
-return;
-
-}
-
-
-const usuario={
-
-id:Date.now(),
-
-nome:nome,
-
-email:email,
-
-telefone:telefone,
-
-tipo:tipo
-
-};
-
-
-usuarios.push(usuario);
-
-localStorage.setItem(
-"gtubeUtilizador",
-JSON.stringify(usuario)
-);
-
-salvar();
-
-
-/*
-  Enviar usuário para o Supabase.
-*/
-
-try{
-
-await supabase(
-"usuarios",
-{
-method:"POST",
-body:{
-id:usuario.id,
-nome:nome,
-email:email,
-telefone:telefone,
-tipo:tipo
-}
-}
-);
-
-}catch(erro){
-
-console.log(
-"Usuário local / Supabase:",
-erro.message
-);
-
-}
-
-
-mostrarConta();
-
-alert(
-"Conta criada com sucesso!"
-);
-
-}
-
-
-function sairConta(){
-
-localStorage.removeItem(
-"gtubeUtilizador"
-);
-
-mostrarConta();
-
-}
-
-
-/* =========================================
-   PEDIDOS DO COMPRADOR
-========================================= */
-
-async function mostrarPedidosComprador(){
-
-const usuario=
-JSON.parse(
-localStorage.getItem(
-"gtubeUtilizador"
-)
-);
-
-if(!usuario)return;
-
-
-let meus=
-pedidos.filter(
-p=>
-String(p.comprador_id)===
-String(usuario.id)
-||
-p.comprador===usuario.nome
-);
-
-
-try{
-
-const dados=
-await supabase(
-"pedidos",
-{
-query:
-"select=*&comprador_id=eq."+
-encodeURIComponent(usuario.id)
-}
-);
-
-if(Array.isArray(dados)&&dados.length){
-
-meus=dados;
-
-}
-
-}catch(erro){
-
-console.log(
-"Pedidos:",
-erro.message
-);
-
-}
-
-
-document.getElementById(
-"account"
-).innerHTML=`
-
-<h2>📦 Meus pedidos</h2>
-
-<div style="margin-top:15px">
-
-${
-meus.length
-?
-meus.map(p=>`
-
-<div class="stat"
-style="margin-bottom:10px">
-
-<strong>
-Pedido #${seguro(p.id)}
-</strong>
-
-<p style="margin-top:7px">
-Valor:
-${preco(p.valor || p.total)}
-</p>
-
-<p>
-Comissão GTube:
-${preco(p.comissao)}
-</p>
-
-<p>
-Estado:
-<span class="badge">
-${seguro(p.estado || p.status || "Novo")}
-</span>
-</p>
-
-</div>
-
-`).join("")
-:
-'<div class="empty">Ainda não tens pedidos.</div>'
-}
-
-</div>
-
-<button
-class="secondary"
-style="width:100%;margin-top:10px"
-onclick="mostrarConta()">
-← Voltar
-</button>
-
-`;
-
-}
-
-
-/* =========================================
-   VENDEDOR
-========================================= */
-
-function abrirVenda(){
-
-const usuario=
-JSON.parse(
-localStorage.getItem(
-"gtubeUtilizador"
-)
-);
-
-
-if(!usuario){
-
-alert(
-"Primeiro crie uma conta de vendedor."
-);
-
-abrirConta();
-
-return;
-
-}
-
-
-if(usuario.tipo!=="vendedor"){
-
-alert(
-"Apenas vendedores podem publicar produtos."
-);
-
-return;
-
-}
-
-
-document.getElementById(
-"sellModal"
-).style.display="flex";
-
-}
-
-
-async function publicar(e){
-
-e.preventDefault();
-
-
-const usuario=
-JSON.parse(
-localStorage.getItem(
-"gtubeUtilizador"
-)
-);
-
-
-if(!usuario)return;
-
-
-const nome=
-document.getElementById(
-"nomeProduto"
-).value.trim();
-
-const precoProduto=
-Number(
-document.getElementById(
-"precoProduto"
-).value
-);
-
-const categoriaProduto=
-document.getElementById(
-"catProduto"
-).value;
-
-const descricao=
-document.getElementById(
-"descProduto"
-).value.trim();
-
-const arquivo=
-document.getElementById(
-"imgProduto"
-).files[0];
-
-
-function guardarProduto(imagem){
-
-const produto={
-
-id:Date.now(),
-
-nome:nome,
-
-preco:precoProduto,
-
-categoria:categoriaProduto,
-
-descricao:descricao,
-
-imagem:imagem,
-
-vendedor:usuario.nome,
-
-vendedor_id:usuario.id
-
-};
-
-
-produtos.unshift(produto);
-
-salvar();
-
-mostrar();
-
-fechar("sellModal");
-
-document.querySelector(
-"#sellModal form"
-).reset();
-
-alert(
-"Produto publicado com sucesso!"
-);
-
-}
-
-
-if(arquivo){
-
-const reader=
-new FileReader();
-
-reader.onload=
-async function(){
-
-const imagem=
-reader.result;
-
-guardarProduto(imagem);
-
-
-/*
-  Também tentamos gravar
-  o produto no Supabase.
-*/
-
-try{
-
-await supabase(
-"produtos",
-{
-method:"POST",
-body:{
-id:Date.now(),
-nome:nome,
-preco:precoProduto,
-categoria:categoriaProduto,
-descricao:descricao,
-imagem:imagem,
-vendedor:usuario.nome,
-vendedor_id:usuario.id
-}
-}
-);
-
-}catch(erro){
-
-console.log(
-"Produto local / Supabase:",
-erro.message
-);
-
-}
-
-};
-
-reader.readAsDataURL(arquivo);
-
-}else{
-
-guardarProduto("");
-
-try{
-
-await supabase(
-"produtos",
-{
-method:"POST",
-body:{
-id:Date.now(),
-nome:nome,
-preco:precoProduto,
-categoria:categoriaProduto,
-descricao:descricao,
-imagem:"",
-vendedor:usuario.nome,
-vendedor_id:usuario.id
-}
-}
-);
-
-}catch(erro){
-
-console.log(
-"Produto local / Supabase:",
-erro.message
-);
-
-}
-
-}
-
-}
-
-
-/* =========================================
-   LOGIN DO DONO
-========================================= */
-
-function abrirLoginDono(){
-
-document.getElementById(
-"adminLoginModal"
-).style.display="flex";
-
-}
-
-
-function loginAdmin(){
-
-const email=
-document.getElementById(
-"adminEmail"
-).value.trim();
-
-const senha=
-document.getElementById(
-"adminSenha"
-).value;
-
-
-if(
-email!==ADMIN_EMAIL ||
-senha!==ADMIN_SENHA
-){
-
-alert(
-"Email ou senha de administrador incorretos."
-);
-
-return;
-
-}
-
-
-localStorage.setItem(
-"gtubeAdminLogado",
-"true"
-);
-
-fechar("adminLoginModal");
-
-mostrarPainelDono();
-
-}
-
-
-/* =========================================
-   PAINEL DO DONO
-========================================= */
-
-function mostrarPainelDono(){
-
-if(
-localStorage.getItem(
-"gtubeAdminLogado"
-)!=="true"
-){
-
-abrirLoginDono();
-
-return;
-
-}
-
-
-document.getElementById(
-"site"
-).innerHTML=`
+<section id="admin" class="container hidden">
 
 <div class="panel">
 
-<div class="panel-header">
+<h2>👑 Painel do Dono — GTube</h2>
 
-<h1>
-⚡ Painel de Controlo
-</h1>
-
-<p>
-Administrador • GTube Marketplace
-</p>
-
-</div>
-
-<div class="stats">
-
-<div class="stat">
-
-<small>
-Vendas totais
-</small>
-
-<strong id="adminTotal">
-${preco(
-pedidos.reduce(
-(a,p)=>
-a+Number(p.valor || p.total || 0),
-0
-)
-)}
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Comissão GTube
-</small>
-
-<strong id="adminComissao">
-${preco(
-pedidos.reduce(
-(a,p)=>
-a+Number(p.comissao || 0),
-0
-)
-)}
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Vendedores
-</small>
-
-<strong>
-${usuarios.filter(
-u=>u.tipo==="vendedor"
-).length}
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Compradores
-</small>
-
-<strong>
-${usuarios.filter(
-u=>u.tipo==="comprador"
-).length}
-</strong>
-
-</div>
-
-</div>
-
-<div class="panel-grid">
-
-<div class="side">
-
-<button onclick="adminInicio()">
-📊 Visão geral
-</button>
-
-<button onclick="adminPedidos()">
-📦 Pedidos
-</button>
-
-<button onclick="adminProdutos()">
-🛍️ Produtos
-</button>
-
-<button onclick="adminVendedores()">
-🏪 Vendedores
-</button>
-
-<button onclick="adminCompradores()">
-👥 Compradores
-</button>
-
-<button onclick="adminFinanceiro()">
-💰 Financeiro
-</button>
-
-<button onclick="adminSair()">
-🚪 Sair
-</button>
-
-</div>
-
-<div class="panel-content"
-id="adminContent">
-</div>
-
-</div>
-
-</div>
-
-`;
-
-adminInicio();
-
-}
-
-
-/* =========================================
-   ADMIN — INÍCIO
-========================================= */
-
-function adminInicio(){
-
-const area=
-document.getElementById(
-"adminContent"
-);
-
-if(!area)return;
-
-
-const total=
-pedidos.reduce(
-(a,p)=>
-a+
-Number(p.valor || p.total || 0),
-0
-);
-
-const comissao=
-pedidos.reduce(
-(a,p)=>
-a+
-Number(p.comissao || 0),
-0
-);
-
-const vendedor=
-pedidos.reduce(
-(a,p)=>
-a+
-Number(
-p.valor_vendedor ||
-p.vendedorRecebe ||
-0
-),
-0
-);
-
-
-area.innerHTML=`
-
-<h2>
-📊 Visão geral
-</h2>
-
-<p style="color:#777;margin:8px 0 20px">
-Resumo financeiro da plataforma
+<p style="margin:8px 0 20px">
+Área administrativa. Os compradores e vendedores não precisam ver esta área.
 </p>
 
 <div class="stats">
 
 <div class="stat">
-
-<small>
-Pedidos
-</small>
-
-<strong>
-${pedidos.length}
-</strong>
-
+Total vendido
+<strong id="totalSales">0 Kz</strong>
 </div>
 
 <div class="stat">
-
-<small>
-Produtos
-</small>
-
-<strong>
-${produtos.length}
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Comissão 10%
-</small>
-
-<strong>
-${preco(comissao)}
-</strong>
-
-</div>
-
-<div class="stat">
-
-<small>
-Vendedores
-</small>
-
-<strong>
-${usuarios.filter(
-u=>u.tipo==="vendedor"
-).length}
-</strong>
-
-</div>
-
-</div>
-
-<div class="stat">
-
-<h3>
-💰 Movimento financeiro
-</h3>
-
-<div class="line"
-style="margin-top:15px">
-
-<span>
-Volume vendido
-</span>
-
-<strong>
-${preco(total)}
-</strong>
-
-</div>
-
-<div class="line">
-
-<span>
-Comissão GTube
-</span>
-
-<strong>
-${preco(comissao)}
-</strong>
-
-</div>
-
-<div class="line">
-
-<span>
-Valor para vendedores
-</span>
-
-<strong>
-${preco(vendedor)}
-</strong>
-
-</div>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================================
-   ADMIN — PEDIDOS
-========================================= */
-
-function adminPedidos(){
-
-const area=
-document.getElementById(
-"adminContent"
-);
-
-area.innerHTML=`
-
-<h2>
-📦 Todos os pedidos
-</h2>
-
-<div class="table-wrap"
-style="margin-top:15px">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Pedido</th>
-<th>Comprador</th>
-<th>Valor</th>
-<th>Comissão</th>
-<th>Vendedor recebe</th>
-<th>Estado</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${
-pedidos.length
-?
-pedidos.map(p=>`
-
-<tr>
-
-<td>
-#${seguro(p.id)}
-</td>
-
-<td>
-${seguro(
-p.comprador ||
-p.comprador_id ||
-""
-)}
-</td>
-
-<td>
-${preco(
-p.valor || p.total
-)}
-</td>
-
-<td>
-${preco(
-p.comissao
-)}
-</td>
-
-<td>
-${preco(
-p.valor_vendedor ||
-p.vendedorRecebe
-)}
-</td>
-
-<td>
-
-<span class="badge">
-${seguro(
-p.estado ||
-p.status ||
-"Novo"
-)}
-</span>
-
-</td>
-
-</tr>
-
-`).join("")
-:
-`
-<tr>
-<td colspan="6">
-Nenhum pedido.
-</td>
-</tr>
-`
-}
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================================
-   ADMIN — PRODUTOS
-========================================= */
-
-function adminProdutos(){
-
-const area=
-document.getElementById(
-"adminContent"
-);
-
-area.innerHTML=`
-
-<h2>
-🛍️ Produtos
-</h2>
-
-<div class="table-wrap"
-style="margin-top:15px">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Produto</th>
-<th>Categoria</th>
-<th>Preço</th>
-<th>Vendedor</th>
-<th>Ação</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${
-produtos.length
-?
-produtos.map(p=>`
-
-<tr>
-
-<td>
-${seguro(p.nome)}
-</td>
-
-<td>
-${seguro(p.categoria)}
-</td>
-
-<td>
-${preco(p.preco)}
-</td>
-
-<td>
-${seguro(p.vendedor)}
-</td>
-
-<td>
-
-<button
-onclick="apagarProduto(${p.id})"
-style="
-border:0;
-background:#fee;
-padding:7px;
-border-radius:6px">
-🗑️
-</button>
-
-</td>
-
-</tr>
-
-`).join("")
-:
-`
-<tr>
-<td colspan="5">
-Nenhum produto.
-</td>
-</tr>
-`
-}
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
-
-}
-
-
-function apagarProduto(id){
-
-if(
-!confirm(
-"Apagar este produto?"
-)
-)return;
-
-produtos=
-produtos.filter(
-p=>String(p.id)!==String(id)
-);
-
-salvar();
-
-adminProdutos();
-
-mostrar();
-
-}
-
-
-/* =========================================
-   ADMIN — VENDEDORES
-========================================= */
-
-function adminVendedores(){
-
-const area=
-document.getElementById(
-"adminContent"
-);
-
-const vendedores=
-usuarios.filter(
-u=>u.tipo==="vendedor"
-);
-
-
-area.innerHTML=`
-
-<h2>
-🏪 Vendedores
-</h2>
-
-<div class="table-wrap"
-style="margin-top:15px">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Nome</th>
-<th>Email</th>
-<th>Telefone</th>
-<th>Produtos</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${
-vendedores.length
-?
-vendedores.map(v=>`
-
-<tr>
-
-<td>
-${seguro(v.nome)}
-</td>
-
-<td>
-${seguro(v.email)}
-</td>
-
-<td>
-${seguro(v.telefone)}
-</td>
-
-<td>
-
-${
-produtos.filter(
-p=>
-String(p.vendedor_id)===
-String(v.id)
-||
-p.vendedor===v.nome
-).length
-}
-
-</td>
-
-</tr>
-
-`).join("")
-:
-`
-<tr>
-<td colspan="4">
-Nenhum vendedor.
-</td>
-</tr>
-`
-}
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================================
-   ADMIN — COMPRADORES
-========================================= */
-
-function adminCompradores(){
-
-const area=
-document.getElementById(
-"adminContent"
-);
-
-const compradores=
-usuarios.filter(
-u=>u.tipo==="comprador"
-);
-
-
-area.innerHTML=`
-
-<h2>
-👥 Compradores
-</h2>
-
-<div class="table-wrap"
-style="margin-top:15px">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>Nome</th>
-<th>Email</th>
-<th>Telefone</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${
-compradores.length
-?
-compradores.map(c=>`
-
-<tr>
-
-<td>
-${seguro(c.nome)}
-</td>
-
-<td>
-${seguro(c.email)}
-</td>
-
-<td>
-${seguro(c.telefone)}
-</td>
-
-</tr>
-
-`).join("")
-:
-`
-<tr>
-<td colspan="3">
-Nenhum comprador.
-</td>
-</tr>
-`
-}
-
-</tbody>
-
-</table>
-
-</div>
-
-`;
-
-}
-
-
-/* =========================================
-   ADMIN — FINANCEIRO
-========================================= */
-
-function adminFinanceiro(){
-
-const area=
-document.getElementById(
-"adminContent"
-);
-
-const total=
-pedidos.reduce(
-(a,p)=>
-a+
-Number(p.valor || p.total || 0),
-0
-);
-
-const comissao=
-pedidos.reduce(
-(a,p)=>
-a+
-Number(p.comissao || 0),
-0
-);
-
-const vendedores=
-pedidos.reduce(
-(a,p)=>
-a+
-Number(
-p.valor_vendedor ||
-p.vendedorRecebe ||
-0
-),
-0
-);
-
-
-area.innerHTML=`
-
-<h2>
-💰 Financeiro
-</h2>
-
-<div class="stat"
-style="margin-top:15px">
-
-<div class="line">
-
-<span>
-Volume total
-</span>
-
-<strong>
-${preco(total)}
-</strong>
-
-</div>
-
-<div class="line">
-
-<span>
 Comissão GTube — 10%
-</span>
+<strong id="totalCommission">0 Kz</strong>
+</div>
 
-<strong>
-${preco(comissao)}
-</strong>
+<div class="stat">
+Valor dos vendedores
+<strong id="sellerMoney">0 Kz</strong>
+</div>
+
+<div class="stat">
+Pedidos
+<strong id="totalOrders">0</strong>
+</div>
 
 </div>
 
-<div class="line">
-
-<span>
-Vendedores — 90%
-</span>
-
-<strong>
-${preco(vendedores)}
-</strong>
-
 </div>
 
-<hr style="
-margin:15px 0;
-border:0;
-border-top:1px solid #ddd">
-
-<p style="color:#777">
-
-Exemplo:
-
-10.000 Kz de venda
-
-→ 1.000 Kz para o GTube
-
-→ 9.000 Kz para o vendedor.
-
-</p>
-
+<div class="panel">
+<h2>📋 Todos os pedidos</h2>
+<div id="adminOrders"></div>
 </div>
 
-`;
+</section>
 
+<div class="cart" onclick="showCart()">
+🛒 Carrinho <span id="cartCount" class="badge">0</span>
+</div>
+
+<footer>
+GTube Marketplace © 2026
+</footer>
+
+<script>
+
+const COMMISSION_RATE = 0.10;
+
+let users = JSON.parse(localStorage.getItem("gtubeUtilizadores") || "[]");
+let products = JSON.parse(localStorage.getItem("gtubeProdutos") || "null");
+let orders = JSON.parse(localStorage.getItem("gtubePedidos") || "[]");
+let session = JSON.parse(localStorage.getItem("gtubeSessao") || "null");
+let cart = JSON.parse(localStorage.getItem("gtubeCarrinho") || "[]");
+
+if(!products){
+ products=[
+  {
+   id:1,
+   name:"Smartphone",
+   price:150000,
+   category:"Telefones",
+   description:"Smartphone moderno",
+   image:"",
+   seller:"GTube"
+  },
+  {
+   id:2,
+   name:"Ténis",
+   price:35000,
+   category:"Moda",
+   description:"Ténis confortável",
+   image:"",
+   seller:"GTube"
+  },
+  {
+   id:3,
+   name:"Computador",
+   price:250000,
+   category:"Computadores",
+   description:"Computador para trabalho e estudo",
+   image:"",
+   seller:"GTube"
+  }
+ ];
+ save();
 }
 
+let currentCategory="Todos";
 
-/* =========================================
-   ADMIN — SAIR
-========================================= */
-
-function adminSair(){
-
-localStorage.removeItem(
-"gtubeAdminLogado"
-);
-
-location.reload();
-
+function save(){
+ localStorage.setItem("gtubeUtilizadores",JSON.stringify(users));
+ localStorage.setItem("gtubeProdutos",JSON.stringify(products));
+ localStorage.setItem("gtubePedidos",JSON.stringify(orders));
+ localStorage.setItem("gtubeSessao",JSON.stringify(session));
+ localStorage.setItem("gtubeCarrinho",JSON.stringify(cart));
 }
 
+function showPage(page){
 
-/* =========================================
-   ATALHO SECRETO DO DONO
-========================================= */
+ document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
 
-/*
-  O painel não aparece para compradores
-  nem vendedores.
+ document.getElementById(page).classList.remove("hidden");
 
-  Para o dono:
-  abra no navegador:
+ if(page==="account") renderAccount();
+ if(page==="admin") renderAdmin();
 
-  javascript:mostrarPainelDono()
-
-  Caso o navegador não aceite o javascript,
-  pode usar o login administrativo
-  que adicionaremos ao sistema.
-*/
-
-
-/* =========================================
-   INICIALIZAÇÃO
-========================================= */
-
-mostrar();
-
-contarCarrinho();
-
-carregarProdutos();
-
-
-/*
-  Toque 5 vezes no logo GTube
-  para abrir o login administrativo.
-*/
-
-let toquesLogo=0;
-
-document.querySelector(".logo")
-.addEventListener("click",function(){
-
-toquesLogo++;
-
-if(toquesLogo>=5){
-
-toquesLogo=0;
-
-abrirLoginDono();
-
+ window.scrollTo(0,0);
 }
 
-setTimeout(()=>{
-toquesLogo=0;
-},2000);
+function renderProducts(){
 
-});
+ const box=document.getElementById("products");
+
+ const search=(document.getElementById("search").value||"").toLowerCase();
+
+ let list=products.filter(p=>{
+   const matchCategory=currentCategory==="Todos" || p.category===currentCategory;
+   const matchSearch=p.name.toLowerCase().includes(search);
+   return matchCategory && matchSearch;
+ });
+
+ if(!list.length){
+  box.innerHTML="<p>Nenhum produto encontrado.</p>";
+  return;
+ }
+
+ box.innerHTML=list.map(p=>`
+
+ <div class="card">
+
+ ${p.image
+ ? `<img src="${p.image}">`
+ : `<div style="height:170px;background:#e5e7eb;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:50px">🛍️</div>`
+ }
+
+ <h3>${escapeHtml(p.name)}</h3>
+
+ <small>${escapeHtml(p.category)}</small>
+
+ <div class="price">${Number(p.price).toLocaleString("pt-AO")} Kz</div>
+
+ <p>${escapeHtml(p.description||"")}</p>
+
+ <small>Vendedor: ${escapeHtml(p.seller||"GTube")}</small>
+
+ <button class="btn" onclick="addCart(${p.id})">
+ Adicionar ao carrinho
+ </button>
+
+ </div>
+
+ `).join("");
+}
+
+function filterCategory(category){
+ currentCategory=category;
+ renderProducts();
+}
+
+function addCart(id){
+
+ const product=products.find(p=>p.id===id);
+
+ if(!product)return;
+
+ cart.push(product);
+
+ save();
+
+ updateCart();
+
+ alert("Produto adicionado ao carrinho!");
+}
+
+function updateCart(){
+
+ document.getElementById("cartCount").textContent=cart.length;
+}
+
+function showCart(){
+
+ if(!cart.length){
+  alert("O carrinho está vazio.");
+  return;
+ }
+
+ let total=cart.reduce((sum,p)=>sum+Number(p.price),0);
+
+ let text="PRODUTOS NO CARRINHO:\n\n";
+
+ cart.forEach((p,i)=>{
+  text+=(i+1)+". "+p.name+" - "+Number(p.price).toLocaleString("pt-AO")+" Kz\n";
+ });
+
+ text+="\nTotal: "+total.toLocaleString("pt-AO")+" Kz";
+
+ if(confirm(text+"\n\nDeseja finalizar a compra?")){
+  checkout();
+ }
+}
+
+function checkout(){
+
+ if(!session){
+  alert("Entre na sua conta primeiro.");
+  showPage("login");
+  return;
+ }
+
+ if(!cart.length)return;
+
+ const total=cart.reduce((sum,p)=>sum+Number(p.price),0);
+ const commission=total*COMMISSION_RATE;
+ const sellerValue=total-commission;
+
+ const order={
+  numero:"GT-"+Date.now(),
+  cliente:session.name,
+  comprador_id:session.id,
+  email:session.email,
+  telefone:session.phone||"",
+  produtos:cart,
+  total:total,
+  comissao:commission,
+  valorVendedor:sellerValue,
+  data:new Date().toISOString(),
+  status:"Pendente"
+ };
+
+ orders.push(order);
+
+ cart=[];
+
+ save();
+ updateCart();
+
+ alert(
+ "Pedido criado com sucesso!\n\n"+
+ "Número: "+order.numero+
+ "\nValor: "+total.toLocaleString("pt-AO")+" Kz"+
+ "\nComissão GTube (10%): "+commission.toLocaleString("pt-AO")+" Kz"+
+ "\nValor do vendedor: "+sellerValue.toLocaleString("pt-AO")+" Kz"
+ );
+
+ showPage("account");
+}
+
+function register(){
+
+ const name=document.getElementById("name").value.trim();
+ const email=document.getElementById("email").value.trim();
+ const password=document.getElementById("password").value;
+ const phone=document.getElementById("phone").value.trim();
+ const type=document.getElementById("type").value;
+
+ if(!name||!email||!password){
+  alert("Preencha nome, e-mail e palavra-passe.");
+  return;
+ }
+
+ if(users.some(u=>u.email.toLowerCase()===email.toLowerCase())){
+  alert("Este e-mail já está registado.");
+  return;
+ }
+
+ const user={
+  id:crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
+  name,
+  email,
+  password,
+  phone,
+  type
+ };
+
+ users.push(user);
+
+ session=user;
+
+ save();
+
+ alert("Conta criada com sucesso!");
+
+ showPage("account");
+}
+
+function login(){
+
+ const email=document.getElementById("loginEmail").value.trim();
+ const password=document.getElementById("loginPassword").value;
+
+ const user=users.find(
+  u=>u.email.toLowerCase()===email.toLowerCase() &&
+  u.password===password
+ );
+
+ if(!user){
+  alert("E-mail ou palavra-passe incorretos.");
+  return;
+ }
+
+ session=user;
+
+ save();
+
+ alert("Login realizado com sucesso!");
+
+ showPage("account");
+}
+
+function logout(){
+
+ session=null;
+
+ save();
+
+ alert("Sessão encerrada.");
+
+ showPage("home");
+}
+
+function renderAccount(){
+
+ if(!session){
+
+  document.getElementById("accountInfo").innerHTML=
+  "<p>Entre na sua conta para continuar.</p>";
+
+  document.getElementById("sellerPanel").classList.add("hidden");
+
+  return;
+ }
+
+ document.getElementById("accountInfo").innerHTML=`
+
+ <p><strong>Nome:</strong> ${escapeHtml(session.name)}</p>
+ <p><strong>E-mail:</strong> ${escapeHtml(session.email)}</p>
+ <p><strong>Telefone:</strong> ${escapeHtml(session.phone||"-")}</p>
+ <p><strong>Tipo:</strong> ${escapeHtml(session.type)}</p>
+
+ `;
+
+ if(session.type==="vendedor"){
+
+  document.getElementById("sellerPanel").classList.remove("hidden");
+
+  renderMyProducts();
+
+ }else{
+
+  document.getElementById("sellerPanel").classList.add("hidden");
+
+ }
+
+ renderMyOrders();
+}
+
+function publishProduct(){
+
+ if(!session || session.type!=="vendedor"){
+  alert("Apenas vendedores podem publicar produtos.");
+  return;
+ }
+
+ const name=document.getElementById("productName").value.trim();
+ const price=Number(document.getElementById("productPrice").value);
+ const category=document.getElementById("productCategory").value;
+ const description=document.getElementById("productDescription").value.trim();
+ const file=document.getElementById("productImage").files[0];
+
+ if(!name||!price){
+  alert("Preencha nome e preço.");
+  return;
+ }
+
+ const createProduct=(image="")=>{
+
+  products.push({
+   id:Date.now(),
+   name,
+   price,
+   category,
+   description,
+   image,
+   seller:session.name,
+   seller_id:session.id
+  });
+
+  save();
+
+  document.getElementById("productName").value="";
+  document.getElementById("productPrice").value="";
+  document.getElementById("productDescription").value="";
+  document.getElementById("productImage").value="";
+
+  renderProducts();
+  renderMyProducts();
+
+  alert("Produto publicado com sucesso!");
+ };
+
+ if(file){
+
+  const reader=new FileReader();
+
+  reader.onload=e=>createProduct(e.target.result);
+
+  reader.readAsDataURL(file);
+
+ }else{
+
+  createProduct();
+
+ }
+}
+
+function renderMyProducts(){
+
+ const box=document.getElementById("myProducts");
+
+ const mine=products.filter(p=>p.seller_id===session.id);
+
+ if(!mine.length){
+  box.innerHTML="<p>Ainda não tens produtos publicados.</p>";
+  return;
+ }
+
+ box.innerHTML=mine.map(p=>`
+
+ <div class="order">
+
+ <strong>${escapeHtml(p.name)}</strong>
+
+ <p>${Number(p.price).toLocaleString("pt-AO")} Kz</p>
+
+ <button class="btn danger" onclick="deleteProduct(${p.id})">
+ Eliminar
+ </button>
+
+ </div>
+
+ `).join("");
+}
+
+function deleteProduct(id){
+
+ if(!confirm("Eliminar este produto?"))return;
+
+ products=products.filter(p=>p.id!==id);
+
+ save();
+
+ renderProducts();
+ renderMyProducts();
+}
+
+function renderMyOrders(){
+
+ const box=document.getElementById("myOrders");
+
+ const mine=orders.filter(o=>o.comprador_id===session.id);
+
+ if(!mine.length){
+  box.innerHTML="<p>Ainda não tens pedidos.</p>";
+  return;
+ }
+
+ box.innerHTML=mine.map(o=>`
+
+ <div class="order">
+
+ <strong>${o.numero}</strong>
+
+ <p>Data: ${new Date(o.data).toLocaleString("pt-AO")}</p>
+
+ <p>Valor: ${Number(o.total).toLocaleString("pt-AO")} Kz</p>
+
+ <p>Estado: <strong>${escapeHtml(o.status)}</strong></p>
+
+ </div>
+
+ `).join("");
+}
+
+function renderAdmin(){
+
+ let total=0;
+ let commission=0;
+ let seller=0;
+
+ orders.forEach(o=>{
+  total+=Number(o.total)||0;
+  commission+=Number(o.comissao)||0;
+  seller+=Number(o.valorVendedor)||0;
+ });
+
+ document.getElementById("totalSales").textContent=
+ total.toLocaleString("pt-AO")+" Kz";
+
+ document.getElementById("totalCommission").textContent=
+ commission.toLocaleString("pt-AO")+" Kz";
+
+ document.getElementById("sellerMoney").textContent=
+ seller.toLocaleString("pt-AO")+" Kz";
+
+ document.getElementById("totalOrders").textContent=orders.length;
+
+ const box=document.getElementById("adminOrders");
+
+ if(!orders.length){
+  box.innerHTML="<p>Ainda não existem pedidos.</p>";
+  return;
+ }
+
+ box.innerHTML=orders.map(o=>`
+
+ <div class="order">
+
+ <strong>${o.numero}</strong>
+
+ <p>Cliente: ${escapeHtml(o.cliente)}</p>
+
+ <p>E-mail: ${escapeHtml(o.email||"-")}</p>
+
+ <p>Valor total:
+ <strong>${Number(o.total).toLocaleString("pt-AO")} Kz</strong>
+ </p>
+
+ <p>Comissão GTube:
+ <strong>${Number(o.comissao).toLocaleString("pt-AO")} Kz</strong>
+ </p>
+
+ <p>Vendedor recebe:
+ <strong>${Number(o.valorVendedor).toLocaleString("pt-AO")} Kz</strong>
+ </p>
+
+ <p>Estado: ${escapeHtml(o.status)}</p>
+
+ </div>
+
+ `).join("");
+}
+
+function escapeHtml(text){
+
+ return String(text??"")
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+}
+
+renderProducts();
+updateCart();
+
+if(session){
+ renderAccount();
+}
 
 </script>
 
