@@ -14,7 +14,9 @@ background:#f4f6f8;
 color:#171717
 }
 
-button,input,select{font:inherit}
+button,input,select,textarea{font:inherit}
+
+button{cursor:pointer}
 
 header{
 background:#111827;
@@ -68,8 +70,7 @@ border:0;
 background:#202938;
 color:white;
 padding:10px 13px;
-border-radius:8px;
-cursor:pointer
+border-radius:8px
 }
 
 .count{
@@ -96,7 +97,6 @@ overflow:auto
 .nav button{
 border:0;
 background:none;
-cursor:pointer;
 font-weight:bold;
 color:#555;
 white-space:nowrap
@@ -131,8 +131,7 @@ background:#ff7900;
 color:white;
 padding:13px 22px;
 border-radius:8px;
-font-weight:bold;
-cursor:pointer
+font-weight:bold
 }
 
 .container{
@@ -160,8 +159,7 @@ border:1px solid #ddd;
 border-radius:12px;
 padding:16px;
 min-width:120px;
-text-align:center;
-cursor:pointer
+text-align:center
 }
 
 .category-icon{
@@ -179,13 +177,7 @@ gap:18px
 background:white;
 border:1px solid #e3e3e3;
 border-radius:14px;
-overflow:hidden;
-transition:.2s
-}
-
-.product:hover{
-transform:translateY(-3px);
-box-shadow:0 10px 25px #0001
+overflow:hidden
 }
 
 .pic{
@@ -228,7 +220,6 @@ gap:7px
 flex:1;
 padding:10px;
 border-radius:8px;
-cursor:pointer;
 font-weight:bold
 }
 
@@ -257,7 +248,7 @@ padding:15px
 .box{
 background:white;
 width:100%;
-max-width:600px;
+max-width:650px;
 max-height:92vh;
 overflow:auto;
 border-radius:16px;
@@ -271,8 +262,7 @@ right:15px;
 top:10px;
 border:0;
 background:none;
-font-size:27px;
-cursor:pointer
+font-size:27px
 }
 
 .field{margin-bottom:14px}
@@ -300,8 +290,15 @@ background:#ff7900;
 color:white;
 border:0;
 border-radius:8px;
-font-weight:bold;
-cursor:pointer
+font-weight:bold
+}
+
+.secondary{
+padding:11px 15px;
+background:#111827;
+color:white;
+border:0;
+border-radius:8px
 }
 
 /* PAINEL */
@@ -336,9 +333,7 @@ padding:20px;
 border:1px solid #e5e7eb
 }
 
-.stat small{
-color:#777
-}
+.stat small{color:#777}
 
 .stat strong{
 display:block;
@@ -366,7 +361,6 @@ padding:13px;
 border:0;
 background:white;
 border-radius:8px;
-cursor:pointer;
 margin-bottom:4px;
 font-weight:bold
 }
@@ -383,14 +377,12 @@ padding:20px;
 min-height:400px
 }
 
-.table-wrap{
-overflow:auto
-}
+.table-wrap{overflow:auto}
 
 table{
 width:100%;
 border-collapse:collapse;
-min-width:600px
+min-width:650px
 }
 
 th,td{
@@ -399,9 +391,7 @@ border-bottom:1px solid #eee;
 text-align:left
 }
 
-th{
-background:#f8f8f8
-}
+th{background:#f8f8f8}
 
 .badge{
 padding:5px 9px;
@@ -524,7 +514,8 @@ grid-template-columns:1fr 1fr
 <div class="logo">G<span>Tube</span></div>
 
 <div class="search">
-<input id="search" placeholder="Pesquisar produtos...">
+<input id="search" placeholder="Pesquisar produtos..."
+onkeyup="pesquisar()">
 <button onclick="pesquisar()">🔍</button>
 </div>
 
@@ -539,6 +530,7 @@ grid-template-columns:1fr 1fr
 
 <nav>
 <div class="nav">
+
 <button onclick="inicio()">Início</button>
 <button onclick="categoria('Telefones')">Telefones</button>
 <button onclick="categoria('Computadores')">Computadores</button>
@@ -546,17 +538,24 @@ grid-template-columns:1fr 1fr
 <button onclick="categoria('Carros')">Carros</button>
 <button onclick="categoria('Casa')">Casa</button>
 <button onclick="abrirVenda()">Vender</button>
+
 </div>
 </nav>
 
 <main id="site">
 
 <section class="hero">
+
 <h1>Compra e vende no GTube</h1>
+
 <p>
 Encontra produtos, compra com facilidade e cria o teu próprio negócio no GTube Marketplace.
 </p>
-<button onclick="abrirVenda()">Começar a vender</button>
+
+<button onclick="abrirVenda()">
+Começar a vender
+</button>
+
 </section>
 
 <div class="container">
@@ -606,11 +605,14 @@ Outros
 <div id="products" class="products"></div>
 
 </div>
+
 </main>
 
 <footer>
 <strong>GTube Marketplace</strong>
-<p style="margin-top:8px">Compra • Venda • Crescimento</p>
+<p style="margin-top:8px">
+Compra • Venda • Crescimento
+</p>
 </footer>
 
 
@@ -620,7 +622,8 @@ Outros
 
 <div class="box">
 
-<button class="close" onclick="fechar('accountModal')">×</button>
+<button class="close"
+onclick="fechar('accountModal')">×</button>
 
 <div id="account"></div>
 
@@ -634,7 +637,8 @@ Outros
 
 <div class="box">
 
-<button class="close" onclick="fechar('cartModal')">×</button>
+<button class="close"
+onclick="fechar('cartModal')">×</button>
 
 <h2>🛒 Meu carrinho</h2>
 
@@ -652,7 +656,8 @@ Outros
 
 <div class="box">
 
-<button class="close" onclick="fechar('sellModal')">×</button>
+<button class="close"
+onclick="fechar('sellModal')">×</button>
 
 <h2>📦 Publicar produto</h2>
 
@@ -665,31 +670,46 @@ Outros
 
 <div class="field">
 <label>Preço em Kz</label>
-<input id="precoProduto" type="number" required>
+<input id="precoProduto"
+type="number"
+min="1"
+required>
 </div>
 
 <div class="field">
+
 <label>Categoria</label>
 
 <select id="catProduto">
+
 <option>Telefones</option>
 <option>Computadores</option>
 <option>Moda</option>
 <option>Carros</option>
 <option>Casa</option>
 <option>Outros</option>
+
 </select>
 
 </div>
 
 <div class="field">
+
 <label>Descrição</label>
-<textarea id="descProduto"></textarea>
+
+<textarea id="descProduto"
+rows="4"></textarea>
+
 </div>
 
 <div class="field">
+
 <label>Imagem</label>
-<input id="imgProduto" type="file" accept="image/*">
+
+<input id="imgProduto"
+type="file"
+accept="image/*">
+
 </div>
 
 <button class="primary">
@@ -708,25 +728,37 @@ Publicar produto
 
 <div class="box">
 
-<button class="close" onclick="fechar('adminLoginModal')">×</button>
+<button class="close"
+onclick="fechar('adminLoginModal')">×</button>
 
 <h2>🔐 Área administrativa</h2>
 
 <p style="margin:10px 0 20px;color:#666">
-Esta área é exclusiva do proprietário do GTube.
+Área exclusiva do proprietário do GTube.
 </p>
 
 <div class="field">
+
 <label>Email do administrador</label>
-<input id="adminEmail" type="email">
+
+<input id="adminEmail"
+type="email"
+placeholder="Email">
+
 </div>
 
 <div class="field">
+
 <label>Senha</label>
-<input id="adminSenha" type="password">
+
+<input id="adminSenha"
+type="password"
+placeholder="Senha">
+
 </div>
 
-<button class="primary" onclick="loginAdmin()">
+<button class="primary"
+onclick="loginAdmin()">
 Entrar no Painel do Dono
 </button>
 
@@ -736,45 +768,35 @@ Entrar no Painel do Dono
 
 <script>
 
-/* ================================
-   DADOS
-================================ */
+/* =========================================
+   CONFIGURAÇÃO
+========================================= */
+
+const SUPABASE_URL =
+"https://ozhhemaplvfxyoglvfqo.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_j87agBrGR2fD2k8rOdyeZg_ldPe200L";
+
+
+/*
+  DADOS DO DONO
+
+  IMPORTANTE:
+  Isto é apenas para o painel de administração
+  do protótipo.
+*/
+
+const ADMIN_EMAIL = "dono@gtube.com";
+const ADMIN_SENHA = "GTubeAdmin2026";
+
+
+/* =========================================
+   DADOS LOCAIS
+========================================= */
 
 let produtos =
-JSON.parse(localStorage.getItem("gtubeProdutos")) || [
-
-{
-id:1,
-nome:"Smartphone",
-preco:150000,
-categoria:"Telefones",
-descricao:"Smartphone moderno",
-imagem:"",
-vendedor:"GTube"
-},
-
-{
-id:2,
-nome:"Ténis",
-preco:35000,
-categoria:"Moda",
-descricao:"Ténis de qualidade",
-imagem:"",
-vendedor:"GTube"
-},
-
-{
-id:3,
-nome:"Computador",
-preco:250000,
-categoria:"Computadores",
-descricao:"Computador para trabalho",
-imagem:"",
-vendedor:"GTube"
-}
-
-];
-
+JSON.parse(localStorage.getItem("gtubeProdutos")) || [];
 
 let carrinho =
 JSON.parse(localStorage.getItem("gtubeCarrinho")) || [];
@@ -789,21 +811,57 @@ let usuarios =
 JSON.parse(localStorage.getItem("gtubeUsuarios")) || [];
 
 
-/*
-  CONTAS
+/* =========================================
+   SUPABASE
+========================================= */
 
-  IMPORTANTE:
-  Para teste local, o administrador
-  é separado dos compradores/vendedores.
-*/
+async function supabase(tabela,opcoes={}){
 
-const ADMIN_EMAIL = "dono@gtube.com";
-const ADMIN_SENHA = "GTubeAdmin2026";
+const config={
+method:opcoes.method || "GET",
+headers:{
+"apikey":SUPABASE_KEY,
+"Authorization":"Bearer "+SUPABASE_KEY,
+"Content-Type":"application/json",
+"Prefer":opcoes.method==="POST"
+?"return=representation"
+:"return=minimal"
+}
+};
+
+if(opcoes.body){
+config.body=JSON.stringify(opcoes.body);
+}
+
+const resposta=await fetch(
+SUPABASE_URL+"/rest/v1/"+tabela+
+(opcoes.query ? "?"+opcoes.query : ""),
+config
+);
+
+if(!resposta.ok){
+
+const texto=await resposta.text();
+
+throw new Error(texto || "Erro no Supabase");
+}
+
+const texto=await resposta.text();
+
+if(!texto)return null;
+
+try{
+return JSON.parse(texto);
+}catch{
+return null;
+}
+
+}
 
 
-/* ================================
+/* =========================================
    UTILIDADES
-================================ */
+========================================= */
 
 function salvar(){
 
@@ -837,30 +895,91 @@ JSON.stringify(usuarios)
 
 function preco(valor){
 
-return Number(valor).toLocaleString("pt-AO")+" Kz";
+return Number(valor || 0)
+.toLocaleString("pt-AO")+" Kz";
 
 }
 
 
 function fechar(id){
 
-document.getElementById(id).style.display="none";
+const elemento=document.getElementById(id);
+
+if(elemento){
+elemento.style.display="none";
+}
 
 }
 
 
-/* ================================
+function seguro(texto){
+
+return String(texto || "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================================
    PRODUTOS
-================================ */
+========================================= */
+
+async function carregarProdutos(){
+
+try{
+
+const dados=await supabase(
+"produtos",
+{
+query:"select=*"
+}
+);
+
+if(Array.isArray(dados)){
+
+produtos=dados.map(p=>({
+
+id:p.id,
+nome:p.nome || p.nome_produto || "",
+preco:Number(p.preco || p.valor || 0),
+categoria:p.categoria || "Outros",
+descricao:p.descricao || "",
+imagem:p.imagem || "",
+vendedor:p.vendedor || p.vendedor_id || "Vendedor"
+
+}));
+
+salvar();
+
+}
+
+}catch(erro){
+
+console.log(
+"Supabase produtos:",
+erro.message
+);
+
+}
+
+mostrar();
+
+}
+
 
 function mostrar(lista=produtos){
 
-const area=document.getElementById("products");
+const area=
+document.getElementById("products");
 
 if(!lista.length){
 
 area.innerHTML=
-'<div class="empty">Nenhum produto encontrado.</div>';
+'<div class="empty">📦<br><br>Nenhum produto encontrado.</div>';
 
 return;
 
@@ -872,9 +991,12 @@ area.innerHTML=lista.map(p=>`
 
 <div class="pic">
 
-${p.imagem
-? `<img src="${p.imagem}">`
-: `<div class="noimg">📦</div>`
+${
+p.imagem
+?
+`<img src="${seguro(p.imagem)}">`
+:
+`<div class="noimg">📦</div>`
 }
 
 </div>
@@ -914,18 +1036,6 @@ ${favoritos.includes(p.id)?"❤️":"♡"}
 }
 
 
-function seguro(text){
-
-return String(text||"")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
-
-}
-
-
 function inicio(){
 
 mostrar();
@@ -941,7 +1051,9 @@ behavior:"smooth"
 function categoria(cat){
 
 mostrar(
-produtos.filter(p=>p.categoria===cat)
+produtos.filter(
+p=>p.categoria===cat
+)
 );
 
 }
@@ -951,30 +1063,47 @@ function pesquisar(){
 
 const texto=
 document.getElementById("search")
-.value.toLowerCase();
+.value.toLowerCase()
+.trim();
+
+if(!texto){
+
+mostrar();
+
+return;
+
+}
 
 mostrar(
 produtos.filter(p=>
-p.nome.toLowerCase().includes(texto) ||
-p.categoria.toLowerCase().includes(texto)
+String(p.nome)
+.toLowerCase()
+.includes(texto)
+||
+String(p.categoria)
+.toLowerCase()
+.includes(texto)
 )
 );
 
 }
 
 
-/* ================================
+/* =========================================
    CARRINHO
-================================ */
+========================================= */
 
 function adicionar(id){
 
-const p=produtos.find(x=>x.id===id);
+const p=
+produtos.find(x=>String(x.id)===String(id));
 
 if(!p)return;
 
 const item=
-carrinho.find(x=>x.id===id);
+carrinho.find(
+x=>String(x.id)===String(id)
+);
 
 if(item){
 
@@ -983,19 +1112,24 @@ item.quantidade++;
 }else{
 
 carrinho.push({
+
 id:p.id,
 nome:p.nome,
-preco:p.preco,
+preco:Number(p.preco),
 imagem:p.imagem,
 quantidade:1
+
 });
 
 }
 
 salvar();
+
 contarCarrinho();
 
-alert("Produto adicionado ao carrinho.");
+alert(
+"Produto adicionado ao carrinho."
+);
 
 }
 
@@ -1004,19 +1138,22 @@ function contarCarrinho(){
 
 const total=
 carrinho.reduce(
-(a,b)=>a+b.quantidade,0
+(a,b)=>a+Number(b.quantidade || 0),
+0
 );
 
-document.getElementById("cartCount")
-.textContent=total;
+document.getElementById(
+"cartCount"
+).textContent=total;
 
 }
 
 
 function abrirCarrinho(){
 
-document.getElementById("cartModal")
-.style.display="flex";
+document.getElementById(
+"cartModal"
+).style.display="flex";
 
 mostrarCarrinho();
 
@@ -1042,35 +1179,47 @@ return;
 
 }
 
-
 area.innerHTML=carrinho.map(i=>`
 
 <div class="cart-item">
 
 <div class="cart-img">
 
-${i.imagem
-? `<img src="${i.imagem}">`
-: "📦"
+${
+i.imagem
+?
+`<img src="${seguro(i.imagem)}">`
+:
+"📦"
 }
 
 </div>
 
 <div class="cart-info">
 
-<strong>${seguro(i.nome)}</strong>
+<strong>
+${seguro(i.nome)}
+</strong>
 
-<div>${preco(i.preco)}</div>
+<div>
+${preco(i.preco)}
+</div>
 
 <div style="margin-top:7px">
 
-<button onclick="quantidade(${i.id},-1)">−</button>
+<button
+onclick="quantidade(${i.id},-1)">
+−
+</button>
 
 <strong style="margin:0 8px">
 ${i.quantidade}
 </strong>
 
-<button onclick="quantidade(${i.id},1)">+</button>
+<button
+onclick="quantidade(${i.id},1)">
++
+</button>
 
 </div>
 
@@ -1078,7 +1227,10 @@ ${i.quantidade}
 
 <button
 onclick="remover(${i.id})"
-style="border:0;background:none;cursor:pointer">
+style="
+border:0;
+background:none;
+font-size:20px">
 🗑️
 </button>
 
@@ -1089,8 +1241,17 @@ style="border:0;background:none;cursor:pointer">
 
 const total=
 carrinho.reduce(
-(a,b)=>a+(b.preco*b.quantidade),0
+(a,b)=>
+a+
+(Number(b.preco)*
+Number(b.quantidade)),
+0
 );
+
+
+const comissao=total*0.10;
+
+const vendedor=total*0.90;
 
 
 totalArea.innerHTML=`
@@ -1103,9 +1264,16 @@ totalArea.innerHTML=`
 </div>
 
 <div class="line">
-<span>Comissão GTube</span>
-<strong>${preco(total*0.10)}</strong>
+<span>Comissão GTube 10%</span>
+<strong>${preco(comissao)}</strong>
 </div>
+
+<div class="line">
+<span>Vendedor recebe</span>
+<strong>${preco(vendedor)}</strong>
+</div>
+
+<hr style="margin:12px 0;border:0;border-top:1px solid #ddd">
 
 <div class="line final">
 <span>Total</span>
@@ -1129,7 +1297,9 @@ Finalizar compra
 function quantidade(id,n){
 
 const item=
-carrinho.find(x=>x.id===id);
+carrinho.find(
+x=>String(x.id)===String(id)
+);
 
 if(!item)return;
 
@@ -1138,12 +1308,16 @@ item.quantidade+=n;
 if(item.quantidade<=0){
 
 carrinho=
-carrinho.filter(x=>x.id!==id);
+carrinho.filter(
+x=>String(x.id)!==String(id)
+);
 
 }
 
 salvar();
+
 contarCarrinho();
+
 mostrarCarrinho();
 
 }
@@ -1152,49 +1326,100 @@ mostrarCarrinho();
 function remover(id){
 
 carrinho=
-carrinho.filter(x=>x.id!==id);
+carrinho.filter(
+x=>String(x.id)!==String(id)
+);
 
 salvar();
+
 contarCarrinho();
+
 mostrarCarrinho();
 
 }
 
 
-function finalizar(){
+/* =========================================
+   FINALIZAR PEDIDO
+========================================= */
+
+async function finalizar(){
 
 if(!carrinho.length){
 
 alert("Carrinho vazio.");
+
 return;
 
 }
 
-const nome=
-prompt("Nome do comprador:");
+const usuario=
+JSON.parse(
+localStorage.getItem(
+"gtubeUtilizador"
+)
+);
 
-if(!nome)return;
 
-const telefone=
-prompt("Telefone:");
+if(!usuario){
 
-if(!telefone)return;
+alert(
+"Primeiro crie uma conta de comprador."
+);
+
+fechar("cartModal");
+
+abrirConta();
+
+return;
+
+}
+
+
+if(usuario.tipo!=="comprador"){
+
+alert(
+"Para comprar, utilize uma conta de comprador."
+);
+
+return;
+
+}
+
+
+const nome=usuario.nome;
+
+const telefone=usuario.telefone;
+
 
 const endereco=
-prompt("Endereço de entrega:");
+prompt("Digite o endereço de entrega:");
 
 if(!endereco)return;
 
 
 const total=
 carrinho.reduce(
-(a,b)=>a+(b.preco*b.quantidade),0
+(a,b)=>
+a+
+(Number(b.preco)*
+Number(b.quantidade)),
+0
 );
+
+
+const comissao=
+total*0.10;
+
+const valorVendedor=
+total*0.90;
 
 
 const pedido={
 
 id:Date.now(),
+
+comprador_id:usuario.id,
 
 comprador:nome,
 
@@ -1204,48 +1429,109 @@ endereco:endereco,
 
 itens:[...carrinho],
 
+valor:total,
+
 total:total,
 
-comissao:total*0.10,
+comissao:comissao,
 
-vendedorRecebe:total*0.90,
+valor_vendedor:valorVendedor,
+
+vendedorRecebe:valorVendedor,
 
 estado:"Novo",
 
-data:new Date().toLocaleString("pt-AO")
+status:"Novo",
+
+data:new Date().toISOString()
 
 };
 
 
+/*
+  Primeiro guardamos localmente.
+  Assim o pedido não desaparece
+  mesmo se houver algum problema
+  temporário na ligação.
+*/
+
 pedidos.push(pedido);
 
-carrinho=[];
-
 salvar();
-contarCarrinho();
 
-fechar("cartModal");
 
-alert(
-"Pedido criado com sucesso!\n\n"+
-"Valor: "+preco(total)+
-"\nComissão GTube: "+preco(total*.10)+
-"\nVendedor recebe: "+preco(total*.90)
+/*
+  Tentamos enviar para o Supabase.
+
+  Os campos principais usados são:
+  comprador_id
+  valor
+  comissao
+  valor_vendedor
+  estado
+*/
+
+try{
+
+await supabase(
+"pedidos",
+{
+method:"POST",
+body:{
+comprador_id:usuario.id,
+valor:total,
+comissao:comissao,
+valor_vendedor:valorVendedor,
+estado:"Novo"
+}
+}
+);
+
+console.log(
+"Pedido enviado ao Supabase."
+);
+
+}catch(erro){
+
+console.log(
+"Pedido local / Supabase:",
+erro.message
 );
 
 }
 
 
-/* ================================
+carrinho=[];
+
+salvar();
+
+contarCarrinho();
+
+fechar("cartModal");
+
+
+alert(
+"Pedido criado com sucesso!\n\n"+
+"Valor: "+preco(total)+
+"\nComissão GTube: "+preco(comissao)+
+"\nVendedor recebe: "+preco(valorVendedor)
+);
+
+}
+
+
+/* =========================================
    FAVORITOS
-================================ */
+========================================= */
 
 function favorito(id){
 
 if(favoritos.includes(id)){
 
 favoritos=
-favoritos.filter(x=>x!==id);
+favoritos.filter(
+x=>String(x)!==String(id)
+);
 
 }else{
 
@@ -1254,19 +1540,21 @@ favoritos.push(id);
 }
 
 salvar();
+
 mostrar();
 
 }
 
 
-/* ================================
+/* =========================================
    CONTA
-================================ */
+========================================= */
 
 function abrirConta(){
 
-document.getElementById("accountModal")
-.style.display="flex";
+document.getElementById(
+"accountModal"
+).style.display="flex";
 
 mostrarConta();
 
@@ -1280,7 +1568,9 @@ document.getElementById("account");
 
 const usuario=
 JSON.parse(
-localStorage.getItem("gtubeUtilizador")
+localStorage.getItem(
+"gtubeUtilizador"
+)
 );
 
 
@@ -1288,34 +1578,60 @@ if(!usuario){
 
 area.innerHTML=`
 
-<h2>👤 Minha conta</h2>
+<h2>👤 Criar conta</h2>
+
+<p style="color:#777;margin:8px 0 20px">
+Escolha se quer comprar ou vender.
+</p>
 
 <div class="field">
+
 <label>Nome</label>
-<input id="regNome">
+
+<input id="regNome"
+placeholder="Seu nome">
+
 </div>
 
 <div class="field">
+
 <label>Email</label>
-<input id="regEmail" type="email">
+
+<input id="regEmail"
+type="email"
+placeholder="seu@email.com">
+
 </div>
 
 <div class="field">
+
 <label>Telefone</label>
-<input id="regTelefone">
+
+<input id="regTelefone"
+placeholder="Telefone">
+
 </div>
 
 <div class="field">
+
 <label>Tipo de conta</label>
 
 <select id="regTipo">
-<option value="comprador">Comprador</option>
-<option value="vendedor">Vendedor</option>
+
+<option value="comprador">
+Comprador
+</option>
+
+<option value="vendedor">
+Vendedor
+</option>
+
 </select>
 
 </div>
 
-<button class="primary"
+<button
+class="primary"
 onclick="criarConta()">
 Criar conta
 </button>
@@ -1327,38 +1643,92 @@ return;
 }
 
 
-if(usuario.tipo==="vendedor"){
+area.innerHTML=`
 
-mostrarPainelVendedor(usuario);
+<h2>
+👤 Olá, ${seguro(usuario.nome)}
+</h2>
 
-return;
+<p style="color:#777;margin-top:7px">
+Conta: ${seguro(usuario.tipo)}
+</p>
+
+<div class="stat"
+style="margin-top:15px">
+
+<small>Email</small>
+
+<strong style="font-size:17px">
+${seguro(usuario.email)}
+</strong>
+
+</div>
+
+<div style="margin-top:15px">
+
+${
+usuario.tipo==="vendedor"
+?
+`
+<button
+class="primary"
+onclick="fechar('accountModal');abrirVenda()">
+📦 Publicar produto
+</button>
+`
+:
+`
+<button
+class="primary"
+onclick="mostrarPedidosComprador()">
+📦 Meus pedidos
+</button>
+`
+}
+
+</div>
+
+<button
+class="secondary"
+style="margin-top:10px;width:100%"
+onclick="sairConta()">
+🚪 Sair da conta
+</button>
+
+`;
 
 }
 
 
-mostrarPainelComprador(usuario);
-
-}
-
-
-function criarConta(){
+async function criarConta(){
 
 const nome=
-document.getElementById("regNome").value.trim();
+document.getElementById(
+"regNome"
+).value.trim();
 
 const email=
-document.getElementById("regEmail").value.trim();
+document.getElementById(
+"regEmail"
+).value.trim();
 
 const telefone=
-document.getElementById("regTelefone").value.trim();
+document.getElementById(
+"regTelefone"
+).value.trim();
 
 const tipo=
-document.getElementById("regTipo").value;
+document.getElementById(
+"regTipo"
+).value;
 
 
 if(!nome||!email||!telefone){
 
-alert("Preencha todos os campos.");
+alert(
+"Preencha todos os campos."
+);
+
 return;
 
 }
@@ -1379,89 +1749,123 @@ tipo:tipo
 };
 
 
+usuarios.push(usuario);
+
 localStorage.setItem(
 "gtubeUtilizador",
 JSON.stringify(usuario)
 );
 
-
-usuarios.push(usuario);
-
 salvar();
+
+
+/*
+  Enviar usuário para o Supabase.
+*/
+
+try{
+
+await supabase(
+"usuarios",
+{
+method:"POST",
+body:{
+id:usuario.id,
+nome:nome,
+email:email,
+telefone:telefone,
+tipo:tipo
+}
+}
+);
+
+}catch(erro){
+
+console.log(
+"Usuário local / Supabase:",
+erro.message
+);
+
+}
+
+
+mostrarConta();
+
+alert(
+"Conta criada com sucesso!"
+);
+
+}
+
+
+function sairConta(){
+
+localStorage.removeItem(
+"gtubeUtilizador"
+);
 
 mostrarConta();
 
 }
 
 
-/* ================================
-   COMPRADOR
-================================ */
+/* =========================================
+   PEDIDOS DO COMPRADOR
+========================================= */
 
-function mostrarPainelComprador(u){
+async function mostrarPedidosComprador(){
 
-const meusPedidos=
+const usuario=
+JSON.parse(
+localStorage.getItem(
+"gtubeUtilizador"
+)
+);
+
+if(!usuario)return;
+
+
+let meus=
 pedidos.filter(
-p=>p.comprador===u.nome
+p=>
+String(p.comprador_id)===
+String(usuario.id)
+||
+p.comprador===usuario.nome
 );
 
 
-document.getElementById("account")
-.innerHTML=`
+try{
 
-<h2>👤 Área do Comprador</h2>
+const dados=
+await supabase(
+"pedidos",
+{
+query:
+"select=*&comprador_id=eq."+
+encodeURIComponent(usuario.id)
+}
+);
 
-<div class="stat" style="margin-top:15px">
+if(Array.isArray(dados)&&dados.length){
 
-<small>Comprador</small>
+meus=dados;
 
-<strong>
-${seguro(u.nome)}
-</strong>
+}
 
-</div>
+}catch(erro){
 
-<div class="stat" style="margin-top:15px">
-
-<small>Meus pedidos</small>
-
-<strong>
-${meusPedidos.length}
-</strong>
-
-</div>
-
-<div style="margin-top:15px">
-
-<button class="primary"
-onclick="mostrarPedidosComprador()">
-📦 Ver meus pedidos
-</button>
-
-</div>
-
-`;
+console.log(
+"Pedidos:",
+erro.message
+);
 
 }
 
 
-function mostrarPedidosComprador(){
-
-const u=
-JSON.parse(
-localStorage.getItem("gtubeUtilizador")
-);
-
-const meus=
-pedidos.filter(
-p=>p.comprador===u.nome
-);
-
-const area=
-document.getElementById("account");
-
-
-area.innerHTML=`
+document.getElementById(
+"account"
+).innerHTML=`
 
 <h2>📦 Meus pedidos</h2>
 
@@ -1472,19 +1876,28 @@ meus.length
 ?
 meus.map(p=>`
 
-<div class="stat" style="margin-bottom:10px">
+<div class="stat"
+style="margin-bottom:10px">
 
 <strong>
-Pedido #${p.id}
+Pedido #${seguro(p.id)}
 </strong>
 
 <p style="margin-top:7px">
-Total: ${preco(p.total)}
+Valor:
+${preco(p.valor || p.total)}
+</p>
+
+<p>
+Comissão GTube:
+${preco(p.comissao)}
 </p>
 
 <p>
 Estado:
-<span class="badge">${p.estado}</span>
+<span class="badge">
+${seguro(p.estado || p.status || "Novo")}
+</span>
 </p>
 
 </div>
@@ -1496,109 +1909,44 @@ Estado:
 
 </div>
 
-`;
-
-}
-
-
-/* ================================
-   VENDEDOR
-================================ */
-
-function mostrarPainelVendedor(u){
-
-const meusProdutos=
-produtos.filter(
-p=>p.vendedor===u.nome
-);
-
-
-const minhasVendas=
-pedidos.filter(
-p=>p.itens.some(
-i=>produtos.some(
-pr=>pr.id===i.id &&
-pr.vendedor===u.nome
-)
-)
-);
-
-
-const valor=
-minhasVendas.reduce(
-(a,p)=>a+p.total,0
-);
-
-
-document.getElementById("account")
-.innerHTML=`
-
-<h2>🏪 Painel do Vendedor</h2>
-
-<p style="color:#777;margin-top:5px">
-${seguro(u.nome)}
-</p>
-
-<div class="stats"
-style="margin-top:15px">
-
-<div class="stat">
-<small>Produtos</small>
-<strong>${meusProdutos.length}</strong>
-</div>
-
-<div class="stat">
-<small>Pedidos</small>
-<strong>${minhasVendas.length}</strong>
-</div>
-
-<div class="stat">
-<small>Vendas</small>
-<strong>${preco(valor)}</strong>
-</div>
-
-<div class="stat">
-<small>Recebe</small>
-<strong>${preco(valor*.90)}</strong>
-</div>
-
-</div>
-
-<div style="margin-top:15px">
-
-<button class="primary"
-onclick="abrirVenda();fechar('accountModal')">
-+ Publicar produto
+<button
+class="secondary"
+style="width:100%;margin-top:10px"
+onclick="mostrarConta()">
+← Voltar
 </button>
 
-</div>
-
 `;
-
 
 }
 
 
-/* ================================
-   PUBLICAR
-================================ */
+/* =========================================
+   VENDEDOR
+========================================= */
 
 function abrirVenda(){
 
 const usuario=
 JSON.parse(
-localStorage.getItem("gtubeUtilizador")
+localStorage.getItem(
+"gtubeUtilizador"
+)
 );
+
 
 if(!usuario){
 
-alert("Primeiro crie uma conta de vendedor.");
+alert(
+"Primeiro crie uma conta de vendedor."
+);
 
 abrirConta();
 
 return;
 
 }
+
 
 if(usuario.tipo!=="vendedor"){
 
@@ -1610,44 +1958,61 @@ return;
 
 }
 
-document.getElementById("sellModal")
-.style.display="flex";
+
+document.getElementById(
+"sellModal"
+).style.display="flex";
 
 }
 
 
-function publicar(e){
+async function publicar(e){
 
 e.preventDefault();
 
 
 const usuario=
 JSON.parse(
-localStorage.getItem("gtubeUtilizador")
+localStorage.getItem(
+"gtubeUtilizador"
+)
 );
+
+
+if(!usuario)return;
 
 
 const nome=
-document.getElementById("nomeProduto").value;
+document.getElementById(
+"nomeProduto"
+).value.trim();
 
 const precoProduto=
 Number(
-document.getElementById("precoProduto").value
+document.getElementById(
+"precoProduto"
+).value
 );
 
 const categoriaProduto=
-document.getElementById("catProduto").value;
+document.getElementById(
+"catProduto"
+).value;
 
 const descricao=
-document.getElementById("descProduto").value;
+document.getElementById(
+"descProduto"
+).value.trim();
 
 const arquivo=
-document.getElementById("imgProduto").files[0];
+document.getElementById(
+"imgProduto"
+).files[0];
 
 
 function guardarProduto(imagem){
 
-produtos.unshift({
+const produto={
 
 id:Date.now(),
 
@@ -1661,9 +2026,14 @@ descricao:descricao,
 
 imagem:imagem,
 
-vendedor:usuario.nome
+vendedor:usuario.nome,
 
-});
+vendedor_id:usuario.id
+
+};
+
+
+produtos.unshift(produto);
 
 salvar();
 
@@ -1671,18 +2041,63 @@ mostrar();
 
 fechar("sellModal");
 
-alert("Produto publicado com sucesso!");
+document.querySelector(
+"#sellModal form"
+).reset();
+
+alert(
+"Produto publicado com sucesso!"
+);
 
 }
 
 
 if(arquivo){
 
-const reader=new FileReader();
+const reader=
+new FileReader();
 
-reader.onload=function(){
+reader.onload=
+async function(){
 
-guardarProduto(reader.result);
+const imagem=
+reader.result;
+
+guardarProduto(imagem);
+
+
+/*
+  Também tentamos gravar
+  o produto no Supabase.
+*/
+
+try{
+
+await supabase(
+"produtos",
+{
+method:"POST",
+body:{
+id:Date.now(),
+nome:nome,
+preco:precoProduto,
+categoria:categoriaProduto,
+descricao:descricao,
+imagem:imagem,
+vendedor:usuario.nome,
+vendedor_id:usuario.id
+}
+}
+);
+
+}catch(erro){
+
+console.log(
+"Produto local / Supabase:",
+erro.message
+);
+
+}
 
 };
 
@@ -1692,35 +2107,63 @@ reader.readAsDataURL(arquivo);
 
 guardarProduto("");
 
+try{
+
+await supabase(
+"produtos",
+{
+method:"POST",
+body:{
+id:Date.now(),
+nome:nome,
+preco:precoProduto,
+categoria:categoriaProduto,
+descricao:descricao,
+imagem:"",
+vendedor:usuario.nome,
+vendedor_id:usuario.id
+}
+}
+);
+
+}catch(erro){
+
+console.log(
+"Produto local / Supabase:",
+erro.message
+);
+
 }
 
 }
 
+}
 
-/* ==================================================
-   PAINEL DO DONO / ADMINISTRADOR
-================================================== */
+
+/* =========================================
+   LOGIN DO DONO
+========================================= */
 
 function abrirLoginDono(){
 
-document.getElementById("adminLoginModal")
-.style.display="flex";
+document.getElementById(
+"adminLoginModal"
+).style.display="flex";
 
 }
 
-
-/*
-  O PAINEL DO DONO NÃO É MOSTRADO
-  PARA COMPRADORES OU VENDEDORES.
-*/
 
 function loginAdmin(){
 
 const email=
-document.getElementById("adminEmail").value.trim();
+document.getElementById(
+"adminEmail"
+).value.trim();
 
 const senha=
-document.getElementById("adminSenha").value;
+document.getElementById(
+"adminSenha"
+).value;
 
 
 if(
@@ -1728,7 +2171,9 @@ email!==ADMIN_EMAIL ||
 senha!==ADMIN_SENHA
 ){
 
-alert("Email ou senha de administrador incorretos.");
+alert(
+"Email ou senha de administrador incorretos."
+);
 
 return;
 
@@ -1747,16 +2192,17 @@ mostrarPainelDono();
 }
 
 
-/* ================================
-   PAINEL DONO
-================================ */
+/* =========================================
+   PAINEL DO DONO
+========================================= */
 
 function mostrarPainelDono(){
 
-const logado=
-localStorage.getItem("gtubeAdminLogado");
-
-if(logado!=="true"){
+if(
+localStorage.getItem(
+"gtubeAdminLogado"
+)!=="true"
+){
 
 abrirLoginDono();
 
@@ -1765,14 +2211,17 @@ return;
 }
 
 
-document.getElementById("site")
-.innerHTML=`
+document.getElementById(
+"site"
+).innerHTML=`
 
 <div class="panel">
 
 <div class="panel-header">
 
-<h1>⚡ Painel de Controlo</h1>
+<h1>
+⚡ Painel de Controlo
+</h1>
 
 <p>
 Administrador • GTube Marketplace
@@ -1780,42 +2229,49 @@ Administrador • GTube Marketplace
 
 </div>
 
-
 <div class="stats">
 
 <div class="stat">
 
-<small>Vendas totais</small>
+<small>
+Vendas totais
+</small>
 
-<strong>
+<strong id="adminTotal">
 ${preco(
 pedidos.reduce(
-(a,p)=>a+p.total,0
+(a,p)=>
+a+Number(p.valor || p.total || 0),
+0
 )
 )}
 </strong>
 
 </div>
 
-
 <div class="stat">
 
-<small>Comissão GTube</small>
+<small>
+Comissão GTube
+</small>
 
-<strong>
+<strong id="adminComissao">
 ${preco(
 pedidos.reduce(
-(a,p)=>a+p.comissao,0
+(a,p)=>
+a+Number(p.comissao || 0),
+0
 )
 )}
 </strong>
 
 </div>
 
-
 <div class="stat">
 
-<small>Vendedores</small>
+<small>
+Vendedores
+</small>
 
 <strong>
 ${usuarios.filter(
@@ -1825,10 +2281,11 @@ u=>u.tipo==="vendedor"
 
 </div>
 
-
 <div class="stat">
 
-<small>Compradores</small>
+<small>
+Compradores
+</small>
 
 <strong>
 ${usuarios.filter(
@@ -1839,7 +2296,6 @@ u=>u.tipo==="comprador"
 </div>
 
 </div>
-
 
 <div class="panel-grid">
 
@@ -1875,10 +2331,8 @@ u=>u.tipo==="comprador"
 
 </div>
 
-
 <div class="panel-content"
 id="adminContent">
-
 </div>
 
 </div>
@@ -1892,37 +2346,54 @@ adminInicio();
 }
 
 
-/* ================================
-   ADMIN INÍCIO
-================================ */
+/* =========================================
+   ADMIN — INÍCIO
+========================================= */
 
 function adminInicio(){
 
 const area=
-document.getElementById("adminContent");
+document.getElementById(
+"adminContent"
+);
 
 if(!area)return;
 
 
 const total=
 pedidos.reduce(
-(a,p)=>a+p.total,0
+(a,p)=>
+a+
+Number(p.valor || p.total || 0),
+0
 );
 
 const comissao=
 pedidos.reduce(
-(a,p)=>a+p.comissao,0
+(a,p)=>
+a+
+Number(p.comissao || 0),
+0
 );
 
 const vendedor=
 pedidos.reduce(
-(a,p)=>a+p.vendedorRecebe,0
+(a,p)=>
+a+
+Number(
+p.valor_vendedor ||
+p.vendedorRecebe ||
+0
+),
+0
 );
 
 
 area.innerHTML=`
 
-<h2>📊 Visão geral</h2>
+<h2>
+📊 Visão geral
+</h2>
 
 <p style="color:#777;margin:8px 0 20px">
 Resumo financeiro da plataforma
@@ -1931,49 +2402,98 @@ Resumo financeiro da plataforma
 <div class="stats">
 
 <div class="stat">
-<small>Pedidos</small>
-<strong>${pedidos.length}</strong>
+
+<small>
+Pedidos
+</small>
+
+<strong>
+${pedidos.length}
+</strong>
+
 </div>
 
 <div class="stat">
-<small>Produtos</small>
-<strong>${produtos.length}</strong>
+
+<small>
+Produtos
+</small>
+
+<strong>
+${produtos.length}
+</strong>
+
 </div>
 
 <div class="stat">
-<small>Comissão 10%</small>
-<strong>${preco(comissao)}</strong>
+
+<small>
+Comissão 10%
+</small>
+
+<strong>
+${preco(comissao)}
+</strong>
+
 </div>
 
 <div class="stat">
-<small>Vendedores</small>
+
+<small>
+Vendedores
+</small>
+
 <strong>
 ${usuarios.filter(
 u=>u.tipo==="vendedor"
 ).length}
 </strong>
-</div>
 
 </div>
 
+</div>
 
-<div class="stat" style="margin-top:15px">
+<div class="stat">
 
-<h3>💰 Movimento financeiro</h3>
+<h3>
+💰 Movimento financeiro
+</h3>
 
-<div class="line" style="margin-top:15px">
-<span>Volume vendido</span>
-<strong>${preco(total)}</strong>
+<div class="line"
+style="margin-top:15px">
+
+<span>
+Volume vendido
+</span>
+
+<strong>
+${preco(total)}
+</strong>
+
 </div>
 
 <div class="line">
-<span>Comissão GTube</span>
-<strong>${preco(comissao)}</strong>
+
+<span>
+Comissão GTube
+</span>
+
+<strong>
+${preco(comissao)}
+</strong>
+
 </div>
 
 <div class="line">
-<span>Valor para vendedores</span>
-<strong>${preco(vendedor)}</strong>
+
+<span>
+Valor para vendedores
+</span>
+
+<strong>
+${preco(vendedor)}
+</strong>
+
 </div>
 
 </div>
@@ -1983,18 +2503,22 @@ u=>u.tipo==="vendedor"
 }
 
 
-/* ================================
-   ADMIN PEDIDOS
-================================ */
+/* =========================================
+   ADMIN — PEDIDOS
+========================================= */
 
 function adminPedidos(){
 
 const area=
-document.getElementById("adminContent");
+document.getElementById(
+"adminContent"
+);
 
 area.innerHTML=`
 
-<h2>📦 Todos os pedidos</h2>
+<h2>
+📦 Todos os pedidos
+</h2>
 
 <div class="table-wrap"
 style="margin-top:15px">
@@ -2004,12 +2528,14 @@ style="margin-top:15px">
 <thead>
 
 <tr>
+
 <th>Pedido</th>
 <th>Comprador</th>
-<th>Total</th>
+<th>Valor</th>
 <th>Comissão</th>
-<th>Vendedor</th>
+<th>Vendedor recebe</th>
 <th>Estado</th>
+
 </tr>
 
 </thead>
@@ -2023,29 +2549,60 @@ pedidos.map(p=>`
 
 <tr>
 
-<td>#${p.id}</td>
-
-<td>${seguro(p.comprador)}</td>
-
-<td>${preco(p.total)}</td>
-
-<td>${preco(p.comissao)}</td>
-
-<td>${preco(p.vendedorRecebe)}</td>
+<td>
+#${seguro(p.id)}
+</td>
 
 <td>
+${seguro(
+p.comprador ||
+p.comprador_id ||
+""
+)}
+</td>
+
+<td>
+${preco(
+p.valor || p.total
+)}
+</td>
+
+<td>
+${preco(
+p.comissao
+)}
+</td>
+
+<td>
+${preco(
+p.valor_vendedor ||
+p.vendedorRecebe
+)}
+</td>
+
+<td>
+
 <span class="badge">
-${p.estado}
+${seguro(
+p.estado ||
+p.status ||
+"Novo"
+)}
 </span>
+
 </td>
 
 </tr>
 
 `).join("")
 :
-`<tr>
-<td colspan="6">Nenhum pedido.</td>
-</tr>`
+`
+<tr>
+<td colspan="6">
+Nenhum pedido.
+</td>
+</tr>
+`
 }
 
 </tbody>
@@ -2059,18 +2616,22 @@ ${p.estado}
 }
 
 
-/* ================================
-   ADMIN PRODUTOS
-================================ */
+/* =========================================
+   ADMIN — PRODUTOS
+========================================= */
 
 function adminProdutos(){
 
 const area=
-document.getElementById("adminContent");
+document.getElementById(
+"adminContent"
+);
 
 area.innerHTML=`
 
-<h2>🛍️ Produtos</h2>
+<h2>
+🛍️ Produtos
+</h2>
 
 <div class="table-wrap"
 style="margin-top:15px">
@@ -2080,11 +2641,13 @@ style="margin-top:15px">
 <thead>
 
 <tr>
+
 <th>Produto</th>
 <th>Categoria</th>
 <th>Preço</th>
 <th>Vendedor</th>
 <th>Ação</th>
+
 </tr>
 
 </thead>
@@ -2092,17 +2655,27 @@ style="margin-top:15px">
 <tbody>
 
 ${
+produtos.length
+?
 produtos.map(p=>`
 
 <tr>
 
-<td>${seguro(p.nome)}</td>
+<td>
+${seguro(p.nome)}
+</td>
 
-<td>${seguro(p.categoria)}</td>
+<td>
+${seguro(p.categoria)}
+</td>
 
-<td>${preco(p.preco)}</td>
+<td>
+${preco(p.preco)}
+</td>
 
-<td>${seguro(p.vendedor)}</td>
+<td>
+${seguro(p.vendedor)}
+</td>
 
 <td>
 
@@ -2112,8 +2685,7 @@ style="
 border:0;
 background:#fee;
 padding:7px;
-border-radius:6px;
-cursor:pointer">
+border-radius:6px">
 🗑️
 </button>
 
@@ -2122,6 +2694,14 @@ cursor:pointer">
 </tr>
 
 `).join("")
+:
+`
+<tr>
+<td colspan="5">
+Nenhum produto.
+</td>
+</tr>
+`
 }
 
 </tbody>
@@ -2137,10 +2717,16 @@ cursor:pointer">
 
 function apagarProduto(id){
 
-if(!confirm("Apagar este produto?"))return;
+if(
+!confirm(
+"Apagar este produto?"
+)
+)return;
 
 produtos=
-produtos.filter(p=>p.id!==id);
+produtos.filter(
+p=>String(p.id)!==String(id)
+);
 
 salvar();
 
@@ -2151,14 +2737,16 @@ mostrar();
 }
 
 
-/* ================================
-   ADMIN VENDEDORES
-================================ */
+/* =========================================
+   ADMIN — VENDEDORES
+========================================= */
 
 function adminVendedores(){
 
 const area=
-document.getElementById("adminContent");
+document.getElementById(
+"adminContent"
+);
 
 const vendedores=
 usuarios.filter(
@@ -2168,7 +2756,9 @@ u=>u.tipo==="vendedor"
 
 area.innerHTML=`
 
-<h2>🏪 Vendedores</h2>
+<h2>
+🏪 Vendedores
+</h2>
 
 <div class="table-wrap"
 style="margin-top:15px">
@@ -2178,10 +2768,12 @@ style="margin-top:15px">
 <thead>
 
 <tr>
+
 <th>Nome</th>
 <th>Email</th>
 <th>Telefone</th>
 <th>Produtos</th>
+
 </tr>
 
 </thead>
@@ -2195,27 +2787,43 @@ vendedores.map(v=>`
 
 <tr>
 
-<td>${seguro(v.nome)}</td>
-
-<td>${seguro(v.email)}</td>
-
-<td>${seguro(v.telefone)}</td>
+<td>
+${seguro(v.nome)}
+</td>
 
 <td>
+${seguro(v.email)}
+</td>
+
+<td>
+${seguro(v.telefone)}
+</td>
+
+<td>
+
 ${
 produtos.filter(
-p=>p.vendedor===v.nome
+p=>
+String(p.vendedor_id)===
+String(v.id)
+||
+p.vendedor===v.nome
 ).length
 }
+
 </td>
 
 </tr>
 
 `).join("")
 :
-`<tr>
-<td colspan="4">Nenhum vendedor.</td>
-</tr>`
+`
+<tr>
+<td colspan="4">
+Nenhum vendedor.
+</td>
+</tr>
+`
 }
 
 </tbody>
@@ -2229,14 +2837,16 @@ p=>p.vendedor===v.nome
 }
 
 
-/* ================================
-   ADMIN COMPRADORES
-================================ */
+/* =========================================
+   ADMIN — COMPRADORES
+========================================= */
 
 function adminCompradores(){
 
 const area=
-document.getElementById("adminContent");
+document.getElementById(
+"adminContent"
+);
 
 const compradores=
 usuarios.filter(
@@ -2246,7 +2856,9 @@ u=>u.tipo==="comprador"
 
 area.innerHTML=`
 
-<h2>👥 Compradores</h2>
+<h2>
+👥 Compradores
+</h2>
 
 <div class="table-wrap"
 style="margin-top:15px">
@@ -2256,9 +2868,11 @@ style="margin-top:15px">
 <thead>
 
 <tr>
+
 <th>Nome</th>
 <th>Email</th>
 <th>Telefone</th>
+
 </tr>
 
 </thead>
@@ -2272,19 +2886,29 @@ compradores.map(c=>`
 
 <tr>
 
-<td>${seguro(c.nome)}</td>
+<td>
+${seguro(c.nome)}
+</td>
 
-<td>${seguro(c.email)}</td>
+<td>
+${seguro(c.email)}
+</td>
 
-<td>${seguro(c.telefone)}</td>
+<td>
+${seguro(c.telefone)}
+</td>
 
 </tr>
 
 `).join("")
 :
-`<tr>
-<td colspan="3">Nenhum comprador.</td>
-</tr>`
+`
+<tr>
+<td colspan="3">
+Nenhum comprador.
+</td>
+</tr>
+`
 }
 
 </tbody>
@@ -2298,59 +2922,106 @@ compradores.map(c=>`
 }
 
 
-/* ================================
-   ADMIN FINANCEIRO
-================================ */
+/* =========================================
+   ADMIN — FINANCEIRO
+========================================= */
 
 function adminFinanceiro(){
 
 const area=
-document.getElementById("adminContent");
+document.getElementById(
+"adminContent"
+);
 
 const total=
 pedidos.reduce(
-(a,p)=>a+p.total,0
+(a,p)=>
+a+
+Number(p.valor || p.total || 0),
+0
 );
 
 const comissao=
 pedidos.reduce(
-(a,p)=>a+p.comissao,0
+(a,p)=>
+a+
+Number(p.comissao || 0),
+0
 );
 
 const vendedores=
 pedidos.reduce(
-(a,p)=>a+p.vendedorRecebe,0
+(a,p)=>
+a+
+Number(
+p.valor_vendedor ||
+p.vendedorRecebe ||
+0
+),
+0
 );
 
 
 area.innerHTML=`
 
-<h2>💰 Financeiro</h2>
+<h2>
+💰 Financeiro
+</h2>
 
 <div class="stat"
 style="margin-top:15px">
 
 <div class="line">
-<span>Volume total</span>
-<strong>${preco(total)}</strong>
+
+<span>
+Volume total
+</span>
+
+<strong>
+${preco(total)}
+</strong>
+
 </div>
 
 <div class="line">
-<span>Comissão GTube — 10%</span>
-<strong>${preco(comissao)}</strong>
+
+<span>
+Comissão GTube — 10%
+</span>
+
+<strong>
+${preco(comissao)}
+</strong>
+
 </div>
 
 <div class="line">
-<span>Parte dos vendedores — 90%</span>
-<strong>${preco(vendedores)}</strong>
+
+<span>
+Vendedores — 90%
+</span>
+
+<strong>
+${preco(vendedores)}
+</strong>
+
 </div>
 
-<hr style="margin:15px 0;border:0;border-top:1px solid #ddd">
+<hr style="
+margin:15px 0;
+border:0;
+border-top:1px solid #ddd">
 
 <p style="color:#777">
-Exemplo: uma venda de 10.000 Kz gera
-1.000 Kz de comissão para o GTube e
-9.000 Kz para o vendedor.
+
+Exemplo:
+
+10.000 Kz de venda
+
+→ 1.000 Kz para o GTube
+
+→ 9.000 Kz para o vendedor.
+
 </p>
 
 </div>
@@ -2360,35 +3031,76 @@ Exemplo: uma venda de 10.000 Kz gera
 }
 
 
-/* ================================
-   ADMIN SAIR
-================================ */
+/* =========================================
+   ADMIN — SAIR
+========================================= */
 
 function adminSair(){
 
-localStorage.removeItem("gtubeAdminLogado");
+localStorage.removeItem(
+"gtubeAdminLogado"
+);
 
-inicio();
+location.reload();
 
 }
 
 
-/* ================================
+/* =========================================
+   ATALHO SECRETO DO DONO
+========================================= */
+
+/*
+  O painel não aparece para compradores
+  nem vendedores.
+
+  Para o dono:
+  abra no navegador:
+
+  javascript:mostrarPainelDono()
+
+  Caso o navegador não aceite o javascript,
+  pode usar o login administrativo
+  que adicionaremos ao sistema.
+*/
+
+
+/* =========================================
    INICIALIZAÇÃO
-================================ */
+========================================= */
 
 mostrar();
 
 contarCarrinho();
 
+carregarProdutos();
+
 
 /*
-  Para abrir o Painel do Dono:
-  no navegador, executar:
-
-  mostrarPainelDono();
-
+  Toque 5 vezes no logo GTube
+  para abrir o login administrativo.
 */
+
+let toquesLogo=0;
+
+document.querySelector(".logo")
+.addEventListener("click",function(){
+
+toquesLogo++;
+
+if(toquesLogo>=5){
+
+toquesLogo=0;
+
+abrirLoginDono();
+
+}
+
+setTimeout(()=>{
+toquesLogo=0;
+},2000);
+
+});
 
 </script>
 
