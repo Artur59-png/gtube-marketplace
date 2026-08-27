@@ -14,17 +14,17 @@ header{background:#111;color:#fff;padding:12px 15px;position:sticky;top:0;z-inde
 .top{display:flex;justify-content:space-between;align-items:center}
 .logo{font-size:25px;font-weight:bold}
 .icons{display:flex;gap:7px}
-.icon-btn{background:#222;color:#fff;border:0;padding:8px 10px;border-radius:8px;cursor:pointer}
+.icon-btn{background:#222;color:#fff;border:0;padding:8px 10px;border-radius:8px}
 .search{margin-top:12px;display:flex;gap:8px}
-.search input{width:100%;padding:12px;border:0;border-radius:8px;outline:none}
-.search button{border:0;background:#ff6a00;color:#fff;padding:0 16px;border-radius:8px;cursor:pointer}
+.search input{width:100%;padding:12px;border:0;border-radius:8px}
+.search button{border:0;background:#ff6a00;color:#fff;padding:0 16px;border-radius:8px}
 nav{display:flex;justify-content:space-around;background:#fff;padding:10px 5px;border-bottom:1px solid #ddd;position:sticky;top:106px;z-index:90;overflow-x:auto}
-nav button{border:0;background:transparent;font-size:13px;cursor:pointer;white-space:nowrap;padding:6px}
+nav button{border:0;background:transparent;font-size:13px;padding:6px;white-space:nowrap}
 .container{padding:15px;max-width:1100px;margin:auto}
 .banner{background:linear-gradient(135deg,#ff6a00,#ff9500);color:#fff;padding:25px;border-radius:14px;margin-bottom:18px}
 .banner h1{margin:0 0 8px}
 .categories{display:flex;gap:10px;overflow-x:auto;padding-bottom:10px}
-.category{background:#fff;padding:10px 15px;border-radius:20px;white-space:nowrap;border:1px solid #ddd;cursor:pointer}
+.category{background:#fff;padding:10px 15px;border-radius:20px;white-space:nowrap;border:1px solid #ddd}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin:18px 0 10px}
 .products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .product{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)}
@@ -32,34 +32,29 @@ nav button{border:0;background:transparent;font-size:13px;cursor:pointer;white-s
 .product-info{padding:10px}
 .product-name{font-weight:bold;margin-bottom:6px}
 .price{color:#ff6a00;font-size:18px;font-weight:bold}
-.stock{font-size:12px;color:#777;margin:5px 0}
-.store{font-size:12px;color:#666;margin:4px 0}
+.stock,.store{font-size:12px;color:#777;margin:5px 0}
 .product-actions{display:flex;gap:6px}
-.product-actions button{flex:1;border:0;padding:9px 4px;border-radius:7px;cursor:pointer}
+.product-actions button{flex:1;border:0;padding:9px 4px;border-radius:7px}
 .buy{background:#ff6a00;color:#fff}
 .favorite{background:#eee}
 .page{display:none}
 .page.active{display:block}
 .card{background:#fff;padding:18px;border-radius:12px;margin-bottom:12px}
 .form input,.form textarea,.form select{width:100%;padding:12px;margin:7px 0;border:1px solid #ddd;border-radius:8px}
-.form button,.primary{width:100%;padding:12px;background:#ff6a00;color:#fff;border:0;border-radius:8px;cursor:pointer;margin-top:8px}
-.secondary{width:100%;padding:12px;background:#222;color:#fff;border:0;border-radius:8px;cursor:pointer;margin-top:8px}
+.form button,.primary{width:100%;padding:12px;background:#ff6a00;color:#fff;border:0;border-radius:8px;margin-top:8px}
 .cart-item{display:flex;gap:10px;background:#fff;padding:10px;margin-bottom:8px;border-radius:10px;align-items:center}
 .cart-item img{width:70px;height:70px;object-fit:cover;border-radius:8px}
 .cart-info{flex:1}
 .quantity{display:flex;align-items:center;gap:8px;margin-top:5px}
-.quantity button{width:28px;height:28px;border:0;background:#eee;border-radius:5px;cursor:pointer}
+.quantity button{width:28px;height:28px;border:0;background:#eee;border-radius:5px}
 .total{font-size:20px;font-weight:bold;margin:15px 0}
-.empty{text-align:center;padding:35px;color:#777}
+.empty,.loading{text-align:center;padding:35px;color:#777}
 .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:15px}
 .modal-content{background:#fff;width:100%;max-width:450px;border-radius:14px;padding:20px;max-height:90vh;overflow-y:auto}
-.close{float:right;border:0;background:transparent;font-size:24px;cursor:pointer}
+.close{float:right;border:0;background:transparent;font-size:24px}
 .order{background:#fff;padding:15px;border-radius:10px;margin-bottom:10px}
 .badge{display:inline-block;background:#eee;padding:5px 8px;border-radius:12px;font-size:12px}
-.status{padding:10px;background:#f7f7f7;border-radius:8px;margin-bottom:12px}
-.loading{text-align:center;padding:30px;color:#777}
 .error{background:#ffe5e5;color:#a00000;padding:15px;border-radius:10px;margin-bottom:10px}
-.success{background:#e8f8ed;color:#147a35;padding:15px;border-radius:10px;margin-bottom:10px}
 .admin-box{background:#111;color:#fff;padding:18px;border-radius:12px;margin-bottom:12px}
 .admin-number{font-size:26px;font-weight:bold;margin-top:5px}
 footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px}
@@ -124,39 +119,27 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 </section>
 
 <section id="products" class="page">
-<div class="section-title">
-<h2>Todos os produtos</h2>
-</div>
+<div class="section-title"><h2>Todos os produtos</h2></div>
 <div id="productsList" class="products"></div>
 </section>
 
 <section id="favorites" class="page">
-<div class="section-title">
-<h2>Meus favoritos</h2>
-</div>
+<div class="section-title"><h2>Meus favoritos</h2></div>
 <div id="favoritesList" class="products"></div>
 </section>
 
 <section id="cart" class="page">
-<div class="section-title">
-<h2>Meu carrinho</h2>
-</div>
-
+<div class="section-title"><h2>Meu carrinho</h2></div>
 <div id="cartList"></div>
 
 <div class="card">
-<div class="total">
-Total: <span id="cartTotal">0 Kz</span>
-</div>
-
+<div class="total">Total: <span id="cartTotal">0 Kz</span></div>
 <button class="primary" onclick="openCheckout()">Finalizar compra</button>
 </div>
 </section>
 
 <section id="orders" class="page">
-<div class="section-title">
-<h2>Meus pedidos</h2>
-</div>
+<div class="section-title"><h2>Meus pedidos</h2></div>
 <div id="ordersList"></div>
 </section>
 
@@ -174,9 +157,7 @@ Total: <span id="cartTotal">0 Kz</span>
 </section>
 
 <section id="admin" class="page">
-<div class="section-title">
-<h2>⚙️ Painel de Controle Kivo</h2>
-</div>
+<div class="section-title"><h2>⚙️ Painel de Controle Kivo</h2></div>
 <div id="adminContent"></div>
 </section>
 
@@ -187,6 +168,7 @@ Total: <span id="cartTotal">0 Kz</span>
 <p>Compre. Venda. Cresça.</p>
 </footer>
 
+<!-- LOGIN -->
 <div id="loginModal" class="modal">
 <div class="modal-content">
 <button class="close" onclick="closeModal('loginModal')">×</button>
@@ -200,6 +182,7 @@ Total: <span id="cartTotal">0 Kz</span>
 </div>
 </div>
 
+<!-- CHECKOUT -->
 <div id="checkoutModal" class="modal">
 <div class="modal-content">
 <button class="close" onclick="closeModal('checkoutModal')">×</button>
@@ -221,6 +204,7 @@ Total: <span id="cartTotal">0 Kz</span>
 </div>
 </div>
 
+<!-- LOJA -->
 <div id="sellerModal" class="modal">
 <div class="modal-content">
 <button class="close" onclick="closeModal('sellerModal')">×</button>
@@ -248,33 +232,30 @@ const supabaseClient =
 supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 
-/* ID REAL DO COMPRADOR */
+/* ID REAL DO PERFIL DE TESTE */
 const TEST_PROFILE_ID =
-"0c3f5823-0428-4f08-9cc2-55cecaed200";
+"0c9f8851-6469-4f91-9cc2-33aacaedc528";
 
 
-let products = [];
+let products=[];
+let cart=JSON.parse(localStorage.getItem("kivo_cart"))||[];
+let favorites=JSON.parse(localStorage.getItem("kivo_favorites"))||[];
+let orders=JSON.parse(localStorage.getItem("kivo_orders"))||[];
 
-let cart =
-JSON.parse(localStorage.getItem("kivo_cart")) || [];
-
-let favorites =
-JSON.parse(localStorage.getItem("kivo_favorites")) || [];
-
-let orders =
-JSON.parse(localStorage.getItem("kivo_orders")) || [];
-
-let user =
-JSON.parse(localStorage.getItem("kivo_user")) || null;
+let user={
+id:TEST_PROFILE_ID,
+name:"Comprador Teste",
+phone:"923555555"
+};
 
 
 function money(value){
-return Number(value || 0).toLocaleString("pt-AO") + " Kz";
+return Number(value||0).toLocaleString("pt-AO")+" Kz";
 }
 
 
 function escapeHtml(text){
-return String(text ?? "")
+return String(text??"")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -284,125 +265,68 @@ return String(text ?? "")
 
 
 function saveData(){
-
 localStorage.setItem("kivo_cart",JSON.stringify(cart));
 localStorage.setItem("kivo_favorites",JSON.stringify(favorites));
 localStorage.setItem("kivo_orders",JSON.stringify(orders));
 localStorage.setItem("kivo_user",JSON.stringify(user));
-
 }
 
 
-/* ===============================
-PRODUTOS
-================================ */
+/* PRODUTOS */
 
 async function loadProducts(){
 
-const home =
-document.getElementById("homeProducts");
-
-const list =
-document.getElementById("productsList");
-
-home.innerHTML =
-'<div class="loading">A carregar produtos...</div>';
-
-list.innerHTML =
-'<div class="loading">A carregar produtos...</div>';
-
-
-const result =
-await supabaseClient
+const result=await supabaseClient
 .from("produtos")
-.select(`
-id,
-loja_id,
-nome,
-preco,
-estoque,
-ativo,
-criado_em,
-descricao,
-imagem_url,
-categoria
-`)
+.select("id,loja_id,nome,preco,estoque,ativo,criado_em,descricao,imagem_url,categoria")
 .eq("ativo",true)
 .order("criado_em",{ascending:false});
 
-
 if(result.error){
 
-const msg =
-'<div class="error"><strong>Erro ao carregar produtos.</strong><br><br>' +
-escapeHtml(result.error.message) +
-'</div>';
+console.error(result.error);
 
-home.innerHTML = msg;
-list.innerHTML = msg;
+document.getElementById("homeProducts").innerHTML=
+'<div class="error">'+escapeHtml(result.error.message)+'</div>';
+
+document.getElementById("productsList").innerHTML=
+'<div class="error">'+escapeHtml(result.error.message)+'</div>';
 
 return;
-
 }
 
+products=(result.data||[]).map(p=>({
 
-products =
-(result.data || []).map(function(p){
-
-return {
 id:p.id,
-name:p.nome || "Produto sem nome",
-price:Number(p.preco || 0),
-stock:Number(p.estoque || 0),
-category:p.categoria || "Outros",
-image:p.imagem_url || "https://via.placeholder.com/600x400?text=Kivo",
+name:p.nome||"Produto sem nome",
+price:Number(p.preco||0),
+stock:Number(p.estoque||0),
+category:p.categoria||"Outros",
+image:p.imagem_url||"https://via.placeholder.com/600x400?text=Kivo",
 storeId:p.loja_id,
-description:p.descricao || ""
-};
+description:p.descricao||""
 
-});
-
+}));
 
 renderAll();
-
 }
 
-
-/* ===============================
-NAVEGAÇÃO
-================================ */
 
 function showPage(page){
 
-document.querySelectorAll(".page")
-.forEach(function(section){
-section.classList.remove("active");
-});
+document.querySelectorAll(".page").forEach(s=>s.classList.remove("active"));
 
-const target =
-document.getElementById(page);
+const target=document.getElementById(page);
 
-if(target){
-target.classList.add("active");
-}
+if(target)target.classList.add("active");
 
 renderAll();
 
-if(page === "admin"){
-renderAdmin();
+if(page==="admin")renderAdmin();
+
+window.scrollTo({top:0,behavior:"smooth"});
 }
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
-
-}
-
-
-/* ===============================
-RENDER
-================================ */
 
 function renderAll(){
 
@@ -413,48 +337,31 @@ renderCart();
 renderOrders();
 renderAccount();
 updateCartCount();
-
 }
 
 
-/* ===============================
-PRODUTOS
-================================ */
-
 function renderProducts(list,elementId){
 
-const container =
-document.getElementById(elementId);
+const container=document.getElementById(elementId);
 
 if(!container)return;
 
 if(!list.length){
 
-container.innerHTML =
-'<div class="empty">Nenhum produto encontrado.</div>';
-
+container.innerHTML='<div class="empty">Nenhum produto encontrado.</div>';
 return;
-
 }
 
+container.innerHTML=list.map(product=>{
 
-container.innerHTML =
-list.map(function(product){
-
-const favorite =
-favorites.some(function(id){
-return String(id) === String(product.id);
-});
-
+const favorite=favorites.some(id=>String(id)===String(product.id));
 
 return `
 <div class="product">
 
-<img
-src="${escapeHtml(product.image)}"
+<img src="${escapeHtml(product.image)}"
 alt="${escapeHtml(product.name)}"
-onerror="this.src='https://via.placeholder.com/600x400?text=Kivo'"
->
+onerror="this.src='https://via.placeholder.com/600x400?text=Kivo'">
 
 <div class="product-info">
 
@@ -476,16 +383,14 @@ Loja Kivo
 
 <div class="product-actions">
 
-<button
-class="buy"
+<button class="buy"
 onclick="addToCart('${product.id}')">
 🛒 Comprar
 </button>
 
-<button
-class="favorite"
+<button class="favorite"
 onclick="toggleFavorite('${product.id}')">
-${favorite ? "❤️" : "♡"}
+${favorite?"❤️":"♡"}
 </button>
 
 </div>
@@ -494,43 +399,30 @@ ${favorite ? "❤️" : "♡"}
 `;
 
 }).join("");
-
 }
 
 
-/* ===============================
-CARRINHO
-================================ */
+/* CARRINHO */
 
 function addToCart(id){
 
-const product =
-products.find(function(p){
-return String(p.id) === String(id);
-});
-
+const product=products.find(p=>String(p.id)===String(id));
 
 if(!product){
 alert("Produto não encontrado.");
 return;
 }
 
-
-if(Number(product.stock) <= 0){
+if(Number(product.stock)<=0){
 alert("Este produto está sem estoque.");
 return;
 }
 
-
-const existing =
-cart.find(function(item){
-return String(item.id) === String(id);
-});
-
+const existing=cart.find(item=>String(item.id)===String(id));
 
 if(existing){
 
-if(Number(existing.quantity) >= Number(product.stock)){
+if(existing.quantity>=product.stock){
 alert("Não há mais unidades disponíveis.");
 return;
 }
@@ -546,130 +438,85 @@ quantity:1
 
 }
 
-
 saveData();
 renderAll();
 
 alert("Produto adicionado ao carrinho! 🛒");
-
 }
 
 
 function removeFromCart(id){
 
-cart =
-cart.filter(function(item){
-return String(item.id) !== String(id);
-});
+cart=cart.filter(item=>String(item.id)!==String(id));
 
 saveData();
 renderAll();
-
 }
 
 
 function changeQuantity(id,amount){
 
-const item =
-cart.find(function(item){
-return String(item.id) === String(id);
-});
+const item=cart.find(i=>String(i.id)===String(id));
+const product=products.find(p=>String(p.id)===String(id));
 
-const product =
-products.find(function(p){
-return String(p.id) === String(id);
-});
+if(!item||!product)return;
 
-if(!item || !product)return;
+item.quantity+=amount;
 
-item.quantity =
-Number(item.quantity) + Number(amount);
-
-
-if(item.quantity <= 0){
+if(item.quantity<=0){
 removeFromCart(id);
 return;
 }
 
-
-if(item.quantity > Number(product.stock)){
-
-item.quantity = Number(product.stock);
-
-alert(
-"Quantidade máxima disponível: " +
-product.stock
-);
-
+if(item.quantity>product.stock){
+item.quantity=product.stock;
+alert("Quantidade máxima disponível: "+product.stock);
 }
 
 saveData();
 renderAll();
-
 }
 
 
 function renderCart(){
 
-const container =
-document.getElementById("cartList");
+const container=document.getElementById("cartList");
 
 if(!container)return;
 
 if(!cart.length){
 
-container.innerHTML =
-'<div class="empty">Seu carrinho está vazio.</div>';
+container.innerHTML='<div class="empty">Seu carrinho está vazio.</div>';
 
-document.getElementById("cartTotal").innerText =
-"0 Kz";
+document.getElementById("cartTotal").innerText="0 Kz";
 
 return;
-
 }
 
+let total=0;
 
-let total = 0;
+container.innerHTML=cart.map(item=>{
 
-
-const html =
-cart.map(function(item){
-
-const product =
-products.find(function(p){
-return String(p.id) === String(item.id);
-});
-
+const product=products.find(p=>String(p.id)===String(item.id));
 
 if(!product)return "";
 
+const quantity=Number(item.quantity||1);
 
-const quantity =
-Number(item.quantity || 1);
+const subtotal=product.price*quantity;
 
-const subtotal =
-Number(product.price || 0) * quantity;
-
-total += subtotal;
-
+total+=subtotal;
 
 return `
 <div class="cart-item">
 
-<img
-src="${escapeHtml(product.image)}"
-onerror="this.src='https://via.placeholder.com/100?text=Kivo'"
->
+<img src="${escapeHtml(product.image)}">
 
 <div class="cart-info">
 
-<strong>
-${escapeHtml(product.name)}
-</strong>
+<strong>${escapeHtml(product.name)}</strong>
 
-<div>
-${money(product.price)}
-</div>
+<div>${money(product.price)}</div>
 
 <div class="quantity">
 
@@ -679,59 +526,38 @@ ${money(product.price)}
 
 <button onclick="changeQuantity('${product.id}',1)">+</button>
 
-<button
-onclick="removeFromCart('${product.id}')"
-style="margin-left:10px">
-🗑
-</button>
+<button onclick="removeFromCart('${product.id}')">🗑</button>
 
 </div>
+
 </div>
+
 </div>
 `;
 
 }).join("");
 
-
-container.innerHTML = html;
-
-document.getElementById("cartTotal").innerText =
-money(total);
-
+document.getElementById("cartTotal").innerText=money(total);
 }
 
 
 function updateCartCount(){
 
-const count =
-cart.reduce(function(sum,item){
-return sum + Number(item.quantity || 0);
-},0);
+const count=cart.reduce((sum,item)=>sum+Number(item.quantity||0),0);
 
-document.getElementById("cartCount").innerText =
-count;
-
+document.getElementById("cartCount").innerText=count;
 }
 
 
-/* ===============================
-FAVORITOS
-================================ */
+/* FAVORITOS */
 
 function toggleFavorite(id){
 
-const exists =
-favorites.some(function(item){
-return String(item) === String(id);
-});
-
+const exists=favorites.some(item=>String(item)===String(id));
 
 if(exists){
 
-favorites =
-favorites.filter(function(item){
-return String(item) !== String(id);
-});
+favorites=favorites.filter(item=>String(item)!==String(id));
 
 }else{
 
@@ -741,69 +567,35 @@ favorites.push(id);
 
 saveData();
 renderAll();
-
 }
 
 
 function renderFavorites(){
 
-const list =
-products.filter(function(product){
-
-return favorites.some(function(id){
-return String(id) === String(product.id);
-});
-
-});
+const list=products.filter(product=>
+favorites.some(id=>String(id)===String(product.id))
+);
 
 renderProducts(list,"favoritesList");
-
 }
 
 
-/* ===============================
-PESQUISA
-================================ */
+/* PESQUISA */
 
 function searchProducts(){
 
-const text =
-document.getElementById("searchInput")
-.value.toLowerCase().trim();
+const text=document.getElementById("searchInput").value.toLowerCase().trim();
 
+const result=products.filter(product=>
+product.name.toLowerCase().includes(text)||
+product.category.toLowerCase().includes(text)
+);
 
-const result =
-products.filter(function(product){
-
-return String(product.name)
-.toLowerCase()
-.includes(text)
-
-||
-
-String(product.category)
-.toLowerCase()
-.includes(text);
-
-});
-
-
-document.querySelectorAll(".page")
-.forEach(function(section){
-section.classList.remove("active");
-});
-
-document.getElementById("products")
-.classList.add("active");
+showPage("products");
 
 renderProducts(result,"productsList");
-
 }
 
-
-/* ===============================
-CATEGORIAS
-================================ */
 
 function normalizeText(text){
 
@@ -811,77 +603,51 @@ return String(text)
 .toLowerCase()
 .normalize("NFD")
 .replace(/[\u0300-\u036f]/g,"");
-
 }
 
 
 function filterCategory(category){
 
-if(category === "Todos"){
-
+if(category==="Todos"){
 showPage("products");
 renderProducts(products,"productsList");
 return;
-
 }
 
+const wanted=normalizeText(category);
 
-const wanted =
-normalizeText(category);
-
-
-const result =
-products.filter(function(product){
-
-return normalizeText(product.category)
-.includes(wanted);
-
-});
-
+const result=products.filter(product=>
+normalizeText(product.category).includes(wanted)
+);
 
 showPage("products");
 renderProducts(result,"productsList");
-
 }
 
 
-/* ===============================
-LOGIN
-================================ */
+/* LOGIN */
 
 function openLogin(){
-
-document.getElementById("loginModal")
-.style.display = "flex";
-
+document.getElementById("loginModal").style.display="flex";
 }
 
 
 function login(){
 
-const name =
-document.getElementById("loginName")
-.value.trim();
+const name=document.getElementById("loginName").value.trim();
+const phone=document.getElementById("loginPhone").value.trim();
 
-const phone =
-document.getElementById("loginPhone")
-.value.trim();
-
-
-if(!name || !phone){
-
+if(!name||!phone){
 alert("Preencha seu nome e telefone.");
 return;
-
 }
 
-
-user = {
+/* IMPORTANTE: ID CORRETO */
+user={
 id:TEST_PROFILE_ID,
 name:name,
 phone:phone
 };
-
 
 saveData();
 
@@ -889,69 +655,49 @@ closeModal("loginModal");
 renderAll();
 
 alert("Conta iniciada com sucesso! 🎉");
-
 }
 
 
-/* ===============================
-MODAIS
-================================ */
+/* MODAIS */
 
 function closeModal(id){
 
-const modal =
-document.getElementById(id);
+const modal=document.getElementById(id);
 
-if(modal){
-modal.style.display = "none";
-}
-
+if(modal)modal.style.display="none";
 }
 
 
-/* ===============================
-CHECKOUT
-================================ */
+/* CHECKOUT */
 
 function openCheckout(){
 
 if(!cart.length){
-
 alert("Seu carrinho está vazio.");
 return;
-
 }
 
-
 if(!user){
-
 alert("Primeiro entre na sua conta.");
 openLogin();
 return;
+}
 
+document.getElementById("deliveryName").value=user.name||"";
+document.getElementById("deliveryPhone").value=user.phone||"";
+
+document.getElementById("checkoutModal").style.display="flex";
 }
 
 
-document.getElementById("deliveryName")
-.value = user.name || "";
-
-document.getElementById("deliveryPhone")
-.value = user.phone || "";
-
-document.getElementById("checkoutModal")
-.style.display = "flex";
-
-}
-
-
-/* ===============================
-CRIAR PEDIDO
-================================ */
+/* =====================================================
+FINALIZAR PEDIDO
+===================================================== */
 
 async function finishOrder(){
 
-if(!user){
-alert("Entre na sua conta primeiro.");
+if(!user||!user.id){
+alert("Conta de comprador não encontrada.");
 return;
 }
 
@@ -960,213 +706,132 @@ alert("Seu carrinho está vazio.");
 return;
 }
 
+const name=document.getElementById("deliveryName").value.trim();
+const phone=document.getElementById("deliveryPhone").value.trim();
+const address=document.getElementById("deliveryAddress").value.trim();
+const paymentMethod=document.getElementById("paymentMethod").value;
 
-const name =
-document.getElementById("deliveryName")
-.value.trim();
-
-const phone =
-document.getElementById("deliveryPhone")
-.value.trim();
-
-const address =
-document.getElementById("deliveryAddress")
-.value.trim();
-
-const paymentMethod =
-document.getElementById("paymentMethod")
-.value;
-
-
-if(!name || !phone || !address){
-
+if(!name||!phone||!address){
 alert("Preencha todos os dados de entrega.");
 return;
-
 }
 
+const button=document.getElementById("finishButton");
 
-const button =
-document.getElementById("finishButton");
-
-button.disabled = true;
-button.innerText = "Criando pedido...";
-
+button.disabled=true;
+button.innerText="Criando pedido...";
 
 try{
 
-/* VALIDAR PRODUTOS */
-
-const cartProducts = [];
-
+const cartProducts=[];
 
 for(const item of cart){
 
-const product =
-products.find(function(p){
-return String(p.id) === String(item.id);
-});
+const product=products.find(p=>String(p.id)===String(item.id));
 
+if(!product)
+throw new Error("Um produto do carrinho não está disponível.");
 
-if(!product){
-throw new Error("Um produto do carrinho não está mais disponível.");
-}
-
-
-if(Number(item.quantity) <= 0){
+if(Number(item.quantity)<=0)
 throw new Error("Quantidade inválida.");
-}
 
+if(Number(item.quantity)>Number(product.stock))
+throw new Error("Estoque insuficiente para "+product.name);
 
-if(Number(item.quantity) > Number(product.stock)){
-throw new Error(
-"O produto " +
-product.name +
-" não possui estoque suficiente."
-);
-}
-
-
-if(!product.storeId){
-throw new Error(
-"O produto " +
-product.name +
-" não está ligado a uma loja."
-);
-}
-
+if(!product.storeId)
+throw new Error("O produto "+product.name+" não está ligado a uma loja.");
 
 cartProducts.push({
 item:item,
 product:product
 });
-
 }
 
 
 /* MESMA LOJA */
 
-const lojaId =
-cartProducts[0].product.storeId;
+const lojaId=cartProducts[0].product.storeId;
+
+const differentStore=cartProducts.some(row=>
+String(row.product.storeId)!==String(lojaId)
+);
+
+if(differentStore)
+throw new Error("O carrinho precisa ter produtos da mesma loja.");
 
 
-const differentStore =
-cartProducts.some(function(row){
+/* VALORES */
 
-return String(row.product.storeId)
-!==
-String(lojaId);
+let subtotal=0;
 
+cartProducts.forEach(row=>{
+subtotal+=Number(row.product.price)*Number(row.item.quantity);
 });
 
+const valorEntrega=0;
 
-if(differentStore){
+const total=subtotal+valorEntrega;
 
-throw new Error(
-"Por enquanto, o carrinho precisa ter produtos da mesma loja."
-);
+const comissaoPercentual=10;
 
-}
+const comissaoPlataforma=
+Number((total*comissaoPercentual/100).toFixed(2));
 
-
-/* CALCULAR */
-
-let subtotal = 0;
-
-
-cartProducts.forEach(function(row){
-
-subtotal +=
-Number(row.product.price) *
-Number(row.item.quantity);
-
-});
-
-
-const valorEntrega = 0;
-
-const total =
-subtotal + valorEntrega;
-
-const comissaoPercentual = 10;
-
-const comissaoPlataforma =
-Number(
-(total * comissaoPercentual / 100)
-.toFixed(2)
-);
-
-const valorVendedor =
-Number(
-(total - comissaoPlataforma)
-.toFixed(2)
-);
+const valorVendedor=
+Number((total-comissaoPlataforma).toFixed(2));
 
 
 /*
-IMPORTANTE:
+=====================================================
+AQUI ESTÁ A CORREÇÃO PRINCIPAL
 
-Aqui usamos os nomes que existem
-na tabela pedidos.
+O banco usa uma FK para perfis.id.
+Estamos usando o UUID REAL:
+0c9f8851-6469-4f91-9cc2-33aacaedc528
+=====================================================
 */
 
-const pedidoDados = {
+const pedidoDados={
 
-id_do_comprador:
-TEST_PROFILE_ID,
+id_do_comprador:TEST_PROFILE_ID,
 
-loja_id:
-lojaId,
+loja_id:lojaId,
 
-subtotal:
-subtotal,
+subtotal:subtotal,
 
-valor_entrega:
-valorEntrega,
+valor_entrega:valorEntrega,
 
-total:
-total,
+total:total,
 
-comissao_percentual:
-comissaoPercentual,
+comissao_percentual:comissaoPercentual,
 
-comissao_plataforma:
-comissaoPlataforma,
+comissao_plataforma:comissaoPlataforma,
 
-valor_vendedor:
-valorVendedor,
+valor_vendedor:valorVendedor,
 
-status:
-"pendente",
+status:"pendente",
 
-status_de_comercial:
-"pendente",
+status_de_comercial:"pendente",
 
-metodo_pagamento:
-paymentMethod,
+metodo_pagamento:paymentMethod,
 
-nome_entrega:
-name,
+nome_entrega:name,
 
-telefone_entrega:
-phone,
+telefone_entrega:phone,
 
-endereco_entrega:
-address,
+endereco_entrega:address,
 
-observacao:
-"Pedido realizado pelo Kivo Marketplace"
+observacao:"Pedido realizado pelo Kivo Marketplace"
 
 };
 
 
-console.log("DADOS DO PEDIDO:",pedidoDados);
+console.log("PEDIDO ENVIADO:",pedidoDados);
 
 
 /* CRIAR PEDIDO */
 
-const result =
-await supabaseClient
+const result=await supabaseClient
 .from("pedidos")
 .insert(pedidoDados)
 .select("*")
@@ -1175,52 +840,37 @@ await supabaseClient
 
 if(result.error){
 
-console.error("ERRO:",result.error);
+console.error("ERRO SUPABASE:",result.error);
 
 throw new Error(result.error.message);
-
 }
 
 
-const pedido =
-result.data;
+const pedido=result.data;
 
 
-/* GUARDAR LOCALMENTE */
+/* GUARDAR LOCAL */
 
 orders.unshift({
 
-id:
-pedido.id ||
-pedido.eu_ia ||
-"Pedido criado",
+id:pedido.id||"Pedido criado",
 
-total:
-total,
+total:total,
 
-subtotal:
-subtotal,
+subtotal:subtotal,
 
-commission:
-comissaoPlataforma,
+commission:comissaoPlataforma,
 
-status:
-"pendente",
+status:"pendente",
 
-date:
-new Date().toLocaleString("pt-AO")
+date:new Date().toLocaleString("pt-AO")
 
 });
 
 
-/* LIMPAR CARRINHO */
-
-cart = [];
+cart=[];
 
 saveData();
-
-
-/* FECHAR E MOSTRAR PEDIDO */
 
 closeModal("checkoutModal");
 
@@ -1230,15 +880,10 @@ showPage("orders");
 
 
 alert(
-"Pedido criado com sucesso! 🎉\n\n" +
-"Total: " +
-money(total) +
-"\n\n" +
-"Comissão Kivo (10%): " +
-money(comissaoPlataforma) +
-"\n\n" +
-"Valor do vendedor: " +
-money(valorVendedor)
+"Pedido criado com sucesso! 🎉\n\n"+
+"Total: "+money(total)+"\n\n"+
+"Comissão Kivo (10%): "+money(comissaoPlataforma)+"\n\n"+
+"Valor do vendedor: "+money(valorVendedor)
 );
 
 
@@ -1247,338 +892,205 @@ money(valorVendedor)
 console.error(error);
 
 alert(
-"Não foi possível criar o pedido.\n\n" +
+"Não foi possível criar o pedido.\n\n"+
 error.message
 );
 
 }finally{
 
-button.disabled = false;
-button.innerText = "Confirmar pedido";
+button.disabled=false;
+button.innerText="Confirmar pedido";
 
 }
 
 }
 
 
-/* ===============================
-PEDIDOS
-================================ */
+/* PEDIDOS */
 
 function renderOrders(){
 
-const container =
-document.getElementById("ordersList");
+const container=document.getElementById("ordersList");
 
 if(!container)return;
-
 
 if(!orders.length){
 
-container.innerHTML =
-'<div class="empty">Você ainda não fez nenhum pedido.</div>';
+container.innerHTML='<div class="empty">Você ainda não fez nenhum pedido.</div>';
 
 return;
-
 }
 
+container.innerHTML=orders.map(order=>`
 
-container.innerHTML =
-orders.map(function(order){
-
-return `
 <div class="order">
 
-<strong>
-Pedido #${escapeHtml(order.id)}
-</strong>
+<strong>Pedido #${escapeHtml(order.id)}</strong>
 
-<p>
-${escapeHtml(order.date || "")}
-</p>
+<p>${escapeHtml(order.date||"")}</p>
 
-<span class="badge">
-${escapeHtml(order.status || "pendente")}
-</span>
+<span class="badge">${escapeHtml(order.status||"pendente")}</span>
 
-<p>
-Total:
-<strong>${money(order.total)}</strong>
-</p>
+<p>Total: <strong>${money(order.total)}</strong></p>
 
-<p>
-Comissão Kivo:
-<strong>${money(order.commission || 0)}</strong>
-</p>
+<p>Comissão Kivo: <strong>${money(order.commission||0)}</strong></p>
 
 </div>
-`;
 
-}).join("");
-
+`).join("");
 }
 
 
-/* ===============================
-CONTA
-================================ */
+/* CONTA */
 
 function renderAccount(){
 
-const container =
-document.getElementById("accountInfo");
+const container=document.getElementById("accountInfo");
 
 if(!container)return;
 
-
 if(!user){
 
-container.innerHTML = `
-
+container.innerHTML=`
 <p>Você ainda não iniciou sessão.</p>
-
-<button
-class="primary"
-onclick="openLogin()">
-
-Entrar / Criar conta
-
-</button>
-
+<button class="primary" onclick="openLogin()">Entrar / Criar conta</button>
 `;
 
 return;
-
 }
 
+container.innerHTML=`
 
-container.innerHTML = `
+<h3>${escapeHtml(user.name)}</h3>
 
-<h3>
-${escapeHtml(user.name)}
-</h3>
+<p>📞 ${escapeHtml(user.phone)}</p>
 
-<p>
-📞 ${escapeHtml(user.phone)}
-</p>
+<p>Conta conectada ao Kivo.</p>
 
-<p class="status">
-Conta conectada ao Kivo.
-</p>
-
-<button
-class="primary"
-onclick="logout()">
-
-Sair da conta
-
-</button>
+<button class="primary" onclick="logout()">Sair da conta</button>
 
 `;
-
 }
 
 
 function logout(){
 
-user = null;
+user=null;
 
 saveData();
+
 renderAll();
 
 alert("Você saiu da conta.");
-
 }
 
 
-/* ===============================
-LOJA
-================================ */
+/* LOJA */
 
 function openSeller(){
 
 if(!user){
 
 alert("Primeiro entre na sua conta.");
+
 openLogin();
+
 return;
-
 }
 
-document.getElementById("sellerModal")
-.style.display = "flex";
-
+document.getElementById("sellerModal").style.display="flex";
 }
 
-
-/* ===============================
-CRIAR LOJA
-================================ */
 
 async function createStore(){
 
 if(!user){
-
 alert("Entre na sua conta primeiro.");
 return;
-
 }
 
+const name=document.getElementById("storeName").value.trim();
+const phone=document.getElementById("storePhone").value.trim();
+const address=document.getElementById("storeAddress").value.trim();
+const description=document.getElementById("storeDescription").value.trim();
 
-const name =
-document.getElementById("storeName")
-.value.trim();
-
-const phone =
-document.getElementById("storePhone")
-.value.trim();
-
-const address =
-document.getElementById("storeAddress")
-.value.trim();
-
-const description =
-document.getElementById("storeDescription")
-.value.trim();
-
-
-if(!name || !phone || !address){
-
+if(!name||!phone||!address){
 alert("Preencha nome, telefone e endereço.");
 return;
-
 }
 
-
-const lojaDados = {
-
-vendedor_id:
-"0c9f8851-6469-4f91-9cc2-33aacaedc528",
-
+const lojaDados={
+vendedor_id:user.id,
 nome:name,
-
 descricao:description,
-
 telefone:phone,
-
 endereco:address,
-
 ativo:true
-
 };
 
-
-const result =
-await supabaseClient
+const result=await supabaseClient
 .from("lojas")
 .insert(lojaDados)
 .select("*")
 .single();
 
-
 if(result.error){
 
-console.error(result.error);
-
-alert(
-"Erro ao criar loja:\n\n" +
-result.error.message
-);
+alert("Erro ao criar loja:\n\n"+result.error.message);
 
 return;
-
 }
-
 
 closeModal("sellerModal");
 
-alert(
-"Loja criada com sucesso! 🎉\n\n" +
-"Nome: " +
-name
-);
-
+alert("Loja criada com sucesso! 🎉");
 }
 
 
-/* ===============================
-PAINEL
-================================ */
+/* PAINEL */
 
 async function renderAdmin(){
 
-const container =
-document.getElementById("adminContent");
+const container=document.getElementById("adminContent");
 
 if(!container)return;
 
+container.innerHTML='<div class="loading">A carregar painel...</div>';
 
-container.innerHTML =
-'<div class="loading">A carregar painel...</div>';
-
-
-const pedidosResult =
-await supabaseClient
-.from("pedidos")
-.select("*");
-
+const pedidosResult=await supabaseClient.from("pedidos").select("*");
 
 if(pedidosResult.error){
 
-container.innerHTML =
-'<div class="error">' +
-escapeHtml(pedidosResult.error.message) +
-'</div>';
+container.innerHTML=
+'<div class="error">'+escapeHtml(pedidosResult.error.message)+'</div>';
 
 return;
-
 }
 
+const lojasResult=await supabaseClient.from("lojas").select("*");
+const produtosResult=await supabaseClient.from("produtos").select("*");
 
-const lojasResult =
-await supabaseClient
-.from("lojas")
-.select("*");
+const pedidos=pedidosResult.data||[];
+const lojas=lojasResult.data||[];
+const produtos=produtosResult.data||[];
 
+let faturamento=0;
+let comissao=0;
+let pendentes=0;
 
-const produtosResult =
-await supabaseClient
-.from("produtos")
-.select("*");
+pedidos.forEach(pedido=>{
 
+faturamento+=Number(pedido.total||0);
 
-const pedidos =
-pedidosResult.data || [];
+comissao+=Number(pedido.comissao_plataforma||0);
 
-const lojas =
-lojasResult.data || [];
-
-const produtos =
-produtosResult.data || [];
-
-
-let faturamento = 0;
-let comissao = 0;
-let pendentes = 0;
-
-
-pedidos.forEach(function(pedido){
-
-faturamento +=
-Number(pedido.total || 0);
-
-comissao +=
-Number(pedido.comissao_plataforma || 0);
-
-
-if(String(pedido.status) === "pendente"){
+if(String(pedido.status)==="pendente"){
 pendentes++;
 }
 
 });
 
-
-container.innerHTML = `
+container.innerHTML=`
 
 <div class="admin-box">
 <div>📦 Pedidos</div>
@@ -1611,13 +1123,10 @@ container.innerHTML = `
 </div>
 
 `;
-
 }
 
 
-/* ===============================
-INICIAR
-================================ */
+/* INICIAR */
 
 async function startKivo(){
 
@@ -1626,7 +1135,6 @@ renderAll();
 await loadProducts();
 
 }
-
 
 startKivo();
 
