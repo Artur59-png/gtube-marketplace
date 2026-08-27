@@ -71,30 +71,70 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <body>
 
 <header>
+
 <div class="top">
+
 <div class="logo">Kivo</div>
 
 <div class="icons">
-<button class="icon-btn" onclick="showPage('favorites')">♡</button>
-<button class="icon-btn" onclick="showPage('cart')">
+
+<button class="icon-btn"
+onclick="showPage('favorites')">
+♡
+</button>
+
+<button class="icon-btn"
+onclick="showPage('cart')">
 🛒 <span id="cartCount">0</span>
 </button>
-<button class="icon-btn" onclick="showPage('account')">👤</button>
+
+<button class="icon-btn"
+onclick="showPage('account')">
+👤
+</button>
+
 </div>
 </div>
 
 <div class="search">
-<input id="searchInput" type="text" placeholder="Pesquisar produtos..." oninput="searchProducts()">
-<button onclick="searchProducts()">Buscar</button>
+
+<input
+id="searchInput"
+type="text"
+placeholder="Pesquisar produtos..."
+oninput="searchProducts()"
+>
+
+<button onclick="searchProducts()">
+Buscar
+</button>
+
 </div>
+
 </header>
 
 <nav>
-<button onclick="showPage('home')">Início</button>
-<button onclick="showPage('products')">Produtos</button>
-<button onclick="showPage('orders')">Pedidos</button>
-<button onclick="showPage('cart')">Carrinho</button>
-<button onclick="showPage('account')">Conta</button>
+
+<button onclick="showPage('home')">
+Início
+</button>
+
+<button onclick="showPage('products')">
+Produtos
+</button>
+
+<button onclick="showPage('orders')">
+Pedidos
+</button>
+
+<button onclick="showPage('cart')">
+Carrinho
+</button>
+
+<button onclick="showPage('account')">
+Conta
+</button>
+
 </nav>
 
 <main class="container">
@@ -102,23 +142,54 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <section id="home" class="page active">
 
 <div class="banner">
+
 <h1>Bem-vindo ao Kivo</h1>
-<p>Compre e venda produtos de forma simples.</p>
+
+<p>
+Compre e venda produtos de forma simples.
+</p>
+
 </div>
 
 <h3>Categorias</h3>
 
 <div class="categories">
-<button class="category" onclick="filterCategory('Todos')">Todos</button>
-<button class="category" onclick="filterCategory('Eletronicos')">📱 Eletrônicos</button>
-<button class="category" onclick="filterCategory('Moda')">👕 Moda</button>
-<button class="category" onclick="filterCategory('Casa')">🏠 Casa</button>
-<button class="category" onclick="filterCategory('Automoveis')">🚗 Automóveis</button>
+
+<button class="category"
+onclick="filterCategory('Todos')">
+Todos
+</button>
+
+<button class="category"
+onclick="filterCategory('Eletronicos')">
+📱 Eletrônicos
+</button>
+
+<button class="category"
+onclick="filterCategory('Moda')">
+👕 Moda
+</button>
+
+<button class="category"
+onclick="filterCategory('Casa')">
+🏠 Casa
+</button>
+
+<button class="category"
+onclick="filterCategory('Automoveis')">
+🚗 Automóveis
+</button>
+
 </div>
 
 <div class="section-title">
+
 <h2>Produtos</h2>
-<button onclick="showPage('products')">Ver todos</button>
+
+<button onclick="showPage('products')">
+Ver todos
+</button>
+
 </div>
 
 <div id="homeProducts" class="products"></div>
@@ -129,7 +200,9 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <section id="products" class="page">
 
 <div class="section-title">
+
 <h2>Todos os produtos</h2>
+
 </div>
 
 <div id="productsList" class="products"></div>
@@ -140,7 +213,9 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <section id="favorites" class="page">
 
 <div class="section-title">
+
 <h2>Meus favoritos</h2>
+
 </div>
 
 <div id="favoritesList" class="products"></div>
@@ -151,7 +226,9 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <section id="cart" class="page">
 
 <div class="section-title">
+
 <h2>Meu carrinho</h2>
+
 </div>
 
 <div id="cartList"></div>
@@ -159,11 +236,17 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <div class="card">
 
 <div class="total">
-Total: <span id="cartTotal">0 Kz</span>
+
+Total:
+<span id="cartTotal">0 Kz</span>
+
 </div>
 
-<button class="primary" onclick="openCheckout()">
+<button class="primary"
+onclick="openCheckout()">
+
 Finalizar compra
+
 </button>
 
 </div>
@@ -174,7 +257,9 @@ Finalizar compra
 <section id="orders" class="page">
 
 <div class="section-title">
+
 <h2>Meus pedidos</h2>
+
 </div>
 
 <div id="ordersList"></div>
@@ -200,8 +285,11 @@ Finalizar compra
 Crie a sua loja e comece a publicar os seus produtos.
 </p>
 
-<button class="primary" onclick="openSeller()">
+<button class="primary"
+onclick="openSeller()">
+
 Criar minha loja
+
 </button>
 
 </div>
@@ -212,8 +300,13 @@ Criar minha loja
 
 
 <footer>
+
 <strong>Kivo Marketplace</strong>
-<p>Compre. Venda. Cresça.</p>
+
+<p>
+Compre. Venda. Cresça.
+</p>
+
 </footer>
 
 
@@ -223,15 +316,24 @@ Criar minha loja
 
 <div class="modal-content">
 
-<button class="close" onclick="closeModal('loginModal')">×</button>
+<button class="close"
+onclick="closeModal('loginModal')">
+×
+</button>
 
 <h2>Entrar no Kivo</h2>
 
 <div class="form">
 
-<input id="loginName" placeholder="Seu nome">
+<input
+id="loginName"
+placeholder="Seu nome"
+>
 
-<input id="loginPhone" placeholder="Telefone">
+<input
+id="loginPhone"
+placeholder="Telefone"
+>
 
 <button onclick="login()">
 Entrar
@@ -250,17 +352,29 @@ Entrar
 
 <div class="modal-content">
 
-<button class="close" onclick="closeModal('checkoutModal')">×</button>
+<button class="close"
+onclick="closeModal('checkoutModal')">
+×
+</button>
 
 <h2>Finalizar compra</h2>
 
 <div class="form">
 
-<input id="deliveryName" placeholder="Nome completo">
+<input
+id="deliveryName"
+placeholder="Nome completo"
+>
 
-<input id="deliveryPhone" placeholder="Telefone">
+<input
+id="deliveryPhone"
+placeholder="Telefone"
+>
 
-<textarea id="deliveryAddress" placeholder="Endereço de entrega"></textarea>
+<textarea
+id="deliveryAddress"
+placeholder="Endereço de entrega">
+</textarea>
 
 <button onclick="finishOrder()">
 Confirmar pedido
@@ -279,19 +393,34 @@ Confirmar pedido
 
 <div class="modal-content">
 
-<button class="close" onclick="closeModal('sellerModal')">×</button>
+<button class="close"
+onclick="closeModal('sellerModal')">
+×
+</button>
 
 <h2>Criar minha loja</h2>
 
 <div class="form">
 
-<input id="storeName" placeholder="Nome da loja">
+<input
+id="storeName"
+placeholder="Nome da loja"
+>
 
-<input id="storePhone" placeholder="Telefone">
+<input
+id="storePhone"
+placeholder="Telefone"
+>
 
-<input id="storeAddress" placeholder="Endereço">
+<input
+id="storeAddress"
+placeholder="Endereço"
+>
 
-<textarea id="storeDescription" placeholder="Descrição da loja"></textarea>
+<textarea
+id="storeDescription"
+placeholder="Descrição da loja">
+</textarea>
 
 <button onclick="createStore()">
 Criar loja
@@ -307,7 +436,7 @@ Criar loja
 <script>
 
 /* =====================================================
-   SUPABASE
+SUPABASE
 ===================================================== */
 
 const SUPABASE_URL =
@@ -324,7 +453,7 @@ SUPABASE_KEY
 
 
 /* =====================================================
-   PERFIL DE TESTE
+PERFIL DE TESTE
 ===================================================== */
 
 const TEST_PROFILE_ID =
@@ -332,7 +461,7 @@ const TEST_PROFILE_ID =
 
 
 /* =====================================================
-   DADOS
+DADOS
 ===================================================== */
 
 let products = [];
@@ -359,19 +488,20 @@ localStorage.getItem("kivo_user")
 
 
 /* =====================================================
-   DINHEIRO
+DINHEIRO
 ===================================================== */
 
 function money(value){
 
 return Number(value || 0)
-.toLocaleString("pt-AO") + " Kz";
+.toLocaleString("pt-AO") +
+" Kz";
 
 }
 
 
 /* =====================================================
-   GUARDAR
+GUARDAR
 ===================================================== */
 
 function saveData(){
@@ -400,7 +530,7 @@ JSON.stringify(user)
 
 
 /* =====================================================
-   CARREGAR PRODUTOS DO SUPABASE
+CARREGAR PRODUTOS
 ===================================================== */
 
 async function loadProducts(){
@@ -418,7 +548,10 @@ list.innerHTML =
 '<div class="loading">A carregar produtos...</div>';
 
 
-const {data,error} =
+const {
+data,
+error
+} =
 await supabaseClient
 .from("produtos")
 .select(`
@@ -444,11 +577,12 @@ console.error(error);
 const msg =
 `<div class="error">
 Erro ao carregar produtos.<br><br>
-${error.message}
+${escapeHtml(error.message)}
 </div>`;
 
-home.innerHTML=msg;
-list.innerHTML=msg;
+home.innerHTML = msg;
+
+list.innerHTML = msg;
 
 return;
 }
@@ -461,27 +595,22 @@ return {
 
 id:p.id,
 
-name:
-p.nome || "Produto sem nome",
+name:p.nome ||
+"Produto sem nome",
 
-price:
-Number(p.preco || 0),
+price:Number(p.preco || 0),
 
-stock:
-Number(p.estoque || 0),
+stock:Number(p.estoque || 0),
 
-category:
-p.categoria || "Outros",
+category:p.categoria ||
+"Outros",
 
-image:
-p.imagem_url ||
+image:p.imagem_url ||
 "https://via.placeholder.com/600x400?text=Kivo",
 
-storeId:
-p.loja_id,
+storeId:p.loja_id,
 
-description:
-p.descricao || ""
+description:p.descricao || ""
 
 };
 
@@ -494,7 +623,7 @@ renderAll();
 
 
 /* =====================================================
-   NAVEGAÇÃO
+NAVEGAÇÃO
 ===================================================== */
 
 function showPage(page){
@@ -512,21 +641,26 @@ const target =
 document.getElementById(page);
 
 if(target){
+
 target.classList.add("active");
+
 }
 
 renderAll();
 
 window.scrollTo({
+
 top:0,
+
 behavior:"smooth"
+
 });
 
 }
 
 
 /* =====================================================
-   RENDER GERAL
+RENDER
 ===================================================== */
 
 function renderAll(){
@@ -555,7 +689,7 @@ updateCartCount();
 
 
 /* =====================================================
-   PRODUTOS
+PRODUTOS
 ===================================================== */
 
 function renderProducts(
@@ -581,9 +715,12 @@ container.innerHTML =
 list.map(function(product){
 
 const favorite =
-favorites.some(
-id => String(id) === String(product.id)
-);
+favorites.some(function(id){
+
+return String(id) ===
+String(product.id);
+
+});
 
 
 return `
@@ -591,27 +728,36 @@ return `
 <div class="product">
 
 <img
-src="${product.image}"
-alt="${product.name}"
+src="${escapeHtml(product.image)}"
+alt="${escapeHtml(product.name)}"
 onerror="this.src='https://via.placeholder.com/600x400?text=Kivo'"
 >
 
 <div class="product-info">
 
 <div class="product-name">
+
 ${escapeHtml(product.name)}
+
 </div>
 
 <div class="price">
+
 ${money(product.price)}
+
 </div>
 
 <div class="stock">
-${product.stock} unidades disponíveis
+
+${product.stock}
+unidades disponíveis
+
 </div>
 
 <div class="store">
+
 Loja Kivo
+
 </div>
 
 <div class="product-actions">
@@ -620,14 +766,18 @@ Loja Kivo
 class="buy"
 onclick="addToCart('${product.id}')"
 >
+
 🛒 Comprar
+
 </button>
 
 <button
 class="favorite"
 onclick="toggleFavorite('${product.id}')"
 >
+
 ${favorite ? "❤️" : "♡"}
+
 </button>
 
 </div>
@@ -644,7 +794,7 @@ ${favorite ? "❤️" : "♡"}
 
 
 /* =====================================================
-   ESCAPAR TEXTO
+ESCAPAR HTML
 ===================================================== */
 
 function escapeHtml(text){
@@ -660,15 +810,19 @@ return String(text)
 
 
 /* =====================================================
-   CARRINHO
+CARRINHO
 ===================================================== */
 
 function addToCart(id){
 
 const product =
-products.find(
-p => String(p.id) === String(id)
-);
+products.find(function(p){
+
+return String(p.id) ===
+String(id);
+
+});
+
 
 if(!product){
 
@@ -687,16 +841,21 @@ return;
 
 
 const existing =
-cart.find(
-item => String(item.id) === String(id)
-);
+cart.find(function(item){
+
+return String(item.id) ===
+String(id);
+
+});
 
 
 if(existing){
 
 if(existing.quantity >= product.stock){
 
-alert("Não há mais unidades disponíveis.");
+alert(
+"Não há mais unidades disponíveis."
+);
 
 return;
 }
@@ -720,7 +879,9 @@ saveData();
 
 renderAll();
 
-alert("Produto adicionado ao carrinho!");
+alert(
+"Produto adicionado ao carrinho!"
+);
 
 }
 
@@ -728,9 +889,12 @@ alert("Produto adicionado ao carrinho!");
 function removeFromCart(id){
 
 cart =
-cart.filter(
-item => String(item.id) !== String(id)
-);
+cart.filter(function(item){
+
+return String(item.id) !==
+String(id);
+
+});
 
 saveData();
 
@@ -739,20 +903,24 @@ renderAll();
 }
 
 
-function changeQuantity(
-id,
-amount
-){
+function changeQuantity(id,amount){
 
 const item =
-cart.find(
-item => String(item.id) === String(id)
-);
+cart.find(function(item){
+
+return String(item.id) ===
+String(id);
+
+});
 
 const product =
-products.find(
-p => String(p.id) === String(id)
-);
+products.find(function(p){
+
+return String(p.id) ===
+String(id);
+
+});
+
 
 if(!item || !product)return;
 
@@ -765,6 +933,7 @@ if(item.quantity <= 0){
 removeFromCart(id);
 
 return;
+
 }
 
 
@@ -803,28 +972,35 @@ container.innerHTML =
 
 document.getElementById(
 "cartTotal"
-).innerText="0 Kz";
+).innerText =
+"0 Kz";
 
 return;
 }
 
 
-let total=0;
+let total = 0;
 
 
 container.innerHTML =
 cart.map(function(item){
 
 const product =
-products.find(
-p => String(p.id) === String(item.id)
-);
+products.find(function(p){
+
+return String(p.id) ===
+String(item.id);
+
+});
+
 
 if(!product)return "";
 
 
 const subtotal =
-product.price * item.quantity;
+product.price *
+item.quantity;
+
 
 total += subtotal;
 
@@ -834,18 +1010,22 @@ return `
 <div class="cart-item">
 
 <img
-src="${product.image}"
+src="${escapeHtml(product.image)}"
 onerror="this.src='https://via.placeholder.com/100?text=Kivo'"
 >
 
 <div class="cart-info">
 
 <strong>
+
 ${escapeHtml(product.name)}
+
 </strong>
 
 <div>
+
 ${money(product.price)}
+
 </div>
 
 <div class="quantity">
@@ -857,7 +1037,9 @@ onclick="changeQuantity('${product.id}',-1)"
 </button>
 
 <span>
+
 ${item.quantity}
+
 </span>
 
 <button
@@ -895,37 +1077,46 @@ money(total);
 function updateCartCount(){
 
 const count =
-cart.reduce(
-(sum,item) =>
-sum + Number(item.quantity || 0),
-0
-);
+cart.reduce(function(sum,item){
+
+return sum +
+Number(item.quantity || 0);
+
+},0);
+
 
 document.getElementById(
 "cartCount"
-).innerText=count;
+).innerText =
+count;
 
 }
 
 
 /* =====================================================
-   FAVORITOS
+FAVORITOS
 ===================================================== */
 
 function toggleFavorite(id){
 
 const exists =
-favorites.some(
-item => String(item) === String(id)
-);
+favorites.some(function(item){
+
+return String(item) ===
+String(id);
+
+});
 
 
 if(exists){
 
 favorites =
-favorites.filter(
-item => String(item) !== String(id)
-);
+favorites.filter(function(item){
+
+return String(item) !==
+String(id);
+
+});
 
 }else{
 
@@ -943,22 +1134,17 @@ renderAll();
 
 function renderFavorites(){
 
-const container =
-document.getElementById(
-"favoritesList"
-);
-
-if(!container)return;
-
-
 const list =
-products.filter(
-product =>
-favorites.some(
-id =>
-String(id) === String(product.id)
-)
-);
+products.filter(function(product){
+
+return favorites.some(function(id){
+
+return String(id) ===
+String(product.id);
+
+});
+
+});
 
 
 renderProducts(
@@ -970,15 +1156,15 @@ list,
 
 
 /* =====================================================
-   PESQUISA
+PESQUISA
 ===================================================== */
 
 function searchProducts(){
 
 const text =
-document
-.getElementById("searchInput")
-.value
+document.getElementById(
+"searchInput"
+).value
 .toLowerCase()
 .trim();
 
@@ -1001,14 +1187,17 @@ product.category
 
 document
 .querySelectorAll(".page")
-.forEach(
-section =>
-section.classList.remove("active")
-);
+.forEach(function(section){
+
+section.classList.remove("active");
+
+});
+
 
 document
 .getElementById("products")
 .classList.add("active");
+
 
 renderProducts(
 result,
@@ -1017,6 +1206,10 @@ result,
 
 }
 
+
+/* =====================================================
+CATEGORIAS
+===================================================== */
 
 function normalizeText(text){
 
@@ -1030,7 +1223,7 @@ return String(text)
 
 function filterCategory(category){
 
-if(category==="Todos"){
+if(category === "Todos"){
 
 showPage("products");
 
@@ -1040,6 +1233,7 @@ products,
 );
 
 return;
+
 }
 
 
@@ -1068,14 +1262,15 @@ result,
 
 
 /* =====================================================
-   LOGIN
+LOGIN
 ===================================================== */
 
 function openLogin(){
 
-document
-.getElementById("loginModal")
-.style.display="flex";
+document.getElementById(
+"loginModal"
+).style.display =
+"flex";
 
 }
 
@@ -1083,16 +1278,14 @@ document
 function login(){
 
 const name =
-document
-.getElementById("loginName")
-.value
-.trim();
+document.getElementById(
+"loginName"
+).value.trim();
 
 const phone =
-document
-.getElementById("loginPhone")
-.value
-.trim();
+document.getElementById(
+"loginPhone"
+).value.trim();
 
 
 if(!name || !phone){
@@ -1105,7 +1298,7 @@ return;
 }
 
 
-user={
+user = {
 
 id:TEST_PROFILE_ID,
 
@@ -1130,7 +1323,7 @@ alert(
 
 
 /* =====================================================
-   CHECKOUT
+CHECKOUT
 ===================================================== */
 
 function openCheckout(){
@@ -1142,6 +1335,7 @@ alert(
 );
 
 return;
+
 }
 
 
@@ -1154,12 +1348,14 @@ alert(
 openLogin();
 
 return;
+
 }
 
 
-document
-.getElementById("checkoutModal")
-.style.display="flex";
+document.getElementById(
+"checkoutModal"
+).style.display =
+"flex";
 
 }
 
@@ -1170,14 +1366,17 @@ const modal =
 document.getElementById(id);
 
 if(modal){
-modal.style.display="none";
+
+modal.style.display =
+"none";
+
 }
 
 }
 
 
 /* =====================================================
-   CRIAR PEDIDO
+CRIAR PEDIDO
 ===================================================== */
 
 async function finishOrder(){
@@ -1189,6 +1388,7 @@ alert(
 );
 
 return;
+
 }
 
 
@@ -1199,26 +1399,24 @@ alert(
 );
 
 return;
+
 }
 
 
 const name =
-document
-.getElementById("deliveryName")
-.value
-.trim();
+document.getElementById(
+"deliveryName"
+).value.trim();
 
 const phone =
-document
-.getElementById("deliveryPhone")
-.value
-.trim();
+document.getElementById(
+"deliveryPhone"
+).value.trim();
 
 const address =
-document
-.getElementById("deliveryAddress")
-.value
-.trim();
+document.getElementById(
+"deliveryAddress"
+).value.trim();
 
 
 if(!name || !phone || !address){
@@ -1228,17 +1426,19 @@ alert(
 );
 
 return;
+
 }
 
 
-/* PRIMEIRO PRODUTO */
+/* PRODUTO PRINCIPAL */
 
 const firstProduct =
-products.find(
-p =>
-String(p.id) ===
-String(cart[0].id)
-);
+products.find(function(p){
+
+return String(p.id) ===
+String(cart[0].id);
+
+});
 
 
 if(!firstProduct){
@@ -1248,14 +1448,13 @@ alert(
 );
 
 return;
+
 }
 
 
 const lojaId =
 firstProduct.storeId;
 
-
-/* VERIFICAR LOJA */
 
 if(!lojaId){
 
@@ -1264,6 +1463,7 @@ alert(
 );
 
 return;
+
 }
 
 
@@ -1273,11 +1473,13 @@ const differentStore =
 cart.some(function(item){
 
 const product =
-products.find(
-p =>
-String(p.id) ===
-String(item.id)
-);
+products.find(function(p){
+
+return String(p.id) ===
+String(item.id);
+
+});
+
 
 return product &&
 String(product.storeId) !==
@@ -1289,31 +1491,46 @@ String(lojaId);
 if(differentStore){
 
 alert(
-"Por enquanto o carrinho precisa ter produtos da mesma loja."
+"Por enquanto, o carrinho precisa ter produtos da mesma loja."
 );
 
 return;
+
 }
 
 
 /* CALCULAR */
 
-let subtotal=0;
+let subtotal = 0;
 
 
 const items =
 cart.map(function(item){
 
 const product =
-products.find(
-p =>
-String(p.id) ===
-String(item.id)
-);
+products.find(function(p){
+
+return String(p.id) ===
+String(item.id);
+
+});
+
+
+if(!product){
+
+return null;
+
+}
+
+
+const quantidade =
+Number(item.quantity || 1);
+
 
 const itemSubtotal =
-Number(product.price) *
-Number(item.quantity);
+Number(product.price || 0) *
+quantidade;
+
 
 subtotal += itemSubtotal;
 
@@ -1322,25 +1539,37 @@ return {
 
 productId:product.id,
 
-quantity:item.quantity,
+quantity:quantidade,
 
 subtotal:itemSubtotal
 
 };
 
-});
+}).filter(Boolean);
 
 
-const valorEntrega=0;
+if(!items.length){
+
+alert(
+"Não foi possível calcular os produtos."
+);
+
+return;
+
+}
+
+
+const valorEntrega = 0;
 
 const total =
 subtotal + valorEntrega;
 
-const comissaoPercentual=10;
+
+const comissaoPercentual = 10;
 
 const comissaoPlataforma =
-total *
-(comissaoPercentual/100);
+total * 0.10;
+
 
 const valorVendedor =
 total -
@@ -1348,7 +1577,7 @@ comissaoPlataforma;
 
 
 /* =====================================================
-   PEDIDO
+CRIAR PEDIDO
 ===================================================== */
 
 const {
@@ -1359,7 +1588,7 @@ await supabaseClient
 .from("pedidos")
 .insert({
 
-comprador_id:user.id,
+id_do_comprador:user.id,
 
 loja_id:lojaId,
 
@@ -1380,13 +1609,18 @@ valorVendedor,
 
 status:"pendente",
 
-pagamento_status:"pendente",
+status_comercial:"pendente",
+
+metodo_pagamento:"pendente",
 
 nome_entrega:name,
 
 telefone_entrega:phone,
 
-endereco_entrega:address
+endereco_entrega:address,
+
+observacao:
+"Pedido realizado pelo Kivo Marketplace"
 
 })
 .select()
@@ -1396,65 +1630,22 @@ endereco_entrega:address
 if(pedidoError){
 
 console.error(
-"Erro pedido:",
+"ERRO SUPABASE:",
 pedidoError
 );
 
 alert(
-"Não foi possível criar o pedido.\n\n"+
+"Não foi possível criar o pedido.\n\n" +
 pedidoError.message
 );
 
 return;
-}
-
-
-/* =====================================================
-   PAGAMENTO DO VENDEDOR
-===================================================== */
-
-const vendedorId =
-TEST_PROFILE_ID;
-
-
-const {
-error:pagamentoError
-} =
-await supabaseClient
-.from("pagamentos_vendedores")
-.insert({
-
-pedido_id:pedido.id,
-
-loja_id:lojaId,
-
-vendedor_id:vendedorId,
-
-valor_bruto:total,
-
-comissao_plataforma:
-comissaoPlataforma,
-
-valor_liquido:
-valorVendedor,
-
-status:"aguardando"
-
-});
-
-
-if(pagamentoError){
-
-console.warn(
-"Pagamento do vendedor não foi criado:",
-pagamentoError
-);
 
 }
 
 
 /* =====================================================
-   GUARDAR LOCALMENTE
+GUARDAR PEDIDO LOCAL
 ===================================================== */
 
 orders.unshift({
@@ -1468,23 +1659,29 @@ subtotal:subtotal,
 commission:
 comissaoPlataforma,
 
-status:
-pedido.status,
+status:"pendente",
 
 date:
-new Date()
-.toLocaleString("pt-AO")
+new Date().toLocaleString("pt-AO")
 
 });
 
 
 /* LIMPAR */
 
-cart=[];
+cart = [];
 
 saveData();
 
-closeModal("checkoutModal");
+
+/* FECHAR */
+
+closeModal(
+"checkoutModal"
+);
+
+
+/* ATUALIZAR */
 
 renderAll();
 
@@ -1492,11 +1689,12 @@ showPage("orders");
 
 
 alert(
-"Pedido criado com sucesso!\n\n"+
-"Total: "+money(total)+
-"\nComissão Kivo: "+
-money(comissaoPlataforma)+
-"\nVendedor: "+
+"Pedido criado com sucesso! 🎉\n\n" +
+"Total: " +
+money(total) +
+"\nComissão Kivo (10%): " +
+money(comissaoPlataforma) +
+"\nValor do vendedor: " +
 money(valorVendedor)
 );
 
@@ -1504,7 +1702,7 @@ money(valorVendedor)
 
 
 /* =====================================================
-   PEDIDOS
+PEDIDOS
 ===================================================== */
 
 function renderOrders(){
@@ -1523,6 +1721,7 @@ container.innerHTML =
 '<div class="empty">Você ainda não fez nenhum pedido.</div>';
 
 return;
+
 }
 
 
@@ -1546,17 +1745,23 @@ ${escapeHtml(order.status || "pendente")}
 </span>
 
 <p>
+
 Total:
+
 <strong>
 ${money(order.total)}
 </strong>
+
 </p>
 
 <p>
+
 Comissão Kivo:
+
 <strong>
 ${money(order.commission || 0)}
 </strong>
+
 </p>
 
 </div>
@@ -1569,7 +1774,7 @@ ${money(order.commission || 0)}
 
 
 /* =====================================================
-   CONTA
+CONTA
 ===================================================== */
 
 function renderAccount(){
@@ -1584,7 +1789,7 @@ if(!container)return;
 
 if(!user){
 
-container.innerHTML=`
+container.innerHTML = `
 
 <p>
 Você ainda não iniciou sessão.
@@ -1600,10 +1805,11 @@ Entrar / Criar conta
 `;
 
 return;
+
 }
 
 
-container.innerHTML=`
+container.innerHTML = `
 
 <h3>
 ${escapeHtml(user.name)}
@@ -1631,7 +1837,7 @@ Sair da conta
 
 function logout(){
 
-user=null;
+user = null;
 
 saveData();
 
@@ -1645,7 +1851,7 @@ alert(
 
 
 /* =====================================================
-   LOJA
+LOJA
 ===================================================== */
 
 function openSeller(){
@@ -1659,45 +1865,43 @@ alert(
 openLogin();
 
 return;
+
 }
 
 
-document
-.getElementById("sellerModal")
-.style.display="flex";
+document.getElementById(
+"sellerModal"
+).style.display =
+"flex";
 
 }
 
 
 /* =====================================================
-   CRIAR LOJA
+CRIAR LOJA
 ===================================================== */
 
 async function createStore(){
 
 const name =
-document
-.getElementById("storeName")
-.value
-.trim();
+document.getElementById(
+"storeName"
+).value.trim();
 
 const phone =
-document
-.getElementById("storePhone")
-.value
-.trim();
+document.getElementById(
+"storePhone"
+).value.trim();
 
 const address =
-document
-.getElementById("storeAddress")
-.value
-.trim();
+document.getElementById(
+"storeAddress"
+).value.trim();
 
 const description =
-document
-.getElementById("storeDescription")
-.value
-.trim();
+document.getElementById(
+"storeDescription"
+).value.trim();
 
 
 if(!name || !phone || !address){
@@ -1707,10 +1911,9 @@ alert(
 );
 
 return;
+
 }
 
-
-/* INSERIR LOJA */
 
 const {
 data:loja,
@@ -1743,11 +1946,12 @@ if(error){
 console.error(error);
 
 alert(
-"Erro ao criar loja:\n"+
+"Erro ao criar loja:\n" +
 error.message
 );
 
 return;
+
 }
 
 
@@ -1755,15 +1959,16 @@ closeModal("sellerModal");
 
 
 alert(
-"Loja criada com sucesso!\n\n"+
-"Nome: "+name
+"Loja criada com sucesso! 🎉\n\n" +
+"Nome: " +
+name
 );
 
 }
 
 
 /* =====================================================
-   INICIAR
+INICIAR
 ===================================================== */
 
 async function startKivo(){
