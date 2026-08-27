@@ -70,6 +70,7 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <header>
 <div class="top">
 <div class="logo">Kivo</div>
+
 <div class="icons">
 <button class="icon-btn" onclick="showPage('favorites')">♡</button>
 <button class="icon-btn" onclick="showPage('cart')">🛒 <span id="cartCount">0</span></button>
@@ -95,6 +96,7 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 <main class="container">
 
 <section id="home" class="page active">
+
 <div class="banner">
 <h1>Bem-vindo ao Kivo</h1>
 <p>Compre e venda produtos de forma simples.</p>
@@ -116,109 +118,206 @@ footer{background:#111;color:#fff;text-align:center;padding:25px;margin-top:30px
 </div>
 
 <div id="homeProducts" class="products"></div>
+
 </section>
 
 <section id="products" class="page">
-<div class="section-title"><h2>Todos os produtos</h2></div>
+
+<div class="section-title">
+<h2>Todos os produtos</h2>
+</div>
+
 <div id="productsList" class="products"></div>
+
 </section>
 
 <section id="favorites" class="page">
-<div class="section-title"><h2>Meus favoritos</h2></div>
+
+<div class="section-title">
+<h2>Meus favoritos</h2>
+</div>
+
 <div id="favoritesList" class="products"></div>
+
 </section>
 
 <section id="cart" class="page">
-<div class="section-title"><h2>Meu carrinho</h2></div>
+
+<div class="section-title">
+<h2>Meu carrinho</h2>
+</div>
+
 <div id="cartList"></div>
 
 <div class="card">
-<div class="total">Total: <span id="cartTotal">0 Kz</span></div>
-<button class="primary" onclick="openCheckout()">Finalizar compra</button>
+
+<div class="total">
+Total: <span id="cartTotal">0 Kz</span>
 </div>
+
+<button class="primary" onclick="openCheckout()">
+Finalizar compra
+</button>
+
+</div>
+
 </section>
 
 <section id="orders" class="page">
-<div class="section-title"><h2>Meus pedidos</h2></div>
+
+<div class="section-title">
+<h2>Meus pedidos</h2>
+</div>
+
 <div id="ordersList"></div>
+
 </section>
 
 <section id="account" class="page">
+
 <div class="card">
+
 <h2>Minha conta</h2>
+
 <div id="accountInfo"></div>
+
 </div>
 
 <div class="card">
+
 <h3>Quero vender no Kivo</h3>
+
 <p>Crie a sua loja e comece a publicar os seus produtos.</p>
-<button class="primary" onclick="openSeller()">Criar minha loja</button>
+
+<button class="primary" onclick="openSeller()">
+Criar minha loja
+</button>
+
 </div>
+
 </section>
 
 <section id="admin" class="page">
-<div class="section-title"><h2>⚙️ Painel de Controle Kivo</h2></div>
+
+<div class="section-title">
+<h2>⚙️ Painel de Controle Kivo</h2>
+</div>
+
 <div id="adminContent"></div>
+
 </section>
 
 </main>
 
 <footer>
+
 <strong>Kivo Marketplace</strong>
+
 <p>Compre. Venda. Cresça.</p>
+
 </footer>
 
+
 <!-- LOGIN -->
+
 <div id="loginModal" class="modal">
+
 <div class="modal-content">
+
 <button class="close" onclick="closeModal('loginModal')">×</button>
+
 <h2>Entrar no Kivo</h2>
 
 <div class="form">
+
 <input id="loginName" placeholder="Seu nome">
+
 <input id="loginPhone" placeholder="Telefone">
+
 <button onclick="login()">Entrar</button>
-</div>
-</div>
+
 </div>
 
+</div>
+
+</div>
+
+
 <!-- CHECKOUT -->
+
 <div id="checkoutModal" class="modal">
+
 <div class="modal-content">
+
 <button class="close" onclick="closeModal('checkoutModal')">×</button>
+
 <h2>Finalizar compra</h2>
 
 <div class="form">
+
 <input id="deliveryName" placeholder="Nome completo">
+
 <input id="deliveryPhone" placeholder="Telefone">
+
 <textarea id="deliveryAddress" placeholder="Endereço de entrega"></textarea>
 
 <select id="paymentMethod">
-<option value="pendente">Pagamento a combinar</option>
-<option value="transferencia">Transferência</option>
-<option value="dinheiro">Dinheiro na entrega</option>
+
+<option value="pendente">
+Pagamento a combinar
+</option>
+
+<option value="transferencia">
+Transferência
+</option>
+
+<option value="dinheiro">
+Dinheiro na entrega
+</option>
+
 </select>
 
-<button id="finishButton" onclick="finishOrder()">Confirmar pedido</button>
-</div>
-</div>
+<button id="finishButton" onclick="finishOrder()">
+Confirmar pedido
+</button>
+
 </div>
 
+</div>
+
+</div>
+
+
 <!-- LOJA -->
+
 <div id="sellerModal" class="modal">
+
 <div class="modal-content">
+
 <button class="close" onclick="closeModal('sellerModal')">×</button>
+
 <h2>Criar minha loja</h2>
 
 <div class="form">
+
 <input id="storeName" placeholder="Nome da loja">
+
 <input id="storePhone" placeholder="Telefone">
+
 <input id="storeAddress" placeholder="Endereço">
+
 <textarea id="storeDescription" placeholder="Descrição da loja"></textarea>
-<button onclick="createStore()">Criar loja</button>
+
+<button onclick="createStore()">
+Criar loja
+</button>
+
 </div>
+
 </div>
+
 </div>
+
 
 <script>
 
@@ -232,113 +331,235 @@ const supabaseClient =
 supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 
 
-/* ID REAL DO PERFIL DE TESTE */
+/*
+=====================================================
+ID REAL DO PERFIL DE TESTE
+=====================================================
+*/
+
 const TEST_PROFILE_ID =
 "0c9f8851-6469-4f91-9cc2-33aacaedc528";
 
 
 let products=[];
-let cart=JSON.parse(localStorage.getItem("kivo_cart"))||[];
-let favorites=JSON.parse(localStorage.getItem("kivo_favorites"))||[];
-let orders=JSON.parse(localStorage.getItem("kivo_orders"))||[];
 
-let user={
+let cart=
+JSON.parse(localStorage.getItem("kivo_cart"))||[];
+
+let favorites=
+JSON.parse(localStorage.getItem("kivo_favorites"))||[];
+
+let orders=
+JSON.parse(localStorage.getItem("kivo_orders"))||[];
+
+
+/*
+=====================================================
+UTILIZADOR ATUAL
+=====================================================
+*/
+
+let user=
+JSON.parse(localStorage.getItem("kivo_user"))||{
+
 id:TEST_PROFILE_ID,
+
 name:"Comprador Teste",
+
 phone:"923555555"
+
 };
 
 
+/* DINHEIRO */
+
 function money(value){
-return Number(value||0).toLocaleString("pt-AO")+" Kz";
+
+return Number(value||0)
+.toLocaleString("pt-AO")+" Kz";
+
 }
 
+
+/* SEGURANÇA HTML */
 
 function escapeHtml(text){
+
 return String(text??"")
+
 .replace(/&/g,"&amp;")
+
 .replace(/</g,"&lt;")
+
 .replace(/>/g,"&gt;")
+
 .replace(/"/g,"&quot;")
+
 .replace(/'/g,"&#039;");
+
 }
 
+
+/* GUARDAR DADOS */
 
 function saveData(){
-localStorage.setItem("kivo_cart",JSON.stringify(cart));
-localStorage.setItem("kivo_favorites",JSON.stringify(favorites));
-localStorage.setItem("kivo_orders",JSON.stringify(orders));
-localStorage.setItem("kivo_user",JSON.stringify(user));
+
+localStorage.setItem(
+"kivo_cart",
+JSON.stringify(cart)
+);
+
+localStorage.setItem(
+"kivo_favorites",
+JSON.stringify(favorites)
+);
+
+localStorage.setItem(
+"kivo_orders",
+JSON.stringify(orders)
+);
+
+if(user){
+
+localStorage.setItem(
+"kivo_user",
+JSON.stringify(user)
+);
+
+}else{
+
+localStorage.removeItem("kivo_user");
+
+}
+
 }
 
 
-/* PRODUTOS */
+/* =====================================================
+PRODUTOS
+===================================================== */
 
 async function loadProducts(){
 
 const result=await supabaseClient
+
 .from("produtos")
-.select("id,loja_id,nome,preco,estoque,ativo,criado_em,descricao,imagem_url,categoria")
+
+.select(
+"id,loja_id,nome,preco,estoque,ativo,criado_em,descricao,imagem_url,categoria"
+)
+
 .eq("ativo",true)
+
 .order("criado_em",{ascending:false});
+
 
 if(result.error){
 
 console.error(result.error);
 
 document.getElementById("homeProducts").innerHTML=
-'<div class="error">'+escapeHtml(result.error.message)+'</div>';
+
+'<div class="error">'+
+escapeHtml(result.error.message)+
+'</div>';
 
 document.getElementById("productsList").innerHTML=
-'<div class="error">'+escapeHtml(result.error.message)+'</div>';
+
+'<div class="error">'+
+escapeHtml(result.error.message)+
+'</div>';
 
 return;
+
 }
+
 
 products=(result.data||[]).map(p=>({
 
 id:p.id,
+
 name:p.nome||"Produto sem nome",
+
 price:Number(p.preco||0),
+
 stock:Number(p.estoque||0),
+
 category:p.categoria||"Outros",
-image:p.imagem_url||"https://via.placeholder.com/600x400?text=Kivo",
+
+image:p.imagem_url||
+"https://via.placeholder.com/600x400?text=Kivo",
+
 storeId:p.loja_id,
+
 description:p.descricao||""
 
 }));
 
+
 renderAll();
+
 }
 
+
+/* PÁGINAS */
 
 function showPage(page){
 
-document.querySelectorAll(".page").forEach(s=>s.classList.remove("active"));
+document
+.querySelectorAll(".page")
+.forEach(s=>s.classList.remove("active"));
+
 
 const target=document.getElementById(page);
 
-if(target)target.classList.add("active");
+if(target){
+
+target.classList.add("active");
+
+}
+
 
 renderAll();
 
-if(page==="admin")renderAdmin();
 
-window.scrollTo({top:0,behavior:"smooth"});
+if(page==="admin"){
+
+renderAdmin();
+
 }
 
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+
+/* RENDER */
 
 function renderAll(){
 
 renderProducts(products,"homeProducts");
+
 renderProducts(products,"productsList");
+
 renderFavorites();
+
 renderCart();
+
 renderOrders();
+
 renderAccount();
+
 updateCartCount();
+
 }
 
+
+/* PRODUTOS */
 
 function renderProducts(list,elementId){
 
@@ -346,22 +567,33 @@ const container=document.getElementById(elementId);
 
 if(!container)return;
 
+
 if(!list.length){
 
-container.innerHTML='<div class="empty">Nenhum produto encontrado.</div>';
+container.innerHTML=
+'<div class="empty">Nenhum produto encontrado.</div>';
+
 return;
+
 }
+
 
 container.innerHTML=list.map(product=>{
 
-const favorite=favorites.some(id=>String(id)===String(product.id));
+const favorite=favorites.some(
+id=>String(id)===String(product.id)
+);
+
 
 return `
+
 <div class="product">
 
-<img src="${escapeHtml(product.image)}"
+<img
+src="${escapeHtml(product.image)}"
 alt="${escapeHtml(product.name)}"
-onerror="this.src='https://via.placeholder.com/600x400?text=Kivo'">
+onerror="this.src='https://via.placeholder.com/600x400?text=Kivo'"
+>
 
 <div class="product-info">
 
@@ -383,48 +615,75 @@ Loja Kivo
 
 <div class="product-actions">
 
-<button class="buy"
-onclick="addToCart('${product.id}')">
+<button
+class="buy"
+onclick="addToCart('${product.id}')"
+>
 🛒 Comprar
 </button>
 
-<button class="favorite"
-onclick="toggleFavorite('${product.id}')">
+<button
+class="favorite"
+onclick="toggleFavorite('${product.id}')"
+>
 ${favorite?"❤️":"♡"}
 </button>
 
 </div>
+
 </div>
+
 </div>
+
 `;
 
 }).join("");
+
 }
 
 
-/* CARRINHO */
+/* =====================================================
+CARRINHO
+===================================================== */
 
 function addToCart(id){
 
-const product=products.find(p=>String(p.id)===String(id));
+const product=products.find(
+p=>String(p.id)===String(id)
+);
+
 
 if(!product){
+
 alert("Produto não encontrado.");
+
 return;
+
 }
+
 
 if(Number(product.stock)<=0){
+
 alert("Este produto está sem estoque.");
+
 return;
+
 }
 
-const existing=cart.find(item=>String(item.id)===String(id));
+
+const existing=cart.find(
+item=>String(item.id)===String(id)
+);
+
 
 if(existing){
 
 if(existing.quantity>=product.stock){
+
 alert("Não há mais unidades disponíveis.");
+
 return;
+
 }
 
 existing.quantity++;
@@ -432,132 +691,227 @@ existing.quantity++;
 }else{
 
 cart.push({
+
 id:product.id,
+
 quantity:1
+
 });
 
 }
 
+
 saveData();
+
 renderAll();
 
 alert("Produto adicionado ao carrinho! 🛒");
+
 }
 
+
+/* REMOVER */
 
 function removeFromCart(id){
 
-cart=cart.filter(item=>String(item.id)!==String(id));
+cart=cart.filter(
+item=>String(item.id)!==String(id)
+);
 
 saveData();
+
 renderAll();
+
 }
 
+
+/* QUANTIDADE */
 
 function changeQuantity(id,amount){
 
-const item=cart.find(i=>String(i.id)===String(id));
-const product=products.find(p=>String(p.id)===String(id));
+const item=cart.find(
+i=>String(i.id)===String(id)
+);
+
+const product=products.find(
+p=>String(p.id)===String(id)
+);
+
 
 if(!item||!product)return;
 
+
 item.quantity+=amount;
 
+
 if(item.quantity<=0){
+
 removeFromCart(id);
+
 return;
+
 }
+
 
 if(item.quantity>product.stock){
+
 item.quantity=product.stock;
-alert("Quantidade máxima disponível: "+product.stock);
+
+alert(
+"Quantidade máxima disponível: "+
+product.stock
+);
+
 }
+
 
 saveData();
+
 renderAll();
+
 }
 
+
+/* RENDER CARRINHO */
 
 function renderCart(){
 
-const container=document.getElementById("cartList");
+const container=
+document.getElementById("cartList");
+
 
 if(!container)return;
 
+
 if(!cart.length){
 
-container.innerHTML='<div class="empty">Seu carrinho está vazio.</div>';
+container.innerHTML=
+'<div class="empty">Seu carrinho está vazio.</div>';
 
-document.getElementById("cartTotal").innerText="0 Kz";
+document.getElementById("cartTotal")
+.innerText="0 Kz";
 
 return;
+
 }
+
 
 let total=0;
 
+
 container.innerHTML=cart.map(item=>{
 
-const product=products.find(p=>String(p.id)===String(item.id));
+const product=products.find(
+p=>String(p.id)===String(item.id)
+);
+
 
 if(!product)return "";
 
-const quantity=Number(item.quantity||1);
 
-const subtotal=product.price*quantity;
+const quantity=
+Number(item.quantity||1);
+
+
+const subtotal=
+product.price*quantity;
+
 
 total+=subtotal;
 
+
 return `
+
 <div class="cart-item">
 
-<img src="${escapeHtml(product.image)}">
+<img
+src="${escapeHtml(product.image)}"
+>
 
 <div class="cart-info">
 
-<strong>${escapeHtml(product.name)}</strong>
+<strong>
+${escapeHtml(product.name)}
+</strong>
 
-<div>${money(product.price)}</div>
+<div>
+${money(product.price)}
+</div>
 
 <div class="quantity">
 
-<button onclick="changeQuantity('${product.id}',-1)">-</button>
+<button
+onclick="changeQuantity('${product.id}',-1)"
+>
+-
+</button>
 
-<span>${quantity}</span>
+<span>
+${quantity}
+</span>
 
-<button onclick="changeQuantity('${product.id}',1)">+</button>
+<button
+onclick="changeQuantity('${product.id}',1)"
+>
++
+</button>
 
-<button onclick="removeFromCart('${product.id}')">🗑</button>
+<button
+onclick="removeFromCart('${product.id}')"
+>
+🗑
+</button>
 
 </div>
 
 </div>
 
 </div>
+
 `;
 
 }).join("");
 
-document.getElementById("cartTotal").innerText=money(total);
+
+document.getElementById("cartTotal")
+.innerText=money(total);
+
 }
 
+
+/* CONTADOR */
 
 function updateCartCount(){
 
-const count=cart.reduce((sum,item)=>sum+Number(item.quantity||0),0);
+const count=cart.reduce(
+(sum,item)=>
+sum+Number(item.quantity||0),
+0
+);
 
-document.getElementById("cartCount").innerText=count;
+
+document.getElementById("cartCount")
+.innerText=count;
+
 }
 
 
-/* FAVORITOS */
+/* =====================================================
+FAVORITOS
+===================================================== */
 
 function toggleFavorite(id){
 
-const exists=favorites.some(item=>String(item)===String(id));
+const exists=favorites.some(
+item=>String(item)===String(id)
+);
+
 
 if(exists){
 
-favorites=favorites.filter(item=>String(item)!==String(id));
+favorites=favorites.filter(
+item=>String(item)!==String(id)
+);
 
 }else{
 
@@ -565,96 +919,193 @@ favorites.push(id);
 
 }
 
+
 saveData();
+
 renderAll();
+
 }
 
 
 function renderFavorites(){
 
-const list=products.filter(product=>
-favorites.some(id=>String(id)===String(product.id))
+const list=products.filter(
+product=>
+favorites.some(
+id=>String(id)===String(product.id)
+)
 );
 
+
 renderProducts(list,"favoritesList");
+
 }
 
 
-/* PESQUISA */
+/* =====================================================
+PESQUISA
+===================================================== */
 
 function searchProducts(){
 
-const text=document.getElementById("searchInput").value.toLowerCase().trim();
+const text=
+document
+.getElementById("searchInput")
+.value
+.toLowerCase()
+.trim();
+
 
 const result=products.filter(product=>
-product.name.toLowerCase().includes(text)||
-product.category.toLowerCase().includes(text)
+
+product.name
+.toLowerCase()
+.includes(text)
+
+||
+
+product.category
+.toLowerCase()
+.includes(text)
+
 );
+
 
 showPage("products");
 
-renderProducts(result,"productsList");
+renderProducts(
+result,
+"productsList"
+);
+
 }
 
+
+/* NORMALIZAR */
 
 function normalizeText(text){
 
 return String(text)
+
 .toLowerCase()
+
 .normalize("NFD")
-.replace(/[\u0300-\u036f]/g,"");
+
+.replace(
+/[\u0300-\u036f]/g,
+""
+);
+
 }
 
+
+/* CATEGORIA */
 
 function filterCategory(category){
 
 if(category==="Todos"){
+
 showPage("products");
-renderProducts(products,"productsList");
-return;
-}
 
-const wanted=normalizeText(category);
-
-const result=products.filter(product=>
-normalizeText(product.category).includes(wanted)
+renderProducts(
+products,
+"productsList"
 );
 
-showPage("products");
-renderProducts(result,"productsList");
+return;
+
 }
 
 
-/* LOGIN */
+const wanted=
+normalizeText(category);
+
+
+const result=products.filter(
+product=>
+normalizeText(product.category)
+.includes(wanted)
+);
+
+
+showPage("products");
+
+renderProducts(
+result,
+"productsList"
+);
+
+}
+
+
+/* =====================================================
+LOGIN
+===================================================== */
 
 function openLogin(){
-document.getElementById("loginModal").style.display="flex";
+
+document
+.getElementById("loginModal")
+.style.display="flex";
+
 }
 
+
+/*
+LOGIN DE TESTE
+
+O perfil já existente no Supabase
+é usado como comprador.
+*/
 
 function login(){
 
-const name=document.getElementById("loginName").value.trim();
-const phone=document.getElementById("loginPhone").value.trim();
+const name=
+document
+.getElementById("loginName")
+.value
+.trim();
+
+
+const phone=
+document
+.getElementById("loginPhone")
+.value
+.trim();
+
 
 if(!name||!phone){
-alert("Preencha seu nome e telefone.");
+
+alert(
+"Preencha seu nome e telefone."
+);
+
 return;
+
 }
 
-/* IMPORTANTE: ID CORRETO */
+
 user={
+
 id:TEST_PROFILE_ID,
+
 name:name,
+
 phone:phone
+
 };
+
 
 saveData();
 
 closeModal("loginModal");
+
 renderAll();
 
-alert("Conta iniciada com sucesso! 🎉");
+alert(
+"Conta iniciada com sucesso! 🎉"
+);
+
 }
 
 
@@ -662,138 +1113,334 @@ alert("Conta iniciada com sucesso! 🎉");
 
 function closeModal(id){
 
-const modal=document.getElementById(id);
+const modal=
+document.getElementById(id);
 
-if(modal)modal.style.display="none";
+
+if(modal){
+
+modal.style.display="none";
+
 }
 
-
-/* CHECKOUT */
-
-function openCheckout(){
-
-if(!cart.length){
-alert("Seu carrinho está vazio.");
-return;
-}
-
-if(!user){
-alert("Primeiro entre na sua conta.");
-openLogin();
-return;
-}
-
-document.getElementById("deliveryName").value=user.name||"";
-document.getElementById("deliveryPhone").value=user.phone||"";
-
-document.getElementById("checkoutModal").style.display="flex";
 }
 
 
 /* =====================================================
-FINALIZAR PEDIDO
+CHECKOUT
+===================================================== */
+
+function openCheckout(){
+
+if(!cart.length){
+
+alert(
+"Seu carrinho está vazio."
+);
+
+return;
+
+}
+
+
+if(!user||!user.id){
+
+alert(
+"Primeiro entre na sua conta."
+);
+
+openLogin();
+
+return;
+
+}
+
+
+document
+.getElementById("deliveryName")
+.value=user.name||"";
+
+
+document
+.getElementById("deliveryPhone")
+.value=user.phone||"";
+
+
+document
+.getElementById("deliveryAddress")
+.value="";
+
+
+document
+.getElementById("checkoutModal")
+.style.display="flex";
+
+}
+
+
+/* =====================================================
+FINALIZAR PEDIDO — CORRIGIDO
 ===================================================== */
 
 async function finishOrder(){
 
+/*
+=====================================================
+1. GARANTIR QUE EXISTE UM COMPRADOR
+=====================================================
+*/
+
 if(!user||!user.id){
-alert("Conta de comprador não encontrada.");
-return;
-}
 
-if(!cart.length){
-alert("Seu carrinho está vazio.");
-return;
-}
-
-const name=document.getElementById("deliveryName").value.trim();
-const phone=document.getElementById("deliveryPhone").value.trim();
-const address=document.getElementById("deliveryAddress").value.trim();
-const paymentMethod=document.getElementById("paymentMethod").value;
-
-if(!name||!phone||!address){
-alert("Preencha todos os dados de entrega.");
-return;
-}
-
-const button=document.getElementById("finishButton");
-
-button.disabled=true;
-button.innerText="Criando pedido...";
-
-try{
-
-const cartProducts=[];
-
-for(const item of cart){
-
-const product=products.find(p=>String(p.id)===String(item.id));
-
-if(!product)
-throw new Error("Um produto do carrinho não está disponível.");
-
-if(Number(item.quantity)<=0)
-throw new Error("Quantidade inválida.");
-
-if(Number(item.quantity)>Number(product.stock))
-throw new Error("Estoque insuficiente para "+product.name);
-
-if(!product.storeId)
-throw new Error("O produto "+product.name+" não está ligado a uma loja.");
-
-cartProducts.push({
-item:item,
-product:product
-});
-}
-
-
-/* MESMA LOJA */
-
-const lojaId=cartProducts[0].product.storeId;
-
-const differentStore=cartProducts.some(row=>
-String(row.product.storeId)!==String(lojaId)
+alert(
+"Conta de comprador não encontrada."
 );
 
-if(differentStore)
-throw new Error("O carrinho precisa ter produtos da mesma loja.");
+return;
 
-
-/* VALORES */
-
-let subtotal=0;
-
-cartProducts.forEach(row=>{
-subtotal+=Number(row.product.price)*Number(row.item.quantity);
-});
-
-const valorEntrega=0;
-
-const total=subtotal+valorEntrega;
-
-const comissaoPercentual=10;
-
-const comissaoPlataforma=
-Number((total*comissaoPercentual/100).toFixed(2));
-
-const valorVendedor=
-Number((total-comissaoPlataforma).toFixed(2));
+}
 
 
 /*
 =====================================================
-AQUI ESTÁ A CORREÇÃO PRINCIPAL
+2. USAR O ID DO PERFIL COMO comprador_id
+=====================================================
+*/
 
-O banco usa uma FK para perfis.id.
-Estamos usando o UUID REAL:
-0c9f8851-6469-4f91-9cc2-33aacaedc528
+const compradorId=user.id;
+
+
+if(!compradorId){
+
+alert(
+"ID do comprador não encontrado."
+);
+
+return;
+
+}
+
+
+if(!cart.length){
+
+alert(
+"Seu carrinho está vazio."
+);
+
+return;
+
+}
+
+
+const name=
+document
+.getElementById("deliveryName")
+.value
+.trim();
+
+
+const phone=
+document
+.getElementById("deliveryPhone")
+.value
+.trim();
+
+
+const address=
+document
+.getElementById("deliveryAddress")
+.value
+.trim();
+
+
+const paymentMethod=
+document
+.getElementById("paymentMethod")
+.value;
+
+
+if(!name||!phone||!address){
+
+alert(
+"Preencha todos os dados de entrega."
+);
+
+return;
+
+}
+
+
+const button=
+document.getElementById("finishButton");
+
+
+button.disabled=true;
+
+button.innerText=
+"Criando pedido...";
+
+
+try{
+
+
+/*
+=====================================================
+3. VALIDAR PRODUTOS
+=====================================================
+*/
+
+const cartProducts=[];
+
+
+for(const item of cart){
+
+const product=products.find(
+p=>String(p.id)===String(item.id)
+);
+
+
+if(!product){
+
+throw new Error(
+"Um produto do carrinho não está disponível."
+);
+
+}
+
+
+if(Number(item.quantity)<=0){
+
+throw new Error(
+"Quantidade inválida."
+);
+
+}
+
+
+if(
+Number(item.quantity)>
+Number(product.stock)
+){
+
+throw new Error(
+"Estoque insuficiente para "+
+product.name
+);
+
+}
+
+
+if(!product.storeId){
+
+throw new Error(
+"O produto "+
+product.name+
+" não está ligado a uma loja."
+);
+
+}
+
+
+cartProducts.push({
+
+item:item,
+
+product:product
+
+});
+
+}
+
+
+/*
+=====================================================
+4. MESMA LOJA
+=====================================================
+*/
+
+const lojaId=
+cartProducts[0].product.storeId;
+
+
+const differentStore=
+cartProducts.some(row=>
+String(row.product.storeId)!==
+String(lojaId)
+);
+
+
+if(differentStore){
+
+throw new Error(
+"O carrinho precisa ter produtos da mesma loja."
+);
+
+}
+
+
+/*
+=====================================================
+5. VALORES
+=====================================================
+*/
+
+let subtotal=0;
+
+
+cartProducts.forEach(row=>{
+
+subtotal+=
+Number(row.product.price)*
+Number(row.item.quantity);
+
+});
+
+
+const valorEntrega=0;
+
+
+const total=
+subtotal+valorEntrega;
+
+
+const comissaoPercentual=10;
+
+
+const comissaoPlataforma=
+Number(
+(
+total*
+comissaoPercentual/
+100
+).toFixed(2)
+);
+
+
+const valorVendedor=
+Number(
+(
+total-
+comissaoPlataforma
+).toFixed(2)
+);
+
+
+/*
+=====================================================
+6. DADOS DO PEDIDO
+
+CORREÇÃO PRINCIPAL:
+ANTES ESTAVA:
+id_do_comprador
+
+AGORA ESTÁ:
+comprador_id
 =====================================================
 */
 
 const pedidoDados={
 
-id_do_comprador:TEST_PROFILE_ID,
+comprador_id:compradorId,
 
 loja_id:lojaId,
 
@@ -821,35 +1468,64 @@ telefone_entrega:phone,
 
 endereco_entrega:address,
 
-observacao:"Pedido realizado pelo Kivo Marketplace"
+observacao:
+"Pedido realizado pelo Kivo Marketplace"
 
 };
 
 
-console.log("PEDIDO ENVIADO:",pedidoDados);
+console.log(
+"COMPRADOR ID:",
+compradorId
+);
 
 
-/* CRIAR PEDIDO */
+console.log(
+"PEDIDO ENVIADO:",
+pedidoDados
+);
 
-const result=await supabaseClient
+
+/*
+=====================================================
+7. CRIAR PEDIDO NO SUPABASE
+=====================================================
+*/
+
+const result=
+await supabaseClient
+
 .from("pedidos")
+
 .insert(pedidoDados)
+
 .select("*")
+
 .single();
 
 
 if(result.error){
 
-console.error("ERRO SUPABASE:",result.error);
+console.error(
+"ERRO SUPABASE:",
+result.error
+);
 
-throw new Error(result.error.message);
+throw new Error(
+result.error.message
+);
+
 }
 
 
 const pedido=result.data;
 
 
-/* GUARDAR LOCAL */
+/*
+=====================================================
+8. GUARDAR PEDIDO LOCALMENTE
+=====================================================
+*/
 
 orders.unshift({
 
@@ -863,12 +1539,21 @@ commission:comissaoPlataforma,
 
 status:"pendente",
 
-date:new Date().toLocaleString("pt-AO")
+date:
+new Date()
+.toLocaleString("pt-AO")
 
 });
 
 
+/*
+=====================================================
+9. LIMPAR CARRINHO
+=====================================================
+*/
+
 cart=[];
+
 
 saveData();
 
@@ -880,10 +1565,22 @@ showPage("orders");
 
 
 alert(
+
 "Pedido criado com sucesso! 🎉\n\n"+
-"Total: "+money(total)+"\n\n"+
-"Comissão Kivo (10%): "+money(comissaoPlataforma)+"\n\n"+
-"Valor do vendedor: "+money(valorVendedor)
+
+"Total: "+
+money(total)+
+
+"\n\n"+
+
+"Comissão Kivo (10%): "+
+money(comissaoPlataforma)+
+
+"\n\n"+
+
+"Valor do vendedor: "+
+money(valorVendedor)
+
 );
 
 
@@ -891,87 +1588,150 @@ alert(
 
 console.error(error);
 
+
 alert(
+
 "Não foi possível criar o pedido.\n\n"+
 error.message
+
 );
+
 
 }finally{
 
 button.disabled=false;
-button.innerText="Confirmar pedido";
+
+button.innerText=
+"Confirmar pedido";
 
 }
 
 }
 
 
-/* PEDIDOS */
+/* =====================================================
+PEDIDOS
+===================================================== */
 
 function renderOrders(){
 
-const container=document.getElementById("ordersList");
+const container=
+document.getElementById("ordersList");
+
 
 if(!container)return;
 
+
 if(!orders.length){
 
-container.innerHTML='<div class="empty">Você ainda não fez nenhum pedido.</div>';
+container.innerHTML=
+'<div class="empty">Você ainda não fez nenhum pedido.</div>';
 
 return;
+
 }
 
-container.innerHTML=orders.map(order=>`
+
+container.innerHTML=
+orders.map(order=>`
 
 <div class="order">
 
-<strong>Pedido #${escapeHtml(order.id)}</strong>
+<strong>
+Pedido #${escapeHtml(order.id)}
+</strong>
 
-<p>${escapeHtml(order.date||"")}</p>
+<p>
+${escapeHtml(order.date||"")}
+</p>
 
-<span class="badge">${escapeHtml(order.status||"pendente")}</span>
+<span class="badge">
+${escapeHtml(order.status||"pendente")}
+</span>
 
-<p>Total: <strong>${money(order.total)}</strong></p>
+<p>
+Total:
+<strong>
+${money(order.total)}
+</strong>
+</p>
 
-<p>Comissão Kivo: <strong>${money(order.commission||0)}</strong></p>
+<p>
+Comissão Kivo:
+<strong>
+${money(order.commission||0)}
+</strong>
+</p>
 
 </div>
 
 `).join("");
+
 }
 
 
-/* CONTA */
+/* =====================================================
+CONTA
+===================================================== */
 
 function renderAccount(){
 
-const container=document.getElementById("accountInfo");
+const container=
+document.getElementById("accountInfo");
+
 
 if(!container)return;
+
 
 if(!user){
 
 container.innerHTML=`
-<p>Você ainda não iniciou sessão.</p>
-<button class="primary" onclick="openLogin()">Entrar / Criar conta</button>
+
+<p>
+Você ainda não iniciou sessão.
+</p>
+
+<button
+class="primary"
+onclick="openLogin()"
+>
+Entrar / Criar conta
+</button>
+
 `;
 
 return;
+
 }
+
 
 container.innerHTML=`
 
-<h3>${escapeHtml(user.name)}</h3>
+<h3>
+${escapeHtml(user.name)}
+</h3>
 
-<p>📞 ${escapeHtml(user.phone)}</p>
+<p>
+📞 ${escapeHtml(user.phone)}
+</p>
 
-<p>Conta conectada ao Kivo.</p>
+<p>
+Conta conectada ao Kivo.
+</p>
 
-<button class="primary" onclick="logout()">Sair da conta</button>
+<button
+class="primary"
+onclick="logout()"
+>
+Sair da conta
+</button>
 
 `;
+
 }
 
+
+/* SAIR */
 
 function logout(){
 
@@ -981,152 +1741,318 @@ saveData();
 
 renderAll();
 
-alert("Você saiu da conta.");
+alert(
+"Você saiu da conta."
+);
+
 }
 
 
-/* LOJA */
+/* =====================================================
+LOJA
+===================================================== */
 
 function openSeller(){
 
 if(!user){
 
-alert("Primeiro entre na sua conta.");
+alert(
+"Primeiro entre na sua conta."
+);
 
 openLogin();
 
 return;
+
 }
 
-document.getElementById("sellerModal").style.display="flex";
+
+document
+.getElementById("sellerModal")
+.style.display="flex";
+
 }
 
 
 async function createStore(){
 
 if(!user){
-alert("Entre na sua conta primeiro.");
+
+alert(
+"Entre na sua conta primeiro."
+);
+
 return;
+
 }
 
-const name=document.getElementById("storeName").value.trim();
-const phone=document.getElementById("storePhone").value.trim();
-const address=document.getElementById("storeAddress").value.trim();
-const description=document.getElementById("storeDescription").value.trim();
+
+const name=
+document
+.getElementById("storeName")
+.value
+.trim();
+
+
+const phone=
+document
+.getElementById("storePhone")
+.value
+.trim();
+
+
+const address=
+document
+.getElementById("storeAddress")
+.value
+.trim();
+
+
+const description=
+document
+.getElementById("storeDescription")
+.value
+.trim();
+
 
 if(!name||!phone||!address){
-alert("Preencha nome, telefone e endereço.");
+
+alert(
+"Preencha nome, telefone e endereço."
+);
+
 return;
+
 }
 
+
 const lojaDados={
+
 vendedor_id:user.id,
+
 nome:name,
+
 descricao:description,
+
 telefone:phone,
+
 endereco:address,
+
 ativo:true
+
 };
 
-const result=await supabaseClient
+
+const result=
+await supabaseClient
+
 .from("lojas")
+
 .insert(lojaDados)
+
 .select("*")
+
 .single();
+
 
 if(result.error){
 
-alert("Erro ao criar loja:\n\n"+result.error.message);
+alert(
+"Erro ao criar loja:\n\n"+
+result.error.message
+);
 
 return;
+
 }
+
 
 closeModal("sellerModal");
 
-alert("Loja criada com sucesso! 🎉");
+
+alert(
+"Loja criada com sucesso! 🎉"
+);
+
 }
 
 
-/* PAINEL */
+/* =====================================================
+PAINEL
+===================================================== */
 
 async function renderAdmin(){
 
-const container=document.getElementById("adminContent");
+const container=
+document.getElementById("adminContent");
+
 
 if(!container)return;
 
-container.innerHTML='<div class="loading">A carregar painel...</div>';
 
-const pedidosResult=await supabaseClient.from("pedidos").select("*");
+container.innerHTML=
+'<div class="loading">A carregar painel...</div>';
+
+
+const pedidosResult=
+await supabaseClient
+.from("pedidos")
+.select("*");
+
 
 if(pedidosResult.error){
 
 container.innerHTML=
-'<div class="error">'+escapeHtml(pedidosResult.error.message)+'</div>';
+'<div class="error">'+
+escapeHtml(
+pedidosResult.error.message
+)+
+'</div>';
 
 return;
+
 }
 
-const lojasResult=await supabaseClient.from("lojas").select("*");
-const produtosResult=await supabaseClient.from("produtos").select("*");
 
-const pedidos=pedidosResult.data||[];
-const lojas=lojasResult.data||[];
-const produtos=produtosResult.data||[];
+const lojasResult=
+await supabaseClient
+.from("lojas")
+.select("*");
+
+
+const produtosResult=
+await supabaseClient
+.from("produtos")
+.select("*");
+
+
+const pedidos=
+pedidosResult.data||[];
+
+const lojas=
+lojasResult.data||[];
+
+const produtos=
+produtosResult.data||[];
+
 
 let faturamento=0;
+
 let comissao=0;
+
 let pendentes=0;
+
 
 pedidos.forEach(pedido=>{
 
-faturamento+=Number(pedido.total||0);
+faturamento+=
+Number(pedido.total||0);
 
-comissao+=Number(pedido.comissao_plataforma||0);
 
-if(String(pedido.status)==="pendente"){
+comissao+=
+Number(
+pedido.comissao_plataforma||0
+);
+
+
+if(
+String(pedido.status)==="pendente"
+){
+
 pendentes++;
+
 }
 
 });
 
+
 container.innerHTML=`
 
 <div class="admin-box">
-<div>📦 Pedidos</div>
-<div class="admin-number">${pedidos.length}</div>
+
+<div>
+📦 Pedidos
 </div>
 
-<div class="admin-box">
-<div>💰 Volume de vendas</div>
-<div class="admin-number">${money(faturamento)}</div>
+<div class="admin-number">
+${pedidos.length}
 </div>
 
-<div class="admin-box">
-<div>🏦 Comissão Kivo — 10%</div>
-<div class="admin-number">${money(comissao)}</div>
 </div>
 
-<div class="admin-box">
-<div>⏳ Pedidos pendentes</div>
-<div class="admin-number">${pendentes}</div>
-</div>
 
 <div class="admin-box">
-<div>🏪 Lojas</div>
-<div class="admin-number">${lojas.length}</div>
+
+<div>
+💰 Volume de vendas
 </div>
 
+<div class="admin-number">
+${money(faturamento)}
+</div>
+
+</div>
+
+
 <div class="admin-box">
-<div>🛍️ Produtos</div>
-<div class="admin-number">${produtos.length}</div>
+
+<div>
+🏦 Comissão Kivo — 10%
+</div>
+
+<div class="admin-number">
+${money(comissao)}
+</div>
+
+</div>
+
+
+<div class="admin-box">
+
+<div>
+⏳ Pedidos pendentes
+</div>
+
+<div class="admin-number">
+${pendentes}
+</div>
+
+</div>
+
+
+<div class="admin-box">
+
+<div>
+🏪 Lojas
+</div>
+
+<div class="admin-number">
+${lojas.length}
+</div>
+
+</div>
+
+
+<div class="admin-box">
+
+<div>
+🛍️ Produtos
+</div>
+
+<div class="admin-number">
+${produtos.length}
+</div>
+
 </div>
 
 `;
+
 }
 
 
-/* INICIAR */
+/* =====================================================
+INICIAR KIVO
+===================================================== */
 
 async function startKivo(){
 
@@ -1135,6 +2061,7 @@ renderAll();
 await loadProducts();
 
 }
+
 
 startKivo();
 
