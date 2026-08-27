@@ -389,18 +389,6 @@ font-weight:bold;
 margin-top:5px
 }
 
-.admin-order{
-background:#fff;
-padding:15px;
-border-radius:10px;
-margin-bottom:10px
-}
-
-.small{
-font-size:12px;
-color:#777
-}
-
 footer{
 background:#111;
 color:#fff;
@@ -410,7 +398,6 @@ margin-top:30px
 }
 
 @media(min-width:700px){
-
 .products{
 grid-template-columns:repeat(4,1fr)
 }
@@ -418,7 +405,6 @@ grid-template-columns:repeat(4,1fr)
 .product img{
 height:190px
 }
-
 }
 </style>
 </head>
@@ -469,10 +455,15 @@ Buscar
 <nav>
 
 <button onclick="showPage('home')">Início</button>
+
 <button onclick="showPage('products')">Produtos</button>
+
 <button onclick="showPage('orders')">Pedidos</button>
+
 <button onclick="showPage('cart')">Carrinho</button>
+
 <button onclick="showPage('account')">Conta</button>
+
 <button onclick="showPage('admin')">⚙️ Painel</button>
 
 </nav>
@@ -485,9 +476,7 @@ Buscar
 
 <h1>Bem-vindo ao Kivo</h1>
 
-<p>
-Compre e venda produtos de forma simples.
-</p>
+<p>Compre e venda produtos de forma simples.</p>
 
 </div>
 
@@ -531,6 +520,7 @@ Ver todos
 
 </section>
 
+
 <section id="products" class="page">
 
 <div class="section-title">
@@ -543,6 +533,7 @@ Ver todos
 
 </section>
 
+
 <section id="favorites" class="page">
 
 <div class="section-title">
@@ -554,6 +545,7 @@ Ver todos
 <div id="favoritesList" class="products"></div>
 
 </section>
+
 
 <section id="cart" class="page">
 
@@ -582,6 +574,7 @@ Finalizar compra
 
 </section>
 
+
 <section id="orders" class="page">
 
 <div class="section-title">
@@ -593,6 +586,7 @@ Finalizar compra
 <div id="ordersList"></div>
 
 </section>
+
 
 <section id="account" class="page">
 
@@ -620,6 +614,7 @@ Criar minha loja
 
 </section>
 
+
 <section id="admin" class="page">
 
 <div class="section-title">
@@ -628,25 +623,18 @@ Criar minha loja
 
 </div>
 
-<div id="adminContent">
-
-<div class="loading">
-A carregar painel...
-</div>
-
-</div>
+<div id="adminContent"></div>
 
 </section>
 
 </main>
 
+
 <footer>
 
 <strong>Kivo Marketplace</strong>
 
-<p>
-Compre. Venda. Cresça.
-</p>
+<p>Compre. Venda. Cresça.</p>
 
 </footer>
 
@@ -694,11 +682,20 @@ Entrar
 
 <div class="form">
 
-<input id="deliveryName" placeholder="Nome completo">
+<input
+id="deliveryName"
+placeholder="Nome completo"
+>
 
-<input id="deliveryPhone" placeholder="Telefone">
+<input
+id="deliveryPhone"
+placeholder="Telefone"
+>
 
-<textarea id="deliveryAddress" placeholder="Endereço de entrega"></textarea>
+<textarea
+id="deliveryAddress"
+placeholder="Endereço de entrega"
+></textarea>
 
 <select id="paymentMethod">
 
@@ -716,7 +713,7 @@ Dinheiro na entrega
 
 </select>
 
-<button id="confirmOrderButton" onclick="finishOrder()">
+<button id="finishButton" onclick="finishOrder()">
 Confirmar pedido
 </button>
 
@@ -747,7 +744,10 @@ Confirmar pedido
 
 <input id="storeAddress" placeholder="Endereço">
 
-<textarea id="storeDescription" placeholder="Descrição da loja"></textarea>
+<textarea
+id="storeDescription"
+placeholder="Descrição da loja"
+></textarea>
 
 <button onclick="createStore()">
 Criar loja
@@ -762,9 +762,9 @@ Criar loja
 
 <script>
 
-/* ================================
+/* =====================================================
 SUPABASE
-================================ */
+===================================================== */
 
 const SUPABASE_URL =
 "https://ozhhemaplvfxyoglvfqo.supabase.co";
@@ -779,17 +779,17 @@ SUPABASE_KEY
 );
 
 
-/* ================================
+/* =====================================================
 PERFIL DE TESTE
-================================ */
+===================================================== */
 
 const TEST_PROFILE_ID =
 "0c9f8851-6469-4f91-9cc2-33aacaedc528";
 
 
-/* ================================
+/* =====================================================
 DADOS
-================================ */
+===================================================== */
 
 let products = [];
 
@@ -806,9 +806,9 @@ let user =
 JSON.parse(localStorage.getItem("kivo_user")) || null;
 
 
-/* ================================
+/* =====================================================
 DINHEIRO
-================================ */
+===================================================== */
 
 function money(value){
 
@@ -818,9 +818,9 @@ return Number(value || 0)
 }
 
 
-/* ================================
+/* =====================================================
 ESCAPAR HTML
-================================ */
+===================================================== */
 
 function escapeHtml(text){
 
@@ -834,9 +834,9 @@ return String(text ?? "")
 }
 
 
-/* ================================
+/* =====================================================
 GUARDAR
-================================ */
+===================================================== */
 
 function saveData(){
 
@@ -863,9 +863,9 @@ JSON.stringify(user)
 }
 
 
-/* ================================
+/* =====================================================
 CARREGAR PRODUTOS
-================================ */
+===================================================== */
 
 async function loadProducts(){
 
@@ -881,8 +881,6 @@ home.innerHTML =
 list.innerHTML =
 '<div class="loading">A carregar produtos...</div>';
 
-
-try{
 
 const result =
 await supabaseClient
@@ -905,7 +903,18 @@ categoria
 
 if(result.error){
 
-throw result.error;
+console.error(result.error);
+
+const msg =
+'<div class="error">' +
+"<strong>Erro ao carregar produtos.</strong><br><br>" +
+escapeHtml(result.error.message) +
+"</div>";
+
+home.innerHTML = msg;
+list.innerHTML = msg;
+
+return;
 
 }
 
@@ -939,27 +948,12 @@ description:p.descricao || ""
 
 renderAll();
 
-}catch(error){
-
-console.error(error);
-
-const msg =
-'<div class="error">' +
-'<strong>Erro ao carregar produtos.</strong><br><br>' +
-escapeHtml(error.message) +
-'</div>';
-
-home.innerHTML = msg;
-list.innerHTML = msg;
-
-}
-
 }
 
 
-/* ================================
+/* =====================================================
 NAVEGAÇÃO
-================================ */
+===================================================== */
 
 function showPage(page){
 
@@ -982,14 +976,13 @@ target.classList.add("active");
 }
 
 
+renderAll();
+
 if(page === "admin"){
 
 renderAdmin();
 
 }
-
-
-renderAll();
 
 window.scrollTo({
 top:0,
@@ -999,9 +992,9 @@ behavior:"smooth"
 }
 
 
-/* ================================
+/* =====================================================
 RENDER
-================================ */
+===================================================== */
 
 function renderAll(){
 
@@ -1022,9 +1015,9 @@ updateCartCount();
 }
 
 
-/* ================================
+/* =====================================================
 PRODUTOS
-================================ */
+===================================================== */
 
 function renderProducts(list,elementId){
 
@@ -1089,13 +1082,17 @@ Loja Kivo
 <button
 class="buy"
 onclick="addToCart('${product.id}')">
+
 🛒 Comprar
+
 </button>
 
 <button
 class="favorite"
 onclick="toggleFavorite('${product.id}')">
+
 ${favorite ? "❤️" : "♡"}
+
 </button>
 
 </div>
@@ -1111,9 +1108,9 @@ ${favorite ? "❤️" : "♡"}
 }
 
 
-/* ================================
+/* =====================================================
 CARRINHO
-================================ */
+===================================================== */
 
 function addToCart(id){
 
@@ -1239,7 +1236,10 @@ return;
 }
 
 
-if(item.quantity > Number(product.stock)){
+if(
+item.quantity >
+Number(product.stock)
+){
 
 item.quantity =
 Number(product.stock);
@@ -1294,7 +1294,11 @@ return String(p.id) === String(item.id);
 });
 
 
-if(!product)return "";
+if(!product){
+
+return "";
+
+}
 
 
 const quantity =
@@ -1302,7 +1306,8 @@ Number(item.quantity || 1);
 
 
 const subtotal =
-Number(product.price || 0) * quantity;
+Number(product.price || 0) *
+quantity;
 
 
 total += subtotal;
@@ -1329,22 +1334,24 @@ ${money(product.price)}
 
 <div class="quantity">
 
-<button onclick="changeQuantity('${product.id}',-1)">
+<button
+onclick="changeQuantity('${product.id}',-1)">
 -
 </button>
 
-<span>
-${quantity}
-</span>
+<span>${quantity}</span>
 
-<button onclick="changeQuantity('${product.id}',1)">
+<button
+onclick="changeQuantity('${product.id}',1)">
 +
 </button>
 
 <button
 onclick="removeFromCart('${product.id}')"
 style="margin-left:10px">
+
 🗑
+
 </button>
 
 </div>
@@ -1360,6 +1367,7 @@ style="margin-left:10px">
 
 container.innerHTML = html;
 
+
 document.getElementById("cartTotal").innerText =
 money(total);
 
@@ -1371,7 +1379,8 @@ function updateCartCount(){
 const count =
 cart.reduce(function(sum,item){
 
-return sum + Number(item.quantity || 0);
+return sum +
+Number(item.quantity || 0);
 
 },0);
 
@@ -1382,9 +1391,9 @@ count;
 }
 
 
-/* ================================
+/* =====================================================
 FAVORITOS
-================================ */
+===================================================== */
 
 function toggleFavorite(id){
 
@@ -1426,7 +1435,8 @@ products.filter(function(product){
 
 return favorites.some(function(id){
 
-return String(id) === String(product.id);
+return String(id) ===
+String(product.id);
 
 });
 
@@ -1438,9 +1448,9 @@ renderProducts(list,"favoritesList");
 }
 
 
-/* ================================
+/* =====================================================
 PESQUISA
-================================ */
+===================================================== */
 
 function searchProducts(){
 
@@ -1455,13 +1465,17 @@ const result =
 products.filter(function(product){
 
 return (
+
 String(product.name)
 .toLowerCase()
 .includes(text)
+
 ||
+
 String(product.category)
 .toLowerCase()
 .includes(text)
+
 );
 
 });
@@ -1486,9 +1500,9 @@ renderProducts(result,"productsList");
 }
 
 
-/* ================================
+/* =====================================================
 CATEGORIAS
-================================ */
+===================================================== */
 
 function normalizeText(text){
 
@@ -1533,9 +1547,9 @@ renderProducts(result,"productsList");
 }
 
 
-/* ================================
+/* =====================================================
 LOGIN
-================================ */
+===================================================== */
 
 function openLogin(){
 
@@ -1549,11 +1563,13 @@ function login(){
 
 const name =
 document.getElementById("loginName")
-.value.trim();
+.value
+.trim();
 
 const phone =
 document.getElementById("loginPhone")
-.value.trim();
+.value
+.trim();
 
 
 if(!name || !phone){
@@ -1587,9 +1603,9 @@ alert("Conta iniciada com sucesso! 🎉");
 }
 
 
-/* ================================
+/* =====================================================
 MODAIS
-================================ */
+===================================================== */
 
 function closeModal(id){
 
@@ -1605,9 +1621,9 @@ modal.style.display = "none";
 }
 
 
-/* ================================
+/* =====================================================
 CHECKOUT
-================================ */
+===================================================== */
 
 function openCheckout(){
 
@@ -1631,11 +1647,15 @@ return;
 }
 
 
-document.getElementById("deliveryName").value =
+document.getElementById("deliveryName")
+.value =
 user.name || "";
 
-document.getElementById("deliveryPhone").value =
+
+document.getElementById("deliveryPhone")
+.value =
 user.phone || "";
+
 
 document.getElementById("checkoutModal")
 .style.display = "flex";
@@ -1643,9 +1663,9 @@ document.getElementById("checkoutModal")
 }
 
 
-/* ================================
+/* =====================================================
 FINALIZAR PEDIDO
-================================ */
+===================================================== */
 
 async function finishOrder(){
 
@@ -1669,15 +1689,21 @@ return;
 
 const name =
 document.getElementById("deliveryName")
-.value.trim();
+.value
+.trim();
+
 
 const phone =
 document.getElementById("deliveryPhone")
-.value.trim();
+.value
+.trim();
+
 
 const address =
 document.getElementById("deliveryAddress")
-.value.trim();
+.value
+.trim();
+
 
 const paymentMethod =
 document.getElementById("paymentMethod")
@@ -1693,22 +1719,21 @@ return;
 }
 
 
-/* BOTÃO */
-
 const button =
-document.getElementById("confirmOrderButton");
+document.getElementById("finishButton");
+
 
 button.disabled = true;
 
-button.innerText = "Criando pedido...";
+button.innerText =
+"Criando pedido...";
 
 
 try{
 
-
-/* ================================
+/* =====================================================
 VALIDAR CARRINHO
-================================ */
+===================================================== */
 
 const cartProducts = [];
 
@@ -1718,7 +1743,8 @@ for(const item of cart){
 const product =
 products.find(function(p){
 
-return String(p.id) === String(item.id);
+return String(p.id) ===
+String(item.id);
 
 });
 
@@ -1741,7 +1767,10 @@ throw new Error(
 }
 
 
-if(Number(item.quantity) > Number(product.stock)){
+if(
+Number(item.quantity) >
+Number(product.stock)
+){
 
 throw new Error(
 "O produto " +
@@ -1774,9 +1803,9 @@ product:product
 }
 
 
-/* ================================
+/* =====================================================
 MESMA LOJA
-================================ */
+===================================================== */
 
 const lojaId =
 cartProducts[0].product.storeId;
@@ -1785,7 +1814,8 @@ cartProducts[0].product.storeId;
 const differentStore =
 cartProducts.some(function(row){
 
-return String(row.product.storeId) !==
+return String(row.product.storeId)
+!==
 String(lojaId);
 
 });
@@ -1800,38 +1830,18 @@ throw new Error(
 }
 
 
-/* ================================
-VALORES
-================================ */
+/* =====================================================
+CALCULAR
+===================================================== */
 
 let subtotal = 0;
 
 
-const items =
-cartProducts.map(function(row){
+cartProducts.forEach(function(row){
 
-const quantidade =
+subtotal +=
+Number(row.product.price) *
 Number(row.item.quantity);
-
-const itemSubtotal =
-Number(row.product.price) * quantidade;
-
-subtotal += itemSubtotal;
-
-
-return {
-
-productId:row.product.id,
-
-productName:row.product.name,
-
-unitPrice:Number(row.product.price),
-
-quantity:quantidade,
-
-subtotal:itemSubtotal
-
-};
 
 });
 
@@ -1839,7 +1849,8 @@ subtotal:itemSubtotal
 const valorEntrega = 0;
 
 const total =
-subtotal + valorEntrega;
+subtotal +
+valorEntrega;
 
 
 const comissaoPercentual = 10;
@@ -1859,39 +1870,60 @@ Number(
 );
 
 
-/* ================================
-CRIAR PEDIDO
-================================ */
+/* =====================================================
+DADOS DO PEDIDO
+===================================================== */
+
+/*
+IMPORTANTE:
+
+Estes são exatamente os nomes
+das colunas que você mostrou.
+*/
 
 const pedidoDados = {
 
-id_do_comprador:user.id,
+id_do_comprador:
+user.id,
 
-loja_id:lojaId,
+loja_id:
+lojaId,
 
-subtotal:subtotal,
+subtotal:
+subtotal,
 
-valor_entrega:valorEntrega,
+valor_entrega:
+valorEntrega,
 
-total:total,
+total:
+total,
 
-comissao_percentual:comissaoPercentual,
+comissao_percentual:
+comissaoPercentual,
 
-comissao_plataforma:comissaoPlataforma,
+comissao_plataforma:
+comissaoPlataforma,
 
-valor_vendedor:valorVendedor,
+valor_vendedor:
+valorVendedor,
 
-status:"pendente",
+status:
+"pendente",
 
-status_de_comercial:"pendente",
+status_de_comercial:
+"pendente",
 
-"método_pagamento":paymentMethod,
+"método_pagamento":
+paymentMethod,
 
-nome_entrega:name,
+nome_entrega:
+name,
 
-telefone_entrega:phone,
+telefone_entrega:
+phone,
 
-endereco_entrega:address,
+endereco_entrega:
+address,
 
 "observação":
 "Pedido realizado pelo Kivo Marketplace"
@@ -1899,165 +1931,93 @@ endereco_entrega:address,
 };
 
 
-console.log("PEDIDO:",pedidoDados);
+console.log(
+"DADOS ENVIADOS:",
+pedidoDados
+);
 
 
-const pedidoResult =
+/* =====================================================
+CRIAR PEDIDO
+===================================================== */
+
+const result =
 await supabaseClient
 .from("pedidos")
 .insert(pedidoDados)
-.select()
+.select("*")
 .single();
 
 
-if(pedidoResult.error){
+if(result.error){
 
-throw pedidoResult.error;
+console.error(
+"ERRO SUPABASE:",
+result.error
+);
+
+throw new Error(
+result.error.message
+);
 
 }
 
 
 const pedido =
-pedidoResult.data;
+result.data;
 
 
-/* ================================
-ITENS
-================================ */
-
-const itensParaBanco =
-items.map(function(item){
-
-return {
-
-pedido_id:pedido.id,
-
-produto_id:item.productId,
-
-nome_produto:item.productName,
-
-"preço_unitário":item.unitPrice,
-
-q:item.quantity,
-
-subtotal:item.subtotal
-
-};
-
-});
-
-
-const itensResult =
-await supabaseClient
-.from("itens_do_pedido")
-.insert(itensParaBanco);
-
-
-if(itensResult.error){
-
-console.warn(
-"Pedido criado, mas itens não foram guardados:",
-itensResult.error
+console.log(
+"PEDIDO CRIADO:",
+pedido
 );
 
-}
 
-
-/* ================================
-PAGAMENTO VENDEDOR
-================================ */
-
-try{
-
-await supabaseClient
-.from("pagamentos_vendedores")
-.insert({
-
-pedido_id:pedido.id,
-
-loja_id:lojaId,
-
-id_do_vendedor:TEST_PROFILE_ID,
-
-valor_bruto:total,
-
-comissao_plataforma:comissaoPlataforma,
-
-"valor_líquido":valorVendedor,
-
-status:"aguardando"
-
-});
-
-}catch(error){
-
-console.warn(
-"Pagamento vendedor:",
-error
-);
-
-}
-
-
-/* ================================
-PAGAMENTO
-================================ */
-
-try{
-
-await supabaseClient
-.from("pagamentos")
-.insert({
-
-pedido_id:pedido.id,
-
-quantia:total,
-
-"método":paymentMethod,
-
-"referência":"KIVO-" + pedido.id,
-
-status:"pendente"
-
-});
-
-}catch(error){
-
-console.warn(
-"Pagamento:",
-error
-);
-
-}
-
-
-/* ================================
-GUARDAR LOCAL
-================================ */
+/* =====================================================
+GUARDAR LOCALMENTE
+===================================================== */
 
 orders.unshift({
 
-id:pedido.id,
+id:
+pedido.id ||
+pedido.eu_ia ||
+"Pedido criado",
 
-total:total,
+total:
+total,
 
-subtotal:subtotal,
+subtotal:
+subtotal,
 
-commission:comissaoPlataforma,
+commission:
+comissaoPlataforma,
 
-status:"pendente",
+status:
+"pendente",
 
-date:new Date().toLocaleString("pt-AO")
+date:
+new Date()
+.toLocaleString("pt-AO")
 
 });
 
+
+/* =====================================================
+LIMPAR CARRINHO
+===================================================== */
 
 cart = [];
 
 saveData();
 
 
+/* =====================================================
+FECHAR
+===================================================== */
+
 closeModal("checkoutModal");
+
 
 renderAll();
 
@@ -2066,42 +2026,41 @@ showPage("orders");
 
 alert(
 "Pedido criado com sucesso! 🎉\n\n" +
-"Total: " + money(total) +
-"\nComissão Kivo (10%): " +
+"Total: " +
+money(total) +
+"\n\n" +
+"Comissão Kivo (10%): " +
 money(comissaoPlataforma) +
-"\nValor do vendedor: " +
+"\n\n" +
+"Valor do vendedor: " +
 money(valorVendedor)
 );
 
 
 }catch(error){
 
-console.error(
-"ERRO AO CRIAR PEDIDO:",
-error
-);
-
+console.error(error);
 
 alert(
 "Não foi possível criar o pedido.\n\n" +
 error.message
 );
 
-
 }finally{
 
 button.disabled = false;
 
-button.innerText = "Confirmar pedido";
+button.innerText =
+"Confirmar pedido";
 
 }
 
 }
 
 
-/* ================================
+/* =====================================================
 PEDIDOS
-================================ */
+===================================================== */
 
 function renderOrders(){
 
@@ -2141,17 +2100,23 @@ ${escapeHtml(order.status || "pendente")}
 </span>
 
 <p>
+
 Total:
+
 <strong>
 ${money(order.total)}
 </strong>
+
 </p>
 
 <p>
+
 Comissão Kivo:
+
 <strong>
 ${money(order.commission || 0)}
 </strong>
+
 </p>
 
 </div>
@@ -2163,9 +2128,9 @@ ${money(order.commission || 0)}
 }
 
 
-/* ================================
+/* =====================================================
 CONTA
-================================ */
+===================================================== */
 
 function renderAccount(){
 
@@ -2183,8 +2148,12 @@ container.innerHTML = `
 Você ainda não iniciou sessão.
 </p>
 
-<button class="primary" onclick="openLogin()">
+<button
+class="primary"
+onclick="openLogin()">
+
 Entrar / Criar conta
+
 </button>
 
 `;
@@ -2208,8 +2177,12 @@ ${escapeHtml(user.name)}
 Conta conectada ao Kivo.
 </p>
 
-<button class="primary" onclick="logout()">
+<button
+class="primary"
+onclick="logout()">
+
 Sair da conta
+
 </button>
 
 `;
@@ -2230,9 +2203,9 @@ alert("Você saiu da conta.");
 }
 
 
-/* ================================
+/* =====================================================
 LOJA
-================================ */
+===================================================== */
 
 function openSeller(){
 
@@ -2253,9 +2226,9 @@ document.getElementById("sellerModal")
 }
 
 
-/* ================================
+/* =====================================================
 CRIAR LOJA
-================================ */
+===================================================== */
 
 async function createStore(){
 
@@ -2270,19 +2243,26 @@ return;
 
 const name =
 document.getElementById("storeName")
-.value.trim();
+.value
+.trim();
+
 
 const phone =
 document.getElementById("storePhone")
-.value.trim();
+.value
+.trim();
+
 
 const address =
 document.getElementById("storeAddress")
-.value.trim();
+.value
+.trim();
+
 
 const description =
 document.getElementById("storeDescription")
-.value.trim();
+.value
+.trim();
 
 
 if(!name || !phone || !address){
@@ -2298,17 +2278,23 @@ return;
 
 const lojaDados = {
 
-vendedor_id:user.id,
+vendedor_id:
+user.id,
 
-nome:name,
+nome:
+name,
 
-telefone:phone,
+descricao:
+description,
 
-endereco:address,
+telefone:
+phone,
 
-descricao:description,
+endereco:
+address,
 
-ativo:true
+ativo:
+true
 
 };
 
@@ -2317,11 +2303,13 @@ const result =
 await supabaseClient
 .from("lojas")
 .insert(lojaDados)
-.select()
+.select("*")
 .single();
 
 
 if(result.error){
+
+console.error(result.error);
 
 alert(
 "Erro ao criar loja:\n\n" +
@@ -2335,17 +2323,19 @@ return;
 
 closeModal("sellerModal");
 
+
 alert(
 "Loja criada com sucesso! 🎉\n\n" +
-"Nome: " + name
+"Nome: " +
+name
 );
 
 }
 
 
-/* ================================
+/* =====================================================
 PAINEL
-================================ */
+===================================================== */
 
 async function renderAdmin(){
 
@@ -2359,24 +2349,22 @@ container.innerHTML =
 '<div class="loading">A carregar painel...</div>';
 
 
-try{
-
 const pedidosResult =
 await supabaseClient
 .from("pedidos")
-.select("*")
-.order("criado_em",{ascending:false});
+.select("*");
 
 
 if(pedidosResult.error){
 
-throw pedidosResult.error;
+container.innerHTML =
+'<div class="error">' +
+escapeHtml(pedidosResult.error.message) +
+'</div>';
+
+return;
 
 }
-
-
-const lista =
-pedidosResult.data || [];
 
 
 const lojasResult =
@@ -2385,15 +2373,17 @@ await supabaseClient
 .select("*");
 
 
-const lojas =
-lojasResult.data || [];
-
-
 const produtosResult =
 await supabaseClient
 .from("produtos")
 .select("*");
 
+
+const pedidos =
+pedidosResult.data || [];
+
+const lojas =
+lojasResult.data || [];
 
 const produtos =
 produtosResult.data || [];
@@ -2406,7 +2396,7 @@ let comissao = 0;
 let pendentes = 0;
 
 
-lista.forEach(function(pedido){
+pedidos.forEach(function(pedido){
 
 faturamento +=
 Number(pedido.total || 0);
@@ -2434,7 +2424,7 @@ container.innerHTML = `
 <div>📦 Pedidos</div>
 
 <div class="admin-number">
-${lista.length}
+${pedidos.length}
 </div>
 
 </div>
@@ -2494,96 +2484,14 @@ ${produtos.length}
 
 </div>
 
-
-<div class="card">
-
-<h3>
-📦 Pedidos recentes
-</h3>
-
-${
-lista.length
-?
-lista.slice(0,20).map(function(pedido){
-
-return `
-
-<div class="admin-order">
-
-<strong>
-Pedido #${escapeHtml(pedido.id)}
-</strong>
-
-<p>
-Total:
-<strong>
-${money(pedido.total)}
-</strong>
-</p>
-
-<p>
-Comissão Kivo:
-<strong>
-${money(pedido.comissao_plataforma)}
-</strong>
-</p>
-
-<p>
-Vendedor recebe:
-<strong>
-${money(pedido.valor_vendedor)}
-</strong>
-</p>
-
-<p>
-
-Status:
-
-<span class="badge">
-${escapeHtml(pedido.status || "pendente")}
-</span>
-
-</p>
-
-</div>
-
-`;
-
-}).join("")
-:
-'<div class="empty">Nenhum pedido encontrado.</div>'
-}
-
-</div>
-
-`;
-
-}catch(error){
-
-container.innerHTML = `
-
-<div class="error">
-
-<strong>
-Erro ao carregar painel.
-</strong>
-
-<br><br>
-
-${escapeHtml(error.message)}
-
-</div>
-
 `;
 
 }
 
-}
 
-
-/* ================================
+/* =====================================================
 INICIAR
-================================ */
+===================================================== */
 
 async function startKivo(){
 
