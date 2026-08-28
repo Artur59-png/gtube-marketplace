@@ -5,165 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GTube Marketplace</title>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{
- font-family:Arial,sans-serif;
- background:#f5f6fa;
- color:#222;
-}
-header{
- background:linear-gradient(135deg,#111827,#2563eb);
- color:white;
- padding:18px;
- position:sticky;
- top:0;
- z-index:10;
-}
-.header{
- max-width:1100px;
- margin:auto;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
-}
-.logo{font-size:25px;font-weight:bold}
-nav button{
- border:0;
- background:white;
- color:#2563eb;
- padding:9px 13px;
- border-radius:8px;
- margin-left:5px;
- font-weight:bold;
-}
-.hero{
- max-width:1100px;
- margin:20px auto;
- padding:35px 20px;
- background:linear-gradient(135deg,#2563eb,#7c3aed);
- color:white;
- border-radius:18px;
-}
+body{font-family:Arial,sans-serif;background:#f5f6fa;color:#222}
+header{background:linear-gradient(135deg,#111827,#2563eb);color:white;padding:16px;position:sticky;top:0;z-index:10}
+.header{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.logo{font-size:24px;font-weight:bold}
+nav{display:flex;gap:6px;flex-wrap:wrap}
+nav button,.cat{border:0;background:white;color:#2563eb;padding:9px 12px;border-radius:8px;font-weight:bold}
+.hero{max-width:1100px;margin:20px auto;padding:40px 20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border-radius:18px}
 .hero h1{font-size:32px;margin-bottom:10px}
 .container{max-width:1100px;margin:20px auto;padding:0 15px}
-.search{
- width:100%;
- padding:14px;
- border:1px solid #ddd;
- border-radius:10px;
- margin-bottom:20px;
- font-size:16px;
-}
-.categories{
- display:flex;
- gap:8px;
- overflow:auto;
- margin-bottom:20px;
-}
-.categories button{
- padding:10px 15px;
- border:0;
- border-radius:20px;
- background:white;
- white-space:nowrap;
-}
-.products{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
- gap:15px;
-}
-.card{
- background:white;
- border-radius:15px;
- padding:15px;
- box-shadow:0 3px 12px #00000012;
-}
-.card img{
- width:100%;
- height:170px;
- object-fit:cover;
- border-radius:10px;
- background:#eee;
-}
+.panel{background:white;padding:20px;border-radius:15px;margin-bottom:20px;box-shadow:0 3px 12px #00000012}
+.search,input,select,textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:9px;font-size:15px}
+.search{margin-bottom:15px}
+.categories{display:flex;gap:8px;overflow:auto;margin-bottom:20px}
+.cat{white-space:nowrap;background:white}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
+.card{background:white;border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000012}
+.card img,.noimage{width:100%;height:170px;object-fit:cover;border-radius:10px}
+.noimage{background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:50px}
 .card h3{margin:10px 0}
-.price{
- color:#2563eb;
- font-size:20px;
- font-weight:bold;
- margin:8px 0;
-}
-.btn{
- width:100%;
- padding:11px;
- border:0;
- border-radius:9px;
- background:#2563eb;
- color:white;
- font-weight:bold;
- margin-top:8px;
-}
-.btn.secondary{background:#111827}
-.btn.danger{background:#dc2626}
-.panel{
- background:white;
- padding:20px;
- border-radius:15px;
- margin-bottom:20px;
- box-shadow:0 3px 12px #00000012;
-}
-input,select,textarea{
- width:100%;
- padding:12px;
- margin:7px 0;
- border:1px solid #ddd;
- border-radius:8px;
-}
+.price{color:#2563eb;font-size:20px;font-weight:bold;margin:8px 0}
+.btn{width:100%;padding:12px;border:0;border-radius:9px;background:#2563eb;color:white;font-weight:bold;margin-top:8px}
+.btn.dark{background:#111827}
+.btn.red{background:#dc2626}
+.btn.green{background:#16a34a}
 .hidden{display:none!important}
-.cart{
- position:fixed;
- right:15px;
- bottom:15px;
- background:#2563eb;
- color:white;
- padding:15px 18px;
- border-radius:50px;
- box-shadow:0 5px 20px #0005;
- z-index:20;
-}
-.badge{
- background:#dc2626;
- border-radius:20px;
- padding:3px 7px;
- font-size:12px;
-}
-.stats{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
- gap:12px;
-}
-.stat{
- background:#f1f5f9;
- padding:18px;
- border-radius:12px;
-}
-.stat strong{
- display:block;
- font-size:22px;
- margin-top:7px;
-}
-.order{
- border:1px solid #ddd;
- padding:15px;
- border-radius:10px;
- margin-top:10px;
-}
-footer{
- text-align:center;
- padding:30px;
- color:#777;
-}
+.cart{position:fixed;right:15px;bottom:15px;background:#2563eb;color:white;padding:15px 18px;border-radius:50px;box-shadow:0 5px 20px #0005;z-index:20;font-weight:bold}
+.badge{background:#dc2626;border-radius:20px;padding:3px 7px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.stat{background:#f1f5f9;padding:18px;border-radius:12px}
+.stat strong{display:block;font-size:21px;margin-top:7px}
+.order{border:1px solid #ddd;padding:15px;border-radius:10px;margin-top:10px}
+.status{font-weight:bold}
+.message{padding:12px;border-radius:9px;margin:10px 0;background:#eef2ff}
+footer{text-align:center;padding:30px;color:#777}
 </style>
 </head>
 
@@ -172,11 +51,12 @@ footer{
 <header>
 <div class="header">
 <div class="logo">🛍️ GTube Marketplace</div>
+
 <nav>
 <button onclick="showPage('home')">Início</button>
 <button onclick="showPage('login')">Entrar</button>
 <button onclick="showPage('account')">Minha conta</button>
-<button onclick="showPage('admin')">Admin</button>
+<button id="adminButton" class="hidden" onclick="showPage('admin')">👑 Admin</button>
 </nav>
 </div>
 </header>
@@ -185,7 +65,7 @@ footer{
 
 <div class="hero">
 <h1>Compre e venda no GTube Marketplace</h1>
-<p>Encontre produtos, publique os seus e faça pedidos de forma simples.</p>
+<p>Encontre produtos e venda os seus produtos em Angola.</p>
 </div>
 
 <div class="container">
@@ -195,13 +75,13 @@ placeholder="🔎 Procurar produto..."
 oninput="renderProducts()">
 
 <div class="categories">
-<button onclick="filterCategory('Todos')">Todos</button>
-<button onclick="filterCategory('Telefones')">Telefones</button>
-<button onclick="filterCategory('Computadores')">Computadores</button>
-<button onclick="filterCategory('Moda')">Moda</button>
-<button onclick="filterCategory('Carros')">Carros</button>
-<button onclick="filterCategory('Casa')">Casa</button>
-<button onclick="filterCategory('Outros')">Outros</button>
+<button class="cat" onclick="filterCategory('Todos')">Todos</button>
+<button class="cat" onclick="filterCategory('Telefones')">Telefones</button>
+<button class="cat" onclick="filterCategory('Computadores')">Computadores</button>
+<button class="cat" onclick="filterCategory('Moda')">Moda</button>
+<button class="cat" onclick="filterCategory('Carros')">Carros</button>
+<button class="cat" onclick="filterCategory('Casa')">Casa</button>
+<button class="cat" onclick="filterCategory('Outros')">Outros</button>
 </div>
 
 <div id="products" class="products"></div>
@@ -212,7 +92,8 @@ oninput="renderProducts()">
 <section id="login" class="container hidden">
 
 <div class="panel">
-<h2>Entrar</h2>
+
+<h2>🔐 Entrar</h2>
 
 <input id="loginEmail" type="email" placeholder="E-mail">
 <input id="loginPassword" type="password" placeholder="Palavra-passe">
@@ -221,7 +102,7 @@ oninput="renderProducts()">
 
 <hr style="margin:20px 0">
 
-<h3>Criar conta</h3>
+<h2>📝 Criar conta</h2>
 
 <input id="name" placeholder="Nome completo">
 <input id="email" type="email" placeholder="E-mail">
@@ -233,22 +114,25 @@ oninput="renderProducts()">
 <option value="vendedor">Vendedor</option>
 </select>
 
-<button class="btn secondary" onclick="register()">Criar conta</button>
-</div>
+<button class="btn dark" onclick="register()">Criar conta</button>
 
+<div id="loginMessage"></div>
+
+</div>
 </section>
 
 <section id="account" class="container hidden">
 
 <div class="panel">
-<h2>Minha conta</h2>
+<h2>👤 Minha conta</h2>
 <div id="accountInfo"></div>
-<button class="btn danger" onclick="logout()">Sair</button>
+
+<button class="btn red" onclick="logout()">Sair</button>
 </div>
 
 <div id="sellerPanel" class="panel hidden">
 
-<h2>📦 Publicar produto</h2>
+<h2>🏪 Área do vendedor</h2>
 
 <input id="productName" placeholder="Nome do produto">
 <input id="productPrice" type="number" placeholder="Preço em Kz">
@@ -262,11 +146,15 @@ oninput="renderProducts()">
 <option>Outros</option>
 </select>
 
-<textarea id="productDescription" placeholder="Descrição do produto"></textarea>
+<textarea id="productDescription"
+placeholder="Descrição do produto"></textarea>
 
-<input id="productImage" type="file" accept="image/*">
+<input id="productImage" type="url"
+placeholder="URL da imagem do produto">
 
-<button class="btn" onclick="publishProduct()">Publicar produto</button>
+<button class="btn" onclick="publishProduct()">
+Publicar produto
+</button>
 
 <h3 style="margin-top:25px">Meus produtos</h3>
 <div id="myProducts"></div>
@@ -274,7 +162,7 @@ oninput="renderProducts()">
 </div>
 
 <div class="panel">
-<h2>🧾 Meus pedidos</h2>
+<h2>📦 Meus pedidos</h2>
 <div id="myOrders"></div>
 </div>
 
@@ -282,12 +170,19 @@ oninput="renderProducts()">
 
 <section id="admin" class="container hidden">
 
+<div id="adminDenied" class="panel hidden">
+<h2>🔒 Acesso negado</h2>
+<p>Esta área é exclusiva do administrador.</p>
+</div>
+
+<div id="adminContent" class="hidden">
+
 <div class="panel">
 
 <h2>👑 Painel do Dono — GTube</h2>
 
 <p style="margin:8px 0 20px">
-Área administrativa. Os compradores e vendedores não precisam ver esta área.
+Painel administrativo da plataforma.
 </p>
 
 <div class="stats">
@@ -313,18 +208,19 @@ Pedidos
 </div>
 
 </div>
-
 </div>
 
 <div class="panel">
-<h2>📋 Todos os pedidos</h2>
+<h2>📋 Pedidos</h2>
 <div id="adminOrders"></div>
 </div>
 
+</div>
 </section>
 
 <div class="cart" onclick="showCart()">
-🛒 Carrinho <span id="cartCount" class="badge">0</span>
+🛒 Carrinho
+<span id="cartCount" class="badge">0</span>
 </div>
 
 <footer>
@@ -333,518 +229,887 @@ GTube Marketplace © 2026
 
 <script>
 
-const COMMISSION_RATE = 0.10;
+/* ==========================================
+   SUPABASE
+========================================== */
 
-let users = JSON.parse(localStorage.getItem("gtubeUtilizadores") || "[]");
-let products = JSON.parse(localStorage.getItem("gtubeProdutos") || "null");
-let orders = JSON.parse(localStorage.getItem("gtubePedidos") || "[]");
-let session = JSON.parse(localStorage.getItem("gtubeSessao") || "null");
-let cart = JSON.parse(localStorage.getItem("gtubeCarrinho") || "[]");
+const SUPABASE_URL =
+"https://ozhhemaplvfxyoglvfqo.supabase.co";
 
-if(!products){
- products=[
-  {
-   id:1,
-   name:"Smartphone",
-   price:150000,
-   category:"Telefones",
-   description:"Smartphone moderno",
-   image:"",
-   seller:"GTube"
-  },
-  {
-   id:2,
-   name:"Ténis",
-   price:35000,
-   category:"Moda",
-   description:"Ténis confortável",
-   image:"",
-   seller:"GTube"
-  },
-  {
-   id:3,
-   name:"Computador",
-   price:250000,
-   category:"Computadores",
-   description:"Computador para trabalho e estudo",
-   image:"",
-   seller:"GTube"
-  }
- ];
- save();
+const SUPABASE_KEY =
+"sb_publishable_j87agBrGR2fD2k8rOdyeZg_ldPe200L";
+
+const db = window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+/* ==========================================
+   ESTADO
+========================================== */
+
+let sessionUser = null;
+let profile = null;
+let products = [];
+let cart = [];
+let currentCategory = "Todos";
+
+/* ==========================================
+   UTILIDADES
+========================================== */
+
+function money(value){
+return Number(value || 0).toLocaleString("pt-AO")+" Kz";
 }
 
-let currentCategory="Todos";
-
-function save(){
- localStorage.setItem("gtubeUtilizadores",JSON.stringify(users));
- localStorage.setItem("gtubeProdutos",JSON.stringify(products));
- localStorage.setItem("gtubePedidos",JSON.stringify(orders));
- localStorage.setItem("gtubeSessao",JSON.stringify(session));
- localStorage.setItem("gtubeCarrinho",JSON.stringify(cart));
+function escapeHtml(text){
+return String(text ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
 }
+
+/* ==========================================
+   NAVEGAÇÃO
+========================================== */
 
 function showPage(page){
 
- document.querySelectorAll("section").forEach(s=>s.classList.add("hidden"));
+document.querySelectorAll("section")
+.forEach(s=>s.classList.add("hidden"));
 
- document.getElementById(page).classList.remove("hidden");
+document.getElementById(page)
+.classList.remove("hidden");
 
- if(page==="account") renderAccount();
- if(page==="admin") renderAdmin();
+if(page==="account") loadAccount();
 
- window.scrollTo(0,0);
+if(page==="admin") loadAdmin();
+
+if(page==="home") loadProducts();
+
+window.scrollTo(0,0);
+}
+
+/* ==========================================
+   PRODUTOS
+========================================== */
+
+async function loadProducts(){
+
+const {data,error}=await db
+.from("produtos")
+.select("*")
+.eq("ativo",true)
+.order("criado_em",{ascending:false});
+
+if(error){
+
+console.error(error);
+
+document.getElementById("products").innerHTML =
+"<p>Erro ao carregar produtos.</p>";
+
+return;
+}
+
+products=data || [];
+
+renderProducts();
 }
 
 function renderProducts(){
 
- const box=document.getElementById("products");
+const box=document.getElementById("products");
 
- const search=(document.getElementById("search").value||"").toLowerCase();
+const search=
+(document.getElementById("search").value || "")
+.toLowerCase();
 
- let list=products.filter(p=>{
-   const matchCategory=currentCategory==="Todos" || p.category===currentCategory;
-   const matchSearch=p.name.toLowerCase().includes(search);
-   return matchCategory && matchSearch;
- });
+let list=products.filter(p=>{
 
- if(!list.length){
-  box.innerHTML="<p>Nenhum produto encontrado.</p>";
-  return;
- }
+const categoryOk =
+currentCategory==="Todos" ||
+p.categoria===currentCategory;
 
- box.innerHTML=list.map(p=>`
+const searchOk =
+(p.nome || "").toLowerCase().includes(search);
 
- <div class="card">
+return categoryOk && searchOk;
+});
 
- ${p.image
- ? `<img src="${p.image}">`
- : `<div style="height:170px;background:#e5e7eb;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:50px">🛍️</div>`
- }
+if(!list.length){
 
- <h3>${escapeHtml(p.name)}</h3>
+box.innerHTML="<p>Nenhum produto encontrado.</p>";
+return;
+}
 
- <small>${escapeHtml(p.category)}</small>
+box.innerHTML=list.map(p=>`
 
- <div class="price">${Number(p.price).toLocaleString("pt-AO")} Kz</div>
+<div class="card">
 
- <p>${escapeHtml(p.description||"")}</p>
+${p.imagem_url
+? `<img src="${escapeHtml(p.imagem_url)}">`
+: `<div class="noimage">🛍️</div>`
+}
 
- <small>Vendedor: ${escapeHtml(p.seller||"GTube")}</small>
+<h3>${escapeHtml(p.nome)}</h3>
 
- <button class="btn" onclick="addCart(${p.id})">
- Adicionar ao carrinho
- </button>
+<small>${escapeHtml(p.categoria || "")}</small>
 
- </div>
+<div class="price">${money(p.preco)}</div>
 
- `).join("");
+<p>${escapeHtml(p.descricao || "")}</p>
+
+<button class="btn"
+onclick="addCart('${p.id}')">
+🛒 Adicionar ao carrinho
+</button>
+
+</div>
+
+`).join("");
 }
 
 function filterCategory(category){
- currentCategory=category;
- renderProducts();
+
+currentCategory=category;
+
+renderProducts();
 }
+
+/* ==========================================
+   CARRINHO
+========================================== */
 
 function addCart(id){
 
- const product=products.find(p=>p.id===id);
+const product=products.find(p=>p.id===id);
 
- if(!product)return;
+if(!product)return;
 
- cart.push(product);
+cart.push(product);
 
- save();
+updateCart();
 
- updateCart();
-
- alert("Produto adicionado ao carrinho!");
+alert("Produto adicionado ao carrinho.");
 }
 
 function updateCart(){
 
- document.getElementById("cartCount").textContent=cart.length;
+document.getElementById("cartCount")
+.textContent=cart.length;
 }
 
 function showCart(){
 
- if(!cart.length){
-  alert("O carrinho está vazio.");
-  return;
- }
+if(!cart.length){
 
- let total=cart.reduce((sum,p)=>sum+Number(p.price),0);
-
- let text="PRODUTOS NO CARRINHO:\n\n";
-
- cart.forEach((p,i)=>{
-  text+=(i+1)+". "+p.name+" - "+Number(p.price).toLocaleString("pt-AO")+" Kz\n";
- });
-
- text+="\nTotal: "+total.toLocaleString("pt-AO")+" Kz";
-
- if(confirm(text+"\n\nDeseja finalizar a compra?")){
-  checkout();
- }
+alert("O carrinho está vazio.");
+return;
 }
 
-function checkout(){
+let total=cart.reduce(
+(sum,p)=>sum+Number(p.preco),0
+);
 
- if(!session){
-  alert("Entre na sua conta primeiro.");
-  showPage("login");
-  return;
- }
+let text="🛒 CARRINHO\n\n";
 
- if(!cart.length)return;
+cart.forEach((p,i)=>{
 
- const total=cart.reduce((sum,p)=>sum+Number(p.price),0);
- const commission=total*COMMISSION_RATE;
- const sellerValue=total-commission;
+text +=
+(i+1)+". "+
+p.nome+
+" - "+
+money(p.preco)+
+"\n";
 
- const order={
-  numero:"GT-"+Date.now(),
-  cliente:session.name,
-  comprador_id:session.id,
-  email:session.email,
-  telefone:session.phone||"",
-  produtos:cart,
-  total:total,
-  comissao:commission,
-  valorVendedor:sellerValue,
-  data:new Date().toISOString(),
-  status:"Pendente"
- };
+});
 
- orders.push(order);
+text +=
+"\nTotal: "+
+money(total);
 
- cart=[];
+if(confirm(text+
+"\n\nDeseja finalizar o pedido?")){
 
- save();
- updateCart();
-
- alert(
- "Pedido criado com sucesso!\n\n"+
- "Número: "+order.numero+
- "\nValor: "+total.toLocaleString("pt-AO")+" Kz"+
- "\nComissão GTube (10%): "+commission.toLocaleString("pt-AO")+" Kz"+
- "\nValor do vendedor: "+sellerValue.toLocaleString("pt-AO")+" Kz"
- );
-
- showPage("account");
+checkout();
+}
 }
 
-function register(){
+/* ==========================================
+   PEDIDO
+========================================== */
 
- const name=document.getElementById("name").value.trim();
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
- const phone=document.getElementById("phone").value.trim();
- const type=document.getElementById("type").value;
+async function checkout(){
 
- if(!name||!email||!password){
-  alert("Preencha nome, e-mail e palavra-passe.");
-  return;
- }
+if(!sessionUser){
 
- if(users.some(u=>u.email.toLowerCase()===email.toLowerCase())){
-  alert("Este e-mail já está registado.");
-  return;
- }
+alert("Entre na sua conta primeiro.");
 
- const user={
-  id:crypto.randomUUID ? crypto.randomUUID() : Date.now().toString(),
-  name,
-  email,
-  password,
-  phone,
-  type
- };
+showPage("login");
 
- users.push(user);
-
- session=user;
-
- save();
-
- alert("Conta criada com sucesso!");
-
- showPage("account");
+return;
 }
 
-function login(){
+if(!cart.length)return;
 
- const email=document.getElementById("loginEmail").value.trim();
- const password=document.getElementById("loginPassword").value;
+/*
+Para evitar alterar o preço no navegador,
+o pedido é criado através da função SQL
+criar_pedido(), que calcula a comissão
+de 10% no servidor.
+*/
 
- const user=users.find(
-  u=>u.email.toLowerCase()===email.toLowerCase() &&
-  u.password===password
- );
+try{
 
- if(!user){
-  alert("E-mail ou palavra-passe incorretos.");
-  return;
- }
+for(const product of cart){
 
- session=user;
+const {data,error}=await db.rpc(
+"criar_pedido",
+{
+p_produto_id:product.id,
+p_quantidade:1
+}
+);
 
- save();
+if(error)throw error;
 
- alert("Login realizado com sucesso!");
-
- showPage("account");
 }
 
-function logout(){
+cart=[];
 
- session=null;
-
- save();
-
- alert("Sessão encerrada.");
-
- showPage("home");
-}
-
-function renderAccount(){
-
- if(!session){
-
-  document.getElementById("accountInfo").innerHTML=
-  "<p>Entre na sua conta para continuar.</p>";
-
-  document.getElementById("sellerPanel").classList.add("hidden");
-
-  return;
- }
-
- document.getElementById("accountInfo").innerHTML=`
-
- <p><strong>Nome:</strong> ${escapeHtml(session.name)}</p>
- <p><strong>E-mail:</strong> ${escapeHtml(session.email)}</p>
- <p><strong>Telefone:</strong> ${escapeHtml(session.phone||"-")}</p>
- <p><strong>Tipo:</strong> ${escapeHtml(session.type)}</p>
-
- `;
-
- if(session.type==="vendedor"){
-
-  document.getElementById("sellerPanel").classList.remove("hidden");
-
-  renderMyProducts();
-
- }else{
-
-  document.getElementById("sellerPanel").classList.add("hidden");
-
- }
-
- renderMyOrders();
-}
-
-function publishProduct(){
-
- if(!session || session.type!=="vendedor"){
-  alert("Apenas vendedores podem publicar produtos.");
-  return;
- }
-
- const name=document.getElementById("productName").value.trim();
- const price=Number(document.getElementById("productPrice").value);
- const category=document.getElementById("productCategory").value;
- const description=document.getElementById("productDescription").value.trim();
- const file=document.getElementById("productImage").files[0];
-
- if(!name||!price){
-  alert("Preencha nome e preço.");
-  return;
- }
-
- const createProduct=(image="")=>{
-
-  products.push({
-   id:Date.now(),
-   name,
-   price,
-   category,
-   description,
-   image,
-   seller:session.name,
-   seller_id:session.id
-  });
-
-  save();
-
-  document.getElementById("productName").value="";
-  document.getElementById("productPrice").value="";
-  document.getElementById("productDescription").value="";
-  document.getElementById("productImage").value="";
-
-  renderProducts();
-  renderMyProducts();
-
-  alert("Produto publicado com sucesso!");
- };
-
- if(file){
-
-  const reader=new FileReader();
-
-  reader.onload=e=>createProduct(e.target.result);
-
-  reader.readAsDataURL(file);
-
- }else{
-
-  createProduct();
-
- }
-}
-
-function renderMyProducts(){
-
- const box=document.getElementById("myProducts");
-
- const mine=products.filter(p=>p.seller_id===session.id);
-
- if(!mine.length){
-  box.innerHTML="<p>Ainda não tens produtos publicados.</p>";
-  return;
- }
-
- box.innerHTML=mine.map(p=>`
-
- <div class="order">
-
- <strong>${escapeHtml(p.name)}</strong>
-
- <p>${Number(p.price).toLocaleString("pt-AO")} Kz</p>
-
- <button class="btn danger" onclick="deleteProduct(${p.id})">
- Eliminar
- </button>
-
- </div>
-
- `).join("");
-}
-
-function deleteProduct(id){
-
- if(!confirm("Eliminar este produto?"))return;
-
- products=products.filter(p=>p.id!==id);
-
- save();
-
- renderProducts();
- renderMyProducts();
-}
-
-function renderMyOrders(){
-
- const box=document.getElementById("myOrders");
-
- const mine=orders.filter(o=>o.comprador_id===session.id);
-
- if(!mine.length){
-  box.innerHTML="<p>Ainda não tens pedidos.</p>";
-  return;
- }
-
- box.innerHTML=mine.map(o=>`
-
- <div class="order">
-
- <strong>${o.numero}</strong>
-
- <p>Data: ${new Date(o.data).toLocaleString("pt-AO")}</p>
-
- <p>Valor: ${Number(o.total).toLocaleString("pt-AO")} Kz</p>
-
- <p>Estado: <strong>${escapeHtml(o.status)}</strong></p>
-
- </div>
-
- `).join("");
-}
-
-function renderAdmin(){
-
- let total=0;
- let commission=0;
- let seller=0;
-
- orders.forEach(o=>{
-  total+=Number(o.total)||0;
-  commission+=Number(o.comissao)||0;
-  seller+=Number(o.valorVendedor)||0;
- });
-
- document.getElementById("totalSales").textContent=
- total.toLocaleString("pt-AO")+" Kz";
-
- document.getElementById("totalCommission").textContent=
- commission.toLocaleString("pt-AO")+" Kz";
-
- document.getElementById("sellerMoney").textContent=
- seller.toLocaleString("pt-AO")+" Kz";
-
- document.getElementById("totalOrders").textContent=orders.length;
-
- const box=document.getElementById("adminOrders");
-
- if(!orders.length){
-  box.innerHTML="<p>Ainda não existem pedidos.</p>";
-  return;
- }
-
- box.innerHTML=orders.map(o=>`
-
- <div class="order">
-
- <strong>${o.numero}</strong>
-
- <p>Cliente: ${escapeHtml(o.cliente)}</p>
-
- <p>E-mail: ${escapeHtml(o.email||"-")}</p>
-
- <p>Valor total:
- <strong>${Number(o.total).toLocaleString("pt-AO")} Kz</strong>
- </p>
-
- <p>Comissão GTube:
- <strong>${Number(o.comissao).toLocaleString("pt-AO")} Kz</strong>
- </p>
-
- <p>Vendedor recebe:
- <strong>${Number(o.valorVendedor).toLocaleString("pt-AO")} Kz</strong>
- </p>
-
- <p>Estado: ${escapeHtml(o.status)}</p>
-
- </div>
-
- `).join("");
-}
-
-function escapeHtml(text){
-
- return String(text??"")
- .replace(/&/g,"&amp;")
- .replace(/</g,"&lt;")
- .replace(/>/g,"&gt;")
- .replace(/"/g,"&quot;")
- .replace(/'/g,"&#039;");
-}
-
-renderProducts();
 updateCart();
 
-if(session){
- renderAccount();
+alert(
+"Pedido criado com sucesso!\n\n"+
+"A comissão de 10% foi calculada pelo sistema."
+);
+
+await loadAccount();
+
+showPage("account");
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Não foi possível criar o pedido.\n"+
+error.message
+);
 }
+}
+
+/* ==========================================
+   CADASTRO
+========================================== */
+
+async function register(){
+
+const name=
+document.getElementById("name").value.trim();
+
+const email=
+document.getElementById("email").value.trim();
+
+const password=
+document.getElementById("password").value;
+
+const phone=
+document.getElementById("phone").value.trim();
+
+const type=
+document.getElementById("type").value;
+
+if(!name || !email || !password){
+
+alert(
+"Preencha nome, e-mail e palavra-passe."
+);
+
+return;
+}
+
+const {data,error}=await db.auth.signUp({
+
+email:email,
+
+password:password,
+
+options:{
+data:{
+nome:name,
+telefone:phone,
+tipo:type
+}
+}
+
+});
+
+if(error){
+
+alert(error.message);
+
+return;
+}
+
+/*
+Se a confirmação de e-mail estiver
+desativada, a sessão já estará disponível.
+*/
+
+if(data.user && data.session){
+
+const {error:profileError}=await db
+.from("perfis")
+.insert({
+
+id:data.user.id,
+nome:name,
+telefone:phone,
+tipo:type
+
+});
+
+if(profileError){
+
+console.error(profileError);
+
+alert(
+"Conta criada, mas ocorreu um erro ao criar o perfil."
+);
+
+return;
+}
+
+alert("Conta criada com sucesso!");
+
+await start();
+
+showPage("account");
+
+}else{
+
+alert(
+"Conta criada!\n\n"+
+"Verifica o teu e-mail para confirmar a conta e depois entra no GTube."
+);
+}
+}
+
+/* ==========================================
+   LOGIN
+========================================== */
+
+async function login(){
+
+const email=
+document.getElementById("loginEmail")
+.value.trim();
+
+const password=
+document.getElementById("loginPassword")
+.value;
+
+if(!email || !password){
+
+alert("Preencha o e-mail e a palavra-passe.");
+
+return;
+}
+
+const {data,error}=await db.auth.signInWithPassword({
+
+email,
+password
+
+});
+
+if(error){
+
+alert("E-mail ou palavra-passe incorretos.");
+
+return;
+}
+
+sessionUser=data.user;
+
+await loadProfile();
+
+alert("Login realizado com sucesso!");
+
+showPage("account");
+}
+
+/* ==========================================
+   PERFIL
+========================================== */
+
+async function loadProfile(){
+
+if(!sessionUser){
+
+profile=null;
+
+return;
+}
+
+const {data,error}=await db
+.from("perfis")
+.select("*")
+.eq("id",sessionUser.id)
+.single();
+
+if(error){
+
+console.error(error);
+
+profile=null;
+
+return;
+}
+
+profile=data;
+
+updateAdminButton();
+}
+
+function updateAdminButton(){
+
+const button=
+document.getElementById("adminButton");
+
+if(profile && profile.tipo==="admin"){
+
+button.classList.remove("hidden");
+
+}else{
+
+button.classList.add("hidden");
+}
+}
+
+/* ==========================================
+   CONTA
+========================================== */
+
+async function loadAccount(){
+
+if(!sessionUser){
+
+document.getElementById("accountInfo").innerHTML=
+"<p>Entra na tua conta primeiro.</p>";
+
+document.getElementById("sellerPanel")
+.classList.add("hidden");
+
+return;
+}
+
+await loadProfile();
+
+document.getElementById("accountInfo").innerHTML=`
+
+<p><strong>Nome:</strong>
+${escapeHtml(profile?.nome || "")}</p>
+
+<p><strong>E-mail:</strong>
+${escapeHtml(sessionUser.email || "")}</p>
+
+<p><strong>Telefone:</strong>
+${escapeHtml(profile?.telefone || "-")}</p>
+
+<p><strong>Tipo:</strong>
+${escapeHtml(profile?.tipo || "comprador")}</p>
+
+`;
+
+if(profile?.tipo==="vendedor"){
+
+document.getElementById("sellerPanel")
+.classList.remove("hidden");
+
+await loadMyProducts();
+
+}else{
+
+document.getElementById("sellerPanel")
+.classList.add("hidden");
+}
+
+await loadMyOrders();
+}
+
+/* ==========================================
+   PUBLICAR PRODUTO
+========================================== */
+
+async function publishProduct(){
+
+if(!sessionUser ||
+profile?.tipo!=="vendedor"){
+
+alert(
+"Apenas vendedores podem publicar produtos."
+);
+
+return;
+}
+
+const name=
+document.getElementById("productName")
+.value.trim();
+
+const price=
+Number(document.getElementById("productPrice").value);
+
+const category=
+document.getElementById("productCategory").value;
+
+const description=
+document.getElementById("productDescription")
+.value.trim();
+
+const image=
+document.getElementById("productImage")
+.value.trim();
+
+if(!name || !price){
+
+alert("Preencha o nome e o preço.");
+
+return;
+}
+
+const {error}=await db
+.from("produtos")
+.insert({
+
+vendedor_id:sessionUser.id,
+nome:name,
+descricao:description,
+preco:price,
+categoria:category,
+imagem_url:image || null,
+ativo:true
+
+});
+
+if(error){
+
+console.error(error);
+
+alert(
+"Não foi possível publicar.\n"+
+error.message
+);
+
+return;
+}
+
+document.getElementById("productName").value="";
+document.getElementById("productPrice").value="";
+document.getElementById("productDescription").value="";
+document.getElementById("productImage").value="";
+
+alert("Produto publicado com sucesso!");
+
+await loadProducts();
+await loadMyProducts();
+}
+
+/* ==========================================
+   MEUS PRODUTOS
+========================================== */
+
+async function loadMyProducts(){
+
+const box=document.getElementById("myProducts");
+
+const {data,error}=await db
+.from("produtos")
+.select("*")
+.eq("vendedor_id",sessionUser.id)
+.order("criado_em",{ascending:false});
+
+if(error){
+
+box.innerHTML="<p>Erro ao carregar produtos.</p>";
+
+return;
+}
+
+if(!data?.length){
+
+box.innerHTML=
+"<p>Ainda não tens produtos publicados.</p>";
+
+return;
+}
+
+box.innerHTML=data.map(p=>`
+
+<div class="order">
+
+<strong>${escapeHtml(p.nome)}</strong>
+
+<p>${money(p.preco)}</p>
+
+<button class="btn red"
+onclick="deleteProduct('${p.id}')">
+Eliminar
+</button>
+
+</div>
+
+`).join("");
+}
+
+async function deleteProduct(id){
+
+if(!confirm("Eliminar este produto?"))return;
+
+const {error}=await db
+.from("produtos")
+.delete()
+.eq("id",id)
+.eq("vendedor_id",sessionUser.id);
+
+if(error){
+
+alert(error.message);
+
+return;
+}
+
+await loadProducts();
+await loadMyProducts();
+
+alert("Produto eliminado.");
+}
+
+/* ==========================================
+   MEUS PEDIDOS
+========================================== */
+
+async function loadMyOrders(){
+
+const box=document.getElementById("myOrders");
+
+const {data,error}=await db
+.from("pedidos")
+.select("*")
+.eq("comprador_id",sessionUser.id)
+.order("criado_em",{ascending:false});
+
+if(error){
+
+box.innerHTML="<p>Erro ao carregar pedidos.</p>";
+
+return;
+}
+
+if(!data?.length){
+
+box.innerHTML="<p>Ainda não tens pedidos.</p>";
+
+return;
+}
+
+box.innerHTML=data.map(o=>`
+
+<div class="order">
+
+<strong>Pedido ${escapeHtml(o.id)}</strong>
+
+<p>Valor: <strong>${money(o.valor_total)}</strong></p>
+
+<p>Estado:
+<span class="status">
+${escapeHtml(o.status)}
+</span>
+</p>
+
+<p>Data:
+${new Date(o.criado_em).toLocaleString("pt-AO")}
+</p>
+
+</div>
+
+`).join("");
+}
+
+/* ==========================================
+   ADMIN
+========================================== */
+
+async function loadAdmin(){
+
+await loadProfile();
+
+if(!profile || profile.tipo!=="admin"){
+
+document.getElementById("adminDenied")
+.classList.remove("hidden");
+
+document.getElementById("adminContent")
+.classList.add("hidden");
+
+return;
+}
+
+document.getElementById("adminDenied")
+.classList.add("hidden");
+
+document.getElementById("adminContent")
+.classList.remove("hidden");
+
+const {data,error}=await db
+.from("pedidos")
+.select("*")
+.order("criado_em",{ascending:false});
+
+if(error){
+
+console.error(error);
+
+document.getElementById("adminOrders").innerHTML=
+"<p>Não foi possível carregar os pedidos.</p>";
+
+return;
+}
+
+let total=0;
+let commission=0;
+let seller=0;
+
+(data || []).forEach(o=>{
+
+total += Number(o.valor_total)||0;
+
+commission += Number(o.comissao)||0;
+
+seller += Number(o.valor_vendedor)||0;
+
+});
+
+document.getElementById("totalSales")
+.textContent=money(total);
+
+document.getElementById("totalCommission")
+.textContent=money(commission);
+
+document.getElementById("sellerMoney")
+.textContent=money(seller);
+
+document.getElementById("totalOrders")
+.textContent=(data || []).length;
+
+const box=document.getElementById("adminOrders");
+
+if(!data?.length){
+
+box.innerHTML="<p>Ainda não existem pedidos.</p>";
+
+return;
+}
+
+box.innerHTML=data.map(o=>`
+
+<div class="order">
+
+<strong>Pedido ${escapeHtml(o.id)}</strong>
+
+<p>Valor:
+<strong>${money(o.valor_total)}</strong>
+</p>
+
+<p>Comissão GTube:
+<strong>${money(o.comissao)}</strong>
+</p>
+
+<p>Vendedor:
+<strong>${money(o.valor_vendedor)}</strong>
+</p>
+
+<p>Estado:
+${escapeHtml(o.status)}
+</p>
+
+<p>Data:
+${new Date(o.criado_em).toLocaleString("pt-AO")}
+</p>
+
+</div>
+
+`).join("");
+}
+
+/* ==========================================
+   LOGOUT
+========================================== */
+
+async function logout(){
+
+await db.auth.signOut();
+
+sessionUser=null;
+profile=null;
+cart=[];
+
+updateCart();
+updateAdminButton();
+
+alert("Sessão encerrada.");
+
+showPage("home");
+}
+
+/* ==========================================
+   INICIALIZAÇÃO
+========================================== */
+
+async function start(){
+
+const {data}=await db.auth.getSession();
+
+sessionUser=data.session?.user || null;
+
+if(sessionUser){
+
+await loadProfile();
+
+}
+
+await loadProducts();
+
+updateCart();
+updateAdminButton();
+
+}
+
+db.auth.onAuthStateChange(
+async (_event,session)=>{
+
+sessionUser=session?.user || null;
+
+if(sessionUser){
+
+await loadProfile();
+
+}else{
+
+profile=null;
+
+updateAdminButton();
+}
+
+}
+);
+
+start();
 
 </script>
 
