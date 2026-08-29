@@ -9,40 +9,258 @@
 
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,sans-serif;background:#f5f6fa;color:#222}
-header{background:linear-gradient(135deg,#111827,#2563eb);color:white;padding:16px;position:sticky;top:0;z-index:10}
-.header{max-width:1100px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:10px}
-.logo{font-size:24px;font-weight:bold}
-nav{display:flex;gap:6px;flex-wrap:wrap}
-nav button,.cat{border:0;background:white;color:#2563eb;padding:9px 12px;border-radius:8px;font-weight:bold}
-.hero{max-width:1100px;margin:20px auto;padding:40px 20px;background:linear-gradient(135deg,#2563eb,#7c3aed);color:white;border-radius:18px}
-.hero h1{font-size:32px;margin-bottom:10px}
-.container{max-width:1100px;margin:20px auto;padding:0 15px}
-.panel{background:white;padding:20px;border-radius:15px;margin-bottom:20px;box-shadow:0 3px 12px #00000012}
-.search,input,select,textarea{width:100%;padding:13px;margin:7px 0;border:1px solid #ddd;border-radius:9px;font-size:15px}
-.search{margin-bottom:15px}
-.categories{display:flex;gap:8px;overflow:auto;margin-bottom:20px}
-.cat{white-space:nowrap;background:white}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:15px}
-.card{background:white;border-radius:15px;padding:15px;box-shadow:0 3px 12px #00000012}
-.card img,.noimage{width:100%;height:170px;object-fit:cover;border-radius:10px}
-.noimage{background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:50px}
-.card h3{margin:10px 0}
-.price{color:#2563eb;font-size:20px;font-weight:bold;margin:8px 0}
-.btn{width:100%;padding:12px;border:0;border-radius:9px;background:#2563eb;color:white;font-weight:bold;margin-top:8px}
-.btn.dark{background:#111827}
-.btn.red{background:#dc2626}
-.btn.green{background:#16a34a}
-.hidden{display:none!important}
-.cart{position:fixed;right:15px;bottom:15px;background:#2563eb;color:white;padding:15px 18px;border-radius:50px;box-shadow:0 5px 20px #0005;z-index:20;font-weight:bold}
-.badge{background:#dc2626;border-radius:20px;padding:3px 7px;font-size:12px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
-.stat{background:#f1f5f9;padding:18px;border-radius:12px}
-.stat strong{display:block;font-size:21px;margin-top:7px}
-.order{border:1px solid #ddd;padding:15px;border-radius:10px;margin-top:10px}
-.status{font-weight:bold}
-.message{padding:12px;border-radius:9px;margin:10px 0;background:#eef2ff}
-footer{text-align:center;padding:30px;color:#777}
+
+body{
+font-family:Arial,sans-serif;
+background:#f5f6fa;
+color:#222;
+}
+
+header{
+background:linear-gradient(135deg,#111827,#2563eb);
+color:white;
+padding:16px;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.header{
+max-width:1100px;
+margin:auto;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:10px;
+}
+
+.logo{
+font-size:24px;
+font-weight:bold;
+}
+
+nav{
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+}
+
+nav button,.cat{
+border:0;
+background:white;
+color:#2563eb;
+padding:9px 12px;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.hero{
+max-width:1100px;
+margin:20px auto;
+padding:40px 20px;
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+color:white;
+border-radius:18px;
+}
+
+.hero h1{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.container{
+max-width:1100px;
+margin:20px auto;
+padding:0 15px;
+}
+
+.panel{
+background:white;
+padding:20px;
+border-radius:15px;
+margin-bottom:20px;
+box-shadow:0 3px 12px #00000012;
+}
+
+.search,input,select,textarea{
+width:100%;
+padding:13px;
+margin:7px 0;
+border:1px solid #ddd;
+border-radius:9px;
+font-size:15px;
+}
+
+textarea{
+min-height:100px;
+resize:vertical;
+}
+
+.search{
+margin-bottom:15px;
+}
+
+.categories{
+display:flex;
+gap:8px;
+overflow:auto;
+margin-bottom:20px;
+}
+
+.cat{
+white-space:nowrap;
+background:white;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+gap:15px;
+}
+
+.card{
+background:white;
+border-radius:15px;
+padding:15px;
+box-shadow:0 3px 12px #00000012;
+}
+
+.card img,.noimage{
+width:100%;
+height:170px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.noimage{
+background:#e5e7eb;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+}
+
+.card h3{
+margin:10px 0;
+}
+
+.price{
+color:#2563eb;
+font-size:20px;
+font-weight:bold;
+margin:8px 0;
+}
+
+.btn{
+width:100%;
+padding:12px;
+border:0;
+border-radius:9px;
+background:#2563eb;
+color:white;
+font-weight:bold;
+margin-top:8px;
+cursor:pointer;
+}
+
+.btn.dark{
+background:#111827;
+}
+
+.btn.red{
+background:#dc2626;
+}
+
+.btn.green{
+background:#16a34a;
+}
+
+.hidden{
+display:none!important;
+}
+
+.cart{
+position:fixed;
+right:15px;
+bottom:15px;
+background:#2563eb;
+color:white;
+padding:15px 18px;
+border-radius:50px;
+box-shadow:0 5px 20px #0005;
+z-index:20;
+font-weight:bold;
+cursor:pointer;
+}
+
+.badge{
+background:#dc2626;
+border-radius:20px;
+padding:3px 7px;
+font-size:12px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+gap:12px;
+}
+
+.stat{
+background:#f1f5f9;
+padding:18px;
+border-radius:12px;
+}
+
+.stat strong{
+display:block;
+font-size:21px;
+margin-top:7px;
+}
+
+.order{
+border:1px solid #ddd;
+padding:15px;
+border-radius:10px;
+margin-top:10px;
+}
+
+.status{
+font-weight:bold;
+}
+
+.message{
+padding:12px;
+border-radius:9px;
+margin:10px 0;
+background:#eef2ff;
+}
+
+.success{
+background:#dcfce7;
+color:#166534;
+}
+
+.error{
+background:#fee2e2;
+color:#991b1b;
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#777;
+}
+
+hr{
+border:0;
+border-top:1px solid #ddd;
+}
+
+button:active{
+transform:scale(.98);
+}
 </style>
 </head>
 
@@ -50,16 +268,27 @@ footer{text-align:center;padding:30px;color:#777}
 
 <header>
 <div class="header">
-<div class="logo">🛍️ GTube Marketplace</div>
+
+<div class="logo">
+🛍️ GTube Marketplace
+</div>
 
 <nav>
 <button onclick="showPage('home')">Início</button>
 <button onclick="showPage('login')">Entrar</button>
 <button onclick="showPage('account')">Minha conta</button>
-<button id="adminButton" class="hidden" onclick="showPage('admin')">👑 Admin</button>
+<button id="adminButton" class="hidden" onclick="showPage('admin')">
+👑 Admin
+</button>
 </nav>
+
 </div>
 </header>
+
+
+<!-- =========================
+     INÍCIO
+========================= -->
 
 <section id="home">
 
@@ -70,18 +299,43 @@ footer{text-align:center;padding:30px;color:#777}
 
 <div class="container">
 
-<input id="search" class="search"
+<input
+id="search"
+class="search"
 placeholder="🔎 Procurar produto..."
-oninput="renderProducts()">
+oninput="renderProducts()"
+>
 
 <div class="categories">
-<button class="cat" onclick="filterCategory('Todos')">Todos</button>
-<button class="cat" onclick="filterCategory('Telefones')">Telefones</button>
-<button class="cat" onclick="filterCategory('Computadores')">Computadores</button>
-<button class="cat" onclick="filterCategory('Moda')">Moda</button>
-<button class="cat" onclick="filterCategory('Carros')">Carros</button>
-<button class="cat" onclick="filterCategory('Casa')">Casa</button>
-<button class="cat" onclick="filterCategory('Outros')">Outros</button>
+
+<button class="cat" onclick="filterCategory('Todos')">
+Todos
+</button>
+
+<button class="cat" onclick="filterCategory('Telefones')">
+Telefones
+</button>
+
+<button class="cat" onclick="filterCategory('Computadores')">
+Computadores
+</button>
+
+<button class="cat" onclick="filterCategory('Moda')">
+Moda
+</button>
+
+<button class="cat" onclick="filterCategory('Carros')">
+Carros
+</button>
+
+<button class="cat" onclick="filterCategory('Casa')">
+Casa
+</button>
+
+<button class="cat" onclick="filterCategory('Outros')">
+Outros
+</button>
+
 </div>
 
 <div id="products" class="products"></div>
@@ -89,91 +343,186 @@ oninput="renderProducts()">
 </div>
 </section>
 
+
+<!-- =========================
+     LOGIN / CADASTRO
+========================= -->
+
 <section id="login" class="container hidden">
 
 <div class="panel">
 
 <h2>🔐 Entrar</h2>
 
-<input id="loginEmail" type="email" placeholder="E-mail">
-<input id="loginPassword" type="password" placeholder="Palavra-passe">
+<input
+id="loginEmail"
+type="email"
+placeholder="E-mail"
+>
 
-<button class="btn" onclick="login()">Entrar</button>
+<input
+id="loginPassword"
+type="password"
+placeholder="Palavra-passe"
+>
 
-<hr style="margin:20px 0">
+<button class="btn" onclick="login()">
+Entrar
+</button>
+
+
+<hr style="margin:25px 0">
+
 
 <h2>📝 Criar conta</h2>
 
-<input id="name" placeholder="Nome completo">
-<input id="email" type="email" placeholder="E-mail">
-<input id="password" type="password" placeholder="Palavra-passe">
-<input id="phone" placeholder="Telefone">
+<input
+id="name"
+placeholder="Nome completo"
+>
+
+<input
+id="email"
+type="email"
+placeholder="E-mail"
+>
+
+<input
+id="password"
+type="password"
+placeholder="Palavra-passe"
+>
+
+<input
+id="phone"
+placeholder="Telefone"
+>
 
 <select id="type">
-<option value="comprador">Comprador</option>
-<option value="vendedor">Vendedor</option>
+
+<option value="comprador">
+Comprador
+</option>
+
+<option value="vendedor">
+Vendedor
+</option>
+
 </select>
 
-<button class="btn dark" onclick="register()">Criar conta</button>
+<button class="btn dark" onclick="register()">
+Criar conta
+</button>
 
 <div id="loginMessage"></div>
 
 </div>
 </section>
 
+
+<!-- =========================
+     CONTA
+========================= -->
+
 <section id="account" class="container hidden">
 
 <div class="panel">
-<h2>👤 Minha conta</h2>
-<div id="accountInfo"></div>
 
-<button class="btn red" onclick="logout()">Sair</button>
+<h2>👤 Minha conta</h2>
+
+<div id="accountInfo">
 </div>
+
+<button class="btn red" onclick="logout()">
+Sair
+</button>
+
+</div>
+
+
+<!-- ÁREA DO VENDEDOR -->
 
 <div id="sellerPanel" class="panel hidden">
 
 <h2>🏪 Área do vendedor</h2>
 
-<input id="productName" placeholder="Nome do produto">
-<input id="productPrice" type="number" placeholder="Preço em Kz">
+<input
+id="productName"
+placeholder="Nome do produto"
+>
+
+<input
+id="productPrice"
+type="number"
+placeholder="Preço em Kz"
+>
 
 <select id="productCategory">
+
 <option>Telefones</option>
 <option>Computadores</option>
 <option>Moda</option>
 <option>Carros</option>
 <option>Casa</option>
 <option>Outros</option>
+
 </select>
 
-<textarea id="productDescription"
-placeholder="Descrição do produto"></textarea>
+<textarea
+id="productDescription"
+placeholder="Descrição do produto"
+></textarea>
 
-<input id="productImage" type="url"
-placeholder="URL da imagem do produto">
+<input
+id="productImage"
+type="url"
+placeholder="URL da imagem do produto"
+>
 
 <button class="btn" onclick="publishProduct()">
 Publicar produto
 </button>
 
-<h3 style="margin-top:25px">Meus produtos</h3>
-<div id="myProducts"></div>
+<h3 style="margin-top:25px">
+Meus produtos
+</h3>
+
+<div id="myProducts">
+</div>
 
 </div>
 
+
+<!-- PEDIDOS -->
+
 <div class="panel">
+
 <h2>📦 Meus pedidos</h2>
-<div id="myOrders"></div>
+
+<div id="myOrders">
+</div>
+
 </div>
 
 </section>
 
+
+<!-- =========================
+     ADMIN
+========================= -->
+
 <section id="admin" class="container hidden">
 
 <div id="adminDenied" class="panel hidden">
+
 <h2>🔒 Acesso negado</h2>
-<p>Esta área é exclusiva do administrador.</p>
+
+<p>
+Esta área é exclusiva do administrador.
+</p>
+
 </div>
+
 
 <div id="adminContent" class="hidden">
 
@@ -208,24 +557,41 @@ Pedidos
 </div>
 
 </div>
+
 </div>
+
 
 <div class="panel">
+
 <h2>📋 Pedidos</h2>
-<div id="adminOrders"></div>
+
+<div id="adminOrders">
 </div>
 
 </div>
+
+</div>
+
 </section>
 
+
+<!-- CARRINHO -->
+
 <div class="cart" onclick="showCart()">
+
 🛒 Carrinho
-<span id="cartCount" class="badge">0</span>
+
+<span id="cartCount" class="badge">
+0
+</span>
+
 </div>
+
 
 <footer>
 GTube Marketplace © 2026
 </footer>
+
 
 <script>
 
@@ -239,10 +605,12 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_j87agBrGR2fD2k8rOdyeZg_ldPe200L";
 
-const db = window.supabase.createClient(
+const db =
+window.supabase.createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
+
 
 /* ==========================================
    ESTADO
@@ -254,22 +622,46 @@ let products = [];
 let cart = [];
 let currentCategory = "Todos";
 
+
 /* ==========================================
    UTILIDADES
 ========================================== */
 
 function money(value){
-return Number(value || 0).toLocaleString("pt-AO")+" Kz";
+
+return Number(value || 0)
+.toLocaleString("pt-AO")+
+" Kz";
+
 }
 
+
 function escapeHtml(text){
+
 return String(text ?? "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
 .replace(/"/g,"&quot;")
 .replace(/'/g,"&#039;");
+
 }
+
+
+function showMessage(message,type="message"){
+
+const box =
+document.getElementById("loginMessage");
+
+if(!box)return;
+
+box.className =
+"message "+type;
+
+box.textContent = message;
+
+}
+
 
 /* ==========================================
    NAVEGAÇÃO
@@ -278,19 +670,33 @@ return String(text ?? "")
 function showPage(page){
 
 document.querySelectorAll("section")
-.forEach(s=>s.classList.add("hidden"));
+.forEach(section=>{
+section.classList.add("hidden");
+});
 
-document.getElementById(page)
-.classList.remove("hidden");
+const target =
+document.getElementById(page);
 
-if(page==="account") loadAccount();
+if(target){
+target.classList.remove("hidden");
+}
 
-if(page==="admin") loadAdmin();
+if(page==="account"){
+loadAccount();
+}
 
-if(page==="home") loadProducts();
+if(page==="admin"){
+loadAdmin();
+}
+
+if(page==="home"){
+loadProducts();
+}
 
 window.scrollTo(0,0);
+
 }
+
 
 /* ==========================================
    PRODUTOS
@@ -298,86 +704,133 @@ window.scrollTo(0,0);
 
 async function loadProducts(){
 
-const {data,error}=await db
+const box =
+document.getElementById("products");
+
+const {data,error} =
+await db
 .from("produtos")
 .select("*")
 .eq("ativo",true)
 .order("criado_em",{ascending:false});
 
+
 if(error){
 
-console.error(error);
+console.error("Erro produtos:",error);
 
-document.getElementById("products").innerHTML =
+box.innerHTML =
 "<p>Erro ao carregar produtos.</p>";
 
 return;
+
 }
 
-products=data || [];
+
+products = data || [];
 
 renderProducts();
+
 }
+
 
 function renderProducts(){
 
-const box=document.getElementById("products");
+const box =
+document.getElementById("products");
 
-const search=
-(document.getElementById("search").value || "")
+if(!box)return;
+
+const search =
+(
+document.getElementById("search")?.value ||
+""
+)
 .toLowerCase();
 
-let list=products.filter(p=>{
+
+const list =
+products.filter(product=>{
 
 const categoryOk =
 currentCategory==="Todos" ||
-p.categoria===currentCategory;
+product.categoria===currentCategory;
 
 const searchOk =
-(p.nome || "").toLowerCase().includes(search);
+(product.nome || "")
+.toLowerCase()
+.includes(search);
 
 return categoryOk && searchOk;
+
 });
+
 
 if(!list.length){
 
-box.innerHTML="<p>Nenhum produto encontrado.</p>";
+box.innerHTML =
+"<p>Nenhum produto encontrado.</p>";
+
 return;
+
 }
 
-box.innerHTML=list.map(p=>`
+
+box.innerHTML =
+list.map(product=>`
 
 <div class="card">
 
-${p.imagem_url
-? `<img src="${escapeHtml(p.imagem_url)}">`
+${
+product.imagem_url
+
+? `<img
+src="${escapeHtml(product.imagem_url)}"
+alt="${escapeHtml(product.nome)}"
+onerror="this.style.display='none'"
+>`
+
 : `<div class="noimage">🛍️</div>`
 }
 
-<h3>${escapeHtml(p.nome)}</h3>
+<h3>
+${escapeHtml(product.nome)}
+</h3>
 
-<small>${escapeHtml(p.categoria || "")}</small>
+<small>
+${escapeHtml(product.categoria || "")}
+</small>
 
-<div class="price">${money(p.preco)}</div>
+<div class="price">
+${money(product.preco)}
+</div>
 
-<p>${escapeHtml(p.descricao || "")}</p>
+<p>
+${escapeHtml(product.descricao || "")}
+</p>
 
-<button class="btn"
-onclick="addCart('${p.id}')">
+<button
+class="btn"
+onclick="addCart('${product.id}')"
+>
 🛒 Adicionar ao carrinho
 </button>
 
 </div>
 
 `).join("");
+
 }
+
 
 function filterCategory(category){
 
-currentCategory=category;
+currentCategory = category;
 
 renderProducts();
+
 }
+
 
 /* ==========================================
    CARRINHO
@@ -385,58 +838,94 @@ renderProducts();
 
 function addCart(id){
 
-const product=products.find(p=>p.id===id);
+const product =
+products.find(
+item=>String(item.id)===String(id)
+);
 
-if(!product)return;
+if(!product){
+
+alert("Produto não encontrado.");
+
+return;
+
+}
 
 cart.push(product);
 
 updateCart();
 
 alert("Produto adicionado ao carrinho.");
+
 }
+
 
 function updateCart(){
 
-document.getElementById("cartCount")
-.textContent=cart.length;
+const counter =
+document.getElementById("cartCount");
+
+if(counter){
+
+counter.textContent =
+cart.length;
+
 }
+
+}
+
 
 function showCart(){
 
 if(!cart.length){
 
 alert("O carrinho está vazio.");
+
 return;
+
 }
 
-let total=cart.reduce(
-(sum,p)=>sum+Number(p.preco),0
+
+let total =
+cart.reduce(
+(sum,product)=>
+sum+Number(product.preco || 0),
+0
 );
 
-let text="🛒 CARRINHO\n\n";
 
-cart.forEach((p,i)=>{
+let text =
+"🛒 CARRINHO\n\n";
+
+
+cart.forEach((product,index)=>{
 
 text +=
-(i+1)+". "+
-p.nome+
+(index+1)+". "+
+product.nome+
 " - "+
-money(p.preco)+
+money(product.preco)+
 "\n";
 
 });
+
 
 text +=
 "\nTotal: "+
 money(total);
 
-if(confirm(text+
-"\n\nDeseja finalizar o pedido?")){
+
+if(confirm(
+text+
+"\n\nDeseja finalizar o pedido?"
+)){
 
 checkout();
+
 }
+
 }
+
 
 /* ==========================================
    PEDIDO
@@ -446,27 +935,30 @@ async function checkout(){
 
 if(!sessionUser){
 
-alert("Entre na sua conta primeiro.");
+alert(
+"Entre na sua conta primeiro."
+);
 
 showPage("login");
 
 return;
+
 }
 
-if(!cart.length)return;
 
-/*
-Para evitar alterar o preço no navegador,
-o pedido é criado através da função SQL
-criar_pedido(), que calcula a comissão
-de 10% no servidor.
-*/
+if(!cart.length){
+
+return;
+
+}
+
 
 try{
 
 for(const product of cart){
 
-const {data,error}=await db.rpc(
+const {error} =
+await db.rpc(
 "criar_pedido",
 {
 p_produto_id:product.id,
@@ -474,11 +966,16 @@ p_quantidade:1
 }
 );
 
-if(error)throw error;
+if(error){
+
+throw error;
 
 }
 
-cart=[];
+}
+
+
+cart = [];
 
 updateCart();
 
@@ -491,16 +988,23 @@ await loadAccount();
 
 showPage("account");
 
+
 }catch(error){
 
-console.error(error);
+console.error(
+"Erro ao criar pedido:",
+error
+);
 
 alert(
-"Não foi possível criar o pedido.\n"+
-error.message
+"Não foi possível criar o pedido.\n\n"+
+(error.message || error)
 );
+
 }
+
 }
+
 
 /* ==========================================
    CADASTRO
@@ -508,31 +1012,74 @@ error.message
 
 async function register(){
 
-const name=
-document.getElementById("name").value.trim();
+const name =
+document
+.getElementById("name")
+.value
+.trim();
 
-const email=
-document.getElementById("email").value.trim();
+const email =
+document
+.getElementById("email")
+.value
+.trim()
+.toLowerCase();
 
-const password=
-document.getElementById("password").value;
+const password =
+document
+.getElementById("password")
+.value;
 
-const phone=
-document.getElementById("phone").value.trim();
+const phone =
+document
+.getElementById("phone")
+.value
+.trim();
 
-const type=
-document.getElementById("type").value;
+const type =
+document
+.getElementById("type")
+.value;
+
 
 if(!name || !email || !password){
 
-alert(
-"Preencha nome, e-mail e palavra-passe."
+showMessage(
+"Preencha nome, e-mail e palavra-passe.",
+"error"
 );
 
 return;
+
 }
 
-const {data,error}=await db.auth.signUp({
+
+if(password.length < 6){
+
+showMessage(
+"A palavra-passe deve ter pelo menos 6 caracteres.",
+"error"
+);
+
+return;
+
+}
+
+
+showMessage(
+"Criando a tua conta...",
+"message"
+);
+
+
+try{
+
+/*
+Criar usuário no Supabase Auth
+*/
+
+const {data,error} =
+await db.auth.signUp({
 
 email:email,
 
@@ -548,56 +1095,132 @@ tipo:type
 
 });
 
+
 if(error){
 
-alert(error.message);
+console.error(
+"Erro no cadastro:",
+error
+);
+
+showMessage(
+error.message,
+"error"
+);
 
 return;
+
 }
 
+
+if(!data || !data.user){
+
+showMessage(
+"Não foi possível criar a conta.",
+"error"
+);
+
+return;
+
+}
+
+
 /*
-Se a confirmação de e-mail estiver
-desativada, a sessão já estará disponível.
+Criar ou atualizar perfil.
+Upsert evita duplicação.
 */
 
-if(data.user && data.session){
-
-const {error:profileError}=await db
+const {error:profileError} =
+await db
 .from("perfis")
-.insert({
+.upsert({
 
 id:data.user.id,
 nome:name,
 telefone:phone,
 tipo:type
 
+},{
+onConflict:"id"
 });
+
 
 if(profileError){
 
-console.error(profileError);
+console.error(
+"Erro ao criar perfil:",
+profileError
+);
 
-alert(
-"Conta criada, mas ocorreu um erro ao criar o perfil."
+showMessage(
+"Conta criada, mas o perfil não pôde ser criado.\n\n"+
+profileError.message,
+"error"
 );
 
 return;
+
 }
 
-alert("Conta criada com sucesso!");
 
-await start();
+/*
+Se houver sessão, entrar automaticamente.
+*/
+
+if(data.session){
+
+sessionUser = data.user;
+
+await loadProfile();
+
+showMessage(
+"Conta criada com sucesso!",
+"success"
+);
 
 showPage("account");
 
-}else{
+return;
 
-alert(
-"Conta criada!\n\n"+
-"Verifica o teu e-mail para confirmar a conta e depois entra no GTube."
+}
+
+
+/*
+Caso a confirmação de e-mail esteja ativa.
+*/
+
+showMessage(
+"Conta criada com sucesso! Agora podes entrar com o teu e-mail e palavra-passe.",
+"success"
 );
+
+
+/*
+Limpar campos
+*/
+
+document.getElementById("name").value="";
+document.getElementById("email").value="";
+document.getElementById("password").value="";
+document.getElementById("phone").value="";
+
+
+}catch(error){
+
+console.error(
+"Erro inesperado no cadastro:",
+error
+);
+
+showMessage(
+error.message || String(error),
+"error"
+);
+
 }
+
 }
+
 
 /* ==========================================
    LOGIN
@@ -605,43 +1228,164 @@ alert(
 
 async function login(){
 
-const email=
-document.getElementById("loginEmail")
-.value.trim();
+const email =
+document
+.getElementById("loginEmail")
+.value
+.trim()
+.toLowerCase();
 
-const password=
-document.getElementById("loginPassword")
+const password =
+document
+.getElementById("loginPassword")
 .value;
+
 
 if(!email || !password){
 
-alert("Preencha o e-mail e a palavra-passe.");
+alert(
+"Preencha o e-mail e a palavra-passe."
+);
 
 return;
+
 }
 
-const {data,error}=await db.auth.signInWithPassword({
 
-email,
-password
+try{
+
+const {data,error} =
+await db.auth.signInWithPassword({
+
+email:email,
+
+password:password
 
 });
 
+
 if(error){
 
-alert("E-mail ou palavra-passe incorretos.");
+console.error(
+"Erro de login:",
+error
+);
+
+alert(
+"Não foi possível entrar.\n\n"+
+error.message
+);
 
 return;
+
 }
 
-sessionUser=data.user;
+
+if(!data || !data.user){
+
+alert(
+"Usuário não encontrado."
+);
+
+return;
+
+}
+
+
+sessionUser =
+data.user;
+
+
+/*
+Carregar perfil
+*/
 
 await loadProfile();
 
-alert("Login realizado com sucesso!");
+
+/*
+Se o perfil ainda não existir,
+tentar criar usando os dados do Auth.
+*/
+
+if(!profile){
+
+const metadata =
+data.user.user_metadata || {};
+
+const nome =
+metadata.nome ||
+data.user.email ||
+"Usuário";
+
+const telefone =
+metadata.telefone || "";
+
+const tipo =
+metadata.tipo ||
+"comprador";
+
+
+const {error:profileError} =
+await db
+.from("perfis")
+.upsert({
+
+id:data.user.id,
+nome:nome,
+telefone:telefone,
+tipo:tipo
+
+},{
+onConflict:"id"
+});
+
+
+if(profileError){
+
+console.error(
+"Erro ao criar perfil no login:",
+profileError
+);
+
+alert(
+"Entraste no Auth, mas o perfil não pôde ser criado.\n\n"+
+profileError.message
+);
+
+return;
+
+}
+
+
+await loadProfile();
+
+}
+
+
+alert(
+"Login realizado com sucesso!"
+);
 
 showPage("account");
+
+
+}catch(error){
+
+console.error(
+"Erro inesperado no login:",
+error
+);
+
+alert(
+"Erro inesperado:\n\n"+
+(error.message || error)
+);
+
 }
+
+}
+
 
 /* ==========================================
    PERFIL
@@ -651,45 +1395,69 @@ async function loadProfile(){
 
 if(!sessionUser){
 
-profile=null;
+profile = null;
+
+updateAdminButton();
 
 return;
+
 }
 
-const {data,error}=await db
+
+const {data,error} =
+await db
 .from("perfis")
 .select("*")
 .eq("id",sessionUser.id)
-.single();
+.maybeSingle();
+
 
 if(error){
 
-console.error(error);
+console.error(
+"Erro ao carregar perfil:",
+error
+);
 
-profile=null;
-
-return;
-}
-
-profile=data;
+profile = null;
 
 updateAdminButton();
+
+return;
+
 }
+
+
+profile = data || null;
+
+updateAdminButton();
+
+}
+
 
 function updateAdminButton(){
 
-const button=
+const button =
 document.getElementById("adminButton");
 
-if(profile && profile.tipo==="admin"){
+if(!button)return;
+
+
+if(
+profile &&
+profile.tipo==="admin"
+){
 
 button.classList.remove("hidden");
 
 }else{
 
 button.classList.add("hidden");
+
 }
+
 }
+
 
 /* ==========================================
    CONTA
@@ -699,48 +1467,89 @@ async function loadAccount(){
 
 if(!sessionUser){
 
-document.getElementById("accountInfo").innerHTML=
+document.getElementById(
+"accountInfo"
+).innerHTML =
 "<p>Entra na tua conta primeiro.</p>";
 
-document.getElementById("sellerPanel")
-.classList.add("hidden");
+document.getElementById(
+"sellerPanel"
+).classList.add("hidden");
 
 return;
+
 }
+
 
 await loadProfile();
 
-document.getElementById("accountInfo").innerHTML=`
 
-<p><strong>Nome:</strong>
-${escapeHtml(profile?.nome || "")}</p>
+const name =
+profile?.nome ||
+sessionUser.user_metadata?.nome ||
+"";
 
-<p><strong>E-mail:</strong>
-${escapeHtml(sessionUser.email || "")}</p>
+const phone =
+profile?.telefone ||
+sessionUser.user_metadata?.telefone ||
+"-";
 
-<p><strong>Telefone:</strong>
-${escapeHtml(profile?.telefone || "-")}</p>
+const type =
+profile?.tipo ||
+sessionUser.user_metadata?.tipo ||
+"comprador";
 
-<p><strong>Tipo:</strong>
-${escapeHtml(profile?.tipo || "comprador")}</p>
+
+document.getElementById(
+"accountInfo"
+).innerHTML = `
+
+<p>
+<strong>Nome:</strong>
+${escapeHtml(name)}
+</p>
+
+<p>
+<strong>E-mail:</strong>
+${escapeHtml(sessionUser.email || "")}
+</p>
+
+<p>
+<strong>Telefone:</strong>
+${escapeHtml(phone)}
+</p>
+
+<p>
+<strong>Tipo:</strong>
+${escapeHtml(type)}
+</p>
 
 `;
 
-if(profile?.tipo==="vendedor"){
 
-document.getElementById("sellerPanel")
-.classList.remove("hidden");
+if(type==="vendedor"){
+
+document
+.getElementById("sellerPanel")
+.classList
+.remove("hidden");
 
 await loadMyProducts();
 
 }else{
 
-document.getElementById("sellerPanel")
-.classList.add("hidden");
+document
+.getElementById("sellerPanel")
+.classList
+.add("hidden");
+
 }
 
+
 await loadMyOrders();
+
 }
+
 
 /* ==========================================
    PUBLICAR PRODUTO
@@ -748,42 +1557,64 @@ await loadMyOrders();
 
 async function publishProduct(){
 
-if(!sessionUser ||
-profile?.tipo!=="vendedor"){
+if(
+!sessionUser ||
+profile?.tipo!=="vendedor"
+){
 
 alert(
 "Apenas vendedores podem publicar produtos."
 );
 
 return;
+
 }
 
-const name=
-document.getElementById("productName")
-.value.trim();
 
-const price=
-Number(document.getElementById("productPrice").value);
+const name =
+document
+.getElementById("productName")
+.value
+.trim();
 
-const category=
-document.getElementById("productCategory").value;
+const price =
+Number(
+document
+.getElementById("productPrice")
+.value
+);
 
-const description=
-document.getElementById("productDescription")
-.value.trim();
+const category =
+document
+.getElementById("productCategory")
+.value;
 
-const image=
-document.getElementById("productImage")
-.value.trim();
+const description =
+document
+.getElementById("productDescription")
+.value
+.trim();
 
-if(!name || !price){
+const image =
+document
+.getElementById("productImage")
+.value
+.trim();
 
-alert("Preencha o nome e o preço.");
+
+if(!name || !price || price<=0){
+
+alert(
+"Preencha o nome e um preço válido."
+);
 
 return;
+
 }
 
-const {error}=await db
+
+const {error} =
+await db
 .from("produtos")
 .insert({
 
@@ -797,28 +1628,56 @@ ativo:true
 
 });
 
+
 if(error){
 
-console.error(error);
+console.error(
+"Erro ao publicar:",
+error
+);
 
 alert(
-"Não foi possível publicar.\n"+
+"Não foi possível publicar.\n\n"+
 error.message
 );
 
 return;
+
 }
 
-document.getElementById("productName").value="";
-document.getElementById("productPrice").value="";
-document.getElementById("productDescription").value="";
-document.getElementById("productImage").value="";
 
-alert("Produto publicado com sucesso!");
+/*
+Limpar formulário
+*/
+
+document.getElementById(
+"productName"
+).value="";
+
+document.getElementById(
+"productPrice"
+).value="";
+
+document.getElementById(
+"productDescription"
+).value="";
+
+document.getElementById(
+"productImage"
+).value="";
+
+
+alert(
+"✅ Produto publicado com sucesso!"
+);
+
 
 await loadProducts();
+
 await loadMyProducts();
+
 }
+
 
 /* ==========================================
    MEUS PRODUTOS
@@ -826,69 +1685,131 @@ await loadMyProducts();
 
 async function loadMyProducts(){
 
-const box=document.getElementById("myProducts");
+if(!sessionUser)return;
 
-const {data,error}=await db
+
+const box =
+document.getElementById("myProducts");
+
+
+const {data,error} =
+await db
 .from("produtos")
 .select("*")
 .eq("vendedor_id",sessionUser.id)
 .order("criado_em",{ascending:false});
 
+
 if(error){
 
-box.innerHTML="<p>Erro ao carregar produtos.</p>";
+console.error(
+"Erro meus produtos:",
+error
+);
+
+box.innerHTML =
+"<p>Erro ao carregar produtos.</p>";
 
 return;
+
 }
 
-if(!data?.length){
 
-box.innerHTML=
+if(!data || !data.length){
+
+box.innerHTML =
 "<p>Ainda não tens produtos publicados.</p>";
 
 return;
+
 }
 
-box.innerHTML=data.map(p=>`
+
+box.innerHTML =
+data.map(product=>`
 
 <div class="order">
 
-<strong>${escapeHtml(p.nome)}</strong>
+<strong>
+${escapeHtml(product.nome)}
+</strong>
 
-<p>${money(p.preco)}</p>
+<p>
+${money(product.preco)}
+</p>
 
-<button class="btn red"
-onclick="deleteProduct('${p.id}')">
+<p>
+${escapeHtml(product.categoria || "")}
+</p>
+
+<button
+class="btn red"
+onclick="deleteProduct('${product.id}')"
+>
 Eliminar
 </button>
 
 </div>
 
 `).join("");
+
 }
+
+
+/* ==========================================
+   ELIMINAR PRODUTO
+========================================== */
 
 async function deleteProduct(id){
 
-if(!confirm("Eliminar este produto?"))return;
+if(!sessionUser){
 
-const {error}=await db
+return;
+
+}
+
+
+if(!confirm(
+"Eliminar este produto?"
+)){
+
+return;
+
+}
+
+
+const {error} =
+await db
 .from("produtos")
 .delete()
 .eq("id",id)
 .eq("vendedor_id",sessionUser.id);
 
+
 if(error){
+
+console.error(
+"Erro ao eliminar:",
+error
+);
 
 alert(error.message);
 
 return;
+
 }
+
 
 await loadProducts();
+
 await loadMyProducts();
 
-alert("Produto eliminado.");
+alert(
+"Produto eliminado."
+);
+
 }
+
 
 /* ==========================================
    MEUS PEDIDOS
@@ -896,50 +1817,88 @@ alert("Produto eliminado.");
 
 async function loadMyOrders(){
 
-const box=document.getElementById("myOrders");
+if(!sessionUser){
 
-const {data,error}=await db
+return;
+
+}
+
+
+const box =
+document.getElementById("myOrders");
+
+
+const {data,error} =
+await db
 .from("pedidos")
 .select("*")
 .eq("comprador_id",sessionUser.id)
 .order("criado_em",{ascending:false});
 
+
 if(error){
 
-box.innerHTML="<p>Erro ao carregar pedidos.</p>";
+console.error(
+"Erro meus pedidos:",
+error
+);
+
+box.innerHTML =
+"<p>Erro ao carregar pedidos.</p>";
 
 return;
+
 }
 
-if(!data?.length){
 
-box.innerHTML="<p>Ainda não tens pedidos.</p>";
+if(!data || !data.length){
+
+box.innerHTML =
+"<p>Ainda não tens pedidos.</p>";
 
 return;
+
 }
 
-box.innerHTML=data.map(o=>`
+
+box.innerHTML =
+data.map(order=>`
 
 <div class="order">
 
-<strong>Pedido ${escapeHtml(o.id)}</strong>
+<strong>
+Pedido ${escapeHtml(order.id)}
+</strong>
 
-<p>Valor: <strong>${money(o.valor_total)}</strong></p>
+<p>
+Valor:
+<strong>
+${money(order.valor_total)}
+</strong>
+</p>
 
-<p>Estado:
+<p>
+Estado:
 <span class="status">
-${escapeHtml(o.status)}
+${escapeHtml(order.status)}
 </span>
 </p>
 
-<p>Data:
-${new Date(o.criado_em).toLocaleString("pt-AO")}
+<p>
+Data:
+${order.criado_em
+? new Date(order.criado_em)
+.toLocaleString("pt-AO")
+: "-"
+}
 </p>
 
 </div>
 
 `).join("");
+
 }
+
 
 /* ==========================================
    ADMIN
@@ -949,103 +1908,169 @@ async function loadAdmin(){
 
 await loadProfile();
 
-if(!profile || profile.tipo!=="admin"){
 
-document.getElementById("adminDenied")
-.classList.remove("hidden");
+if(
+!profile ||
+profile.tipo!=="admin"
+){
 
-document.getElementById("adminContent")
-.classList.add("hidden");
+document
+.getElementById("adminDenied")
+.classList
+.remove("hidden");
+
+document
+.getElementById("adminContent")
+.classList
+.add("hidden");
 
 return;
+
 }
 
-document.getElementById("adminDenied")
-.classList.add("hidden");
 
-document.getElementById("adminContent")
-.classList.remove("hidden");
+document
+.getElementById("adminDenied")
+.classList
+.add("hidden");
 
-const {data,error}=await db
+document
+.getElementById("adminContent")
+.classList
+.remove("hidden");
+
+
+const {data,error} =
+await db
 .from("pedidos")
 .select("*")
 .order("criado_em",{ascending:false});
 
+
 if(error){
 
-console.error(error);
+console.error(
+"Erro admin:",
+error
+);
 
-document.getElementById("adminOrders").innerHTML=
+document
+.getElementById("adminOrders")
+.innerHTML =
 "<p>Não foi possível carregar os pedidos.</p>";
 
 return;
+
 }
+
 
 let total=0;
 let commission=0;
 let seller=0;
 
-(data || []).forEach(o=>{
 
-total += Number(o.valor_total)||0;
+(data || []).forEach(order=>{
 
-commission += Number(o.comissao)||0;
+total +=
+Number(order.valor_total)||0;
 
-seller += Number(o.valor_vendedor)||0;
+commission +=
+Number(order.comissao)||0;
+
+seller +=
+Number(order.valor_vendedor)||0;
 
 });
 
-document.getElementById("totalSales")
-.textContent=money(total);
 
-document.getElementById("totalCommission")
-.textContent=money(commission);
+document.getElementById(
+"totalSales"
+).textContent =
+money(total);
 
-document.getElementById("sellerMoney")
-.textContent=money(seller);
 
-document.getElementById("totalOrders")
-.textContent=(data || []).length;
+document.getElementById(
+"totalCommission"
+).textContent =
+money(commission);
 
-const box=document.getElementById("adminOrders");
 
-if(!data?.length){
+document.getElementById(
+"sellerMoney"
+).textContent =
+money(seller);
 
-box.innerHTML="<p>Ainda não existem pedidos.</p>";
+
+document.getElementById(
+"totalOrders"
+).textContent =
+(data || []).length;
+
+
+const box =
+document.getElementById("adminOrders");
+
+
+if(!data || !data.length){
+
+box.innerHTML =
+"<p>Ainda não existem pedidos.</p>";
 
 return;
+
 }
 
-box.innerHTML=data.map(o=>`
+
+box.innerHTML =
+data.map(order=>`
 
 <div class="order">
 
-<strong>Pedido ${escapeHtml(o.id)}</strong>
+<strong>
+Pedido ${escapeHtml(order.id)}
+</strong>
 
-<p>Valor:
-<strong>${money(o.valor_total)}</strong>
+<p>
+Valor:
+<strong>
+${money(order.valor_total)}
+</strong>
 </p>
 
-<p>Comissão GTube:
-<strong>${money(o.comissao)}</strong>
+<p>
+Comissão GTube:
+<strong>
+${money(order.comissao)}
+</strong>
 </p>
 
-<p>Vendedor:
-<strong>${money(o.valor_vendedor)}</strong>
+<p>
+Vendedor:
+<strong>
+${money(order.valor_vendedor)}
+</strong>
 </p>
 
-<p>Estado:
-${escapeHtml(o.status)}
+<p>
+Estado:
+${escapeHtml(order.status)}
 </p>
 
-<p>Data:
-${new Date(o.criado_em).toLocaleString("pt-AO")}
+<p>
+Data:
+${order.criado_em
+? new Date(order.criado_em)
+.toLocaleString("pt-AO")
+: "-"
+}
 </p>
 
 </div>
 
 `).join("");
+
 }
+
 
 /* ==========================================
    LOGOUT
@@ -1055,17 +2080,24 @@ async function logout(){
 
 await db.auth.signOut();
 
-sessionUser=null;
-profile=null;
-cart=[];
+sessionUser = null;
+
+profile = null;
+
+cart = [];
 
 updateCart();
+
 updateAdminButton();
 
-alert("Sessão encerrada.");
+alert(
+"Sessão encerrada."
+);
 
 showPage("home");
+
 }
+
 
 /* ==========================================
    INICIALIZAÇÃO
@@ -1073,9 +2105,25 @@ showPage("home");
 
 async function start(){
 
-const {data}=await db.auth.getSession();
+try{
 
-sessionUser=data.session?.user || null;
+const {data,error} =
+await db.auth.getSession();
+
+
+if(error){
+
+console.error(
+"Erro ao obter sessão:",
+error
+);
+
+}
+
+
+sessionUser =
+data?.session?.user || null;
+
 
 if(sessionUser){
 
@@ -1083,17 +2131,36 @@ await loadProfile();
 
 }
 
+
 await loadProducts();
 
 updateCart();
+
 updateAdminButton();
 
+
+}catch(error){
+
+console.error(
+"Erro na inicialização:",
+error
+);
+
 }
+
+}
+
+
+/* ==========================================
+   ALTERAÇÃO DE SESSÃO
+========================================== */
 
 db.auth.onAuthStateChange(
 async (_event,session)=>{
 
-sessionUser=session?.user || null;
+sessionUser =
+session?.user || null;
+
 
 if(sessionUser){
 
@@ -1101,13 +2168,19 @@ await loadProfile();
 
 }else{
 
-profile=null;
+profile = null;
 
 updateAdminButton();
+
 }
 
 }
 );
+
+
+/* ==========================================
+   INICIAR
+========================================== */
 
 start();
 
