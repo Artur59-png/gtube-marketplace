@@ -3,17 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GTube Marketplace</title>
+<title>Kivo Marketplace</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
 font-family:Arial,sans-serif;
 background:#f5f6fa;
 color:#222;
+min-height:100vh;
+}
+
+button,
+input,
+select,
+textarea{
+font:inherit;
+}
+
+button{
+touch-action:manipulation;
+-webkit-tap-highlight-color:transparent;
 }
 
 header{
@@ -22,7 +39,7 @@ color:white;
 padding:16px;
 position:sticky;
 top:0;
-z-index:10;
+z-index:1000;
 }
 
 .header{
@@ -37,15 +54,18 @@ gap:10px;
 .logo{
 font-size:24px;
 font-weight:bold;
+white-space:nowrap;
 }
 
 nav{
 display:flex;
 gap:6px;
 flex-wrap:wrap;
+justify-content:flex-end;
 }
 
-nav button,.cat{
+nav button,
+.cat{
 border:0;
 background:white;
 color:#2563eb;
@@ -53,6 +73,7 @@ padding:9px 12px;
 border-radius:8px;
 font-weight:bold;
 cursor:pointer;
+pointer-events:auto;
 }
 
 .hero{
@@ -83,7 +104,10 @@ margin-bottom:20px;
 box-shadow:0 3px 12px #00000012;
 }
 
-.search,input,select,textarea{
+.search,
+input,
+select,
+textarea{
 width:100%;
 padding:13px;
 margin:7px 0;
@@ -104,13 +128,14 @@ margin-bottom:15px;
 .categories{
 display:flex;
 gap:8px;
-overflow:auto;
+overflow-x:auto;
 margin-bottom:20px;
+padding-bottom:5px;
 }
 
 .cat{
 white-space:nowrap;
-background:white;
+flex-shrink:0;
 }
 
 .products{
@@ -124,9 +149,11 @@ background:white;
 border-radius:15px;
 padding:15px;
 box-shadow:0 3px 12px #00000012;
+overflow:hidden;
 }
 
-.card img,.noimage{
+.card img,
+.noimage{
 width:100%;
 height:170px;
 object-fit:cover;
@@ -152,6 +179,11 @@ font-weight:bold;
 margin:8px 0;
 }
 
+.card p{
+line-height:1.5;
+word-break:break-word;
+}
+
 .btn{
 width:100%;
 padding:12px;
@@ -162,6 +194,7 @@ color:white;
 font-weight:bold;
 margin-top:8px;
 cursor:pointer;
+touch-action:manipulation;
 }
 
 .btn.dark{
@@ -177,7 +210,7 @@ background:#16a34a;
 }
 
 .hidden{
-display:none!important;
+display:none !important;
 }
 
 .cart{
@@ -189,9 +222,10 @@ color:white;
 padding:15px 18px;
 border-radius:50px;
 box-shadow:0 5px 20px #0005;
-z-index:20;
+z-index:2000;
 font-weight:bold;
 cursor:pointer;
+touch-action:manipulation;
 }
 
 .badge{
@@ -199,6 +233,7 @@ background:#dc2626;
 border-radius:20px;
 padding:3px 7px;
 font-size:12px;
+margin-left:5px;
 }
 
 .stats{
@@ -224,6 +259,7 @@ border:1px solid #ddd;
 padding:15px;
 border-radius:10px;
 margin-top:10px;
+word-break:break-word;
 }
 
 .status{
@@ -261,6 +297,38 @@ border-top:1px solid #ddd;
 button:active{
 transform:scale(.98);
 }
+
+@media(max-width:650px){
+
+.header{
+flex-direction:column;
+align-items:stretch;
+}
+
+.logo{
+text-align:center;
+}
+
+nav{
+justify-content:center;
+}
+
+nav button{
+flex:1;
+min-width:90px;
+}
+
+.hero{
+margin:15px;
+padding:30px 18px;
+}
+
+.hero h1{
+font-size:26px;
+}
+
+}
+
 </style>
 </head>
 
@@ -269,33 +337,46 @@ transform:scale(.98);
 <header>
 <div class="header">
 
-<div class="logo">
-🛍️ GTube Marketplace
-</div>
+<div class="logo">🛍️ Kivo Marketplace</div>
 
 <nav>
-<button onclick="showPage('home')">Início</button>
-<button onclick="showPage('login')">Entrar</button>
-<button onclick="showPage('account')">Minha conta</button>
-<button id="adminButton" class="hidden" onclick="showPage('admin')">
+
+<button type="button" id="homeButton">
+Início
+</button>
+
+<button type="button" id="loginButton">
+Entrar
+</button>
+
+<button type="button" id="accountButton">
+Minha conta
+</button>
+
+<button type="button" id="adminButton" class="hidden">
 👑 Admin
 </button>
+
 </nav>
 
 </div>
 </header>
 
 
-<!-- =========================
-     INÍCIO
-========================= -->
+<!-- INÍCIO -->
 
 <section id="home">
 
 <div class="hero">
-<h1>Compre e venda no GTube Marketplace</h1>
-<p>Encontre produtos e venda os seus produtos em Angola.</p>
+
+<h1>Compre e venda no Kivo Marketplace</h1>
+
+<p>
+Encontre produtos e venda os seus produtos em Angola.
+</p>
+
 </div>
+
 
 <div class="container">
 
@@ -303,50 +384,50 @@ transform:scale(.98);
 id="search"
 class="search"
 placeholder="🔎 Procurar produto..."
-oninput="renderProducts()"
 >
 
 <div class="categories">
 
-<button class="cat" onclick="filterCategory('Todos')">
+<button type="button" class="cat" data-category="Todos">
 Todos
 </button>
 
-<button class="cat" onclick="filterCategory('Telefones')">
+<button type="button" class="cat" data-category="Telefones">
 Telefones
 </button>
 
-<button class="cat" onclick="filterCategory('Computadores')">
+<button type="button" class="cat" data-category="Computadores">
 Computadores
 </button>
 
-<button class="cat" onclick="filterCategory('Moda')">
+<button type="button" class="cat" data-category="Moda">
 Moda
 </button>
 
-<button class="cat" onclick="filterCategory('Carros')">
+<button type="button" class="cat" data-category="Carros">
 Carros
 </button>
 
-<button class="cat" onclick="filterCategory('Casa')">
+<button type="button" class="cat" data-category="Casa">
 Casa
 </button>
 
-<button class="cat" onclick="filterCategory('Outros')">
+<button type="button" class="cat" data-category="Outros">
 Outros
 </button>
 
 </div>
 
-<div id="products" class="products"></div>
+<div id="products" class="products">
+<p>A carregar produtos...</p>
+</div>
 
 </div>
+
 </section>
 
 
-<!-- =========================
-     LOGIN / CADASTRO
-========================= -->
+<!-- LOGIN -->
 
 <section id="login" class="container hidden">
 
@@ -366,7 +447,11 @@ type="password"
 placeholder="Palavra-passe"
 >
 
-<button class="btn" onclick="login()">
+<button
+type="button"
+class="btn"
+id="loginSubmit"
+>
 Entrar
 </button>
 
@@ -410,19 +495,22 @@ Vendedor
 
 </select>
 
-<button class="btn dark" onclick="register()">
+<button
+type="button"
+class="btn dark"
+id="registerButton"
+>
 Criar conta
 </button>
 
 <div id="loginMessage"></div>
 
 </div>
+
 </section>
 
 
-<!-- =========================
-     CONTA
-========================= -->
+<!-- CONTA -->
 
 <section id="account" class="container hidden">
 
@@ -430,17 +518,18 @@ Criar conta
 
 <h2>👤 Minha conta</h2>
 
-<div id="accountInfo">
-</div>
+<div id="accountInfo"></div>
 
-<button class="btn red" onclick="logout()">
+<button
+type="button"
+class="btn red"
+id="logoutButton"
+>
 Sair
 </button>
 
 </div>
 
-
-<!-- ÁREA DO VENDEDOR -->
 
 <div id="sellerPanel" class="panel hidden">
 
@@ -479,37 +568,36 @@ type="url"
 placeholder="URL da imagem do produto"
 >
 
-<button class="btn" onclick="publishProduct()">
+<button
+type="button"
+class="btn"
+id="publishButton"
+>
 Publicar produto
 </button>
+
 
 <h3 style="margin-top:25px">
 Meus produtos
 </h3>
 
-<div id="myProducts">
-</div>
+<div id="myProducts"></div>
 
 </div>
 
-
-<!-- PEDIDOS -->
 
 <div class="panel">
 
 <h2>📦 Meus pedidos</h2>
 
-<div id="myOrders">
-</div>
+<div id="myOrders"></div>
 
 </div>
 
 </section>
 
 
-<!-- =========================
-     ADMIN
-========================= -->
+<!-- ADMIN -->
 
 <section id="admin" class="container hidden">
 
@@ -528,32 +616,56 @@ Esta área é exclusiva do administrador.
 
 <div class="panel">
 
-<h2>👑 Painel do Dono — GTube</h2>
+<h2>👑 Painel do Dono — Kivo</h2>
 
 <p style="margin:8px 0 20px">
 Painel administrativo da plataforma.
 </p>
 
+
 <div class="stats">
 
 <div class="stat">
+
 Total vendido
-<strong id="totalSales">0 Kz</strong>
+
+<strong id="totalSales">
+0 Kz
+</strong>
+
 </div>
 
-<div class="stat">
-Comissão GTube — 10%
-<strong id="totalCommission">0 Kz</strong>
-</div>
 
 <div class="stat">
+
+Comissão Kivo — 10%
+
+<strong id="totalCommission">
+0 Kz
+</strong>
+
+</div>
+
+
+<div class="stat">
+
 Valor dos vendedores
-<strong id="sellerMoney">0 Kz</strong>
+
+<strong id="sellerMoney">
+0 Kz
+</strong>
+
 </div>
 
+
 <div class="stat">
+
 Pedidos
-<strong id="totalOrders">0</strong>
+
+<strong id="totalOrders">
+0
+</strong>
+
 </div>
 
 </div>
@@ -565,8 +677,7 @@ Pedidos
 
 <h2>📋 Pedidos</h2>
 
-<div id="adminOrders">
-</div>
+<div id="adminOrders"></div>
 
 </div>
 
@@ -577,7 +688,12 @@ Pedidos
 
 <!-- CARRINHO -->
 
-<div class="cart" onclick="showCart()">
+<div
+class="cart"
+id="cartButton"
+role="button"
+tabindex="0"
+>
 
 🛒 Carrinho
 
@@ -589,7 +705,7 @@ Pedidos
 
 
 <footer>
-GTube Marketplace © 2026
+Kivo Marketplace © 2026
 </footer>
 
 
@@ -599,28 +715,24 @@ GTube Marketplace © 2026
    SUPABASE
 ========================================== */
 
-const SUPABASE_URL =
+var SUPABASE_URL =
 "https://ozhhemaplvfxyoglvfqo.supabase.co";
 
-const SUPABASE_KEY =
+var SUPABASE_KEY =
 "sb_publishable_j87agBrGR2fD2k8rOdyeZg_ldPe200L";
 
-const db =
-window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
-);
+var db = null;
 
 
 /* ==========================================
    ESTADO
 ========================================== */
 
-let sessionUser = null;
-let profile = null;
-let products = [];
-let cart = [];
-let currentCategory = "Todos";
+var sessionUser = null;
+var profile = null;
+var products = [];
+var cart = [];
+var currentCategory = "Todos";
 
 
 /* ==========================================
@@ -630,15 +742,18 @@ let currentCategory = "Todos";
 function money(value){
 
 return Number(value || 0)
-.toLocaleString("pt-AO")+
-" Kz";
+.toLocaleString("pt-AO") + " Kz";
 
 }
 
 
 function escapeHtml(text){
 
-return String(text ?? "")
+if(text === null || text === undefined){
+text = "";
+}
+
+return String(text)
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -648,17 +763,31 @@ return String(text ?? "")
 }
 
 
-function showMessage(message,type="message"){
+function showMessage(message,type){
 
-const box =
+if(!type){
+type = "message";
+}
+
+var box =
 document.getElementById("loginMessage");
 
-if(!box)return;
+if(!box){
+return;
+}
 
 box.className =
-"message "+type;
+"message " + type;
 
-box.textContent = message;
+box.textContent =
+message;
+
+}
+
+
+function getElement(id){
+
+return document.getElementById(id);
 
 }
 
@@ -669,31 +798,39 @@ box.textContent = message;
 
 function showPage(page){
 
-document.querySelectorAll("section")
-.forEach(section=>{
-section.classList.add("hidden");
-});
+var sections =
+document.querySelectorAll("section");
 
-const target =
-document.getElementById(page);
+var i;
+
+for(i=0;i<sections.length;i++){
+sections[i].classList.add("hidden");
+}
+
+var target =
+getElement(page);
 
 if(target){
 target.classList.remove("hidden");
 }
 
-if(page==="account"){
+
+if(page === "account"){
 loadAccount();
 }
 
-if(page==="admin"){
+if(page === "admin"){
 loadAdmin();
 }
 
-if(page==="home"){
+if(page === "home"){
 loadProducts();
 }
 
+
+try{
 window.scrollTo(0,0);
+}catch(e){}
 
 }
 
@@ -704,10 +841,16 @@ window.scrollTo(0,0);
 
 async function loadProducts(){
 
-const box =
-document.getElementById("products");
+var box =
+getElement("products");
 
-const {data,error} =
+if(!box || !db){
+return;
+}
+
+try{
+
+var result =
 await db
 .from("produtos")
 .select("*")
@@ -715,9 +858,12 @@ await db
 .order("criado_em",{ascending:false});
 
 
-if(error){
+if(result.error){
 
-console.error("Erro produtos:",error);
+console.error(
+"Erro produtos:",
+result.error
+);
 
 box.innerHTML =
 "<p>Erro ao carregar produtos.</p>";
@@ -727,39 +873,65 @@ return;
 }
 
 
-products = data || [];
+products =
+result.data || [];
 
 renderProducts();
+
+
+}catch(error){
+
+console.error(
+"Erro inesperado produtos:",
+error
+);
+
+box.innerHTML =
+"<p>Erro ao carregar produtos.</p>";
+
+}
 
 }
 
 
 function renderProducts(){
 
-const box =
-document.getElementById("products");
+var box =
+getElement("products");
 
-if(!box)return;
+if(!box){
+return;
+}
 
-const search =
-(
-document.getElementById("search")?.value ||
-""
-)
+
+var searchInput =
+getElement("search");
+
+var search = "";
+
+if(searchInput){
+search =
+String(searchInput.value || "")
+.toLowerCase();
+}
+
+
+var list =
+products.filter(function(product){
+
+var categoryOk =
+currentCategory === "Todos" ||
+product.categoria === currentCategory;
+
+
+var productName =
+String(product.nome || "")
 .toLowerCase();
 
 
-const list =
-products.filter(product=>{
+var searchOk =
+productName.indexOf(search) !== -1;
 
-const categoryOk =
-currentCategory==="Todos" ||
-product.categoria===currentCategory;
-
-const searchOk =
-(product.nome || "")
-.toLowerCase()
-.includes(search);
 
 return categoryOk && searchOk;
 
@@ -777,55 +949,88 @@ return;
 
 
 box.innerHTML =
-list.map(product=>`
+list.map(function(product){
 
-<div class="card">
+var imageHtml = "";
 
-${
-product.imagem_url
+if(product.imagem_url){
 
-? `<img
-src="${escapeHtml(product.imagem_url)}"
-alt="${escapeHtml(product.nome)}"
-onerror="this.style.display='none'"
->`
+imageHtml =
+'<img src="' +
+escapeHtml(product.imagem_url) +
+'" alt="' +
+escapeHtml(product.nome) +
+'" onerror="this.style.display=\'none\'">';
 
-: `<div class="noimage">🛍️</div>`
+}else{
+
+imageHtml =
+'<div class="noimage">🛍️</div>';
+
 }
 
-<h3>
-${escapeHtml(product.nome)}
-</h3>
 
-<small>
-${escapeHtml(product.categoria || "")}
-</small>
+return ''
 
-<div class="price">
-${money(product.preco)}
-</div>
++
+'<div class="card">'
 
-<p>
-${escapeHtml(product.descricao || "")}
-</p>
++ imageHtml
 
-<button
-class="btn"
-onclick="addCart('${product.id}')"
->
-🛒 Adicionar ao carrinho
-</button>
++ '<h3>'
++ escapeHtml(product.nome)
++ '</h3>'
 
-</div>
++ '<small>'
++ escapeHtml(product.categoria || "")
++ '</small>'
 
-`).join("");
++ '<div class="price">'
++ money(product.preco)
++ '</div>'
+
++ '<p>'
++ escapeHtml(product.descricao || "")
++ '</p>'
+
++ '<button type="button" class="btn add-cart-button" data-product-id="'
++ escapeHtml(product.id)
++ '">🛒 Adicionar ao carrinho</button>'
+
++ '</div>';
+
+}).join("");
+
+
+var cartButtons =
+document.querySelectorAll(".add-cart-button");
+
+var i;
+
+for(i=0;i<cartButtons.length;i++){
+
+cartButtons[i].addEventListener(
+"click",
+function(){
+
+addCart(
+this.getAttribute(
+"data-product-id"
+)
+);
+
+}
+);
+
+}
 
 }
 
 
 function filterCategory(category){
 
-currentCategory = category;
+currentCategory =
+category;
 
 renderProducts();
 
@@ -838,32 +1043,54 @@ renderProducts();
 
 function addCart(id){
 
-const product =
-products.find(
-item=>String(item.id)===String(id)
-);
+var product =
+null;
+
+var i;
+
+for(i=0;i<products.length;i++){
+
+if(
+String(products[i].id) ===
+String(id)
+){
+
+product =
+products[i];
+
+break;
+
+}
+
+}
+
 
 if(!product){
 
-alert("Produto não encontrado.");
+alert(
+"Produto não encontrado."
+);
 
 return;
 
 }
 
+
 cart.push(product);
 
 updateCart();
 
-alert("Produto adicionado ao carrinho.");
+alert(
+"Produto adicionado ao carrinho."
+);
 
 }
 
 
 function updateCart(){
 
-const counter =
-document.getElementById("cartCount");
+var counter =
+getElement("cartCount");
 
 if(counter){
 
@@ -879,46 +1106,57 @@ function showCart(){
 
 if(!cart.length){
 
-alert("O carrinho está vazio.");
+alert(
+"O carrinho está vazio."
+);
 
 return;
 
 }
 
 
-let total =
+var total =
 cart.reduce(
-(sum,product)=>
-sum+Number(product.preco || 0),
+function(sum,product){
+
+return sum +
+Number(product.preco || 0);
+
+},
 0
 );
 
 
-let text =
+var text =
 "🛒 CARRINHO\n\n";
 
 
-cart.forEach((product,index)=>{
+cart.forEach(
+function(product,index){
 
 text +=
-(index+1)+". "+
-product.nome+
-" - "+
-money(product.preco)+
+(index + 1) +
+". " +
+product.nome +
+" - " +
+money(product.preco) +
 "\n";
 
-});
+}
+);
 
 
 text +=
-"\nTotal: "+
+"\nTotal: " +
 money(total);
 
 
-if(confirm(
-text+
+if(
+confirm(
+text +
 "\n\nDeseja finalizar o pedido?"
-)){
+)
+){
 
 checkout();
 
@@ -928,7 +1166,7 @@ checkout();
 
 
 /* ==========================================
-   PEDIDO
+   CHECKOUT
 ========================================== */
 
 async function checkout(){
@@ -955,9 +1193,15 @@ return;
 
 try{
 
-for(const product of cart){
+var i;
 
-const {error} =
+for(i=0;i<cart.length;i++){
+
+var product =
+cart[i];
+
+
+var result =
 await db.rpc(
 "criar_pedido",
 {
@@ -966,9 +1210,10 @@ p_quantidade:1
 }
 );
 
-if(error){
 
-throw error;
+if(result.error){
+
+throw result.error;
 
 }
 
@@ -979,10 +1224,11 @@ cart = [];
 
 updateCart();
 
+
 alert(
-"Pedido criado com sucesso!\n\n"+
-"A comissão de 10% foi calculada pelo sistema."
+"Pedido criado com sucesso!"
 );
+
 
 await loadAccount();
 
@@ -997,8 +1243,8 @@ error
 );
 
 alert(
-"Não foi possível criar o pedido.\n\n"+
-(error.message || error)
+"Não foi possível criar o pedido.\n\n" +
+(error.message || String(error))
 );
 
 }
@@ -1012,37 +1258,40 @@ alert(
 
 async function register(){
 
-const name =
-document
-.getElementById("name")
+var name =
+getElement("name")
 .value
 .trim();
 
-const email =
-document
-.getElementById("email")
+
+var email =
+getElement("email")
 .value
 .trim()
 .toLowerCase();
 
-const password =
-document
-.getElementById("password")
+
+var password =
+getElement("password")
 .value;
 
-const phone =
-document
-.getElementById("phone")
+
+var phone =
+getElement("phone")
 .value
 .trim();
 
-const type =
-document
-.getElementById("type")
+
+var type =
+getElement("type")
 .value;
 
 
-if(!name || !email || !password){
+if(
+!name ||
+!email ||
+!password
+){
 
 showMessage(
 "Preencha nome, e-mail e palavra-passe.",
@@ -1067,18 +1316,13 @@ return;
 
 
 showMessage(
-"Criando a tua conta...",
-"message"
+"Criando a tua conta..."
 );
 
 
 try{
 
-/*
-Criar usuário no Supabase Auth
-*/
-
-const {data,error} =
+var result =
 await db.auth.signUp({
 
 email:email,
@@ -1096,15 +1340,15 @@ tipo:type
 });
 
 
-if(error){
+if(result.error){
 
 console.error(
-"Erro no cadastro:",
-error
+"Erro cadastro:",
+result.error
 );
 
 showMessage(
-error.message,
+result.error.message,
 "error"
 );
 
@@ -1113,7 +1357,10 @@ return;
 }
 
 
-if(!data || !data.user){
+if(
+!result.data ||
+!result.data.user
+){
 
 showMessage(
 "Não foi possível criar a conta.",
@@ -1125,17 +1372,12 @@ return;
 }
 
 
-/*
-Criar ou atualizar perfil.
-Upsert evita duplicação.
-*/
-
-const {error:profileError} =
+var profileResult =
 await db
 .from("perfis")
 .upsert({
 
-id:data.user.id,
+id:result.data.user.id,
 nome:name,
 telefone:phone,
 tipo:type
@@ -1145,16 +1387,16 @@ onConflict:"id"
 });
 
 
-if(profileError){
+if(profileResult.error){
 
 console.error(
-"Erro ao criar perfil:",
-profileError
+"Erro perfil:",
+profileResult.error
 );
 
 showMessage(
-"Conta criada, mas o perfil não pôde ser criado.\n\n"+
-profileError.message,
+"Conta criada, mas houve um erro no perfil: " +
+profileResult.error.message,
 "error"
 );
 
@@ -1163,57 +1405,51 @@ return;
 }
 
 
-/*
-Se houver sessão, entrar automaticamente.
-*/
+if(result.data.session){
 
-if(data.session){
-
-sessionUser = data.user;
+sessionUser =
+result.data.user;
 
 await loadProfile();
+
 
 showMessage(
 "Conta criada com sucesso!",
 "success"
 );
 
-showPage("account");
+
+showPage(
+"account"
+);
 
 return;
 
 }
 
 
-/*
-Caso a confirmação de e-mail esteja ativa.
-*/
-
 showMessage(
-"Conta criada com sucesso! Agora podes entrar com o teu e-mail e palavra-passe.",
+"Conta criada com sucesso! Agora confirma o teu e-mail e entra na conta.",
 "success"
 );
 
 
-/*
-Limpar campos
-*/
-
-document.getElementById("name").value="";
-document.getElementById("email").value="";
-document.getElementById("password").value="";
-document.getElementById("phone").value="";
+getElement("name").value = "";
+getElement("email").value = "";
+getElement("password").value = "";
+getElement("phone").value = "";
 
 
 }catch(error){
 
 console.error(
-"Erro inesperado no cadastro:",
+"Erro cadastro:",
 error
 );
 
 showMessage(
-error.message || String(error),
+error.message ||
+String(error),
 "error"
 );
 
@@ -1228,20 +1464,22 @@ error.message || String(error),
 
 async function login(){
 
-const email =
-document
-.getElementById("loginEmail")
+var email =
+getElement("loginEmail")
 .value
 .trim()
 .toLowerCase();
 
-const password =
-document
-.getElementById("loginPassword")
+
+var password =
+getElement("loginPassword")
 .value;
 
 
-if(!email || !password){
+if(
+!email ||
+!password
+){
 
 alert(
 "Preencha o e-mail e a palavra-passe."
@@ -1254,26 +1492,20 @@ return;
 
 try{
 
-const {data,error} =
+var result =
 await db.auth.signInWithPassword({
 
 email:email,
-
 password:password
 
 });
 
 
-if(error){
-
-console.error(
-"Erro de login:",
-error
-);
+if(result.error){
 
 alert(
-"Não foi possível entrar.\n\n"+
-error.message
+"Não foi possível entrar.\n\n" +
+result.error.message
 );
 
 return;
@@ -1281,7 +1513,10 @@ return;
 }
 
 
-if(!data || !data.user){
+if(
+!result.data ||
+!result.data.user
+){
 
 alert(
 "Usuário não encontrado."
@@ -1293,64 +1528,48 @@ return;
 
 
 sessionUser =
-data.user;
+result.data.user;
 
-
-/*
-Carregar perfil
-*/
 
 await loadProfile();
 
 
-/*
-Se o perfil ainda não existir,
-tentar criar usando os dados do Auth.
-*/
-
 if(!profile){
 
-const metadata =
-data.user.user_metadata || {};
-
-const nome =
-metadata.nome ||
-data.user.email ||
-"Usuário";
-
-const telefone =
-metadata.telefone || "";
-
-const tipo =
-metadata.tipo ||
-"comprador";
+var metadata =
+sessionUser.user_metadata || {};
 
 
-const {error:profileError} =
+var profileResult =
 await db
 .from("perfis")
 .upsert({
 
-id:data.user.id,
-nome:nome,
-telefone:telefone,
-tipo:tipo
+id:sessionUser.id,
+
+nome:
+metadata.nome ||
+sessionUser.email ||
+"Usuário",
+
+telefone:
+metadata.telefone ||
+"",
+
+tipo:
+metadata.tipo ||
+"comprador"
 
 },{
 onConflict:"id"
 });
 
 
-if(profileError){
-
-console.error(
-"Erro ao criar perfil no login:",
-profileError
-);
+if(profileResult.error){
 
 alert(
-"Entraste no Auth, mas o perfil não pôde ser criado.\n\n"+
-profileError.message
+"Entraste, mas houve erro ao criar o perfil.\n\n" +
+profileResult.error.message
 );
 
 return;
@@ -1367,19 +1586,22 @@ alert(
 "Login realizado com sucesso!"
 );
 
-showPage("account");
+
+showPage(
+"account"
+);
 
 
 }catch(error){
 
 console.error(
-"Erro inesperado no login:",
+"Erro login:",
 error
 );
 
 alert(
-"Erro inesperado:\n\n"+
-(error.message || error)
+"Erro inesperado:\n\n" +
+(error.message || String(error))
 );
 
 }
@@ -1404,7 +1626,9 @@ return;
 }
 
 
-const {data,error} =
+try{
+
+var result =
 await db
 .from("perfis")
 .select("*")
@@ -1412,11 +1636,11 @@ await db
 .maybeSingle();
 
 
-if(error){
+if(result.error){
 
 console.error(
-"Erro ao carregar perfil:",
-error
+"Erro perfil:",
+result.error
 );
 
 profile = null;
@@ -1428,31 +1652,47 @@ return;
 }
 
 
-profile = data || null;
+profile =
+result.data || null;
 
 updateAdminButton();
+
+
+}catch(error){
+
+profile = null;
+
+updateAdminButton();
+
+}
 
 }
 
 
 function updateAdminButton(){
 
-const button =
-document.getElementById("adminButton");
+var button =
+getElement("adminButton");
 
-if(!button)return;
+if(!button){
+return;
+}
 
 
 if(
 profile &&
-profile.tipo==="admin"
+profile.tipo === "admin"
 ){
 
-button.classList.remove("hidden");
+button.classList.remove(
+"hidden"
+);
 
 }else{
 
-button.classList.add("hidden");
+button.classList.add(
+"hidden"
+);
 
 }
 
@@ -1465,16 +1705,22 @@ button.classList.add("hidden");
 
 async function loadAccount(){
 
+var info =
+getElement("accountInfo");
+
+var sellerPanel =
+getElement("sellerPanel");
+
+
 if(!sessionUser){
 
-document.getElementById(
-"accountInfo"
-).innerHTML =
+info.innerHTML =
 "<p>Entra na tua conta primeiro.</p>";
 
-document.getElementById(
-"sellerPanel"
-).classList.add("hidden");
+
+sellerPanel.classList.add(
+"hidden"
+);
 
 return;
 
@@ -1484,64 +1730,75 @@ return;
 await loadProfile();
 
 
-const name =
-profile?.nome ||
-sessionUser.user_metadata?.nome ||
-"";
-
-const phone =
-profile?.telefone ||
-sessionUser.user_metadata?.telefone ||
-"-";
-
-const type =
-profile?.tipo ||
-sessionUser.user_metadata?.tipo ||
-"comprador";
+var metadata =
+sessionUser.user_metadata || {};
 
 
-document.getElementById(
-"accountInfo"
-).innerHTML = `
-
-<p>
-<strong>Nome:</strong>
-${escapeHtml(name)}
-</p>
-
-<p>
-<strong>E-mail:</strong>
-${escapeHtml(sessionUser.email || "")}
-</p>
-
-<p>
-<strong>Telefone:</strong>
-${escapeHtml(phone)}
-</p>
-
-<p>
-<strong>Tipo:</strong>
-${escapeHtml(type)}
-</p>
-
-`;
+var name =
+profile
+? profile.nome
+: (
+metadata.nome ||
+""
+);
 
 
-if(type==="vendedor"){
+var phone =
+profile
+? profile.telefone
+: (
+metadata.telefone ||
+"-"
+);
 
-document
-.getElementById("sellerPanel")
-.classList
-.remove("hidden");
+
+var type =
+profile
+? profile.tipo
+: (
+metadata.tipo ||
+"comprador"
+);
+
+
+info.innerHTML =
+
+'<p><strong>Nome:</strong> ' +
+escapeHtml(name) +
+'</p>'
+
++
+
+'<p><strong>E-mail:</strong> ' +
+escapeHtml(sessionUser.email || "") +
+'</p>'
+
++
+
+'<p><strong>Telefone:</strong> ' +
+escapeHtml(phone) +
+'</p>'
+
++
+
+'<p><strong>Tipo:</strong> ' +
+escapeHtml(type) +
+'</p>';
+
+
+if(type === "vendedor"){
+
+sellerPanel.classList.remove(
+"hidden"
+);
 
 await loadMyProducts();
 
 }else{
 
-document
-.getElementById("sellerPanel")
-.classList
-.add("hidden");
+sellerPanel.classList.add(
+"hidden"
+);
 
 }
 
@@ -1559,7 +1816,8 @@ async function publishProduct(){
 
 if(
 !sessionUser ||
-profile?.tipo!=="vendedor"
+!profile ||
+profile.tipo !== "vendedor"
 ){
 
 alert(
@@ -1571,38 +1829,41 @@ return;
 }
 
 
-const name =
-document
-.getElementById("productName")
+var name =
+getElement("productName")
 .value
 .trim();
 
-const price =
+
+var price =
 Number(
-document
-.getElementById("productPrice")
+getElement("productPrice")
 .value
 );
 
-const category =
-document
-.getElementById("productCategory")
+
+var category =
+getElement("productCategory")
 .value;
 
-const description =
-document
-.getElementById("productDescription")
-.value
-.trim();
 
-const image =
-document
-.getElementById("productImage")
+var description =
+getElement("productDescription")
 .value
 .trim();
 
 
-if(!name || !price || price<=0){
+var image =
+getElement("productImage")
+.value
+.trim();
+
+
+if(
+!name ||
+!price ||
+price <= 0
+){
 
 alert(
 "Preencha o nome e um preço válido."
@@ -1613,32 +1874,42 @@ return;
 }
 
 
-const {error} =
+try{
+
+var result =
 await db
 .from("produtos")
 .insert({
 
-vendedor_id:sessionUser.id,
-nome:name,
-descricao:description,
-preco:price,
-categoria:category,
-imagem_url:image || null,
-ativo:true
+vendedor_id:
+sessionUser.id,
+
+nome:
+name,
+
+descricao:
+description,
+
+preco:
+price,
+
+categoria:
+category,
+
+imagem_url:
+image || null,
+
+ativo:
+true
 
 });
 
 
-if(error){
-
-console.error(
-"Erro ao publicar:",
-error
-);
+if(result.error){
 
 alert(
-"Não foi possível publicar.\n\n"+
-error.message
+"Não foi possível publicar.\n\n" +
+result.error.message
 );
 
 return;
@@ -1646,25 +1917,10 @@ return;
 }
 
 
-/*
-Limpar formulário
-*/
-
-document.getElementById(
-"productName"
-).value="";
-
-document.getElementById(
-"productPrice"
-).value="";
-
-document.getElementById(
-"productDescription"
-).value="";
-
-document.getElementById(
-"productImage"
-).value="";
+getElement("productName").value = "";
+getElement("productPrice").value = "";
+getElement("productDescription").value = "";
+getElement("productImage").value = "";
 
 
 alert(
@@ -1676,6 +1932,16 @@ await loadProducts();
 
 await loadMyProducts();
 
+
+}catch(error){
+
+alert(
+"Erro ao publicar:\n\n" +
+(error.message || String(error))
+);
+
+}
+
 }
 
 
@@ -1685,27 +1951,34 @@ await loadMyProducts();
 
 async function loadMyProducts(){
 
-if(!sessionUser)return;
+if(!sessionUser){
+
+return;
+
+}
 
 
-const box =
-document.getElementById("myProducts");
+var box =
+getElement("myProducts");
 
 
-const {data,error} =
+var result =
 await db
 .from("produtos")
 .select("*")
-.eq("vendedor_id",sessionUser.id)
-.order("criado_em",{ascending:false});
-
-
-if(error){
-
-console.error(
-"Erro meus produtos:",
-error
+.eq(
+"vendedor_id",
+sessionUser.id
+)
+.order(
+"criado_em",
+{
+ascending:false
+}
 );
+
+
+if(result.error){
 
 box.innerHTML =
 "<p>Erro ao carregar produtos.</p>";
@@ -1715,7 +1988,14 @@ return;
 }
 
 
-if(!data || !data.length){
+var data =
+result.data;
+
+
+if(
+!data ||
+!data.length
+){
 
 box.innerHTML =
 "<p>Ainda não tens produtos publicados.</p>";
@@ -1726,32 +2006,79 @@ return;
 
 
 box.innerHTML =
-data.map(product=>`
+data.map(
+function(product){
 
-<div class="order">
+return
 
-<strong>
-${escapeHtml(product.nome)}
-</strong>
+'<div class="order">'
 
-<p>
-${money(product.preco)}
-</p>
++
 
-<p>
-${escapeHtml(product.categoria || "")}
-</p>
+'<strong>'
++
+escapeHtml(product.nome)
++
+'</strong>'
 
-<button
-class="btn red"
-onclick="deleteProduct('${product.id}')"
->
-Eliminar
-</button>
++
 
-</div>
+'<p>'
++
+money(product.preco)
++
+'</p>'
 
-`).join("");
++
+
+'<p>'
++
+escapeHtml(
+product.categoria || ""
+)
++
+'</p>'
+
++
+
+'<button type="button" class="btn red delete-product-button" data-product-id="'
++
+escapeHtml(product.id)
++
+'">Eliminar</button>'
+
++
+
+'</div>';
+
+}
+).join("");
+
+
+var buttons =
+document.querySelectorAll(
+".delete-product-button"
+);
+
+
+var i;
+
+for(i=0;i<buttons.length;i++){
+
+buttons[i].addEventListener(
+"click",
+function(){
+
+deleteProduct(
+this.getAttribute(
+"data-product-id"
+)
+);
+
+}
+);
+
+}
 
 }
 
@@ -1769,31 +2096,33 @@ return;
 }
 
 
-if(!confirm(
+if(
+!confirm(
 "Eliminar este produto?"
-)){
+)
+){
 
 return;
 
 }
 
 
-const {error} =
+var result =
 await db
 .from("produtos")
 .delete()
 .eq("id",id)
-.eq("vendedor_id",sessionUser.id);
-
-
-if(error){
-
-console.error(
-"Erro ao eliminar:",
-error
+.eq(
+"vendedor_id",
+sessionUser.id
 );
 
-alert(error.message);
+
+if(result.error){
+
+alert(
+result.error.message
+);
 
 return;
 
@@ -1803,6 +2132,7 @@ return;
 await loadProducts();
 
 await loadMyProducts();
+
 
 alert(
 "Produto eliminado."
@@ -1824,24 +2154,27 @@ return;
 }
 
 
-const box =
-document.getElementById("myOrders");
+var box =
+getElement("myOrders");
 
 
-const {data,error} =
+var result =
 await db
 .from("pedidos")
 .select("*")
-.eq("comprador_id",sessionUser.id)
-.order("criado_em",{ascending:false});
-
-
-if(error){
-
-console.error(
-"Erro meus pedidos:",
-error
+.eq(
+"comprador_id",
+sessionUser.id
+)
+.order(
+"criado_em",
+{
+ascending:false
+}
 );
+
+
+if(result.error){
 
 box.innerHTML =
 "<p>Erro ao carregar pedidos.</p>";
@@ -1851,7 +2184,14 @@ return;
 }
 
 
-if(!data || !data.length){
+var data =
+result.data;
+
+
+if(
+!data ||
+!data.length
+){
 
 box.innerHTML =
 "<p>Ainda não tens pedidos.</p>";
@@ -1862,40 +2202,77 @@ return;
 
 
 box.innerHTML =
-data.map(order=>`
+data.map(
+function(order){
 
-<div class="order">
+var date =
+"-";
 
-<strong>
-Pedido ${escapeHtml(order.id)}
-</strong>
 
-<p>
-Valor:
-<strong>
-${money(order.valor_total)}
-</strong>
-</p>
+if(order.criado_em){
 
-<p>
-Estado:
-<span class="status">
-${escapeHtml(order.status)}
-</span>
-</p>
+try{
 
-<p>
-Data:
-${order.criado_em
-? new Date(order.criado_em)
-.toLocaleString("pt-AO")
-: "-"
+date =
+new Date(
+order.criado_em
+)
+.toLocaleString(
+"pt-AO"
+);
+
+}catch(e){
+
+date =
+order.criado_em;
+
 }
-</p>
 
-</div>
+}
 
-`).join("");
+
+return
+
+'<div class="order">'
+
++
+
+'<strong>Pedido '
++
+escapeHtml(order.id)
++
+'</strong>'
+
++
+
+'<p>Valor: <strong>'
++
+money(order.valor_total)
++
+'</strong></p>'
+
++
+
+'<p>Estado: <span class="status">'
++
+escapeHtml(order.status)
++
+'</span></p>'
+
++
+
+'<p>Data: '
++
+date
++
+'</p>'
+
++
+
+'</div>';
+
+}
+).join("");
 
 }
 
@@ -1911,52 +2288,58 @@ await loadProfile();
 
 if(
 !profile ||
-profile.tipo!=="admin"
+profile.tipo !== "admin"
 ){
 
-document
-.getElementById("adminDenied")
-.classList
-.remove("hidden");
+getElement(
+"adminDenied"
+).classList.remove(
+"hidden"
+);
 
-document
-.getElementById("adminContent")
-.classList
-.add("hidden");
+
+getElement(
+"adminContent"
+).classList.add(
+"hidden"
+);
 
 return;
 
 }
 
 
-document
-.getElementById("adminDenied")
-.classList
-.add("hidden");
-
-document
-.getElementById("adminContent")
-.classList
-.remove("hidden");
+getElement(
+"adminDenied"
+).classList.add(
+"hidden"
+);
 
 
-const {data,error} =
+getElement(
+"adminContent"
+).classList.remove(
+"hidden"
+);
+
+
+var result =
 await db
 .from("pedidos")
 .select("*")
-.order("criado_em",{ascending:false});
-
-
-if(error){
-
-console.error(
-"Erro admin:",
-error
+.order(
+"criado_em",
+{
+ascending:false
+}
 );
 
-document
-.getElementById("adminOrders")
-.innerHTML =
+
+if(result.error){
+
+getElement(
+"adminOrders"
+).innerHTML =
 "<p>Não foi possível carregar os pedidos.</p>";
 
 return;
@@ -1964,54 +2347,70 @@ return;
 }
 
 
-let total=0;
-let commission=0;
-let seller=0;
+var data =
+result.data || [];
 
 
-(data || []).forEach(order=>{
+var total = 0;
+var commission = 0;
+var seller = 0;
+
+
+data.forEach(
+function(order){
 
 total +=
-Number(order.valor_total)||0;
+Number(
+order.valor_total
+) || 0;
+
 
 commission +=
-Number(order.comissao)||0;
+Number(
+order.comissao
+) || 0;
+
 
 seller +=
-Number(order.valor_vendedor)||0;
+Number(
+order.valor_vendedor
+) || 0;
 
-});
+}
+);
 
 
-document.getElementById(
+getElement(
 "totalSales"
 ).textContent =
 money(total);
 
 
-document.getElementById(
+getElement(
 "totalCommission"
 ).textContent =
 money(commission);
 
 
-document.getElementById(
+getElement(
 "sellerMoney"
 ).textContent =
 money(seller);
 
 
-document.getElementById(
+getElement(
 "totalOrders"
 ).textContent =
-(data || []).length;
+data.length;
 
 
-const box =
-document.getElementById("adminOrders");
+var box =
+getElement(
+"adminOrders"
+);
 
 
-if(!data || !data.length){
+if(!data.length){
 
 box.innerHTML =
 "<p>Ainda não existem pedidos.</p>";
@@ -2022,52 +2421,93 @@ return;
 
 
 box.innerHTML =
-data.map(order=>`
+data.map(
+function(order){
 
-<div class="order">
+var date =
+"-";
 
-<strong>
-Pedido ${escapeHtml(order.id)}
-</strong>
 
-<p>
-Valor:
-<strong>
-${money(order.valor_total)}
-</strong>
-</p>
+if(order.criado_em){
 
-<p>
-Comissão GTube:
-<strong>
-${money(order.comissao)}
-</strong>
-</p>
+try{
 
-<p>
-Vendedor:
-<strong>
-${money(order.valor_vendedor)}
-</strong>
-</p>
+date =
+new Date(
+order.criado_em
+)
+.toLocaleString(
+"pt-AO"
+);
 
-<p>
-Estado:
-${escapeHtml(order.status)}
-</p>
+}catch(e){
 
-<p>
-Data:
-${order.criado_em
-? new Date(order.criado_em)
-.toLocaleString("pt-AO")
-: "-"
+date =
+order.criado_em;
+
 }
-</p>
 
-</div>
+}
 
-`).join("");
+
+return
+
+'<div class="order">'
+
++
+
+'<strong>Pedido '
++
+escapeHtml(order.id)
++
+'</strong>'
+
++
+
+'<p>Valor: <strong>'
++
+money(order.valor_total)
++
+'</strong></p>'
+
++
+
+'<p>Comissão Kivo: <strong>'
++
+money(order.comissao)
++
+'</strong></p>'
+
++
+
+'<p>Vendedor: <strong>'
++
+money(order.valor_vendedor)
++
+'</strong></p>'
+
++
+
+'<p>Estado: '
++
+escapeHtml(order.status)
++
+'</p>'
+
++
+
+'<p>Data: '
++
+date
++
+'</p>'
+
++
+
+'</div>';
+
+}
+).join("");
 
 }
 
@@ -2078,7 +2518,16 @@ ${order.criado_em
 
 async function logout(){
 
+try{
+
 await db.auth.signOut();
+
+}catch(e){
+
+console.error(e);
+
+}
+
 
 sessionUser = null;
 
@@ -2086,15 +2535,142 @@ profile = null;
 
 cart = [];
 
+
 updateCart();
 
 updateAdminButton();
+
 
 alert(
 "Sessão encerrada."
 );
 
+
+showPage(
+"home"
+);
+
+}
+
+
+/* ==========================================
+   EVENTOS
+========================================== */
+
+function setupEvents(){
+
+getElement(
+"homeButton"
+).addEventListener(
+"click",
+function(){
 showPage("home");
+}
+);
+
+
+getElement(
+"loginButton"
+).addEventListener(
+"click",
+function(){
+showPage("login");
+}
+);
+
+
+getElement(
+"accountButton"
+).addEventListener(
+"click",
+function(){
+showPage("account");
+}
+);
+
+
+getElement(
+"adminButton"
+).addEventListener(
+"click",
+function(){
+showPage("admin");
+}
+);
+
+
+getElement(
+"cartButton"
+).addEventListener(
+"click",
+showCart
+);
+
+
+getElement(
+"loginSubmit"
+).addEventListener(
+"click",
+login
+);
+
+
+getElement(
+"registerButton"
+).addEventListener(
+"click",
+register
+);
+
+
+getElement(
+"logoutButton"
+).addEventListener(
+"click",
+logout
+);
+
+
+getElement(
+"publishButton"
+).addEventListener(
+"click",
+publishProduct
+);
+
+
+getElement(
+"search"
+).addEventListener(
+"input",
+renderProducts
+);
+
+
+var categories =
+document.querySelectorAll(
+".cat"
+);
+
+
+var i;
+
+for(i=0;i<categories.length;i++){
+
+categories[i].addEventListener(
+"click",
+function(){
+
+filterCategory(
+this.getAttribute(
+"data-category"
+)
+);
+
+}
+);
+
+}
 
 }
 
@@ -2107,25 +2683,38 @@ async function start(){
 
 try{
 
-const {data,error} =
-await db.auth.getSession();
+if(
+!window.supabase
+){
 
-
-if(error){
-
-console.error(
-"Erro ao obter sessão:",
-error
+alert(
+"Erro: não foi possível carregar o Supabase."
 );
+
+return;
 
 }
 
 
+db =
+window.supabase.createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+setupEvents();
+
+
+var result =
+await db.auth.getSession();
+
+
+if(result.data &&
+result.data.session){
+
 sessionUser =
-data?.session?.user || null;
-
-
-if(sessionUser){
+result.data.session.user;
 
 await loadProfile();
 
@@ -2139,32 +2728,18 @@ updateCart();
 updateAdminButton();
 
 
-}catch(error){
-
-console.error(
-"Erro na inicialização:",
-error
-);
-
-}
-
-}
-
-
-/* ==========================================
-   ALTERAÇÃO DE SESSÃO
-========================================== */
-
 db.auth.onAuthStateChange(
-async (_event,session)=>{
+function(event,session){
 
 sessionUser =
-session?.user || null;
+session
+? session.user
+: null;
 
 
 if(sessionUser){
 
-await loadProfile();
+loadProfile();
 
 }else{
 
@@ -2178,11 +2753,48 @@ updateAdminButton();
 );
 
 
+}catch(error){
+
+console.error(
+"Erro na inicialização:",
+error
+);
+
+
+var box =
+getElement("products");
+
+
+if(box){
+
+box.innerHTML =
+"<p>Erro ao iniciar o site.</p>";
+
+}
+
+}
+
+}
+
+
 /* ==========================================
    INICIAR
 ========================================== */
 
+if(
+document.readyState === "loading"
+){
+
+document.addEventListener(
+"DOMContentLoaded",
+start
+);
+
+}else{
+
 start();
+
+}
 
 </script>
 
